@@ -29,6 +29,13 @@ QUERIES = [
   "\"Energy Corse\" karting",
   "\"Kosmic Kart\" karting",
   "\"Exprit\" karting",
+  "\"Zip Kart\" karting",
+  "\"Top Kart\" karting",
+  "\"Haase Kart\" karting",
+  "\"Gillard Kart\" karting",
+  "\"CS55 Racing Kart\" karting",
+  "\"BRM Racing\" karting",
+  "\"Fullerton Kart\" karting",
   '"kart racing"',
   '"go kart" racing',
   "karting FIA",
@@ -222,7 +229,7 @@ def main():
     us=[x for x in clustered if x.get("country")=="United States"][:20]
     au=[x for x in clustered if x.get("country")=="Australia"][:15]
     uk=[x for x in clustered if x.get("country")=="United Kingdom"][:20]
-    brand_terms=["tony kart","crg","birel","kart republic","sodikart","parolin","praga kart","energy corse","kosmic","exprit"]
+    brand_terms=["tony kart","crg","birel","kart republic","sodikart","parolin","praga kart","energy corse","kosmic","exprit","zip kart","top kart","haase kart","gillard kart","cs55 racing kart","brm racing","fullerton kart"]
     brand=[x for x in clustered if any(t in (x["title"]+" "+x.get("summary","")).lower() for t in brand_terms)][:25]
     selected=[]
     seen_ids=set()
