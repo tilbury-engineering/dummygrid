@@ -329,3 +329,14 @@ footer{
  .ai-search-box .button{width:100%}
  .manufacturer-grid.compact{grid-template-columns:1fr}
 }
+
+.knowledge-page{max-width:1180px;margin:0 auto}
+.knowledge-search{margin-bottom:34px}
+.knowledge-guide-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.knowledge-guide{background:#fff;border:1px solid #dfe5e9;border-radius:18px;padding:22px;box-shadow:var(--shadow);display:flex;flex-direction:column;min-height:230px}
+.knowledge-guide>span{font-size:11px;font-weight:950;letter-spacing:.12em;color:#00a994}
+.knowledge-guide h3{font-size:22px;margin:12px 0 8px}
+.knowledge-guide p{color:#68757e;margin:0 0 18px}
+.knowledge-guide a{margin-top:auto;font-weight:850;color:#009c89}
+@media(max-width:900px){.knowledge-guide-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.knowledge-guide-grid{grid-template-columns:1fr}.knowledge-guide{min-height:0}}
