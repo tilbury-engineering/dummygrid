@@ -132,10 +132,30 @@ function Ad({format="Leaderboard",text="Your brand in the paddock"}) {
 }
 function Pill({children,tone=""}){return <span className={"pill "+tone}>{children}</span>}
 function Top({region,setRegion}){
- return <><header><a className="logo" href="#/" aria-label="DummyGrid home"><img src={DUMMYGRID_LOGO} alt="DummyGrid"/></a><nav className="main-nav">
-  <a href="#/">Home</a><a href="#/news">News</a><a href="#/marketplace">Marketplace</a><a href="#/drivers">Drivers</a><a href="#/classes">Classes</a><a href="#/manufacturers">Manufacturers</a><a href="#/community">Community</a><a href="#/advertise">Advertise</a>
- </nav><div className="header-actions"><select value={region} onChange={e=>setRegion(e.target.value)}>{regions.map(r=><option key={r}>{r}</option>)}</select><a className="button outline" href="#/profile">My Profile</a></div></header>
- <div className="ticker"><b>LIVE GRID</b><span>UK club racing · International karting · Classifieds · Driver profiles · Technical classes · Community</span></div></>
+ const [menuOpen,setMenuOpen]=useState(false);
+ return <><header className="site-header">
+   <div className="masthead">
+     <a className="logo" href="#/" aria-label="DummyGrid home">
+       <img src={DUMMYGRID_LOGO} alt="DummyGrid" onError={e=>{e.currentTarget.style.display="none";e.currentTarget.nextElementSibling.style.display="inline-flex"}}/>
+       <span className="logo-fallback">Dummy<span>Grid</span></span>
+     </a>
+     <nav className={"main-nav "+(menuOpen?"open":"")}>
+       <a href="#/" onClick={()=>setMenuOpen(false)}>Home</a>
+       <a href="#/news" onClick={()=>setMenuOpen(false)}>News</a>
+       <a href="#/marketplace" onClick={()=>setMenuOpen(false)}>Marketplace</a>
+       <a href="#/drivers" onClick={()=>setMenuOpen(false)}>Drivers</a>
+       <a href="#/classes" onClick={()=>setMenuOpen(false)}>Classes</a>
+       <a href="#/manufacturers" onClick={()=>setMenuOpen(false)}>Manufacturers</a>
+       <a href="#/community" onClick={()=>setMenuOpen(false)}>Community</a>
+     </nav>
+     <div className="header-actions">
+       <select aria-label="Choose region" value={region} onChange={e=>setRegion(e.target.value)}>{regions.map(r=><option key={r}>{r}</option>)}</select>
+       <a className="account-link" href="#/profile">Profile</a>
+       <button className="menu-toggle" aria-label="Toggle menu" aria-expanded={menuOpen} onClick={()=>setMenuOpen(v=>!v)}><span></span><span></span><span></span></button>
+     </div>
+   </div>
+ </header>
+ <div className="subnav"><div><b>LIVE</b><span>Karting news · Encyclopedia · Marketplace · Drivers · Teams · Circuits</span><a href="#/advertise">Advertise</a></div></div></>
 }
 function Hero({region}){
  return <section className="hero"><div><Pill tone="lime">{region} FEED</Pill><h1>THE WORLD<br/>OF KARTING.<br/><em>ONE GRID.</em></h1><p>News, drivers, classes, community and a proper karting marketplace — local to you, global when you want it.</p><div className="actions"><a className="button primary" href="#/news">Latest news</a><a className="button" href="#/marketplace">Browse classifieds</a></div></div><div className="trackart"><div className="ring"></div><div className="kart">27</div></div></section>
