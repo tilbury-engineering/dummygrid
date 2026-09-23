@@ -96,12 +96,26 @@ function Hero({region}){
  return <section className="hero"><div><Pill tone="lime">{region} FEED</Pill><h1>THE WORLD<br/>OF KARTING.<br/><em>ONE GRID.</em></h1><p>News, drivers, classes, community and a proper karting marketplace — local to you, global when you want it.</p><div className="actions"><a className="button primary" href="#/news">Latest news</a><a className="button" href="#/marketplace">Browse classifieds</a></div></div><div className="trackart"><div className="ring"></div><div className="kart">27</div></div></section>
 }
 function SectionHead({eyebrow,title,copy,action}){return <div className="sectionhead"><div><span>{eyebrow}</span><h2>{title}</h2>{copy&&<p>{copy}</p>}</div>{action}</div>}
-function newsFor(region){return demoNews.filter(n=>region==="Global"||n.region===region||n.region==="Global").sort((a,b)=>(b.region===region)-(a.region===region))}
-function NewsCard({n,big=false}){return <article className={"news-card "+(big?"big":"")} onClick={()=>location.hash="/news/"+n.id}><div className="media"><span>{n.tag}</span></div><div className="cardbody"><div className="meta">{n.region} · {n.time} · {n.source}</div><h3>{n.title}</h3><p>{n.dek}</p><b className="link">Read story →</b></div></article>}
+function useLiveNews(){
+ const [state,setState]=useState({items:demoNews.map(n=>({...n,country:n.region==="UK"?"United Kingdom":n.region,continent:n.region==="UK"?"Europe":n.region,summary:n.dek,published:n.time,url:""})),updatedAt:null,live:false});
+ useEffect(()=>{fetch((import.meta.env.BASE_URL||"/")+"news.json",{cache:"no-store"}).then(r=>r.ok?r.json():Promise.reject()).then(d=>{if(d?.items?.length)setState({items:d.items,updatedAt:d.updatedAt,live:true})}).catch(()=>{})},[]);
+ return state;
+}
+function newsFor(region,items){
+ const map={UK:x=>x.country==="United Kingdom",Europe:x=>x.continent==="Europe",USA:x=>x.country==="United States",Australia:x=>x.country==="Australia",Global:()=>true};
+ return items.filter(map[region]||map.Global);
+}
+function fmtDate(v){try{return new Intl.DateTimeFormat("en-GB",{day:"2-digit",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"}).format(new Date(v))}catch{return v||""}}
+function NewsCard({n,big=false}){
+ const title=n.title, dek=n.summary||n.dek||"", region=n.country&&n.country!=="Global"?n.country:(n.continent||n.region||"Global"), time=n.published?fmtDate(n.published):(n.time||""), live=!!n.url;
+ const body=<><div className="media" style={n.image?{backgroundImage:`linear-gradient(180deg,transparent,rgba(0,0,0,.35)),url("${n.image}")`,backgroundSize:"cover",backgroundPosition:"center"}:{}}><span>{n.tag||"NEWS"}</span></div><div className="cardbody"><div className="meta">{region} · {time}</div><h3>{title}</h3><p>{dek}</p><div className="source-line">Source: <b>{n.source||"Original publisher"}</b>{n.sources?.length?<> · +{n.sources.length} matching source{n.sources.length>1?"s":""}</>:""}</div><b className="link">{live?"Read at source ↗":"Read story →"}</b></div></>;
+ return live?<a className={"news-card "+(big?"big":"")} href={n.url} target="_blank" rel="noopener noreferrer">{body}</a>:<article className={"news-card "+(big?"big":"")} onClick={()=>location.hash="/news/"+n.id}>{body}</article>
+}
 function ListingCard({x,saved,toggleSave}){return <article className="listing-card"><div className="listing-img"><span>{x.category}</span><button className={"heart "+(saved?"active":"")} onClick={()=>toggleSave(x.id)}>♥</button></div><div className="cardbody"><div className="meta">{x.region} · {x.condition}</div><h3>{x.title}</h3><div className="price">{x.currency}{Number(x.price).toLocaleString()}</div><p>{x.location} · {x.compat}</p><a className="link" href={"#/marketplace/"+x.id}>View listing →</a></div></article>}
 function DriverCard({d}){return <a className="driver-card" href={"#/drivers/"+d.id}><div className="avatar">{d.name.split(" ").map(x=>x[0]).join("")}</div><div><div className="meta">{d.region} · #{d.number} {d.verified&&"✓ Verified"}</div><h3>{d.name}</h3><p>{d.className} · {d.team}</p><div className="mini-stats"><b>{d.starts}<small>Starts</small></b><b>{d.wins}<small>Wins</small></b><b>{d.podiums}<small>Podiums</small></b></div></div></a>}
 function Home({region,listings,drivers,posts,saved,toggleSave}){
- const news=newsFor(region).slice(0,3), localListings=listings.filter(x=>region==="Global"||x.region===region).slice(0,4), localDrivers=drivers.filter(x=>region==="Global"||x.region===region).slice(0,3);
+ const liveNews=useLiveNews();
+ const news=newsFor(region,liveNews.items).slice(0,3), localListings=listings.filter(x=>region==="Global"||x.region===region).slice(0,4), localDrivers=drivers.filter(x=>region==="Global"||x.region===region).slice(0,3);
  return <><Hero region={region}/><Ad format="Homepage takeover"/><section><SectionHead eyebrow="Latest from the paddock" title={region+" news first"} copy="Regional stories are prioritised automatically, with major global stories mixed in."/>{news.length?<div className="news-grid">{news.map((n,i)=><NewsCard key={n.id} n={n} big={i===0}/>)}</div>:<Empty text="No stories in this region yet."/>}</section>
  <section><SectionHead eyebrow="Marketplace" title="Fresh classifieds near you" copy="Karts, engines, parts, trailers, racewear and team equipment." action={<a className="button primary" href="#/marketplace/new">+ Post a listing</a>}/><div className="market-grid">{localListings.map(x=><ListingCard key={x.id} x={x} saved={saved.includes(x.id)} toggleSave={toggleSave}/>)}</div></section>
  <Ad format="Marketplace leaderboard" text="Dealer and manufacturer inventory"/>
@@ -110,9 +124,14 @@ function Home({region,listings,drivers,posts,saved,toggleSave}){
  <section><SectionHead eyebrow="Community" title="The digital paddock" copy="Setup help, wanted posts, race weekends and results." action={<a className="button primary" href="#/community/new">Create post</a>}/><div className="post-grid">{posts.filter(p=>region==="Global"||p.region===region).slice(0,3).map(p=><PostCard p={p} key={p.id}/>)}</div></section></>
 }
 function News({region}){
- const [q,setQ]=useState(""); const [tag,setTag]=useState("All");
- const rows=newsFor(region).filter(n=>(tag==="All"||n.tag===tag)&&((n.title+" "+n.dek).toLowerCase().includes(q.toLowerCase())));
- return <section><PageTitle kicker="Newsroom" title="KARTING NEWS" text="Local first. Global when it matters."/><Filters><input placeholder="Search news…" value={q} onChange={e=>setQ(e.target.value)}/><select value={tag} onChange={e=>setTag(e.target.value)}><option>All</option>{[...new Set(demoNews.map(n=>n.tag))].map(x=><option key={x}>{x}</option>)}</select></Filters><div className="news-grid">{rows.map((n,i)=><NewsCard key={n.id} n={n} big={i===0}/>)}</div><Ad format="News leaderboard"/></section>
+ const liveNews=useLiveNews();
+ const [q,setQ]=useState(""); const [country,setCountry]=useState("All"); const [continent,setContinent]=useState("All"); const [source,setSource]=useState("All");
+ const base=newsFor(region,liveNews.items);
+ const countries=[...new Set(liveNews.items.map(n=>n.country).filter(x=>x&&x!=="Global"))].sort();
+ const continents=[...new Set(liveNews.items.map(n=>n.continent).filter(x=>x&&x!=="Global"))].sort();
+ const sources=[...new Set(liveNews.items.map(n=>n.source).filter(Boolean))].sort();
+ const rows=base.filter(n=>(country==="All"||n.country===country)&&(continent==="All"||n.continent===continent)&&(source==="All"||n.source===source)&&((n.title+" "+(n.summary||n.dek||"")+" "+(n.source||"")).toLowerCase().includes(q.toLowerCase())));
+ return <section><PageTitle kicker={liveNews.live?"Live aggregator":"Newsroom"} title="KARTING NEWS" text={liveNews.live?("Live karting coverage from across the web · updated "+fmtDate(liveNews.updatedAt)):"Loading live feed…"}/><Filters><input placeholder="Search live karting news…" value={q} onChange={e=>setQ(e.target.value)}/><select value={continent} onChange={e=>{setContinent(e.target.value);setCountry("All")}}><option>All</option>{continents.map(x=><option key={x}>{x}</option>)}</select><select value={country} onChange={e=>setCountry(e.target.value)}><option>All</option>{countries.filter(c=>continent==="All"||liveNews.items.some(n=>n.country===c&&n.continent===continent)).map(x=><option key={x}>{x}</option>)}</select><select value={source} onChange={e=>setSource(e.target.value)}><option>All</option>{sources.map(x=><option key={x}>{x}</option>)}</select></Filters>{rows.length?<div className="news-grid">{rows.map((n,i)=><NewsCard key={n.id||n.url||i} n={n} big={i===0}/>)}</div>:<Empty text="No live stories match those filters."/>}<Ad format="News leaderboard"/></section>
 }
 function NewsDetail({id}){const n=demoNews.find(x=>String(x.id)===id); if(!n)return <NotFound/>;return <section className="article"><Pill>{n.region}</Pill><h1>{n.title}</h1><p className="lead">{n.dek}</p><div className="article-meta">{n.source} · {n.time}</div><div className="article-hero"></div><p>This is a demo editorial page showing how a full KARTGRID story would read. The production version can ingest approved feeds, original reporting, championship releases and contributor content, while preserving regional relevance and source attribution.</p><p>Articles can support galleries, results tables, embedded video, related driver profiles, class links and contextual advertising.</p><Ad format="In-article MPU"/></section>}
 function Marketplace({region,listings,setListings,saved,toggleSave}){
