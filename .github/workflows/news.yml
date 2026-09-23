@@ -30,7 +30,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install feed dependencies
-        run: pip install requests feedparser beautifulsoup4
+        run: pip install requests feedparser beautifulsoup4 googlenewsdecoder
 
       - name: Aggregate karting news
         run: python scripts/update_news.py
