@@ -354,13 +354,73 @@ function Community({region,posts,setPosts}){
  return <section><PageTitle kicker="User generated" title="THE PADDOCK" text="Questions, setup notes, race weekends, wanted posts and results." action={<a className="button primary" href="#/community/new">+ Create post</a>}/><Filters><select value={cat} onChange={e=>setCat(e.target.value)}><option>All</option>{["Setup Help","Race Weekend","Wanted","Results","Photos","General"].map(x=><option key={x}>{x}</option>)}</select></Filters><div className="community-layout"><div className="post-grid">{rows.map(p=><PostCard key={p.id} p={p} onLike={like} onComment={comment}/>)}</div><aside><Ad format="MPU"/><div className="panel"><h3>Trending</h3><p>#X30Setup</p><p>#KartForSale</p><p>#RaceWeekend</p></div></aside></div></section>}
 function NewPost({region,posts,setPosts}){const[form,setForm]=useState({author:"My Profile",region:region==="Global"?"UK":region,category:"General",text:""});const submit=e=>{e.preventDefault();const n=[{...form,id:"up"+Date.now(),likes:0,comments:[]},...posts];setPosts(n);save("kg_posts",n);location.hash="/community"};return <section><PageTitle kicker="Community" title="CREATE A POST" text="Ask, share, buy, sell or help someone in the paddock."/><form className="form-card" onSubmit={submit}><label>Name<input value={form.author} onChange={e=>setForm({...form,author:e.target.value})}/></label><label>Region<select value={form.region} onChange={e=>setForm({...form,region:e.target.value})}>{regions.filter(x=>x!=="Global").map(x=><option key={x}>{x}</option>)}</select></label><label>Category<select value={form.category} onChange={e=>setForm({...form,category:e.target.value})}>{["Setup Help","Race Weekend","Wanted","Results","Photos","General"].map(x=><option key={x}>{x}</option>)}</select></label><label className="wide">Post<textarea required value={form.text} onChange={e=>setForm({...form,text:e.target.value})}/></label><button className="button primary wide">Post to paddock</button></form></section>}
 function Advertise(){return <section><PageTitle kicker="Commercial" title="ADVERTISE" text="Reach karting people by where they are, what they race and what they buy."/><div className="ad-products"><div className="panel"><h3>Leaderboard</h3><b>970 × 250</b><p>Homepage, news and marketplace placements.</p></div><div className="panel"><h3>MPU</h3><b>300 × 250</b><p>Contextual sidebar and article placements.</p></div><div className="panel"><h3>Native story</h3><b>Sponsored</b><p>Clearly labelled editorial-style commercial content.</p></div><div className="panel"><h3>Weekend takeover</h3><b>Event-led</b><p>High-impact campaigns around major race weekends.</p></div></div><div className="two-col"><div className="panel"><h3>Targeting</h3><p>Country / region · karting class · marketplace category · age group · championship interest · circuit region.</p></div><div className="panel"><h3>Want the media pack?</h3><button className="button primary" onClick={()=>alert("Enquiry captured (demo).")}>Request media pack</button></div></div></section>}
-function Profile({profile,listings,posts,saved}){
- const mine=listings.filter(x=>x.seller==="My Garage"), myPosts=posts.filter(x=>x.author==="My Profile");
- return <section><PageTitle kicker="Account" title="MY PROFILE" text="Your karting identity, garage and community activity." action={<a className="button primary" href="#/profile/edit">Edit driver profile</a>}/>{profile?<div className="profile-hero compact"><div className="profile-avatar">{profile.name.split(" ").map(x=>x[0]).join("")}</div><div><h2>{profile.name}</h2><p>{profile.className} · {profile.team}</p><p>{profile.bio}</p></div></div>:<Empty text="You have not created a driver profile yet." action={<a className="button primary" href="#/profile/edit">Create profile</a>}/>}<div className="dashboard"><div className="panel"><h3>My listings</h3><b>{mine.length}</b></div><div className="panel"><h3>Saved listings</h3><b>{saved.length}</b></div><div className="panel"><h3>Community posts</h3><b>{myPosts.length}</b></div></div></section>}
-function EditProfile({profile,setProfile,drivers,setDrivers,region}){
- const [f,setF]=useState(profile||{id:"me",name:"",region:region==="Global"?"UK":region,nationality:"British",className:"Senior X30",team:"Privateer",number:"",starts:0,wins:0,podiums:0,verified:false,bio:""});
- const submit=e=>{e.preventDefault();setProfile(f);save("kg_profile",f);const next=[f,...drivers.filter(d=>d.id!=="me")];setDrivers(next);save("kg_drivers",next);location.hash="/profile"};
- return <section><PageTitle kicker="Driver profile" title="BUILD YOUR KARTING CV" text="Create a public racing identity you can keep building over time."/><form className="form-card" onSubmit={submit}><label>Name<input required value={f.name} onChange={e=>setF({...f,name:e.target.value})}/></label><label>Race number<input required value={f.number} onChange={e=>setF({...f,number:e.target.value})}/></label><label>Region<select value={f.region} onChange={e=>setF({...f,region:e.target.value})}>{regions.filter(x=>x!=="Global").map(x=><option key={x}>{x}</option>)}</select></label><label>Nationality<input value={f.nationality} onChange={e=>setF({...f,nationality:e.target.value})}/></label><label>Current class<input value={f.className} onChange={e=>setF({...f,className:e.target.value})}/></label><label>Team<input value={f.team} onChange={e=>setF({...f,team:e.target.value})}/></label><label>Starts<input type="number" value={f.starts} onChange={e=>setF({...f,starts:Number(e.target.value)})}/></label><label>Wins<input type="number" value={f.wins} onChange={e=>setF({...f,wins:Number(e.target.value)})}/></label><label>Podiums<input type="number" value={f.podiums} onChange={e=>setF({...f,podiums:Number(e.target.value)})}/></label><label className="wide">Bio<textarea value={f.bio} onChange={e=>setF({...f,bio:e.target.value})}/></label><button className="button primary wide">Save driver profile</button></form></section>}
+function DriverAccount({region}){
+ const [token,setToken]=useState(()=>localStorage.getItem("dg_token")||"");
+ const [mode,setMode]=useState("login");
+ const [auth,setAuth]=useState({email:"",password:"",birthYear:"",guardianEmail:""});
+ const [profile,setProfile]=useState(null);
+ const [videos,setVideos]=useState([]);
+ const [busy,setBusy]=useState(false);
+ const [error,setError]=useState("");
+ const [message,setMessage]=useState("");
+ const [uploading,setUploading]=useState(false);
+
+ const call=async(path,opts={})=>{
+   const headers={...(opts.headers||{}),"Content-Type":"application/json"};
+   if(token) headers.Authorization="Bearer "+token;
+   const r=await fetch(DUMMYGRID_API+path,{...opts,headers});
+   const data=await r.json().catch(()=>({}));
+   if(!r.ok) throw new Error(data.message||"Request failed");
+   return data;
+ };
+ const loadAccount=async()=>{
+   if(!token)return;
+   try{
+     const me=await call("/api/me");
+     setProfile(me.profile||{display_name:"",race_number:"",region,nationality:"",class_name:"",team:"",bio:"",public_profile:false,is_minor:!!me.user?.is_minor});
+     const v=await call("/api/me/videos");setVideos(v.videos||[]);
+   }catch(e){setError(e.message);if(/expired|sign in/i.test(e.message)){localStorage.removeItem("dg_token");setToken("")}}
+ };
+ useEffect(()=>{loadAccount()},[token]);
+
+ const submitAuth=async e=>{
+   e.preventDefault();setBusy(true);setError("");setMessage("");
+   try{
+     const path=mode==="login"?"/api/auth/login":"/api/auth/register";
+     const body=mode==="login"?{email:auth.email,password:auth.password}:{email:auth.email,password:auth.password,birthYear:Number(auth.birthYear)||null,guardianEmail:auth.guardianEmail||null};
+     const r=await fetch(DUMMYGRID_API+path,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
+     const data=await r.json().catch(()=>({}));
+     if(!r.ok)throw new Error(data.message||"Could not sign in");
+     localStorage.setItem("dg_token",data.token);setToken(data.token);setMessage(mode==="login"?"Signed in.":"Account created.");
+   }catch(e){setError(e.message)}finally{setBusy(false)}
+ };
+ const logout=()=>{localStorage.removeItem("dg_token");setToken("");setProfile(null);setVideos([])};
+ const saveProfile=async e=>{
+   e.preventDefault();setBusy(true);setError("");setMessage("");
+   try{const d=await call("/api/me/profile",{method:"PUT",body:JSON.stringify(profile)});setProfile(d.profile);setMessage("Profile saved.");}
+   catch(e){setError(e.message)}finally{setBusy(false)}
+ };
+ const uploadVideo=async e=>{
+   const file=e.target.files?.[0];if(!file)return;
+   setUploading(true);setError("");setMessage("");
+   try{
+     const presign=await call("/api/videos/presign",{method:"POST",body:JSON.stringify({name:file.name,type:file.type||"video/mp4"})});
+     const put=await fetch(presign.url,{method:"PUT",headers:{"Content-Type":file.type||"video/mp4"},body:file});
+     if(!put.ok)throw new Error("Video upload failed.");
+     await call("/api/videos/register",{method:"POST",body:JSON.stringify({key:presign.key,name:file.name,type:file.type||"video/mp4",title:file.name})});
+     setMessage("Video uploaded privately.");await loadAccount();
+   }catch(e){setError(e.message)}finally{setUploading(false);e.target.value=""}
+ };
+ const analyse=async id=>{
+   setBusy(true);setError("");setMessage("AI is reviewing the onboard footage…");
+   try{await call("/api/videos/"+id+"/analyze",{method:"POST",body:"{}"});setMessage("AI coaching complete.");await loadAccount();}
+   catch(e){setError(e.message);setMessage("")}finally{setBusy(false)}
+ };
+
+ if(!token)return <section className="driver-account"><PageTitle kicker="Driver Hub" title="YOUR DRIVER ACCOUNT" text="Sign in to manage your racing profile, private video library and AI coaching."/><div className="auth-shell"><div className="auth-copy"><span>DummyGrid Driver Hub</span><h2>Your karting career, in one place.</h2><p>Build your driver profile, keep race footage private and use AI coaching to review onboard video.</p><div className="junior-note"><b>Junior-safe by default</b><p>Under-18 profiles are private by default and require a parent or guardian email during registration.</p></div></div><form className="auth-card" onSubmit={submitAuth}><div className="auth-tabs"><button type="button" className={mode==="login"?"active":""} onClick={()=>setMode("login")}>Sign in</button><button type="button" className={mode==="register"?"active":""} onClick={()=>setMode("register")}>Create account</button></div><label>Email<input type="email" required value={auth.email} onChange={e=>setAuth({...auth,email:e.target.value})}/></label><label>Password<input type="password" required minLength="10" value={auth.password} onChange={e=>setAuth({...auth,password:e.target.value})}/></label>{mode==="register"&&<><label>Birth year<input type="number" min="1900" max={new Date().getFullYear()} value={auth.birthYear} onChange={e=>setAuth({...auth,birthYear:e.target.value})}/></label><label>Parent / guardian email <small>required for under-18s</small><input type="email" value={auth.guardianEmail} onChange={e=>setAuth({...auth,guardianEmail:e.target.value})}/></label></>}<button className="button primary" disabled={busy}>{busy?"Please wait…":mode==="login"?"Sign in":"Create driver account"}</button>{error&&<p className="form-error">{error}</p>}</form></div></section>;
+
+ return <section className="driver-account"><PageTitle kicker="Driver Hub" title="MY DRIVER PROFILE" text="Manage your public racing identity and private AI coaching workspace." action={<button className="button" onClick={logout}>Sign out</button>}/>{error&&<div className="account-alert error">{error}</div>}{message&&<div className="account-alert">{message}</div>}<div className="driver-hub-grid"><form className="profile-editor panel" onSubmit={saveProfile}><h3>Driver profile</h3><label>Display name<input value={profile?.display_name||""} onChange={e=>setProfile({...profile,display_name:e.target.value})}/></label><div className="two-inputs"><label>Race number<input value={profile?.race_number||""} onChange={e=>setProfile({...profile,race_number:e.target.value})}/></label><label>Region<input value={profile?.region||region} onChange={e=>setProfile({...profile,region:e.target.value})}/></label></div><div className="two-inputs"><label>Current class<input value={profile?.class_name||""} onChange={e=>setProfile({...profile,class_name:e.target.value})}/></label><label>Team<input value={profile?.team||""} onChange={e=>setProfile({...profile,team:e.target.value})}/></label></div><label>Nationality<input value={profile?.nationality||""} onChange={e=>setProfile({...profile,nationality:e.target.value})}/></label><label>Driver bio<textarea value={profile?.bio||""} onChange={e=>setProfile({...profile,bio:e.target.value})}/></label>{!profile?.is_minor&&<label className="privacy-toggle"><input type="checkbox" checked={!!profile?.public_profile} onChange={e=>setProfile({...profile,public_profile:e.target.checked})}/> Make my driver profile public</label>}{profile?.is_minor&&<div className="junior-note"><b>Junior account</b><p>Your profile is private by default.</p></div>}<button className="button primary" disabled={busy}>Save profile</button></form><div className="video-coach panel"><div className="video-head"><div><span>AI coaching</span><h3>Onboard Video Lab</h3></div><label className="button primary upload-button">{uploading?"Uploading…":"Upload video"}<input type="file" accept="video/*" onChange={uploadVideo} disabled={uploading}/></label></div><p className="muted">Upload onboard footage privately. DummyGrid samples frames from the video and returns coaching on visible line choice, steering smoothness, positioning, traffic awareness and consistency.</p>{videos.length?<div className="video-list">{videos.map(v=><article className="video-item" key={v.id}><div><b>{v.title||v.original_name}</b><small>{new Date(v.created_at).toLocaleString()} · {v.status}</small></div><button className="button" onClick={()=>analyse(v.id)} disabled={busy}>{v.analysis?"Re-analyse":"Analyse with AI"}</button>{v.analysis&&<div className="coaching-result"><b>AI coaching</b><p>{v.analysis.summary||JSON.stringify(v.analysis)}</p></div>}</article>)}</div>:<div className="empty compact"><h3>No onboard videos yet.</h3><p>Your private video library will appear here.</p></div>}</div></div></section>
+}
 function PageTitle({kicker,title,text,action}){return <div className="pagetitle"><div><span>{kicker}</span><h1>{title}</h1><p>{text}</p></div>{action}</div>}
 function Filters({children}){return <div className="filters">{children}</div>}
 function Empty({text,action}){return <div className="empty"><h3>{text}</h3>{action}</div>}
@@ -395,8 +455,7 @@ function App(){
  else if(parts[0]==="community") page=<Community {...{region,posts,setPosts}}/>;
  else if(parts[0]==="knowledge-base") page=<KnowledgeBase region={region}/>;
  else if(parts[0]==="advertise") page=<Advertise/>;
- else if(parts[0]==="profile"&&parts[1]==="edit") page=<EditProfile {...{profile,setProfile,drivers,setDrivers,region}}/>;
- else if(parts[0]==="profile") page=<Profile {...{profile,listings,posts,saved}}/>;
+ else if(parts[0]==="profile") page=<DriverAccount region={region}/>;
  else page=<NotFound/>;
  return <><Top region={region} setRegion={setRegion}/><main>{page}</main><footer><a className="logo footer-logo" href="#/" aria-label="DummyGrid home"><img src={DUMMYGRID_LOGO} alt="DummyGrid"/></a><p>The world of karting, local to you.</p><div><a href="#/news">News</a><a href="#/marketplace">Marketplace</a><a href="#/drivers">Drivers</a><a href="#/classes">Classes</a><a href="#/manufacturers">Manufacturers</a><a href="#/advertise">Advertise</a></div></footer></>
 }
