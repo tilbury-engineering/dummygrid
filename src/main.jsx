@@ -130,7 +130,7 @@ function Ad({format="Leaderboard",text="Your brand in the paddock"}) {
 }
 function Pill({children,tone=""}){return <span className={"pill "+tone}>{children}</span>}
 function Top({region,setRegion}){
- return <><header><a className="logo" href="#/">KART<span>GRID</span></a><nav className="main-nav">
+ return <><header><a className="logo" href="#/" aria-label="DummyGrid home"><img src={(import.meta.env.BASE_URL||"/")+"dummygrid-logo.webp"} alt="DummyGrid"/></a><nav className="main-nav">
   <a href="#/">Home</a><a href="#/news">News</a><a href="#/marketplace">Marketplace</a><a href="#/drivers">Drivers</a><a href="#/classes">Classes</a><a href="#/manufacturers">Manufacturers</a><a href="#/community">Community</a><a href="#/advertise">Advertise</a>
  </nav><div className="header-actions"><select value={region} onChange={e=>setRegion(e.target.value)}>{regions.map(r=><option key={r}>{r}</option>)}</select><a className="button outline" href="#/profile">My Profile</a></div></header>
  <div className="ticker"><b>LIVE GRID</b><span>UK club racing · International karting · Classifieds · Driver profiles · Technical classes · Community</span></div></>
@@ -272,6 +272,6 @@ function App(){
  else if(parts[0]==="profile"&&parts[1]==="edit") page=<EditProfile {...{profile,setProfile,drivers,setDrivers,region}}/>;
  else if(parts[0]==="profile") page=<Profile {...{profile,listings,posts,saved}}/>;
  else page=<NotFound/>;
- return <><Top region={region} setRegion={setRegion}/><main>{page}</main><footer><a className="logo" href="#/">KART<span>GRID</span></a><p>The world of karting, local to you.</p><div><a href="#/news">News</a><a href="#/marketplace">Marketplace</a><a href="#/drivers">Drivers</a><a href="#/classes">Classes</a><a href="#/manufacturers">Manufacturers</a><a href="#/advertise">Advertise</a></div></footer></>
+ return <><Top region={region} setRegion={setRegion}/><main>{page}</main><footer><a className="logo footer-logo" href="#/" aria-label="DummyGrid home"><img src={(import.meta.env.BASE_URL||"/")+"dummygrid-logo.webp"} alt="DummyGrid"/></a><p>The world of karting, local to you.</p><div><a href="#/news">News</a><a href="#/marketplace">Marketplace</a><a href="#/drivers">Drivers</a><a href="#/classes">Classes</a><a href="#/manufacturers">Manufacturers</a><a href="#/advertise">Advertise</a></div></footer></>
 }
 createRoot(document.getElementById("root")).render(<App/>);
