@@ -161,3 +161,6 @@ footer{
   header{background:rgba(255,255,255,.98)}
   .logo{padding:3px 6px}
 }
+
+/* Remove legacy diagonal placeholder stripe from article media */
+.media:before{display:none!important}
