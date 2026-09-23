@@ -256,28 +256,10 @@ function ListingDetail({id,listings,saved,toggleSave}){const x=listings.find(i=>
 function Drivers({region,drivers}){const[q,setQ]=useState("");const rows=drivers.filter(d=>(region==="Global"||d.region===region)&&((d.name+" "+d.className+" "+d.team).toLowerCase().includes(q.toLowerCase())));return <section><PageTitle kicker="Driver network" title="DRIVERS" text="Find racers, teams and talent across the karting world." action={<a className="button primary" href="#/profile/edit">+ Create my profile</a>}/><Filters><input placeholder="Search driver, class or team…" value={q} onChange={e=>setQ(e.target.value)}/></Filters><div className="driver-grid">{rows.map(d=><DriverCard key={d.id} d={d}/>)}</div><Ad format="Driver directory sponsor"/></section>}
 function DriverDetail({id,drivers}){const d=drivers.find(x=>x.id===id);if(!d)return <NotFound/>;return <section><div className="profile-hero"><div className="profile-avatar">{d.name.split(" ").map(x=>x[0]).join("")}</div><div><div className="meta">{d.nationality} · {d.region} · #{d.number} {d.verified&&"· ✓ Verified"}</div><h1>{d.name}</h1><p>{d.className} · {d.team}</p><p>{d.bio}</p></div></div><div className="statbar"><b>{d.starts}<small>Starts</small></b><b>{d.wins}<small>Wins</small></b><b>{d.podiums}<small>Podiums</small></b><b>{d.className}<small>Current class</small></b></div><div className="two-col"><div className="panel"><h3>Race history</h3><p className="muted">Results, championships, race weekends and lap records will sit here.</p></div><div className="panel"><h3>Sponsors</h3><p className="muted">Sponsor logos, links and partnership status.</p></div></div></section>}
 function KnowledgeBase({region}){
- const live=useLiveNews();
  const [q,setQ]=useState("");
- const [submitted,setSubmitted]=useState("");
- const unsafe=/\b(sex|porn|nude|nudity|drugs?|cocaine|heroin|meth|weapon|gun|knife|suicide|self[- ]?harm|gambling|betting|casino|violence|kill|murder|explosive|bomb)\b/i;
- const kartTerms=/\b(kart|karting|go[- ]?kart|chassis|rotax|iame|vortex|engine|tyre|tire|circuit|track|driver|championship|fia|skusa|uspks|wsk|cadet|mini|junior|senior|kz|okj|ok|dd2|manufacturer|dealer|team|race|racing|licence|license|club|helmet|racewear)\b/i;
- const isUnsafe=unsafe.test(submitted);
- const isKarting=kartTerms.test(submitted);
- const manufacturersResults=manufacturers.filter(m=>{
-   const txt=(m.name+" "+m.group+" "+m.country+" "+m.history+" "+(m.products||[]).map(p=>typeof p==="string"?p:p.name).join(" ")).toLowerCase();
-   return submitted&&submitted.toLowerCase().split(/\s+/).filter(Boolean).some(t=>t.length>2&&txt.includes(t));
- }).slice(0,8);
- const classResults=kartClasses.filter(c=>{
-   const txt=Object.values(c).join(" ").toLowerCase();
-   return submitted&&submitted.toLowerCase().split(/\s+/).filter(Boolean).some(t=>t.length>2&&txt.includes(t));
- }).slice(0,8);
- const newsResults=live.items.filter(n=>{
-   const txt=(n.title+" "+(n.summary||"")+" "+(n.source||"")).toLowerCase();
-   return submitted&&submitted.toLowerCase().split(/\s+/).filter(Boolean).some(t=>t.length>2&&txt.includes(t));
- }).slice(0,10);
- const hasResults=manufacturersResults.length||classResults.length||newsResults.length;
- const ask=e=>{e.preventDefault();setSubmitted(q.trim())};
-
+ const [loading,setLoading]=useState(false);
+ const [result,setResult]=useState(null);
+ const [error,setError]=useState("");
  const guides={
    UK:[
     {title:"How to get started in karting",text:"Start with arrive-and-drive or owner-driver practice, then look at Motorsport UK-affiliated clubs and championships when you are ready to race."},
@@ -320,27 +302,40 @@ function KnowledgeBase({region}){
     {title:"Which class suits my age?",text:"Age pathways usually progress through Mini/Cadet, Junior, Senior and gearbox categories, depending on the local ruleset."}
    ]
  };
- const regionGuides=guides[region]||guides.Global;
 
+ const regionGuides=guides[region]||guides.Global;
+ const ask=async e=>{
+   e.preventDefault();
+   const question=q.trim();
+   if(!question)return;
+   setLoading(true);setError("");setResult(null);
+   try{
+     const r=await fetch("https://dummygrid-api.onrender.com/api/search",{
+       method:"POST",
+       headers:{"Content-Type":"application/json"},
+       body:JSON.stringify({question,region})
+     });
+     const data=await r.json().catch(()=>({}));
+     if(!r.ok) throw new Error(data.message||"Search is unavailable right now.");
+     setResult(data);
+   }catch(err){
+     setError(err.message||"Search is unavailable right now.");
+   }finally{setLoading(false)}
+ };
  return <section className="knowledge-page">
    <PageTitle kicker="DummyGrid Knowledge Base" title="EVERYTHING KARTING" text={"Ask a karting question or browse practical guides tailored to "+region+"."}/>
    <div className="knowledge-search">
     <form className="ai-search-box" onSubmit={ask}>
       <input aria-label="Ask DummyGrid AI" placeholder="Ask anything about karting…" value={q} onChange={e=>setQ(e.target.value)}/>
-      <button className="button primary" type="submit">Ask DummyGrid AI</button>
+      <button className="button primary" type="submit" disabled={loading}>{loading?"Searching the karting web…":"Ask DummyGrid AI"}</button>
     </form>
-    <div className="ai-safety-note"><b>Karting only · child-safe</b><span>Unrelated or unsafe searches are blocked.</span></div>
+    <div className="ai-safety-note"><b>Karting only · child-safe</b><span>Live web search is restricted to approved karting sources.</span></div>
    </div>
-
-   {submitted&&isUnsafe?<div className="ai-blocked"><h3>Search blocked</h3><p>DummyGrid AI only answers child-safe karting questions.</p></div>:null}
-   {submitted&&!isUnsafe&&!isKarting?<div className="ai-blocked"><h3>Karting questions only</h3><p>Try asking about karts, classes, engines, drivers, manufacturers, circuits, championships or karting news.</p></div>:null}
-   {submitted&&!isUnsafe&&isKarting&&<div className="ai-results">
-     <div className="ai-answer"><span>DummyGrid AI result</span><h2>{hasResults?"Here’s what I found about “"+submitted+"”":"I couldn’t find a strong match yet."}</h2><p>{hasResults?"Results below are drawn from DummyGrid’s karting database and live karting news index.":"Try a more specific karting term, manufacturer, class, engine or championship."}</p></div>
-     {manufacturersResults.length>0&&<div><SectionHead eyebrow="Encyclopedia" title="Manufacturers"/><div className="manufacturer-grid compact">{manufacturersResults.map(m=><a className="manufacturer-card" href={"#/manufacturers/"+m.id} key={m.id}><ManufacturerLogo m={m} className="directory-logo"/><h3>{m.name}</h3><p>{m.history}</p></a>)}</div></div>}
-     {classResults.length>0&&<div><SectionHead eyebrow="Knowledge base" title="Classes"/><ClassTable rows={classResults}/></div>}
-     {newsResults.length>0&&<div><SectionHead eyebrow="Live web index" title="News & sources"/><div className="news-grid">{newsResults.map((n,i)=><NewsCard key={n.id||i} n={n}/>)}</div></div>}
+   {error&&<div className="ai-blocked"><h3>AI Search unavailable</h3><p>{error}</p></div>}
+   {result?.ok&&<div className="ai-results">
+      <div className="ai-answer"><span>DummyGrid AI</span><div className="ai-answer-text">{result.answer}</div></div>
+      {result.sources?.length>0&&<div className="ai-source-list"><h3>Sources</h3>{result.sources.map((src,i)=><a href={src.url} target="_blank" rel="noopener noreferrer" key={src.url||i}><span>{i+1}</span><div><b>{src.title||"Source"}</b><small>{src.url}</small></div></a>)}</div>}
    </div>}
-
    <SectionHead eyebrow={region+" guide"} title="Getting started in karting" copy="Practical first steps tailored to your selected region."/>
    <div className="knowledge-guide-grid">{regionGuides.map((g,i)=><article className="knowledge-guide" key={g.title}><span>{String(i+1).padStart(2,"0")}</span><h3>{g.title}</h3><p>{g.text}</p><a href={g.title.includes("class")||g.title.includes("age")?"#/classes":"#/knowledge-base"}>Read guide →</a></article>)}</div>
  </section>
