@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import multer from "multer";
 import OpenAI from "openai";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 import { spawn } from "node:child_process";
 import { mkdtemp, readFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
@@ -15,6 +17,7 @@ const app = express();
 const PORT = Number(process.env.PORT || 10000);
 const SITE_ORIGIN = process.env.SITE_ORIGIN || "https://tilbury-engineering.github.io";
 const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-5.6-sol";
+const JWT_SECRET = process.env.JWT_SECRET || "";
 const openai = process.env.OPENAI_API_KEY ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY }) : null;
 const pool = process.env.DATABASE_URL ? new pg.Pool({ connectionString: process.env.DATABASE_URL, ssl: process.env.DATABASE_URL.includes("localhost") ? false : { rejectUnauthorized:false } }) : null;
 
@@ -44,6 +47,15 @@ function childSafeKartingQuestion(q){
 async function ensureDb(){
  if(!pool) return;
  await pool.query(`
+ CREATE TABLE IF NOT EXISTS users(
+   id bigserial PRIMARY KEY,
+   email text UNIQUE NOT NULL,
+   password_hash text NOT NULL,
+   birth_year integer,
+   guardian_email text,
+   is_minor boolean NOT NULL DEFAULT false,
+   created_at timestamptz NOT NULL DEFAULT now()
+ );
  CREATE TABLE IF NOT EXISTS driver_profiles(
    user_id text PRIMARY KEY,
    display_name text NOT NULL DEFAULT '',
@@ -78,6 +90,68 @@ async function ensureDb(){
 }
 await ensureDb().catch(e=>console.error("DB init failed",e));
 
+
+function issueToken(user){
+ if(!JWT_SECRET) throw new Error("JWT secret not configured");
+ return jwt.sign({sub:String(user.id),email:user.email,is_minor:user.is_minor},JWT_SECRET,{expiresIn:"30d"});
+}
+function requireAuth(req,res,next){
+ const h=String(req.header("authorization")||"");
+ const token=h.startsWith("Bearer ")?h.slice(7):"";
+ if(!token||!JWT_SECRET) return res.status(401).json({ok:false,message:"Sign in required."});
+ try{ req.user=jwt.verify(token,JWT_SECRET); next(); }
+ catch{ return res.status(401).json({ok:false,message:"Session expired. Please sign in again."}); }
+}
+app.post("/api/auth/register", async(req,res)=>{
+ if(!pool) return res.status(503).json({ok:false,message:"Account database is not connected yet."});
+ const email=String(req.body?.email||"").trim().toLowerCase();
+ const password=String(req.body?.password||"");
+ const birthYear=Number(req.body?.birthYear||0)||null;
+ const guardianEmail=String(req.body?.guardianEmail||"").trim().toLowerCase()||null;
+ const year=new Date().getFullYear();
+ const isMinor=!!birthYear && year-birthYear<18;
+ if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return res.status(400).json({ok:false,message:"Enter a valid email address."});
+ if(password.length<10) return res.status(400).json({ok:false,message:"Use a password of at least 10 characters."});
+ if(isMinor && !guardianEmail) return res.status(400).json({ok:false,message:"A parent or guardian email is required for junior accounts."});
+ try{
+   const hash=await bcrypt.hash(password,12);
+   const {rows}=await pool.query("INSERT INTO users(email,password_hash,birth_year,guardian_email,is_minor) VALUES($1,$2,$3,$4,$5) RETURNING id,email,is_minor",[email,hash,birthYear,guardianEmail,isMinor]);
+   await pool.query("INSERT INTO driver_profiles(user_id,is_minor,public_profile) VALUES($1,$2,false) ON CONFLICT DO NOTHING",[String(rows[0].id),isMinor]);
+   res.json({ok:true,token:issueToken(rows[0]),user:rows[0]});
+ }catch(err){
+   if(String(err?.code)==="23505") return res.status(409).json({ok:false,message:"An account already exists for that email."});
+   console.error(err);res.status(500).json({ok:false,message:"Could not create account."});
+ }
+});
+app.post("/api/auth/login", async(req,res)=>{
+ if(!pool) return res.status(503).json({ok:false,message:"Account database is not connected yet."});
+ const email=String(req.body?.email||"").trim().toLowerCase();
+ const password=String(req.body?.password||"");
+ const {rows}=await pool.query("SELECT id,email,password_hash,is_minor FROM users WHERE email=$1",[email]);
+ const user=rows[0];
+ if(!user || !(await bcrypt.compare(password,user.password_hash))) return res.status(401).json({ok:false,message:"Email or password is incorrect."});
+ res.json({ok:true,token:issueToken(user),user:{id:user.id,email:user.email,is_minor:user.is_minor}});
+});
+app.get("/api/me",requireAuth,async(req,res)=>{
+ if(!pool) return res.status(503).json({ok:false,message:"Account database is not connected yet."});
+ const {rows}=await pool.query("SELECT * FROM driver_profiles WHERE user_id=$1",[String(req.user.sub)]);
+ res.json({ok:true,user:req.user,profile:rows[0]||null});
+});
+app.put("/api/me/profile",requireAuth,async(req,res)=>{
+ if(!pool) return res.status(503).json({ok:false,message:"Account database is not connected yet."});
+ const p=req.body||{};
+ const publicProfile=req.user.is_minor?false:!!p.public_profile;
+ const {rows}=await pool.query(`INSERT INTO driver_profiles(user_id,display_name,race_number,region,nationality,class_name,team,bio,is_minor,public_profile,updated_at)
+ VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,now())
+ ON CONFLICT(user_id) DO UPDATE SET display_name=EXCLUDED.display_name,race_number=EXCLUDED.race_number,region=EXCLUDED.region,nationality=EXCLUDED.nationality,class_name=EXCLUDED.class_name,team=EXCLUDED.team,bio=EXCLUDED.bio,public_profile=EXCLUDED.public_profile,updated_at=now()
+ RETURNING *`,[String(req.user.sub),String(p.display_name||""),String(p.race_number||""),String(p.region||""),String(p.nationality||""),String(p.class_name||""),String(p.team||""),String(p.bio||""),!!req.user.is_minor,publicProfile]);
+ res.json({ok:true,profile:rows[0]});
+});
+app.get("/api/me/videos",requireAuth,async(req,res)=>{
+ if(!pool) return res.status(503).json({ok:false,message:"Account database is not connected yet."});
+ const {rows}=await pool.query("SELECT v.*,a.result AS analysis FROM driver_videos v LEFT JOIN LATERAL (SELECT result FROM video_analyses WHERE video_id=v.id ORDER BY created_at DESC LIMIT 1) a ON true WHERE v.user_id=$1 ORDER BY v.created_at DESC",[String(req.user.sub)]);
+ res.json({ok:true,videos:rows});
+});
 app.get("/health",(req,res)=>res.json({ok:true,service:"dummygrid-api",ai:!!openai,database:!!pool,storage:!!process.env.S3_BUCKET}));
 
 app.post("/api/search", async (req,res)=>{
@@ -125,9 +199,8 @@ function s3(){
  });
 }
 
-app.post("/api/videos/presign", async (req,res)=>{
- const userId=String(req.header("x-driver-id")||"").trim();
- if(!userId) return res.status(401).json({ok:false,message:"Sign in required."});
+app.post("/api/videos/presign", requireAuth, async (req,res)=>{
+ const userId=String(req.user.sub);
  const client=s3(); if(!client) return res.status(503).json({ok:false,message:"Private video storage is not configured yet."});
  const name=String(req.body?.name||"video.mp4").replace(/[^a-zA-Z0-9._-]/g,"_");
  const type=String(req.body?.type||"video/mp4");
@@ -137,9 +210,9 @@ app.post("/api/videos/presign", async (req,res)=>{
  res.json({ok:true,key,url});
 });
 
-app.post("/api/videos/register", async(req,res)=>{
- const userId=String(req.header("x-driver-id")||"").trim();
- if(!userId||!pool) return res.status(401).json({ok:false,message:"Account database not ready."});
+app.post("/api/videos/register", requireAuth, async(req,res)=>{
+ const userId=String(req.user.sub);
+ if(!pool) return res.status(503).json({ok:false,message:"Account database not ready."});
  const {key,name,type,title}=req.body||{};
  const q=await pool.query("INSERT INTO driver_videos(user_id,object_key,original_name,content_type,title) VALUES($1,$2,$3,$4,$5) RETURNING *",[userId,key,name,type,title||name]);
  res.json({ok:true,video:q.rows[0]});
@@ -156,9 +229,8 @@ async function extractFrames(videoPath,outDir){
  });
 }
 
-app.post("/api/videos/:id/analyze", async(req,res)=>{
- const userId=String(req.header("x-driver-id")||"").trim();
- if(!userId) return res.status(401).json({ok:false,message:"Sign in required."});
+app.post("/api/videos/:id/analyze", requireAuth, async(req,res)=>{
+ const userId=String(req.user.sub);
  if(!pool||!openai||!s3()) return res.status(503).json({ok:false,message:"Video AI is not fully configured yet."});
  const {rows}=await pool.query("SELECT * FROM driver_videos WHERE id=$1 AND user_id=$2",[req.params.id,userId]);
  if(!rows[0]) return res.status(404).json({ok:false,message:"Video not found."});
