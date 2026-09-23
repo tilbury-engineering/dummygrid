@@ -1,0 +1,188 @@
+import express from "express";
+import cors from "cors";
+import multer from "multer";
+import OpenAI from "openai";
+import { spawn } from "node:child_process";
+import { mkdtemp, readFile, rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import ffmpegPath from "ffmpeg-static";
+import pg from "pg";
+import { S3Client, GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+
+const app = express();
+const PORT = Number(process.env.PORT || 10000);
+const SITE_ORIGIN = process.env.SITE_ORIGIN || "https://tilbury-engineering.github.io";
+const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-5.6-sol";
+const openai = process.env.OPENAI_API_KEY ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY }) : null;
+const pool = process.env.DATABASE_URL ? new pg.Pool({ connectionString: process.env.DATABASE_URL, ssl: process.env.DATABASE_URL.includes("localhost") ? false : { rejectUnauthorized:false } }) : null;
+
+app.use(cors({ origin:(origin,cb)=>!origin || origin.startsWith(SITE_ORIGIN) ? cb(null,true) : cb(new Error("Origin not allowed")), credentials:false }));
+app.use(express.json({limit:"1mb"}));
+
+const unsafe = /\b(porn|sexual|nude|nudity|cocaine|heroin|meth|suicide|self[- ]?harm|gambling|casino|weapon|gun|knife|bomb|explosive|murder)\b/i;
+const karting = /\b(kart|karting|go[- ]?kart|chassis|rotax|iame|vortex|engine|tyre|tire|circuit|track|driver|championship|fia|skusa|uspks|wsk|cadet|mini|junior|senior|kz|okj|ok|dd2|manufacturer|dealer|team|race|racing|licence|license|club|helmet|racewear|setup|gearing|sprocket|axle|caster|camber|toe)\b/i;
+
+const allowedDomains = [
+ "fia.com","fiakarting.com","motorsportuk.org","karting.net.au","karting.net.au",
+ "superkartsusa.com","uspks.com","rokcupusa.com","ekartingnews.com","kartcom.com",
+ "tonykart.com","crgkart.com","birelart.com","kartrepublic.com","sodikart.com",
+ "parolinracing.com","pragaglobal.com","ipkarting.com","maranellokart.com","energycorse.com",
+ "zipkart.com","comer-topkart.it","haase.it","gillardkart.com","cs55racingkart.com","brmracing.it",
+ "terryfullerton.co.uk","tecnokart.com","mskart.cz","benikkart.com","drracingkart.com",
+ "tbkart.com","righettiridolfi.com","otkkart.com","rotax-kart.com","iamekarting.com"
+];
+
+function childSafeKartingQuestion(q){
+  if (!q || q.trim().length < 2) return {ok:false,code:"empty",message:"Ask a karting question."};
+  if (unsafe.test(q)) return {ok:false,code:"unsafe",message:"DummyGrid only answers child-safe karting questions."};
+  if (!karting.test(q)) return {ok:false,code:"off_topic",message:"DummyGrid Knowledge Base only searches karting topics."};
+  return {ok:true};
+}
+
+async function ensureDb(){
+ if(!pool) return;
+ await pool.query(`
+ CREATE TABLE IF NOT EXISTS driver_profiles(
+   user_id text PRIMARY KEY,
+   display_name text NOT NULL DEFAULT '',
+   race_number text,
+   region text,
+   nationality text,
+   class_name text,
+   team text,
+   bio text,
+   birth_year integer,
+   is_minor boolean NOT NULL DEFAULT false,
+   public_profile boolean NOT NULL DEFAULT false,
+   updated_at timestamptz NOT NULL DEFAULT now()
+ );
+ CREATE TABLE IF NOT EXISTS driver_videos(
+   id bigserial PRIMARY KEY,
+   user_id text NOT NULL,
+   object_key text NOT NULL,
+   original_name text,
+   content_type text,
+   title text,
+   status text NOT NULL DEFAULT 'uploaded',
+   created_at timestamptz NOT NULL DEFAULT now()
+ );
+ CREATE TABLE IF NOT EXISTS video_analyses(
+   id bigserial PRIMARY KEY,
+   video_id bigint NOT NULL REFERENCES driver_videos(id) ON DELETE CASCADE,
+   user_id text NOT NULL,
+   result jsonb NOT NULL,
+   created_at timestamptz NOT NULL DEFAULT now()
+ );`);
+}
+await ensureDb().catch(e=>console.error("DB init failed",e));
+
+app.get("/health",(req,res)=>res.json({ok:true,service:"dummygrid-api",ai:!!openai,database:!!pool,storage:!!process.env.S3_BUCKET}));
+
+app.post("/api/search", async (req,res)=>{
+ const question=String(req.body?.question||"").trim();
+ const gate=childSafeKartingQuestion(question);
+ if(!gate.ok) return res.status(400).json({ok:false,...gate});
+ if(!openai) return res.status(503).json({ok:false,code:"ai_not_configured",message:"AI search is being configured."});
+ try{
+   const response=await openai.responses.create({
+     model:OPENAI_MODEL,
+     tools:[{type:"web_search",search_context_size:"medium",filters:{allowed_domains:allowedDomains},external_web_access:true}],
+     tool_choice:"required",
+     include:["web_search_call.action.sources"],
+     instructions:[
+       "You are DummyGrid Knowledge Base, a child-safe karting-only research assistant.",
+       "Answer only about karting. Do not answer unrelated topics.",
+       "Keep content appropriate for children and teenagers.",
+       "For safety-critical driving advice, emphasize coaching, track rules, protective equipment and qualified supervision.",
+       "Use live web search and prefer official governing bodies, manufacturers, championships and established karting publications.",
+       "Do not invent results, rules, ages, prices or homologations. State uncertainty clearly.",
+       "Give a useful concise answer, then a short Sources section."
+     ].join("\n"),
+     input:question
+   });
+   const sources=[];
+   for(const item of response.output||[]){
+     if(item.type==="web_search_call"){
+       for(const src of item.action?.sources||[]) if(src?.url) sources.push({title:src.title||src.url,url:src.url});
+     }
+   }
+   res.json({ok:true,answer:response.output_text,sources:[...new Map(sources.map(x=>[x.url,x])).values()].slice(0,12)});
+ }catch(err){
+   console.error(err);
+   res.status(500).json({ok:false,code:"search_failed",message:"Search failed. Please try again."});
+ }
+});
+
+function s3(){
+ if(!process.env.S3_BUCKET||!process.env.S3_ENDPOINT||!process.env.S3_ACCESS_KEY_ID||!process.env.S3_SECRET_ACCESS_KEY) return null;
+ return new S3Client({
+   region:process.env.S3_REGION||"auto",
+   endpoint:process.env.S3_ENDPOINT,
+   credentials:{accessKeyId:process.env.S3_ACCESS_KEY_ID,secretAccessKey:process.env.S3_SECRET_ACCESS_KEY},
+   forcePathStyle:process.env.S3_FORCE_PATH_STYLE==="true"
+ });
+}
+
+app.post("/api/videos/presign", async (req,res)=>{
+ const userId=String(req.header("x-driver-id")||"").trim();
+ if(!userId) return res.status(401).json({ok:false,message:"Sign in required."});
+ const client=s3(); if(!client) return res.status(503).json({ok:false,message:"Private video storage is not configured yet."});
+ const name=String(req.body?.name||"video.mp4").replace(/[^a-zA-Z0-9._-]/g,"_");
+ const type=String(req.body?.type||"video/mp4");
+ if(!type.startsWith("video/")) return res.status(400).json({ok:false,message:"Video files only."});
+ const key=`drivers/${userId}/${Date.now()}-${name}`;
+ const url=await getSignedUrl(client,new PutObjectCommand({Bucket:process.env.S3_BUCKET,Key:key,ContentType:type}),{expiresIn:900});
+ res.json({ok:true,key,url});
+});
+
+app.post("/api/videos/register", async(req,res)=>{
+ const userId=String(req.header("x-driver-id")||"").trim();
+ if(!userId||!pool) return res.status(401).json({ok:false,message:"Account database not ready."});
+ const {key,name,type,title}=req.body||{};
+ const q=await pool.query("INSERT INTO driver_videos(user_id,object_key,original_name,content_type,title) VALUES($1,$2,$3,$4,$5) RETURNING *",[userId,key,name,type,title||name]);
+ res.json({ok:true,video:q.rows[0]});
+});
+
+async function streamToFile(body,path){
+ const chunks=[]; for await(const chunk of body) chunks.push(chunk); await import("node:fs/promises").then(fs=>fs.writeFile(path,Buffer.concat(chunks)));
+}
+async function extractFrames(videoPath,outDir){
+ return new Promise((resolve,reject)=>{
+   const pattern=join(outDir,"frame-%03d.jpg");
+   const p=spawn(ffmpegPath,["-hide_banner","-loglevel","error","-i",videoPath,"-vf","fps=1/5,scale=960:-2","-frames:v","24",pattern]);
+   let err=""; p.stderr.on("data",d=>err+=d); p.on("close",code=>code===0?resolve():reject(new Error(err||"ffmpeg failed")));
+ });
+}
+
+app.post("/api/videos/:id/analyze", async(req,res)=>{
+ const userId=String(req.header("x-driver-id")||"").trim();
+ if(!userId) return res.status(401).json({ok:false,message:"Sign in required."});
+ if(!pool||!openai||!s3()) return res.status(503).json({ok:false,message:"Video AI is not fully configured yet."});
+ const {rows}=await pool.query("SELECT * FROM driver_videos WHERE id=$1 AND user_id=$2",[req.params.id,userId]);
+ if(!rows[0]) return res.status(404).json({ok:false,message:"Video not found."});
+ const tmp=await mkdtemp(join(tmpdir(),"dummygrid-"));
+ try{
+   const path=join(tmp,"input-video");
+   const obj=await s3().send(new GetObjectCommand({Bucket:process.env.S3_BUCKET,Key:rows[0].object_key}));
+   await streamToFile(obj.Body,path);
+   await extractFrames(path,tmp);
+   const fs=await import("node:fs/promises");
+   const names=(await fs.readdir(tmp)).filter(x=>x.endsWith(".jpg")).sort();
+   const content=[{type:"input_text",text:
+     "Analyze these sequential onboard karting frames as a coaching review. Only comment on visible evidence. Give: overall assessment, 3 strengths, 3 improvements, and time/order-referenced moments. Focus on racing line, steering smoothness, positioning, traffic awareness and consistency. Do not encourage unsafe driving or rule-breaking. If a conclusion requires speed, telemetry, braking pressure, throttle position or exact lap timing that is not visible, say so."}];
+   for(const n of names){
+     const b=(await readFile(join(tmp,n))).toString("base64");
+     content.push({type:"input_image",image_url:"data:image/jpeg;base64,"+b,detail:"low"});
+   }
+   const response=await openai.responses.create({model:OPENAI_MODEL,input:[{role:"user",content}]});
+   const result={summary:response.output_text,frames_analyzed:names.length,note:"Visual coaching only; telemetry is required for exact speed/braking/throttle analysis."};
+   await pool.query("INSERT INTO video_analyses(video_id,user_id,result) VALUES($1,$2,$3)",[rows[0].id,userId,result]);
+   await pool.query("UPDATE driver_videos SET status='analysed' WHERE id=$1",[rows[0].id]);
+   res.json({ok:true,result});
+ }catch(err){console.error(err);res.status(500).json({ok:false,message:"Video analysis failed."});}
+ finally{await rm(tmp,{recursive:true,force:true}).catch(()=>{});}
+});
+
+app.listen(PORT,()=>console.log(`DummyGrid API listening on ${PORT}`));
