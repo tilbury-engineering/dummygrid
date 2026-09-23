@@ -146,9 +146,9 @@ def fetch_google(q, hl="en-GB", gl="GB", ceid="GB:en"):
         if country=="Global":
             us_hint=any(k in ql for k in ["skusa","uspks","stars championship","challenge of the americas","rok cup usa","united states","american kart","new castle"])
             au_hint=any(k in ql for k in ["australia","australian"])
-            if gl=="US" and us_hint:
+            if us_hint:
                 country,continent="United States","North America"
-            elif gl=="AU" and au_hint:
+            elif au_hint:
                 country,continent="Australia","Oceania"
         rows.append({"title":title,"summary":desc[:420],"url":raw,"source":clean(source),"published":iso,"country":country,"continent":continent,"image":image_from_entry(e),"sources":[]})
     return rows
