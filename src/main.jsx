@@ -146,7 +146,7 @@ function Top({region,setRegion}){
        <a href="#/drivers" onClick={()=>setMenuOpen(false)}>Drivers</a>
        <a href="#/classes" onClick={()=>setMenuOpen(false)}>Classes</a>
        <a href="#/manufacturers" onClick={()=>setMenuOpen(false)}>Manufacturers</a>
-       <a href="#/community" onClick={()=>setMenuOpen(false)}>Community</a><a href="#/ai-search" onClick={()=>setMenuOpen(false)}>AI Search</a>
+       <a href="#/community" onClick={()=>setMenuOpen(false)}>Community</a><a href="#/knowledge-base" onClick={()=>setMenuOpen(false)}>Knowledge Base</a>
      </nav>
      <div className="header-actions">
        <select aria-label="Choose region" value={region} onChange={e=>setRegion(e.target.value)}>{regions.map(r=><option key={r}>{r}</option>)}</select>
@@ -255,12 +255,12 @@ function NewListing({region,listings,setListings}){
 function ListingDetail({id,listings,saved,toggleSave}){const x=listings.find(i=>i.id===id);if(!x)return <NotFound/>;return <section><div className="detail-grid"><div className="detail-image"><span>{x.category}</span></div><div className="detail-copy"><div className="meta">{x.region} · {x.condition} · {x.location}</div><h1>{x.title}</h1><div className="mega-price">{x.currency}{Number(x.price).toLocaleString()}</div><Pill tone="lime">{x.compat}</Pill><p>{x.desc}</p><div className="seller"><b>{x.seller}</b><small>Seller profile · Report listing</small></div><div className="actions"><button className="button primary" onClick={()=>alert("Message sent to seller (demo).")}>Contact seller</button><button className="button" onClick={()=>toggleSave(x.id)}>{saved.includes(x.id)?"♥ Saved":"♡ Save listing"}</button></div></div></div><Ad format="Listing MPU"/></section>}
 function Drivers({region,drivers}){const[q,setQ]=useState("");const rows=drivers.filter(d=>(region==="Global"||d.region===region)&&((d.name+" "+d.className+" "+d.team).toLowerCase().includes(q.toLowerCase())));return <section><PageTitle kicker="Driver network" title="DRIVERS" text="Find racers, teams and talent across the karting world." action={<a className="button primary" href="#/profile/edit">+ Create my profile</a>}/><Filters><input placeholder="Search driver, class or team…" value={q} onChange={e=>setQ(e.target.value)}/></Filters><div className="driver-grid">{rows.map(d=><DriverCard key={d.id} d={d}/>)}</div><Ad format="Driver directory sponsor"/></section>}
 function DriverDetail({id,drivers}){const d=drivers.find(x=>x.id===id);if(!d)return <NotFound/>;return <section><div className="profile-hero"><div className="profile-avatar">{d.name.split(" ").map(x=>x[0]).join("")}</div><div><div className="meta">{d.nationality} · {d.region} · #{d.number} {d.verified&&"· ✓ Verified"}</div><h1>{d.name}</h1><p>{d.className} · {d.team}</p><p>{d.bio}</p></div></div><div className="statbar"><b>{d.starts}<small>Starts</small></b><b>{d.wins}<small>Wins</small></b><b>{d.podiums}<small>Podiums</small></b><b>{d.className}<small>Current class</small></b></div><div className="two-col"><div className="panel"><h3>Race history</h3><p className="muted">Results, championships, race weekends and lap records will sit here.</p></div><div className="panel"><h3>Sponsors</h3><p className="muted">Sponsor logos, links and partnership status.</p></div></div></section>}
-function AISearch(){
+function KnowledgeBase({region}){
  const live=useLiveNews();
  const [q,setQ]=useState("");
  const [submitted,setSubmitted]=useState("");
  const unsafe=/\b(sex|porn|nude|nudity|drugs?|cocaine|heroin|meth|weapon|gun|knife|suicide|self[- ]?harm|gambling|betting|casino|violence|kill|murder|explosive|bomb)\b/i;
- const kartTerms=/\b(kart|karting|go[- ]?kart|chassis|rotax|iame|vortex|engine|tyre|tire|circuit|track|driver|championship|fia|skusa|uspks|wsk|cadet|mini|junior|senior|kz|okj|ok|dd2|manufacturer|dealer|team|race|racing)\b/i;
+ const kartTerms=/\b(kart|karting|go[- ]?kart|chassis|rotax|iame|vortex|engine|tyre|tire|circuit|track|driver|championship|fia|skusa|uspks|wsk|cadet|mini|junior|senior|kz|okj|ok|dd2|manufacturer|dealer|team|race|racing|licence|license|club|helmet|racewear)\b/i;
  const isUnsafe=unsafe.test(submitted);
  const isKarting=kartTerms.test(submitted);
  const manufacturersResults=manufacturers.filter(m=>{
@@ -277,14 +277,61 @@ function AISearch(){
  }).slice(0,10);
  const hasResults=manufacturersResults.length||classResults.length||newsResults.length;
  const ask=e=>{e.preventDefault();setSubmitted(q.trim())};
- return <section className="ai-search-page">
-   <PageTitle kicker="DummyGrid AI" title="ASK ANYTHING ABOUT KARTING" text="Child-safe karting search across the DummyGrid encyclopedia and approved karting sources."/>
-   <form className="ai-search-box" onSubmit={ask}>
-     <input aria-label="Ask DummyGrid AI" placeholder="e.g. What is the difference between OK and KZ?" value={q} onChange={e=>setQ(e.target.value)}/>
-     <button className="button primary" type="submit">Search</button>
-   </form>
-   <div className="ai-safety-note"><b>Karting only · child-safe</b><span>Unrelated or unsafe searches are blocked.</span></div>
-   {!submitted?<div className="ai-examples"><button onClick={()=>{setQ("What kart should a 10 year old race?");setSubmitted("What kart should a 10 year old race?")}}>What kart should a 10 year old race?</button><button onClick={()=>{setQ("Who makes KZ chassis?");setSubmitted("Who makes KZ chassis?")}}>Who makes KZ chassis?</button><button onClick={()=>{setQ("Latest SKUSA news");setSubmitted("Latest SKUSA news")}}>Latest SKUSA news</button></div>:null}
+
+ const guides={
+   UK:[
+    {title:"How to get started in karting",text:"Start with arrive-and-drive or owner-driver practice, then look at Motorsport UK-affiliated clubs and championships when you are ready to race."},
+    {title:"Licences & race entry",text:"Competitive karting in the UK commonly runs through Motorsport UK regulations, with licence requirements depending on age and championship."},
+    {title:"Finding a local circuit",text:"Use the circuit and club directory to find outdoor kart tracks, owner-driver practice days and local championships near you."},
+    {title:"Buying your first kart",text:"Choose the class first, then buy a chassis and engine package that is legal for the UK championship or club you plan to enter."},
+    {title:"What equipment do I need?",text:"Helmet, race suit, gloves, boots and class-specific safety equipment come first. Check the exact regulations before buying."},
+    {title:"Which class suits my age?",text:"Use the class directory to compare Bambino, Cadet/Mini, Junior, Senior and gearbox categories by age and engine type."}
+   ],
+   USA:[
+    {title:"How to get started in karting",text:"Begin with a local club, rental league or owner-driver practice day, then choose a national ruleset such as SKUSA, USPKS or ROK depending on your area."},
+    {title:"Licences & memberships",text:"Requirements vary by organizer. Many US series use memberships, event registration and class-specific technical rules rather than one national licence."},
+    {title:"Finding a local track",text:"Search nearby outdoor kart circuits and regional clubs first; the strongest pathway usually starts with regular local racing."},
+    {title:"Buying your first kart",text:"Pick the class and local series before buying. Chassis, engine and tyre rules differ between club and national programs."},
+    {title:"What equipment do I need?",text:"A certified helmet, suit, gloves, boots and required safety gear should match the rules of the organizer you intend to race with."},
+    {title:"Which class suits my age?",text:"Common pathways include Micro/Mini, Junior, Senior and shifter categories, but exact ages vary by series."}
+   ],
+   Australia:[
+    {title:"How to get started in karting",text:"Start with a local Karting Australia-affiliated club or rental karting, then move into owner-driver competition once you know which class suits you."},
+    {title:"Licences & memberships",text:"Club membership and Karting Australia licensing are central to most sanctioned competition. Requirements vary by age and class."},
+    {title:"Finding a local club",text:"Karting is strongly club-based in Australia, so your nearest affiliated club is usually the best first contact."},
+    {title:"Buying your first kart",text:"Choose a Karting Australia class first, then buy a compliant chassis, engine and tyre package for that class."},
+    {title:"What equipment do I need?",text:"Helmet, suit, gloves, boots and any mandatory protective equipment must comply with the current class and event rules."},
+    {title:"Which class suits my age?",text:"Cadet, Junior and Senior pathways vary by engine and state-level competition. Start with the national class structure."}
+   ],
+   Europe:[
+    {title:"How to get started in karting",text:"Begin with a local circuit or national ASN-affiliated club, then progress into national or FIA-linked competition as experience grows."},
+    {title:"Licences & governing bodies",text:"Karting licences and rules are normally administered by each country's national motorsport authority, with FIA standards at international level."},
+    {title:"Finding a local circuit",text:"Use national federation and circuit directories to find owner-driver practice, academies and club racing near you."},
+    {title:"Buying your first kart",text:"Choose the national class and engine package first; homologation and tyre rules differ between countries and championships."},
+    {title:"What equipment do I need?",text:"Check your national ASN regulations for helmet, suit and safety standards before buying racewear."},
+    {title:"Which class suits my age?",text:"Mini, OK-N/OK-Junior, OK, KZ and Rotax/IAME categories are common, but age bands vary by country and organizer."}
+   ],
+   Global:[
+    {title:"How to get started in karting",text:"Start at a local circuit, learn through rental or practice sessions, then choose a class and club before buying equipment."},
+    {title:"Licences & governing bodies",text:"Karting rules are usually set by national motorsport authorities or championship organizers, with FIA regulations covering international categories."},
+    {title:"Finding a local circuit",text:"Look for established outdoor kart tracks, owner-driver clubs and recognised championships in your country."},
+    {title:"Buying your first kart",text:"Always choose your class and championship before buying a kart so the chassis, engine, tyres and weight rules all match."},
+    {title:"What equipment do I need?",text:"A certified helmet, kart suit, gloves, boots and required protective equipment are the core essentials."},
+    {title:"Which class suits my age?",text:"Age pathways usually progress through Mini/Cadet, Junior, Senior and gearbox categories, depending on the local ruleset."}
+   ]
+ };
+ const regionGuides=guides[region]||guides.Global;
+
+ return <section className="knowledge-page">
+   <PageTitle kicker="DummyGrid Knowledge Base" title="EVERYTHING KARTING" text={"Ask a karting question or browse practical guides tailored to "+region+"."}/>
+   <div className="knowledge-search">
+    <form className="ai-search-box" onSubmit={ask}>
+      <input aria-label="Ask DummyGrid AI" placeholder="Ask anything about karting…" value={q} onChange={e=>setQ(e.target.value)}/>
+      <button className="button primary" type="submit">Ask DummyGrid AI</button>
+    </form>
+    <div className="ai-safety-note"><b>Karting only · child-safe</b><span>Unrelated or unsafe searches are blocked.</span></div>
+   </div>
+
    {submitted&&isUnsafe?<div className="ai-blocked"><h3>Search blocked</h3><p>DummyGrid AI only answers child-safe karting questions.</p></div>:null}
    {submitted&&!isUnsafe&&!isKarting?<div className="ai-blocked"><h3>Karting questions only</h3><p>Try asking about karts, classes, engines, drivers, manufacturers, circuits, championships or karting news.</p></div>:null}
    {submitted&&!isUnsafe&&isKarting&&<div className="ai-results">
@@ -293,6 +340,9 @@ function AISearch(){
      {classResults.length>0&&<div><SectionHead eyebrow="Knowledge base" title="Classes"/><ClassTable rows={classResults}/></div>}
      {newsResults.length>0&&<div><SectionHead eyebrow="Live web index" title="News & sources"/><div className="news-grid">{newsResults.map((n,i)=><NewsCard key={n.id||i} n={n}/>)}</div></div>}
    </div>}
+
+   <SectionHead eyebrow={region+" guide"} title="Getting started in karting" copy="Practical first steps tailored to your selected region."/>
+   <div className="knowledge-guide-grid">{regionGuides.map((g,i)=><article className="knowledge-guide" key={g.title}><span>{String(i+1).padStart(2,"0")}</span><h3>{g.title}</h3><p>{g.text}</p><a href={g.title.includes("class")||g.title.includes("age")?"#/classes":"#/knowledge-base"}>Read guide →</a></article>)}</div>
  </section>
 }
 function Classes(){
@@ -348,7 +398,7 @@ function App(){
  else if(parts[0]==="manufacturers") page=<Manufacturers/>;
  else if(parts[0]==="community"&&parts[1]==="new") page=<NewPost {...{region,posts,setPosts}}/>;
  else if(parts[0]==="community") page=<Community {...{region,posts,setPosts}}/>;
- else if(parts[0]==="ai-search") page=<AISearch/>;
+ else if(parts[0]==="knowledge-base") page=<KnowledgeBase region={region}/>;
  else if(parts[0]==="advertise") page=<Advertise/>;
  else if(parts[0]==="profile"&&parts[1]==="edit") page=<EditProfile {...{profile,setProfile,drivers,setDrivers,region}}/>;
  else if(parts[0]==="profile") page=<Profile {...{profile,listings,posts,saved}}/>;
