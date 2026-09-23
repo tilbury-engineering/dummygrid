@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 from urllib.parse import quote, urlparse
 from difflib import SequenceMatcher
 import requests, feedparser
+from googlenewsdecoder import gnewsdecoder
 from bs4 import BeautifulSoup
 
 OUT = "public/news.json"
@@ -97,7 +98,15 @@ def image_from_entry(e):
 
 def resolve_and_image(url):
     try:
-        r=requests.get(url,headers=UA,timeout=12,allow_redirects=True)
+        original=url
+        if "news.google.com/" in url:
+            try:
+                decoded=gnewsdecoder(url, interval=None)
+                if isinstance(decoded,dict) and decoded.get("status") and decoded.get("decoded_url"):
+                    original=decoded["decoded_url"]
+            except Exception:
+                pass
+        r=requests.get(original,headers=UA,timeout=6,allow_redirects=True)
         final=r.url
         soup=BeautifulSoup(r.text,"html.parser")
         og=soup.find("meta",property="og:image") or soup.find("meta",attrs={"name":"twitter:image"})
@@ -164,7 +173,7 @@ def main():
         clustered.append(x)
 
     # Resolve a sensible number of freshest links to original URLs and discover article images.
-    for x in clustered[:60]:
+    for x in clustered[:40]:
         original,img=resolve_and_image(x["url"])
         if original: x["url"]=original
         if img and "googleusercontent.com" not in img: x["image"]=img
