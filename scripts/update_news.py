@@ -144,9 +144,8 @@ def fetch_google(q, hl="en-GB", gl="GB", ceid="GB:en"):
         summary=clean(getattr(e,"summary",""))
         hay=(title+" "+summary).lower()
         if not re.search(r"\bkart(ing|s)?\b|\bgo[- ]?kart",hay,re.I): continue
-        noise=["mario kart","indoor go-kart","indoor gokart","arcade","amusement","theme park","family entertainment","electric go-kart venue","go-kart track opens","go kart track opens","toyota go-kart","minivan","k1 speed"]
-        racing=["championship","race","racing","driver","karting","fia","skusa","uspks","rok","rotax","iame","wsk","supernationals","motorsport","chassis","team","series","circuit","qualifying","podium","final"]
-        if any(n in hay for n in noise) and not any(r in hay for r in racing): continue
+        noise=["mario kart","indoor go-kart","indoor gokart","arcade","amusement","theme park","family entertainment","electric go-kart venue","go-kart track opens","go kart track opens","toyota go-kart","minivan","k1 speed","multi-level go-kart","adventure park"]
+        if any(n in hay for n in noise): continue
         source=getattr(getattr(e,"source",{}),"title","") or (getattr(e,"source",{}) or {}).get("title","") or "Original source"
         raw=getattr(e,"link","")
         date=getattr(e,"published","")
@@ -166,8 +165,26 @@ def fetch_google(q, hl="en-GB", gl="GB", ceid="GB:en"):
         rows.append({"title":title,"summary":desc[:420],"url":raw,"source":clean(source),"published":iso,"country":country,"continent":continent,"image":image_from_entry(e),"sources":[]})
     return rows
 
+def fetch_direct_rss(url, source_name, country, continent):
+    rows=[]
+    try:
+        feed=feedparser.parse(url,request_headers=UA)
+        for e in feed.entries[:40]:
+            title=clean(getattr(e,"title",""))
+            summary=clean(getattr(e,"summary",""))
+            hay=(title+" "+summary).lower()
+            if not re.search(r"\bkart(ing|s)?\b|\bgo[- ]?kart",hay,re.I): continue
+            date=getattr(e,"published","")
+            try: iso=datetime(*e.published_parsed[:6],tzinfo=timezone.utc).isoformat()
+            except Exception: iso=date
+            rows.append({"title":title,"summary":summary[:420],"url":getattr(e,"link",""),"source":source_name,"published":iso,"country":country,"continent":continent,"image":image_from_entry(e),"sources":[]})
+    except Exception as ex:
+        print("direct rss failed",source_name,ex)
+    return rows
+
 def main():
     candidates=[]
+    candidates.extend(fetch_direct_rss("https://www.ekartingnews.com/feed/","eKartingNews","United States","North America"))
     locales=[
         ("en-GB","GB","GB:en"),
         ("en-US","US","US:en"),
