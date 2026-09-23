@@ -94,7 +94,19 @@ const manufacturers = [
  {id:"cs55",name:"CS55 Racing Kart",group:"OTK Kart Group / Carlos Sainz",country:"Spain / Italy",founded:"2024",site:"https://www.cs55racingkart.com/",aliases:["CS55","Carlos Sainz Kart","CS55 Racing Kart"],history:"CS55 Racing Kart was launched in 2024 through a collaboration between Carlos Sainz and OTK Kart Group, creating a personalised range of racing karts, frames and accessories produced to OTK standards.",products:["Racing karts","Bare frames","Accessories","OTK-based competition products"],newsTerms:["cs55 racing kart","cs55 kart","carlos sainz kart"]},
  {id:"brm",name:"BRM Racing",group:"BRM Racing Factory",country:"Italy",founded:"1990s",site:"https://brmracing.it/",aliases:["BRM","BRM Racing"],history:"BRM Racing is an Italian kart manufacturer founded in the 1990s, producing kart chassis, accessories and spare parts alongside an official racing team.",products:["KZ chassis","Mini Kart","Racing chassis","Braking systems"],newsTerms:["brm racing kart","brm kart"]},
  {id:"fullerton",name:"Fullerton Kart",group:"Terry Fullerton",country:"United Kingdom",founded:"2010s",site:"https://terryfullerton.co.uk/",aliases:["Fullerton","Fullerton Kart"],history:"Fullerton Kart is the chassis marque associated with British karting legend Terry Fullerton. The range has included UK competition chassis produced with Birel ART manufacturing support and homologated under the Fullerton name.",products:["TF3","TF Xenon","TF Bambino","Junior / Senior competition chassis"],newsTerms:["fullerton kart","terry fullerton kart"]}
-];
+,
+ {id:"project-one",name:"Project One Racing",group:"Project One",country:"United Kingdom",founded:"1990s",site:"https://www.projectoneracing.co.uk/",aliases:["Project One"],history:"Project One Racing is a British kart chassis and racing operation with a strong presence in UK cadet and junior competition.",products:["Cadet chassis","Junior chassis","Race support"],newsTerms:["project one kart","project one racing"]},
+ {id:"wright",name:"Wright Kart",group:"Wright",country:"United Kingdom",founded:"2000s",site:"",aliases:["Wright Kart"],history:"Wright is a British kart chassis marque used across UK competition categories.",products:["Cadet chassis","Junior / Senior chassis"],newsTerms:["wright kart"]},
+ {id:"synergy",name:"Synergy",group:"Synergy Kart",country:"United Kingdom",founded:"2000s",site:"",aliases:["Synergy Kart"],history:"Synergy is a British competition kart chassis marque seen across national and club-level racing.",products:["Cadet chassis","Junior / Senior chassis"],newsTerms:["synergy kart"]},
+ {id:"tecno",name:"Tecno Kart",group:"Tecno",country:"Italy",founded:"1980s",site:"https://www.tecnokart.com/",aliases:["Tecno","Tecno Kart"],history:"Tecno is an Italian kart constructor with decades of involvement in international chassis development and racing.",products:["Mini chassis","Direct-drive chassis","KZ chassis"],newsTerms:["tecno kart"]},
+ {id:"ms-kart",name:"MS Kart",group:"MS Kart",country:"Czech Republic",founded:"1990s",site:"https://www.mskart.cz/",aliases:["MS Kart"],history:"MS Kart is a Czech kart manufacturer producing racing and rental chassis for international markets.",products:["Racing chassis","Rental chassis","KZ chassis"],newsTerms:["ms kart"]},
+ {id:"benik",name:"Benik Kart",group:"Benik",country:"United States",founded:"2010s",site:"https://benikkart.com/",aliases:["Benik"],history:"Benik is a US-focused chassis brand with strong presence in cadet, mini and junior karting.",products:["Cadet chassis","Mini chassis","Junior chassis"],newsTerms:["benik kart","benik"]},
+ {id:"dr",name:"DR Racing Kart",group:"DR Racing",country:"Italy",founded:"2000s",site:"https://www.drracingkart.com/",aliases:["DR Racing Kart","DR Kart"],history:"DR Racing Kart is the Italian chassis brand associated with Danilo Rossi and international competition.",products:["Mini","OK / OKJ","KZ chassis"],newsTerms:["dr racing kart","dr kart"]},
+ {id:"tb-kart",name:"TB Kart",group:"TB Kart",country:"Italy",founded:"2000s",site:"https://www.tbkart.com/",aliases:["TB Kart"],history:"TB Kart is an Italian kart manufacturer active in both racing and rental markets.",products:["Racing chassis","Mini","Rental karts"],newsTerms:["tb kart"]},
+ {id:"croc-promotion",name:"Croc Promotion",group:"Croc Promotion",country:"Italy",founded:"2010s",site:"",aliases:["Croc Promotion","Croc Kart"],history:"Croc Promotion is an Italian racing kart chassis marque used in international competition.",products:["Racing chassis","KZ chassis"],newsTerms:["croc promotion kart","croc kart"]},
+ {id:"alonso-kart",name:"Alonso Kart",group:"Fernando Alonso / OTK heritage",country:"Spain / Italy",founded:"2010s",site:"",aliases:["Alonso Kart"],history:"Alonso Kart is the chassis marque associated with Fernando Alonso and has been used internationally across multiple categories.",products:["Mini","Direct-drive chassis","KZ chassis"],newsTerms:["alonso kart"]},
+ {id:"eks",name:"EKS Kart",group:"EKS",country:"Italy",founded:"2010s",site:"",aliases:["EKS Kart"],history:"EKS is a competition kart chassis brand active in international racing.",products:["Racing chassis","Mini","KZ chassis"],newsTerms:["eks kart"]},
+ {id:"righetti-ridolfi",name:"Righetti Ridolfi",group:"Righetti Ridolfi",country:"Italy",founded:"1969",site:"https://www.righettiridolfi.com/",aliases:["Righetti Ridolfi"],history:"Righetti Ridolfi is a long-established Italian karting manufacturer and component supplier, producing chassis, parts and accessories.",products:["Kart chassis","Components","Braking systems","Accessories"],newsTerms:["righetti ridolfi kart"]}];
 
 const seedPosts = [
  {id:"p1",author:"Jamie R.",region:"UK",category:"Setup Help",text:"Anyone running Senior X30 this weekend? Looking for a sensible baseline before Friday practice.",likes:18,comments:["Try one tooth shorter if the track stays cold."]},
@@ -118,8 +130,8 @@ function Ad({format="Leaderboard",text="Your brand in the paddock"}) {
 }
 function Pill({children,tone=""}){return <span className={"pill "+tone}>{children}</span>}
 function Top({region,setRegion}){
- return <><header><a className="logo" href="#/">KART<span>GRID</span></a><nav>
-  <a href="#/news">News</a><a href="#/marketplace">Marketplace</a><a href="#/drivers">Drivers</a><a href="#/classes">Classes</a><a href="#/manufacturers">Manufacturers</a><a href="#/community">Community</a><a href="#/advertise">Advertise</a>
+ return <><header><a className="logo" href="#/">KART<span>GRID</span></a><nav className="main-nav">
+  <a href="#/">Home</a><a href="#/news">News</a><a href="#/marketplace">Marketplace</a><a href="#/drivers">Drivers</a><a href="#/classes">Classes</a><a href="#/manufacturers">Manufacturers</a><a href="#/community">Community</a><a href="#/advertise">Advertise</a>
  </nav><div className="header-actions"><select value={region} onChange={e=>setRegion(e.target.value)}>{regions.map(r=><option key={r}>{r}</option>)}</select><a className="button outline" href="#/profile">My Profile</a></div></header>
  <div className="ticker"><b>LIVE GRID</b><span>UK club racing · International karting · Classifieds · Driver profiles · Technical classes · Community</span></div></>
 }
@@ -154,17 +166,16 @@ function Home({region,listings,drivers,posts,saved,toggleSave}){
  <section><SectionHead eyebrow="Classes" title="Find your route through karting" copy="A worldwide directory of major class families and technical basics." action={<a className="button" href="#/classes">Explore classes</a>}/><ClassTable rows={kartClasses.slice(0,7)}/></section>
  <section><SectionHead eyebrow="Community" title="The digital paddock" copy="Setup help, wanted posts, race weekends and results." action={<a className="button primary" href="#/community/new">Create post</a>}/><div className="post-grid">{posts.filter(p=>region==="Global"||p.region===region).slice(0,3).map(p=><PostCard p={p} key={p.id}/>)}</div></section></>
 }
-function News({region}){
+function News(){
  const liveNews=useLiveNews();
  const [q,setQ]=useState(""); const [country,setCountry]=useState("All"); const [continent,setContinent]=useState("All"); const [source,setSource]=useState("All");
- const base=newsFor(region,liveNews.items);
+ const base=liveNews.items;
  const countries=[...new Set(liveNews.items.map(n=>n.country).filter(x=>x&&x!=="Global"))].sort();
  const continents=[...new Set(liveNews.items.map(n=>n.continent).filter(x=>x&&x!=="Global"))].sort();
  const sources=[...new Set(liveNews.items.map(n=>n.source).filter(Boolean))].sort();
  const rows=base.filter(n=>(country==="All"||n.country===country)&&(continent==="All"||n.continent===continent)&&(source==="All"||n.source===source)&&((n.title+" "+(n.summary||n.dek||"")+" "+(n.source||"")).toLowerCase().includes(q.toLowerCase())));
- return <section><PageTitle kicker={liveNews.live?"Live aggregator":"Newsroom"} title="KARTING NEWS" text={liveNews.live?("Live karting coverage from across the web · updated "+fmtDate(liveNews.updatedAt)):"Loading live feed…"}/><Filters><input placeholder="Search live karting news…" value={q} onChange={e=>setQ(e.target.value)}/><select value={continent} onChange={e=>{setContinent(e.target.value);setCountry("All")}}><option>All</option>{continents.map(x=><option key={x}>{x}</option>)}</select><select value={country} onChange={e=>setCountry(e.target.value)}><option>All</option>{countries.filter(c=>continent==="All"||liveNews.items.some(n=>n.country===c&&n.continent===continent)).map(x=><option key={x}>{x}</option>)}</select><select value={source} onChange={e=>setSource(e.target.value)}><option>All</option>{sources.map(x=><option key={x}>{x}</option>)}</select></Filters>{rows.length?<div className="news-grid">{rows.map((n,i)=><NewsCard key={n.id||n.url||i} n={n} big={i===0}/>)}</div>:<Empty text="No live stories match those filters."/>}<Ad format="News leaderboard"/></section>
+ return <section><PageTitle kicker={liveNews.live?"Live aggregator":"Newsroom"} title="ALL KARTING NEWS" text={liveNews.live?("Live karting coverage from across the web · updated "+fmtDate(liveNews.updatedAt)):"Loading live feed…"}/><Filters><input placeholder="Search live karting news…" value={q} onChange={e=>setQ(e.target.value)}/><select value={continent} onChange={e=>{setContinent(e.target.value);setCountry("All")}}><option>All</option>{continents.map(x=><option key={x}>{x}</option>)}</select><select value={country} onChange={e=>setCountry(e.target.value)}><option>All</option>{countries.filter(c=>continent==="All"||liveNews.items.some(n=>n.country===c&&n.continent===continent)).map(x=><option key={x}>{x}</option>)}</select><select value={source} onChange={e=>setSource(e.target.value)}><option>All</option>{sources.map(x=><option key={x}>{x}</option>)}</select></Filters>{rows.length?<div className="news-grid">{rows.map((n,i)=><NewsCard key={n.id||n.url||i} n={n} big={i===0}/>)}</div>:<Empty text="No live stories match those filters."/>}<Ad format="News leaderboard"/></section>
 }
-
 function Manufacturers(){
  const [q,setQ]=useState("");
  const rows=manufacturers.filter(m=>(m.name+" "+m.group+" "+m.country+" "+m.products.join(" ")).toLowerCase().includes(q.toLowerCase()));
@@ -231,7 +242,7 @@ function App(){
  const parts=route.split("/").filter(Boolean);
  if(route==="/") page=<Home {...{region,listings,drivers,posts,saved,toggleSave}}/>;
  else if(parts[0]==="news"&&parts[1]) page=<NewsDetail id={parts[1]}/>;
- else if(parts[0]==="news") page=<News region={region}/>;
+ else if(parts[0]==="news") page=<News/>;
  else if(parts[0]==="marketplace"&&parts[1]==="new") page=<NewListing {...{region,listings,setListings}}/>;
  else if(parts[0]==="marketplace"&&parts[1]) page=<ListingDetail id={parts[1]} {...{listings,saved,toggleSave}}/>;
  else if(parts[0]==="marketplace") page=<Marketplace {...{region,listings,setListings,saved,toggleSave}}/>;
