@@ -164,3 +164,57 @@ footer{
 
 /* Remove legacy diagonal placeholder stripe from article media */
 .media:before{display:none!important}
+
+/* Mobile header repair */
+@media(max-width:680px){
+  header{
+    height:auto!important;
+    min-height:0;
+    padding:10px 12px!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) auto;
+    align-items:center;
+    gap:8px 10px!important;
+    flex-wrap:initial!important;
+  }
+  .logo{
+    grid-column:1;
+    min-width:0;
+    padding:0!important;
+    background:transparent!important;
+  }
+  .logo img{
+    height:38px!important;
+    width:auto!important;
+    max-width:190px!important;
+  }
+  .header-actions{
+    grid-column:2;
+    justify-self:end;
+  }
+  .header-actions select{
+    width:86px!important;
+    padding:8px!important;
+  }
+  .main-nav{
+    grid-column:1/-1;
+    order:initial!important;
+    width:100%!important;
+    overflow-x:auto;
+    display:flex!important;
+    gap:18px!important;
+    padding:9px 0 2px!important;
+    border-top:1px solid var(--line);
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+  }
+  .main-nav::-webkit-scrollbar{display:none}
+  .main-nav a{
+    flex:0 0 auto;
+    white-space:nowrap;
+    font-size:14px;
+  }
+  .ticker{
+    height:36px!important;
+  }
+}
