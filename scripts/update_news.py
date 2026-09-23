@@ -235,8 +235,18 @@ def main():
         if len(selected)>=120: break
     selected.sort(key=lambda x:x.get("published",""),reverse=True)
 
-    # Resolve publisher URLs and discover article images for the freshest stories.
-    for x in selected[:60]:
+    # Prioritise US and manufacturer stories for publisher image enrichment, then newest stories.
+    enrich=[]
+    enrich_seen=set()
+    for group in (us,brand,selected):
+        for x in group:
+            key=norm_title(x["title"])
+            if key in enrich_seen: continue
+            enrich_seen.add(key); enrich.append(x)
+            if len(enrich)>=60: break
+        if len(enrich)>=60: break
+    enriched_keys=set()
+    for x in enrich:
         original,img=resolve_and_image(x["url"])
         if original: x["url"]=original
         if img and "googleusercontent.com" not in img: x["image"]=img
@@ -244,10 +254,12 @@ def main():
             x["image"]=""
         x["id"]=hashlib.sha1((x["title"]+x["url"]).encode()).hexdigest()[:14]
         x["tag"]="LIVE"
+        enriched_keys.add(norm_title(x["title"]))
         if x["country"]=="Global":
             c,co=classify(x["title"]+" "+x["summary"]+" "+x["url"])
             x["country"],x["continent"]=c,co
-    for x in selected[60:]:
+    for x in selected:
+        if norm_title(x["title"]) in enriched_keys: continue
         x["id"]=hashlib.sha1((x["title"]+x["url"]).encode()).hexdigest()[:14]
         x["tag"]="LIVE"
         if x.get("image","").find("googleusercontent.com")>=0: x["image"]=""
