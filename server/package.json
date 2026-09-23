@@ -9,12 +9,13 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.883.0",
     "@aws-sdk/s3-request-presigner": "^3.883.0",
-    "@clerk/express": "^1.7.19",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "ffmpeg-static": "^5.2.0",
     "multer": "^2.0.2",
     "openai": "^5.23.0",
-    "pg": "^8.16.3"
+    "pg": "^8.16.3",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2"
   }
 }
