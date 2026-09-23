@@ -19,6 +19,16 @@ QUERIES = [
   "United States kart racing",
   "American kart racing",
   "New Castle Motorsports Park karting",
+  "\"Tony Kart\" karting",
+  "\"CRG\" karting",
+  "\"Birel ART\" karting",
+  "\"Kart Republic\" karting",
+  "\"Sodikart\" karting",
+  "\"Parolin\" karting",
+  "\"Praga Kart\" karting",
+  "\"Energy Corse\" karting",
+  "\"Kosmic Kart\" karting",
+  "\"Exprit\" karting",
   '"kart racing"',
   '"go kart" racing',
   "karting FIA",
@@ -188,8 +198,25 @@ def main():
             continue
         clustered.append(x)
 
-    # Resolve a sensible number of freshest links to original URLs and discover article images.
-    for x in clustered[:40]:
+    # Build a balanced feed so large UK/global clusters do not crowd out regional coverage.
+    us=[x for x in clustered if x.get("country")=="United States"][:20]
+    au=[x for x in clustered if x.get("country")=="Australia"][:15]
+    uk=[x for x in clustered if x.get("country")=="United Kingdom"][:20]
+    brand_terms=["tony kart","crg","birel","kart republic","sodikart","parolin","praga kart","energy corse","kosmic","exprit"]
+    brand=[x for x in clustered if any(t in (x["title"]+" "+x.get("summary","")).lower() for t in brand_terms)][:25]
+    selected=[]
+    seen_ids=set()
+    for group in (us,au,uk,brand,clustered):
+        for x in group:
+            key=norm_title(x["title"])
+            if key in seen_ids: continue
+            seen_ids.add(key); selected.append(x)
+            if len(selected)>=120: break
+        if len(selected)>=120: break
+    selected.sort(key=lambda x:x.get("published",""),reverse=True)
+
+    # Resolve publisher URLs and discover article images for the freshest stories.
+    for x in selected[:60]:
         original,img=resolve_and_image(x["url"])
         if original: x["url"]=original
         if img and "googleusercontent.com" not in img: x["image"]=img
@@ -200,9 +227,13 @@ def main():
         if x["country"]=="Global":
             c,co=classify(x["title"]+" "+x["summary"]+" "+x["url"])
             x["country"],x["continent"]=c,co
+    for x in selected[60:]:
+        x["id"]=hashlib.sha1((x["title"]+x["url"]).encode()).hexdigest()[:14]
+        x["tag"]="LIVE"
+        if x.get("image","").find("googleusercontent.com")>=0: x["image"]=""
 
     now=datetime.now(timezone.utc).isoformat()
-    payload={"updatedAt":now,"count":len(clustered[:60]),"items":clustered[:60]}
+    payload={"updatedAt":now,"count":len(selected),"items":selected}
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT,"w",encoding="utf-8") as f:
         json.dump(payload,f,ensure_ascii=False,indent=2)
