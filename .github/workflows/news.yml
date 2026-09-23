@@ -1,0 +1,48 @@
+name: Refresh live karting news
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "scripts/update_news.py"
+      - ".github/workflows/news.yml"
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kartgrid-news-refresh
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install feed dependencies
+        run: pip install requests feedparser beautifulsoup4
+
+      - name: Aggregate karting news
+        run: python scripts/update_news.py
+
+      - name: Commit refreshed feed
+        run: |
+          git config user.name "KARTGRID News Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add public/news.json
+          if git diff --cached --quiet; then
+            echo "No feed changes"
+          else
+            git commit -m "Refresh live karting news"
+            git push
+          fi
