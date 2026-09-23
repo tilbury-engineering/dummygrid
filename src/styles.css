@@ -340,3 +340,11 @@ footer{
 .knowledge-guide a{margin-top:auto;font-weight:850;color:#009c89}
 @media(max-width:900px){.knowledge-guide-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:680px){.knowledge-guide-grid{grid-template-columns:1fr}.knowledge-guide{min-height:0}}
+
+.ai-answer-text{white-space:pre-wrap;color:#27343c;line-height:1.7;margin-top:12px}
+.ai-source-list{display:grid;gap:8px}
+.ai-source-list h3{margin:0 0 6px}
+.ai-source-list a{display:grid;grid-template-columns:32px 1fr;gap:10px;align-items:center;background:#fff;border:1px solid #dfe5e9;border-radius:12px;padding:11px 12px}
+.ai-source-list a>span{width:28px;height:28px;border-radius:50%;background:#e2faf5;color:#007f72;display:grid;place-items:center;font-weight:900}
+.ai-source-list b{display:block;color:#1f2a31}
+.ai-source-list small{display:block;color:#7a8790;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:760px}
