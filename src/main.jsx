@@ -198,10 +198,28 @@ function News(){
  const rows=base.filter(n=>(country==="All"||n.country===country)&&(continent==="All"||n.continent===continent)&&(source==="All"||n.source===source)&&((n.title+" "+(n.summary||n.dek||"")+" "+(n.source||"")).toLowerCase().includes(q.toLowerCase())));
  return <section><PageTitle kicker={liveNews.live?"Live aggregator":"Newsroom"} title="ALL KARTING NEWS" text={liveNews.live?("Live karting coverage from across the web · updated "+fmtDate(liveNews.updatedAt)):"Loading live feed…"}/><Filters><input placeholder="Search live karting news…" value={q} onChange={e=>setQ(e.target.value)}/><select value={continent} onChange={e=>{setContinent(e.target.value);setCountry("All")}}><option>All</option>{continents.map(x=><option key={x}>{x}</option>)}</select><select value={country} onChange={e=>setCountry(e.target.value)}><option>All</option>{countries.filter(c=>continent==="All"||liveNews.items.some(n=>n.country===c&&n.continent===continent)).map(x=><option key={x}>{x}</option>)}</select><select value={source} onChange={e=>setSource(e.target.value)}><option>All</option>{sources.map(x=><option key={x}>{x}</option>)}</select></Filters>{rows.length?<div className="news-grid">{rows.map((n,i)=><NewsCard key={n.id||n.url||i} n={n} big={i===0}/>)}</div>:<Empty text="No live stories match those filters."/>}<Ad format="News leaderboard"/></section>
 }
+function manufacturerLogo(m){
+ if(m.logo) return m.logo;
+ if(m.site){
+   try{
+     const u=new URL(m.site);
+     return "https://www.google.com/s2/favicons?domain="+encodeURIComponent(u.hostname)+"&sz=256";
+   }catch{}
+ }
+ return "";
+}
+function ManufacturerLogo({m,className=""}){
+ const [failed,setFailed]=useState(false);
+ const src=manufacturerLogo(m);
+ return <div className={"brand-logo-panel "+className}>{src&&!failed?<img src={src} alt={m.name+" logo"} onError={()=>setFailed(true)}/>:<span>{m.name}</span>}</div>
+}
 function Manufacturers(){
  const [q,setQ]=useState("");
- const rows=manufacturers.filter(m=>(m.name+" "+m.group+" "+m.country+" "+m.products.join(" ")).toLowerCase().includes(q.toLowerCase()));
- return <section><PageTitle kicker="Brands & builders" title="KART MANUFACTURERS" text="Explore chassis manufacturers, their history, product families and the latest news around each brand."/><Filters><input placeholder="Search manufacturer, country or product…" value={q} onChange={e=>setQ(e.target.value)}/></Filters><div className="manufacturer-grid">{rows.map(m=><a className="manufacturer-card" href={"#/manufacturers/"+m.id} key={m.id}><div className="manufacturer-badge">{m.logo?<img src={m.logo} alt={m.name+" logo"} onError={e=>{e.currentTarget.style.display="none"}}/>:m.name.slice(0,2).toUpperCase()}</div><div className="meta">{m.country} · {m.group}</div><h3>{m.name}</h3><p>{m.history}</p><div className="product-tags">{m.products.slice(0,3).map(p=><span key={typeof p==="string"?p:p.name}>{typeof p==="string"?p:p.name}</span>)}</div><b className="link">View manufacturer →</b></a>)}</div></section>
+ const rows=manufacturers.filter(m=>{
+   const products=(m.products||[]).map(p=>typeof p==="string"?p:p.name).join(" ");
+   return (m.name+" "+m.group+" "+m.country+" "+products).toLowerCase().includes(q.toLowerCase());
+ });
+ return <section><PageTitle kicker="Brands & builders" title="KART MANUFACTURERS" text="Explore kart manufacturers, their history, products, dealer networks and latest coverage."/><Filters><input placeholder="Search manufacturer, country or product…" value={q} onChange={e=>setQ(e.target.value)}/></Filters><div className="manufacturer-grid">{rows.map(m=><a className="manufacturer-card" href={"#/manufacturers/"+m.id} key={m.id}><ManufacturerLogo m={m} className="directory-logo"/><div className="meta">{m.country} · {m.group}</div><h3>{m.name}</h3><p>{m.history}</p><div className="product-tags">{(m.products||[]).slice(0,3).map(p=><span key={typeof p==="string"?p:p.name}>{typeof p==="string"?p:p.name}</span>)}</div><b className="link">View manufacturer →</b></a>)}</div></section>
 }
 function ManufacturerDetail({id}){
  const m=manufacturers.find(x=>x.id===id); const live=useLiveNews(); if(!m)return <NotFound/>;
@@ -209,13 +227,13 @@ function ManufacturerDetail({id}){
  const related=live.items.filter(n=>terms.some(t=>(n.title+" "+(n.summary||"")+" "+(n.source||"")).toLowerCase().includes(t))).slice(0,12);
  const products=(m.products||[]).map(p=>typeof p==="string"?{name:p,type:"Product / chassis family"}:p);
  const dealers=m.dealers||[];
- return <section className="encyclopedia"><div className="manufacturer-hero"><div><div className="brand-lockup">{m.logo&&<img src={m.logo} alt={m.name+" logo"} onError={e=>{e.currentTarget.style.display="none"}}/>}<div><div className="meta">{m.country} · {m.group} · Founded {m.founded}</div><h1>{m.name}</h1></div></div><p>{m.history}</p><div className="actions"><a className="button primary" href={m.site} target="_blank" rel="noopener noreferrer">Official website ↗</a>{m.catalogueUrl&&<a className="button" href={m.catalogueUrl} target="_blank" rel="noopener noreferrer">Official catalogue ↗</a>}{m.dealerUrl&&<a className="button" href={m.dealerUrl} target="_blank" rel="noopener noreferrer">Official dealer network ↗</a>}<a className="button" href="#/manufacturers">All manufacturers</a></div></div><div className="manufacturer-mark">{m.logo?<img src={m.logo} alt="" onError={e=>{e.currentTarget.style.display="none"}}/>:m.name.slice(0,2).toUpperCase()}</div></div>
+ return <section className="encyclopedia"><div className="manufacturer-hero"><div><div className="brand-lockup"><ManufacturerLogo m={m} className="detail-logo"/><div><div className="meta">{m.country} · {m.group} · Founded {m.founded}</div><h1>{m.name}</h1></div></div><p>{m.history}</p><div className="actions"><a className="button primary" href={m.site} target="_blank" rel="noopener noreferrer">Official website ↗</a>{m.catalogueUrl&&<a className="button" href={m.catalogueUrl} target="_blank" rel="noopener noreferrer">Official catalogue ↗</a>}{m.dealerUrl&&<a className="button" href={m.dealerUrl} target="_blank" rel="noopener noreferrer">Official dealer network ↗</a>}<a className="button" href="#/manufacturers">All manufacturers</a></div></div><ManufacturerLogo m={m} className="hero-logo"/></div>
  <div className="encyclopedia-grid">
   <div className="panel"><h3>Brand profile</h3><dl className="facts"><div><dt>Manufacturer</dt><dd>{m.name}</dd></div><div><dt>Group / owner</dt><dd>{m.group}</dd></div><div><dt>Country</dt><dd>{m.country}</dd></div><div><dt>Founded</dt><dd>{m.founded}</dd></div><div><dt>Known aliases</dt><dd>{(m.aliases||[]).join(", ")||"—"}</dd></div></dl></div>
   <div className="panel"><h3>History</h3><p>{m.history}</p><p className="muted">KARTGRID is building this into a sourced manufacturer archive covering historic models, homologations, factory teams and ownership changes.</p></div>
  </div>
  <SectionHead eyebrow="Official catalogue" title="Products" copy="Current and representative products taken from or linked back to the manufacturer's own catalogue."/>
- <div className="product-catalogue">{products.map(p=><div className="product-card" key={p.name}><div className="product-art">{m.logo?<img src={m.logo} alt="" onError={e=>{e.currentTarget.style.display="none"}}/>:m.name.slice(0,2).toUpperCase()}</div><div><h3>{p.name}</h3><p>{p.type||"Karting product"}</p>{p.className&&<Pill>{p.className}</Pill>}</div></div>)}</div>
+ <div className="product-catalogue">{products.map(p=><div className="product-card" key={p.name}><ManufacturerLogo m={m} className="product-logo"/><div><h3>{p.name}</h3><p>{p.type||"Karting product"}</p>{p.className&&<Pill>{p.className}</Pill>}</div></div>)}</div>
  <SectionHead eyebrow="Official network" title="Dealers & distributors" copy="Dealer information is sourced from the manufacturer's official network where available."/>
  {dealers.length?<div className="dealer-table"><div className="dealer-head"><span>Country</span><span>Dealer / distributor</span><span>Location</span></div>{dealers.map((d,i)=><div className="dealer-row" key={d.country+d.name+i}><b>{d.country}</b><span>{d.name}</span><span>{d.location||"—"}</span></div>)}</div>:<div className="empty">Dealer network not yet indexed. {m.dealerUrl&&<a className="link" href={m.dealerUrl} target="_blank" rel="noopener noreferrer">Open official dealer directory ↗</a>}</div>}
  <SectionHead eyebrow="Latest coverage" title={m.name+" news"} copy="Live stories from the KARTGRID news index that mention this manufacturer."/>
