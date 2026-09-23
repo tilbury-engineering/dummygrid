@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import json, re, html, hashlib, time
+import json, re, html, hashlib, time, os
 from datetime import datetime, timezone
 from urllib.parse import quote, urlparse
 from difflib import SequenceMatcher
@@ -170,7 +170,7 @@ def main():
 
     now=datetime.now(timezone.utc).isoformat()
     payload={"updatedAt":now,"count":len(clustered[:60]),"items":clustered[:60]}
-    with open(OUT,"w",encoding="utf-8") as f: json.dump(payload,f,ensure_ascii=False,indent=2)
+    os.makedirs(os.path.dirname(OUT), exist_ok=True)\n    with open(OUT,"w",encoding="utf-8") as f: json.dump(payload,f,ensure_ascii=False,indent=2)
     print("wrote",payload["count"],"stories")
 
 if __name__=="__main__": main()
