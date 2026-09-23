@@ -141,9 +141,12 @@ def fetch_google(q, hl="en-GB", gl="GB", ceid="GB:en"):
     rows=[]
     for e in feed.entries[:40]:
         title=clean(getattr(e,"title",""))
-        if not re.search(r"\bkart(ing|s)?\b|\bgo[- ]?kart",title,re.I):
-            summary=clean(getattr(e,"summary",""))
-            if not re.search(r"\bkart(ing|s)?\b|\bgo[- ]?kart",summary,re.I): continue
+        summary=clean(getattr(e,"summary",""))
+        hay=(title+" "+summary).lower()
+        if not re.search(r"\bkart(ing|s)?\b|\bgo[- ]?kart",hay,re.I): continue
+        noise=["mario kart","indoor go-kart","indoor gokart","arcade","amusement","theme park","family entertainment","electric go-kart venue","go-kart track opens","go kart track opens","toyota go-kart","minivan","k1 speed"]
+        racing=["championship","race","racing","driver","karting","fia","skusa","uspks","rok","rotax","iame","wsk","supernationals","motorsport","chassis","team","series","circuit","qualifying","podium","final"]
+        if any(n in hay for n in noise) and not any(r in hay for r in racing): continue
         source=getattr(getattr(e,"source",{}),"title","") or (getattr(e,"source",{}) or {}).get("title","") or "Original source"
         raw=getattr(e,"link","")
         date=getattr(e,"published","")
