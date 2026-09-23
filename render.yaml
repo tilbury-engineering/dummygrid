@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: kartgrid-preview
+    runtime: static
+    repo: https://github.com/tilbury-engineering/dummygrid
+    branch: main
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    autoDeploy: true
