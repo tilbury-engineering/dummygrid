@@ -3,6 +3,9 @@ name: Deploy KARTGRID to GitHub Pages
 on:
   push:
     branches: ["main"]
+  workflow_run:
+    workflows: ["Refresh live karting news"]
+    types: [completed]
   workflow_dispatch:
 
 permissions:
