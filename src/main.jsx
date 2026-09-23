@@ -146,7 +146,7 @@ function Top({region,setRegion}){
        <a href="#/drivers" onClick={()=>setMenuOpen(false)}>Drivers</a>
        <a href="#/classes" onClick={()=>setMenuOpen(false)}>Classes</a>
        <a href="#/manufacturers" onClick={()=>setMenuOpen(false)}>Manufacturers</a>
-       <a href="#/community" onClick={()=>setMenuOpen(false)}>Community</a>
+       <a href="#/community" onClick={()=>setMenuOpen(false)}>Community</a><a href="#/ai-search" onClick={()=>setMenuOpen(false)}>AI Search</a>
      </nav>
      <div className="header-actions">
        <select aria-label="Choose region" value={region} onChange={e=>setRegion(e.target.value)}>{regions.map(r=><option key={r}>{r}</option>)}</select>
@@ -255,6 +255,46 @@ function NewListing({region,listings,setListings}){
 function ListingDetail({id,listings,saved,toggleSave}){const x=listings.find(i=>i.id===id);if(!x)return <NotFound/>;return <section><div className="detail-grid"><div className="detail-image"><span>{x.category}</span></div><div className="detail-copy"><div className="meta">{x.region} · {x.condition} · {x.location}</div><h1>{x.title}</h1><div className="mega-price">{x.currency}{Number(x.price).toLocaleString()}</div><Pill tone="lime">{x.compat}</Pill><p>{x.desc}</p><div className="seller"><b>{x.seller}</b><small>Seller profile · Report listing</small></div><div className="actions"><button className="button primary" onClick={()=>alert("Message sent to seller (demo).")}>Contact seller</button><button className="button" onClick={()=>toggleSave(x.id)}>{saved.includes(x.id)?"♥ Saved":"♡ Save listing"}</button></div></div></div><Ad format="Listing MPU"/></section>}
 function Drivers({region,drivers}){const[q,setQ]=useState("");const rows=drivers.filter(d=>(region==="Global"||d.region===region)&&((d.name+" "+d.className+" "+d.team).toLowerCase().includes(q.toLowerCase())));return <section><PageTitle kicker="Driver network" title="DRIVERS" text="Find racers, teams and talent across the karting world." action={<a className="button primary" href="#/profile/edit">+ Create my profile</a>}/><Filters><input placeholder="Search driver, class or team…" value={q} onChange={e=>setQ(e.target.value)}/></Filters><div className="driver-grid">{rows.map(d=><DriverCard key={d.id} d={d}/>)}</div><Ad format="Driver directory sponsor"/></section>}
 function DriverDetail({id,drivers}){const d=drivers.find(x=>x.id===id);if(!d)return <NotFound/>;return <section><div className="profile-hero"><div className="profile-avatar">{d.name.split(" ").map(x=>x[0]).join("")}</div><div><div className="meta">{d.nationality} · {d.region} · #{d.number} {d.verified&&"· ✓ Verified"}</div><h1>{d.name}</h1><p>{d.className} · {d.team}</p><p>{d.bio}</p></div></div><div className="statbar"><b>{d.starts}<small>Starts</small></b><b>{d.wins}<small>Wins</small></b><b>{d.podiums}<small>Podiums</small></b><b>{d.className}<small>Current class</small></b></div><div className="two-col"><div className="panel"><h3>Race history</h3><p className="muted">Results, championships, race weekends and lap records will sit here.</p></div><div className="panel"><h3>Sponsors</h3><p className="muted">Sponsor logos, links and partnership status.</p></div></div></section>}
+function AISearch(){
+ const live=useLiveNews();
+ const [q,setQ]=useState("");
+ const [submitted,setSubmitted]=useState("");
+ const unsafe=/\b(sex|porn|nude|nudity|drugs?|cocaine|heroin|meth|weapon|gun|knife|suicide|self[- ]?harm|gambling|betting|casino|violence|kill|murder|explosive|bomb)\b/i;
+ const kartTerms=/\b(kart|karting|go[- ]?kart|chassis|rotax|iame|vortex|engine|tyre|tire|circuit|track|driver|championship|fia|skusa|uspks|wsk|cadet|mini|junior|senior|kz|okj|ok|dd2|manufacturer|dealer|team|race|racing)\b/i;
+ const isUnsafe=unsafe.test(submitted);
+ const isKarting=kartTerms.test(submitted);
+ const manufacturersResults=manufacturers.filter(m=>{
+   const txt=(m.name+" "+m.group+" "+m.country+" "+m.history+" "+(m.products||[]).map(p=>typeof p==="string"?p:p.name).join(" ")).toLowerCase();
+   return submitted&&submitted.toLowerCase().split(/\s+/).filter(Boolean).some(t=>t.length>2&&txt.includes(t));
+ }).slice(0,8);
+ const classResults=kartClasses.filter(c=>{
+   const txt=Object.values(c).join(" ").toLowerCase();
+   return submitted&&submitted.toLowerCase().split(/\s+/).filter(Boolean).some(t=>t.length>2&&txt.includes(t));
+ }).slice(0,8);
+ const newsResults=live.items.filter(n=>{
+   const txt=(n.title+" "+(n.summary||"")+" "+(n.source||"")).toLowerCase();
+   return submitted&&submitted.toLowerCase().split(/\s+/).filter(Boolean).some(t=>t.length>2&&txt.includes(t));
+ }).slice(0,10);
+ const hasResults=manufacturersResults.length||classResults.length||newsResults.length;
+ const ask=e=>{e.preventDefault();setSubmitted(q.trim())};
+ return <section className="ai-search-page">
+   <PageTitle kicker="DummyGrid AI" title="ASK ANYTHING ABOUT KARTING" text="Child-safe karting search across the DummyGrid encyclopedia and approved karting sources."/>
+   <form className="ai-search-box" onSubmit={ask}>
+     <input aria-label="Ask DummyGrid AI" placeholder="e.g. What is the difference between OK and KZ?" value={q} onChange={e=>setQ(e.target.value)}/>
+     <button className="button primary" type="submit">Search</button>
+   </form>
+   <div className="ai-safety-note"><b>Karting only · child-safe</b><span>Unrelated or unsafe searches are blocked.</span></div>
+   {!submitted?<div className="ai-examples"><button onClick={()=>{setQ("What kart should a 10 year old race?");setSubmitted("What kart should a 10 year old race?")}}>What kart should a 10 year old race?</button><button onClick={()=>{setQ("Who makes KZ chassis?");setSubmitted("Who makes KZ chassis?")}}>Who makes KZ chassis?</button><button onClick={()=>{setQ("Latest SKUSA news");setSubmitted("Latest SKUSA news")}}>Latest SKUSA news</button></div>:null}
+   {submitted&&isUnsafe?<div className="ai-blocked"><h3>Search blocked</h3><p>DummyGrid AI only answers child-safe karting questions.</p></div>:null}
+   {submitted&&!isUnsafe&&!isKarting?<div className="ai-blocked"><h3>Karting questions only</h3><p>Try asking about karts, classes, engines, drivers, manufacturers, circuits, championships or karting news.</p></div>:null}
+   {submitted&&!isUnsafe&&isKarting&&<div className="ai-results">
+     <div className="ai-answer"><span>DummyGrid AI result</span><h2>{hasResults?"Here’s what I found about “"+submitted+"”":"I couldn’t find a strong match yet."}</h2><p>{hasResults?"Results below are drawn from DummyGrid’s karting database and live karting news index.":"Try a more specific karting term, manufacturer, class, engine or championship."}</p></div>
+     {manufacturersResults.length>0&&<div><SectionHead eyebrow="Encyclopedia" title="Manufacturers"/><div className="manufacturer-grid compact">{manufacturersResults.map(m=><a className="manufacturer-card" href={"#/manufacturers/"+m.id} key={m.id}><ManufacturerLogo m={m} className="directory-logo"/><h3>{m.name}</h3><p>{m.history}</p></a>)}</div></div>}
+     {classResults.length>0&&<div><SectionHead eyebrow="Knowledge base" title="Classes"/><ClassTable rows={classResults}/></div>}
+     {newsResults.length>0&&<div><SectionHead eyebrow="Live web index" title="News & sources"/><div className="news-grid">{newsResults.map((n,i)=><NewsCard key={n.id||i} n={n}/>)}</div></div>}
+   </div>}
+ </section>
+}
 function Classes(){
  const[q,setQ]=useState("");const[family,setFamily]=useState("All");const[gear,setGear]=useState("All");
  const rows=kartClasses.filter(c=>(family==="All"||c.family===family)&&(gear==="All"||c.gearbox===gear)&&(Object.values(c).join(" ").toLowerCase().includes(q.toLowerCase())));
@@ -308,6 +348,7 @@ function App(){
  else if(parts[0]==="manufacturers") page=<Manufacturers/>;
  else if(parts[0]==="community"&&parts[1]==="new") page=<NewPost {...{region,posts,setPosts}}/>;
  else if(parts[0]==="community") page=<Community {...{region,posts,setPosts}}/>;
+ else if(parts[0]==="ai-search") page=<AISearch/>;
  else if(parts[0]==="advertise") page=<Advertise/>;
  else if(parts[0]==="profile"&&parts[1]==="edit") page=<EditProfile {...{profile,setProfile,drivers,setDrivers,region}}/>;
  else if(parts[0]==="profile") page=<Profile {...{profile,listings,posts,saved}}/>;
