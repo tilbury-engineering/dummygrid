@@ -44,5 +44,6 @@ jobs:
             echo "No feed changes"
           else
             git commit -m "Refresh live karting news"
+            git pull --rebase origin main
             git push
           fi
