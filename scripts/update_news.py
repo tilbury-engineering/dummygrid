@@ -170,7 +170,9 @@ def main():
 
     now=datetime.now(timezone.utc).isoformat()
     payload={"updatedAt":now,"count":len(clustered[:60]),"items":clustered[:60]}
-    os.makedirs(os.path.dirname(OUT), exist_ok=True)\n    with open(OUT,"w",encoding="utf-8") as f: json.dump(payload,f,ensure_ascii=False,indent=2)
+    os.makedirs(os.path.dirname(OUT), exist_ok=True)
+    with open(OUT,"w",encoding="utf-8") as f:
+        json.dump(payload,f,ensure_ascii=False,indent=2)
     print("wrote",payload["count"],"stories")
 
 if __name__=="__main__": main()
