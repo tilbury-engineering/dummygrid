@@ -2,7 +2,7 @@ import React, {useEffect, useMemo, useState} from "react";
 import {createRoot} from "react-dom/client";
 import "./styles.css";
 
-const DUMMYGRID_LOGO = (import.meta.env.BASE_URL || "/") + "dummygrid-logo.webp";
+const DUMMYGRID_LOGO = (import.meta.env.BASE_URL || "/") + "dummygrid-logo.svg";
 
 const regions = ["UK","Europe","USA","Australia","Global"];
 const demoNews = [
