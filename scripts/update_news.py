@@ -11,6 +11,14 @@ OUT = "public/news.json"
 UA = {"User-Agent":"Mozilla/5.0 (compatible; KARTGRID-NewsBot/1.0; +https://github.com/tilbury-engineering/dummygrid)"}
 QUERIES = [
   "karting",
+  "SKUSA karting",
+  "USPKS karting",
+  "Stars Championship Series karting",
+  "Challenge of the Americas karting",
+  "ROK Cup USA karting",
+  "United States kart racing",
+  "American kart racing",
+  "New Castle Motorsports Park karting",
   '"kart racing"',
   '"go kart" racing',
   "karting FIA",
@@ -102,7 +110,7 @@ def resolve_and_image(url):
         if "news.google.com/" in url:
             try:
                 decoded=gnewsdecoder(url, interval=None)
-                if isinstance(decoded,dict) and decoded.get("status") and decoded.get("decoded_url"):
+                if isinstance(decoded,dict) and (decoded.get("status") or decoded.get("success")) and decoded.get("decoded_url"):
                     original=decoded["decoded_url"]
             except Exception:
                 pass
@@ -134,6 +142,14 @@ def fetch_google(q, hl="en-GB", gl="GB", ceid="GB:en"):
         desc=clean(getattr(e,"summary",""))
         desc=re.sub(r"\s+[A-Za-z0-9 .&'’-]+$","",desc).strip()
         country,continent=classify(title+" "+desc+" "+source)
+        ql=q.lower()
+        if country=="Global":
+            us_hint=any(k in ql for k in ["skusa","uspks","stars championship","challenge of the americas","rok cup usa","united states","american kart","new castle"])
+            au_hint=any(k in ql for k in ["australia","australian"])
+            if gl=="US" and us_hint:
+                country,continent="United States","North America"
+            elif gl=="AU" and au_hint:
+                country,continent="Australia","Oceania"
         rows.append({"title":title,"summary":desc[:420],"url":raw,"source":clean(source),"published":iso,"country":country,"continent":continent,"image":image_from_entry(e),"sources":[]})
     return rows
 
