@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-23T19:16:15.004595+00:00",
+  "updatedAt": "2026-09-23T19:18:35.684944+00:00",
   "count": 60,
   "items": [
     {
@@ -38,16 +38,21 @@
       "tag": "LIVE"
     },
     {
-      "title": "Karting victory gives Verstappen winning feeling ahead of Baku GP - Daily Sabah",
+      "title": "Karting victory gives Verstappen winning feeling ahead of Baku GP - dailysabah.com",
       "summary": "Karting",
       "url": "https://www.dailysabah.com/sports/motorsports/karting-victory-gives-verstappen-winning-feeling-ahead-of-baku-gp",
-      "source": "Daily Sabah",
+      "source": "dailysabah.com",
       "published": "2026-09-23T10:58:33+00:00",
       "country": "Global",
       "continent": "Global",
       "image": "https://idsb.tmgrup.com.tr/ly/uploads/images/2026/09/23/thumbs/1200x675/461932.jpg",
-      "sources": [],
-      "id": "58e986d1f94a22",
+      "sources": [
+        {
+          "source": "Daily Sabah",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPTEh3eFlhalIwUXNhWVgtSXlvN0ZhMDJNVkRXLWtmdnZUUnBRdWJLeF90bmtpY3JlVTdIeThiYW1fSlV2U1lZSEpTaVFVMy1zb0NWVGV4azlSbjhTdk9iR1FXaUNlNEVzSHJpb04yVzA1aF9UbmFudTQ2Ml96S3RxUkM3MnlPUC1sck43ZktSQzJ3eEVRMms0M0hoY215d0lwMGdPc2x6OEJwOVEtWVVheQ?oc=5"
+        }
+      ],
+      "id": "89fbe44fb267bc",
       "tag": "LIVE"
     },
     {
@@ -129,81 +134,91 @@
       "tag": "LIVE"
     },
     {
-      "title": "Julia Angelard is the fourth competitor in the Polish Karting Championships! - Karting Magazine",
+      "title": "Julia Angelard is the fourth competitor in the Polish Karting Championships! - vroomkart.com",
       "summary": "Julia Angelard is the fourth competitor in the Polish Karting Championships!",
       "url": "https://www.vroomkart.com/news/46707/julia-angelard-is-the-fourth-competitor-in-the-polish-karting-championships",
-      "source": "Karting Magazine",
+      "source": "vroomkart.com",
       "published": "2026-09-22T06:30:28+00:00",
       "country": "Global",
       "continent": "Global",
       "image": "",
-      "sources": [],
-      "id": "59624372bbd7fa",
+      "sources": [
+        {
+          "source": "Karting Magazine",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQQzQ2T2JYZVVRN3hlbTN2YS1PWk1ZUDJHVE1wV2FmaDNWNTEtMGtKSnRfV0hGaHF6TDJHZmQ4MEtHNzhjeTBjN3ZHTmg4dXVfeWR6N21idi1ONVo2MUdBYTJnUy1ZQ2QtbExQVjhpMHB3WG9ZcFE4YzV1N1BUX0VHSy1LM25Dc3FRaVlmWkU1VnNGQWNlZUxhcWhsMkw1Y1B0S1NmVlEzdV9vUG8td3UwNE5R?oc=5"
+        }
+      ],
+      "id": "b123abc4b8fdf4",
       "tag": "LIVE"
     },
     {
-      "title": "Innovative Indoor Go-Kart Track With Interactive Gaming Elements Proposed for Pennsauken - 42freeway.com",
+      "title": "Innovative Indoor Go-Kart Track With Interactive Gaming Elements Proposed for Pennsauken - 42 Freeway",
       "summary": "Innovative",
       "url": "https://42freeway.com/marltonpike/innovative-indoor-go-kart-track-with-interactive-gaming-elements-proposed-for-pennsauken/",
-      "source": "42freeway.com",
+      "source": "42 Freeway",
       "published": "2026-09-21T22:13:21+00:00",
       "country": "United Kingdom",
       "continent": "Europe",
       "image": "https://42freeway.com/wp-content/uploads/2026/09/PennsaukenInteractiveGoKarts00.jpg",
       "sources": [],
-      "id": "599f4a7ca17630",
+      "id": "a99305dd48ba0f",
       "tag": "LIVE"
     },
     {
-      "title": "FIRST LOOK: Award-winning Flip Out adventure park opens alongside multi-level go-kart track in Elizabeth - glamadelaide.com.au",
+      "title": "FIRST LOOK: Award-winning Flip Out adventure park opens alongside multi-level go-kart track in Elizabeth - Glam Adelaide",
       "summary": "FIRST LOOK:",
       "url": "https://glamadelaide.com.au/first-look-award-winning-flip-out-adventure-park-opens-alongside-multi-level-go-kart-track-in-elizabeth/",
-      "source": "glamadelaide.com.au",
+      "source": "Glam Adelaide",
       "published": "2026-09-21T19:23:07+00:00",
       "country": "Global",
       "continent": "Global",
       "image": "https://glamadelaide.com.au/wp-content/uploads/2026/09/Flip-out-elizabeth-1.jpg",
       "sources": [],
-      "id": "f2e944b42fdefc",
+      "id": "19726596273a35",
       "tag": "LIVE"
     },
     {
-      "title": "Five drivers on track, strong results and further progress across GT and international karting - Karting Magazine",
+      "title": "Five drivers on track, strong results and further progress across GT and international karting - vroomkart.com",
       "summary": "Five drivers on track,",
       "url": "https://www.vroomkart.com/news/46704/five-drivers-on-track-strong-results-and-further-progress-across-gt-and-international",
-      "source": "Karting Magazine",
+      "source": "vroomkart.com",
       "published": "2026-09-21T14:20:10+00:00",
       "country": "Global",
       "continent": "Global",
       "image": "",
-      "sources": [],
-      "id": "338028cd81593f",
+      "sources": [
+        {
+          "source": "Karting Magazine",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOTGlndDZyMDRURThzT1Y3X2pxdmpIdGdUdnEwNDFrS25JeVFEWFhGaWpYZklNd1QzVERzeDBQak0wTl8xV2E0MUZpMHFOMWhXOWNsRnJjYWQ0LUszVTVnME41X2paWC1PcVlNeEllVWkyZklDRC0wR2YzVmp2dUtKaEQ1emlEZElPUEtwVGJOS1p1N0ROREx3MG5jeHJOaXR0Qktma3FHYnRWRGlQM1loV3VveklBVzZmS1A5M1NYTQ?oc=5"
+        }
+      ],
+      "id": "5cf2e95d326495",
       "tag": "LIVE"
     },
     {
-      "title": "Rare Legends of Motorsport karting race unearthed - V8 Sleuth",
+      "title": "Rare Legends of Motorsport karting race unearthed - v8sleuth.com.au",
       "summary": "Rare",
       "url": "https://www.v8sleuth.com.au/rare-legends-of-motorsport-karting-race-unearthed/",
-      "source": "V8 Sleuth",
+      "source": "v8sleuth.com.au",
       "published": "2026-09-21T11:18:20+00:00",
       "country": "Global",
       "continent": "Global",
       "image": "https://www-v8sleuth-com-au.b-cdn.net/wp-content/uploads/2026/09/News_SkaifeGardnerKarting.jpg",
       "sources": [],
-      "id": "187757141dae88",
+      "id": "08433e911feb2f",
       "tag": "LIVE"
     },
     {
-      "title": "Massimo Mini Truck Is A $2,999 Two Person Off Road Go-Kart - Motor1.com",
+      "title": "Massimo Mini Truck Is A $2,999 Two Person Off Road Go-Kart - motor1.com",
       "summary": "Massimo Mini Truck Is A $2,999",
       "url": "https://www.motor1.com/news/808931/massimo-mini-truck-a-2/",
-      "source": "Motor1.com",
+      "source": "motor1.com",
       "published": "2026-09-21T10:34:00+00:00",
       "country": "Global",
       "continent": "Global",
       "image": "https://cdn.motor1.com/images/mgl/Rqb9RP/s1/massimo-mini-truck.jpg",
       "sources": [],
-      "id": "26792d30f1aaa5",
+      "id": "eb09c7f1ccef3f",
       "tag": "LIVE"
     },
     {
@@ -261,19 +276,6 @@
       "image": "https://newsreel.com.au/wp-content/uploads/2026/09/Game-Over-4-scaled.jpg",
       "sources": [],
       "id": "580e46cf21d949",
-      "tag": "LIVE"
-    },
-    {
-      "title": "Viktor Gustafsson Crowned FIA Karting KZ World Champion - fia.com",
-      "summary": "Viktor",
-      "url": "https://www.fia.com/news/viktor-gustafsson-crowned-fia-karting-kz-world-champion",
-      "source": "fia.com",
-      "published": "2026-09-20T19:19:00+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "https://www.fia.com/sites/default/files/news/main_image/ksp_065_8988.jpg",
-      "sources": [],
-      "id": "07f1db8796e9e2",
       "tag": "LIVE"
     },
     {
@@ -420,19 +422,6 @@
       "tag": "LIVE"
     },
     {
-      "title": "Brainrot Kart Review - TheXboxHub",
-      "summary": "Brainrot",
-      "url": "https://www.thexboxhub.com/brainrot-kart-review/",
-      "source": "TheXboxHub",
-      "published": "2026-09-19T17:18:47+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "https://www.thexboxhub.com/wp-content/uploads/2026/09/Brainrot-Kart-review-1.jpg",
-      "sources": [],
-      "id": "b1ea2abeca8adb",
-      "tag": "LIVE"
-    },
-    {
       "title": "WATCH | Four-time F1 world champion takes on 100-kart challenge at Silverstone. What happened next was incredible - WION",
       "summary": "WATCH |",
       "url": "https://www.wionews.com/trending/watch-four-time-f1-world-champion-takes-on-100-kart-challenge-at-silverstone-what-happened-next-was-incredible-1789815202398",
@@ -529,28 +518,43 @@
       "tag": "LIVE"
     },
     {
-      "title": "Toto Wolff’s Nine-Year-Old Son Follows Racing Path With First Karting Title - motorbiscuit.com",
+      "title": "Toto Wolff’s Nine-Year-Old Son Follows Racing Path With First Karting Title - MotorBiscuit",
       "summary": "Toto",
       "url": "https://www.motorbiscuit.com/toto-wolffs-nine-year-old-son-follows-racing-path-with-first-karting-title/",
-      "source": "motorbiscuit.com",
+      "source": "MotorBiscuit",
       "published": "2026-09-18T13:07:02+00:00",
       "country": "Global",
       "continent": "Global",
       "image": "https://www.motorbiscuit.com/wp-content/uploads/2026/09/jackuu.jpg",
       "sources": [],
-      "id": "1d09ca037c6be7",
+      "id": "b742dfd89c388e",
       "tag": "LIVE"
     },
     {
       "title": "BattleKart to launch new karting destination within Australian shopping centre - amusementsandattractions.com",
       "summary": "BattleKart",
-      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOMUJNYlZsdnBXQ29meUJZRkJEQlNWanc0aXYtejExTVFrbHFPQ2U0SUlxTTJ3MF9OU0VONEFGVWY4Q1cxNnZ5NzBic09SLUlvVWJpVXdDMzRSX2FFX0F5MnVyM0RzZ0tJZkJaNVl5NTVSaXpzTG9WOEozYUc1MXduYUdwYThiMkVETklNMU5JRnFUb2VZdWc2blVvOUZGeXNIV1BPUy0tQkVRNkZoUUpyQ2VZQzVUbWE5QW9WaGEzNnljTUhiWEhEQzJYX0R3akdZ?oc=5",
+      "url": "https://www.amusementsandattractions.com/amusements/news/battlekart-to-launch-new-karting-destination-within-australian-shopping-centre",
       "source": "amusementsandattractions.com",
       "published": "2026-09-18T07:01:00+00:00",
       "country": "Australia",
       "continent": "Oceania",
       "image": "",
-      "sources": []
+      "sources": [],
+      "id": "f9f4b2bde2bd57",
+      "tag": "LIVE"
+    },
+    {
+      "title": "Neo Speed Park: Go-Kart Paradise in Chiba - metropolisjapan.com",
+      "summary": "Neo Speed Park:",
+      "url": "https://metropolisjapan.com/?p=249708",
+      "source": "metropolisjapan.com",
+      "published": "2026-09-18T07:00:00+00:00",
+      "country": "Japan",
+      "continent": "Asia",
+      "image": "https://metropolisjapan.com/wp-content/uploads/2025/09/472782655_1028299636006912_5498117613168868176_n1.jpg",
+      "sources": [],
+      "id": "689d40458413b4",
+      "tag": "LIVE"
     },
     {
       "title": "Switch/Switch 2 Mario Kart And Nintendo Switch Sports Resort Bundles Confirmed For Europe - NintendoSoup",
@@ -685,26 +689,20 @@
       "sources": []
     },
     {
-      "title": "Formula 1: Max Verstappen races 100 drivers in go-karts in exhibition race at Silverstone - BBC",
-      "summary": "Formula 1:",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9hMndDb0dHWVkwRnJsRDEyZDFrdHFQWHkzZ1NvZERVcjNZQVJhSTRQQmx1Y0QwUGhETTV6YVI0dmNuWVFENnI2QlpHSlRYVE96LXlWMTZGLUpYNFhvQjhLcWFLMjRBWFg0?oc=5",
-      "source": "BBC",
-      "published": "2026-09-17T09:46:32+00:00",
-      "country": "United Kingdom",
-      "continent": "Europe",
-      "image": "",
-      "sources": []
-    },
-    {
-      "title": "Max Verstappen took on 100 go-kart drivers in a race at Silverstone. What followed was brilliant chaos - Yahoo Sports",
+      "title": "Max Verstappen took on 100 go-kart drivers in a race at Silverstone. What followed was brilliant chaos - sports.yahoo.com",
       "summary": "Max",
       "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNMlFLa2ZPTHRSSUxoamwzdVp1TW1oSlEyalRNRFVraHBRUjhBWXRiZ01xWVFfNDZtUm01R0hGTmpkNElHbDNSREpBRGhQV0xPVmx6ZFZuMEZ2ZjRGeTdVRTNUSVlHTlRVSkFlb0RWczdVa2JIQTM4U1RmM18xbjRVUTNET2xPOF9FVnc?oc=5",
-      "source": "Yahoo Sports",
+      "source": "sports.yahoo.com",
       "published": "2026-09-17T08:49:27+00:00",
       "country": "United Kingdom",
       "continent": "Europe",
       "image": "",
-      "sources": []
+      "sources": [
+        {
+          "source": "Yahoo Sports",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNMlFLa2ZPTHRSSUxoamwzdVp1TW1oSlEyalRNRFVraHBRUjhBWXRiZ01xWVFfNDZtUm01R0hGTmpkNElHbDNSREpBRGhQV0xPVmx6ZFZuMEZ2ZjRGeTdVRTNUSVlHTlRVSkFlb0RWczdVa2JIQTM4U1RmM18xbjRVUTNET2xPOF9FVnc?oc=5"
+        }
+      ]
     },
     {
       "title": "Max demolishes 100 rivals in largest go-kart race ever staged - novanews.co.za",
@@ -729,20 +727,15 @@
       "sources": []
     },
     {
-      "title": "Max Verstappen passes 100 karts in just 35 minutes in Max vs 100 - redbull.com",
+      "title": "Max Verstappen passes 100 karts in just 35 minutes in Max vs 100 - Red Bull",
       "summary": "Max",
       "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9zdVhTY3VEY3hCR0pzanhJSDF6alJFUlIyVzlILWJsVFN2UzFacHVFQ1d5dVV3TTVDa2QyOVBXQ0tlZ1dDRU5NQUNfRTZZakwybGdJa1Y4dzBvUDQ3eW44SWVXUQ?oc=5",
-      "source": "redbull.com",
+      "source": "Red Bull",
       "published": "2026-09-17T06:17:00+00:00",
       "country": "Global",
       "continent": "Global",
       "image": "",
-      "sources": [
-        {
-          "source": "Red Bull",
-          "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9zdVhTY3VEY3hCR0pzanhJSDF6alJFUlIyVzlILWJsVFN2UzFacHVFQ1d5dVV3TTVDa2QyOVBXQ0tlZ1dDRU5NQUNfRTZZakwybGdJa1Y4dzBvUDQ3eW44SWVXUQ?oc=5"
-        }
-      ]
+      "sources": []
     },
     {
       "title": "Max Verstappen wins Max vs 100 in style after overtaking 100 go-karters in 35 minutes - ESPN",
@@ -765,6 +758,33 @@
       "continent": "Europe",
       "image": "",
       "sources": []
+    },
+    {
+      "title": "WATCH: Verstappen wins ‘Max vs 100’ go-kart race from last - Speedcafe.com",
+      "summary": "WATCH: Verstappen wins ‘Max",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOaEt0TWk1MXcyaU1IaTZFVnk5cG05WHQ2MTlkcElUUjhsOTczUmwyR3JCWEVSSXlTZVAwRDNlYXI4SmQ3bnY2TEVWNkFZQS1kYmpXNDctRHltdWFnVFVvRXA5UjVDd3ZqQmdJSUlJRkx0bU10eG5tVG1KM05JSkxCUjlEVFR3SnFoYmNyeVVTTmRkUFRwN09aNGIyNWIzTENDQVFKSXp2QVZQbVpMOTZVcA?oc=5",
+      "source": "Speedcafe.com",
+      "published": "2026-09-17T00:12:49+00:00",
+      "country": "Global",
+      "continent": "Global",
+      "image": "",
+      "sources": []
+    },
+    {
+      "title": "Max Verstappen overtakes 100 amateurs in exhibition go-kart race at Silverstone - Asian Image",
+      "summary": "Max",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOMU0ySkdEYmlLNnFSUnFqOGp3LWFCSFZrSmRRSWtqc3NGX0ZPbWEyTHdwSkljUk01cUVaWldmMVZ2aktnMTZXNERJeU9tVXhUdE92TFFtYXNvdURtNlZLU2NxMUZMdkYxUlp1eHR6TVNxY2l0VFRXQ1h5UDNiYXU0UFI5cHZyeEdvQjAyUGpjOWZ4SW5adlhtZmEwRlRjRkNUaDQ0T3FfeEhHRWpiRmlOaEtTdmFidmhmMmlUdG5tbFVrU09qdlE?oc=5",
+      "source": "Asian Image",
+      "published": "2026-09-16T18:42:13+00:00",
+      "country": "United Kingdom",
+      "continent": "Europe",
+      "image": "",
+      "sources": [
+        {
+          "source": "North Somerset Times",
+          "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQU2JIZjNzQ1YzTXRUXzFvd2R3dWVxeG1PcTRPOXF6SVBsdnRwQUNIMHhDaHFIbGQ5YXdKcXU2UFBnNDB2cTcwT2pTRm9KaVo5Y05YUm42NC1CdHlyMkhDWGdhYnhkU0JvckNaYXdWc3Q1ak9leFpfbGZUN1k0V3RsajNEaWtXdWJzaC01TzVsVFlsU2dFbW5lSU04Zlp4OHJoLUItNG9KTS1FTllLbHFPZm5lOWtCU1p1em9lZGNmdzY2RTA0RVZvQkE1U21LRWdN?oc=5"
+        }
+      ]
     }
   ]
 }
