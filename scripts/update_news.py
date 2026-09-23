@@ -32,7 +32,7 @@ QUERIES = [
 
 COUNTRIES = {
  "United Kingdom":["uk","britain","british","england","english","scotland","scottish","wales","welsh","northern ireland","silverstone","whilton","pf international","fulbeck","rowrah"],
- "United States":["usa","u.s.","united states","american","skusa","supernationals","florida","california","texas","las vegas"],
+ "United States":["usa","u.s.","united states","american","skusa","supernationals","superkarts usa","challenge of the americas","uspks","us pro kart series","route 66 sprint series","stars championship series","florida winter tour","rok cup usa","florida","california","texas","las vegas","charlotte","new castle motorsports park","road america"],
  "Australia":["australia","australian","victoria","queensland","new south wales","melbourne","sydney"],
  "Italy":["italy","italian","lonato","sarno","franciacorta","cremona","ugento"],
  "France":["france","french","le mans"],
@@ -108,8 +108,8 @@ def resolve_and_image(url):
     except Exception:
         return url,""
 
-def fetch_google(q):
-    url="https://news.google.com/rss/search?q="+quote(q)+"&hl=en-GB&gl=GB&ceid=GB:en"
+def fetch_google(q, hl="en-GB", gl="GB", ceid="GB:en"):
+    url="https://news.google.com/rss/search?q="+quote(q)+"&hl="+hl+"&gl="+gl+"&ceid="+ceid
     feed=feedparser.parse(url,request_headers=UA)
     rows=[]
     for e in feed.entries[:40]:
@@ -130,10 +130,16 @@ def fetch_google(q):
 
 def main():
     candidates=[]
+    locales=[
+        ("en-GB","GB","GB:en"),
+        ("en-US","US","US:en"),
+        ("en-AU","AU","AU:en"),
+    ]
     for q in QUERIES:
-        try: candidates.extend(fetch_google(q))
-        except Exception as ex: print("query failed",q,ex)
-        time.sleep(.15)
+        for hl,gl,ceid in locales:
+            try: candidates.extend(fetch_google(q,hl,gl,ceid))
+            except Exception as ex: print("query failed",q,gl,ex)
+            time.sleep(.08)
 
     # Exact URL/title de-dupe first
     uniq=[]
@@ -161,7 +167,9 @@ def main():
     for x in clustered[:60]:
         original,img=resolve_and_image(x["url"])
         if original: x["url"]=original
-        if img: x["image"]=img
+        if img and "googleusercontent.com" not in img: x["image"]=img
+        elif x.get("image","").find("googleusercontent.com")>=0:
+            x["image"]=""
         x["id"]=hashlib.sha1((x["title"]+x["url"]).encode()).hexdigest()[:14]
         x["tag"]="LIVE"
         if x["country"]=="Global":
