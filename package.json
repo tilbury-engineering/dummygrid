@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && cp EDF51C93-50B1-49C8-A98C-8718D80E1B27.png dist/EDF51C93-50B1-49C8-A98C-8718D80E1B27.png",
-    "preview": "vite preview"
+    "build": "vite build",
+    "preview": "vite preview",
+    "postbuild": "cp EDF51C93-50B1-49C8-A98C-8718D80E1B27.png dist/EDF51C93-50B1-49C8-A98C-8718D80E1B27.png"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.3.4",
