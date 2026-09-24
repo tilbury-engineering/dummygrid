@@ -15,7 +15,7 @@ permissions:
 
 concurrency:
   group: dummygrid-global-track-refresh-v2
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   refresh:
