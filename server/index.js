@@ -4,6 +4,7 @@ import multer from "multer";
 import OpenAI from "openai";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import * as cheerio from "cheerio";
 import { spawn } from "node:child_process";
 import { mkdtemp, readFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
@@ -151,6 +152,96 @@ app.get("/api/me/videos",requireAuth,async(req,res)=>{
  if(!pool) return res.status(503).json({ok:false,message:"Account database is not connected yet."});
  const {rows}=await pool.query("SELECT v.*,a.result AS analysis FROM driver_videos v LEFT JOIN LATERAL (SELECT result FROM video_analyses WHERE video_id=v.id ORDER BY created_at DESC LIMIT 1) a ON true WHERE v.user_id=$1 ORDER BY v.created_at DESC",[String(req.user.sub)]);
  res.json({ok:true,videos:rows});
+});
+
+const ALPHA_SERIES={
+  ukc:{name:"Ultimate Karting Championship"},
+  bkc:{name:"The Kart Championship"},
+  nkc:{name:"National Kart Cup"},
+  accesskarting:{name:"Access Karting"},
+  wmkc:{name:"Whilton Mill Kart Club"}
+};
+async function fetchHtml(url){
+ const r=await fetch(url,{headers:{"User-Agent":"Mozilla/5.0 (compatible; DummyGrid/1.0)"}});
+ if(!r.ok) throw new Error("Upstream timing source returned "+r.status);
+ return await r.text();
+}
+function absAlpha(href){return href?.startsWith("http")?href:"https://systems.alphatiming.co.uk"+href}
+app.get("/api/results/alpha/series",(req,res)=>{
+ res.json({ok:true,series:Object.entries(ALPHA_SERIES).map(([slug,v])=>({slug,name:v.name,provider:"Alpha Timing"}))});
+});
+app.get("/api/results/alpha/:slug/events",async(req,res)=>{
+ const {slug}=req.params;
+ if(!ALPHA_SERIES[slug]) return res.status(404).json({ok:false,message:"Unknown championship."});
+ try{
+   const html=await fetchHtml(`https://systems.alphatiming.co.uk/${slug}`);
+   const $=cheerio.load(html);
+   const events=[]; const seen=new Set();
+   $('a[href*="/event/"]').each((_,a)=>{
+     const href=$(a).attr("href")||"";
+     const m=href.match(new RegExp("/"+slug+"/event/(\\d+)"));
+     if(!m||seen.has(m[1]))return;
+     const text=$(a).text().replace(/\s+/g," ").trim();
+     if(!text)return;
+     seen.add(m[1]);
+     const parentText=$(a).closest("article,li,div").first().text().replace(/\s+/g," ").trim();
+     events.push({id:m[1],title:text,summary:parentText,url:absAlpha(href),provider:"Alpha Timing"});
+   });
+   res.json({ok:true,series:{slug,name:ALPHA_SERIES[slug].name},events});
+ }catch(err){console.error(err);res.status(502).json({ok:false,message:"Could not load Alpha Timing events."})}
+});
+app.get("/api/results/alpha/:slug/event/:eventId",async(req,res)=>{
+ const {slug,eventId}=req.params;
+ if(!ALPHA_SERIES[slug]) return res.status(404).json({ok:false,message:"Unknown championship."});
+ try{
+   const url=`https://systems.alphatiming.co.uk/${slug}/event/${eventId}/results`;
+   const html=await fetchHtml(url); const $=cheerio.load(html);
+   const title=$("h1").first().text().replace(/\s+/g," ").trim()||ALPHA_SERIES[slug].name;
+   const pageText=$("body").text().replace(/\s+/g," ").trim();
+   const dateMatch=pageText.match(/(\d{2}\/\d{2}\/\d{4})\s*-\s*(\d{2}\/\d{2}\/\d{4})/);
+   const sessions=[]; const seen=new Set();
+   $('a[href*="/s/"][href$="/result"]').each((_,a)=>{
+     const href=$(a).attr("href")||"";
+     const m=href.match(new RegExp("/"+slug+"/e/(\\d+)/s/(\\d+)/result"));
+     if(!m||seen.has(m[2]))return;
+     seen.add(m[2]);
+     const card=$(a).closest("article,li,div").first();
+     const text=(card.text()||$(a).text()).replace(/\s+/g," ").trim();
+     const raceMatch=text.match(/Race\s*(\d+)\s*:\s*([^·]+?)(?:\s+Finished|\s+Live|\s+Scheduled|·|$)/i);
+     const winnerMatch=text.match(/(?:Practice|Qualifying|Heat|PreFinal|Final) Winner:\s*([^·]+?)(?:\s{2,}|$)/i);
+     let type="Session";
+     for(const t of ["Practice","Qualifying","Heat","PreFinal","Final"]) if(text.toLowerCase().includes(t.toLowerCase())){type=t;break;}
+     const label=(raceMatch?.[2]||$(a).text()||text).replace(/\s+/g," ").trim();
+     sessions.push({
+       id:m[2],eventId:m[1],raceNumber:raceMatch?.[1]?Number(raceMatch[1]):null,
+       name:label,type,winner:winnerMatch?.[1]?.trim()||null,text,url:absAlpha(href)
+     });
+   });
+   res.json({ok:true,event:{id:eventId,title,dateStart:dateMatch?.[1]||null,dateEnd:dateMatch?.[2]||null,url},sessions});
+ }catch(err){console.error(err);res.status(502).json({ok:false,message:"Could not load Alpha Timing event."})}
+});
+app.get("/api/results/alpha/:slug/e/:eventId/s/:sessionId",async(req,res)=>{
+ const {slug,eventId,sessionId}=req.params;
+ if(!ALPHA_SERIES[slug]) return res.status(404).json({ok:false,message:"Unknown championship."});
+ try{
+   const url=`https://systems.alphatiming.co.uk/${slug}/e/${eventId}/s/${sessionId}/result`;
+   const html=await fetchHtml(url); const $=cheerio.load(html);
+   const title=$("h1").first().text().replace(/\s+/g," ").trim();
+   const body=$("body").text().replace(/\s+/g," ").trim();
+   const meta={};
+   const laps=body.match(/Laps\s+(\d+)/i); if(laps)meta.laps=Number(laps[1]);
+   const start=body.match(/Start\s+(\d{1,2}:\d{2})/i); if(start)meta.start=start[1];
+   const fastest=body.match(/Fastest Lap\s+(.+?)\s+Lap\s+(\d+)\s+([0-9:.]+)/i);
+   if(fastest)meta.fastestLap={driver:fastest[1].trim(),lap:Number(fastest[2]),time:fastest[3]};
+   let table=$("table").filter((_,t)=>$(t).find("th").length>=3).first();
+   const headers=table.find("thead th").map((_,th)=>$(th).text().replace(/\s+/g," ").trim()).get();
+   const rows=[];
+   table.find("tbody tr").each((_,tr)=>{
+     const cells=$(tr).find("td").map((_,td)=>$(td).text().replace(/\s+/g," ").trim()).get();
+     if(cells.length)rows.push(cells);
+   });
+   res.json({ok:true,session:{id:sessionId,eventId,title,url,meta,headers,rows}});
+ }catch(err){console.error(err);res.status(502).json({ok:false,message:"Could not load full session classification."})}
 });
 app.get("/health",(req,res)=>res.json({ok:true,service:"dummygrid-api",ai:!!openai,database:!!pool,storage:!!process.env.S3_BUCKET}));
 
