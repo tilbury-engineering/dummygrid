@@ -10,7 +10,7 @@ for i,t in enumerate(tracks):
  if not name: errors.append(f"missing name: {tid}")
  if re.fullmatch(r"Karting venue \d+",name,re.I): errors.append(f"synthetic name: {tid}")
  if not t.get("country"): errors.append(f"missing country: {tid}")
- if not t.get("continent"): errors.append(f"missing continent: {tid}")
+ if not t.get("continent"): errors.append(f"missing continent: {tid} country={t.get('country')}")
  if t.get("lat") is None or t.get("long") is None: errors.append(f"missing coordinates: {tid}")
  if len(errors)>=50: break
 countries={t.get("country") for t in tracks if t.get("country") and t.get("country")!="Unknown"}
