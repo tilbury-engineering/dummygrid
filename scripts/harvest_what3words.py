@@ -6,7 +6,6 @@ import requests
 from bs4 import BeautifulSoup
 
 PUBLIC=Path("public/tracks.json")
-BUNDLED=Path("src/data/tracks.json")
 UA={"User-Agent":"Mozilla/5.0 (compatible; DummyGrid-W3W-PublisherBot/1.0; +https://github.com/tilbury-engineering/dummygrid)"}
 session=requests.Session();session.headers.update(UA)
 
@@ -22,9 +21,9 @@ def load():
  return json.loads(PUBLIC.read_text(encoding="utf-8"))
 
 def save(data):
- text=json.dumps(data,ensure_ascii=False,indent=2)+"\n"
+ text=json.dumps(data,ensure_ascii=False,separators=(",",":"))+"\n"
  PUBLIC.write_text(text,encoding="utf-8")
- BUNDLED.write_text(text,encoding="utf-8")
+
 
 def fetch(url):
  for attempt in range(3):
