@@ -472,6 +472,23 @@ function TracksPage(){
  {rows.length?<div className="track-grid">{rows.map(t=>{const count=(resultsData.records||[]).filter(r=>trackMatchesResult(t,r)).length;return <a className="track-card" href={"#/tracks/"+t.id} key={t.id}><div className="track-pin">⌖</div><div className="meta">{t.continent} · {t.country}{t.venueType?" · "+t.venueType:""}</div><h3>{t.name}</h3><p>{[t.city,t.region].filter(Boolean).join(", ")}</p><div className="product-tags">{(t.series||[]).map(x=><span key={x}>{x}</span>)}</div><div className="track-actions"><b className="link">View circuit →</b><small>{count} linked result{count===1?"":"s"}</small></div></a>})}</div>:<Empty text="No circuits match those filters."/>}
  </section>
 }
+function TrackWhat3Words({track}){
+ const [state,setState]=useState({words:track.what3words||"",loading:!track.what3words,error:""});
+ useEffect(()=>{
+   if(track.what3words){setState({words:track.what3words,loading:false,error:""});return}
+   if(track.lat==null||track.long==null){setState({words:"",loading:false,error:"Coordinates unavailable"});return}
+   let alive=true;
+   setState({words:"",loading:true,error:""});
+   fetch(DUMMYGRID_API+"/api/what3words?lat="+encodeURIComponent(track.lat)+"&lng="+encodeURIComponent(track.long))
+     .then(async r=>{const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.message||"Lookup failed");return d})
+     .then(d=>{if(alive)setState({words:d.words||"",loading:false,error:""})})
+     .catch(e=>{if(alive)setState({words:"",loading:false,error:e.message})});
+   return()=>{alive=false};
+ },[track.id,track.what3words,track.lat,track.long]);
+ if(state.loading)return <span className="muted">Resolving…</span>;
+ if(state.words)return <a href={"https://what3words.com/"+state.words} target="_blank" rel="noopener noreferrer">///{state.words}</a>;
+ return <span className="muted">{state.error||"Unavailable"}</span>;
+}
 function TrackDetail({id}){
  const {data:tracksData,loading}=useRemoteJson("tracks.json",tracksSeed);
  const {data:resultsData}=useRemoteJson("results.json",{records:[]});
@@ -480,7 +497,7 @@ function TrackDetail({id}){
  if(!t)return <NotFound/>;
  const linked=(resultsData.records||[]).filter(r=>trackMatchesResult(t,r)).sort((a,b)=>String(b.date||"").localeCompare(String(a.date||"")));
  return <section><PageTitle kicker={t.country} title={t.name.toUpperCase()} text={[t.city,t.region,t.country].filter(Boolean).join(", ")} action={<a className="button" href="#/tracks">All tracks</a>}/>
- <div className="track-detail-grid"><div className="panel"><h3>Track profile</h3><dl className="facts"><div><dt>Country</dt><dd>{t.country}</dd></div><div><dt>Region</dt><dd>{t.region||"—"}</dd></div><div><dt>City</dt><dd>{t.city||"—"}</dd></div><div><dt>Address</dt><dd>{t.address||"Address verification pending"}</dd></div><div><dt>What3Words</dt><dd>{t.what3words?<a href={"https://what3words.com/"+t.what3words} target="_blank" rel="noopener noreferrer">///{t.what3words}</a>:"What3Words verification pending"}</dd></div><div><dt>Continent</dt><dd>{t.continent||"—"}</dd></div><div><dt>Type</dt><dd>{t.venueType||"—"}</dd></div><div><dt>Karts</dt><dd>{t.kartType||"—"}</dd></div><div><dt>Track length</dt><dd>{t.trackLengthM?t.trackLengthM+" m":"—"}</dd></div><div><dt>Championships</dt><dd>{(t.series||[]).join(", ")||"—"}</dd></div></dl>{t.website&&<a className="button primary" href={t.website} target="_blank" rel="noopener noreferrer">Official track website ↗</a>}</div><div className="panel"><h3>DummyGrid archive</h3><p>{linked.length?"We currently link "+linked.length+" result record"+(linked.length===1?"":"s")+" to this circuit.":"No indexed results for this circuit yet."}</p><p className="muted">{t.source}</p></div></div>
+ <div className="track-detail-grid"><div className="panel"><h3>Track profile</h3><dl className="facts"><div><dt>Country</dt><dd>{t.country}</dd></div><div><dt>Region</dt><dd>{t.region||"—"}</dd></div><div><dt>City</dt><dd>{t.city||"—"}</dd></div><div><dt>Address</dt><dd>{t.address||"Address verification pending"}</dd></div><div><dt>What3Words</dt><dd><TrackWhat3Words track={t}/></dd></div><div><dt>Continent</dt><dd>{t.continent||"—"}</dd></div><div><dt>Type</dt><dd>{t.venueType||"—"}</dd></div><div><dt>Karts</dt><dd>{t.kartType||"—"}</dd></div><div><dt>Track length</dt><dd>{t.trackLengthM?t.trackLengthM+" m":"—"}</dd></div><div><dt>Championships</dt><dd>{(t.series||[]).join(", ")||"—"}</dd></div></dl>{t.website&&<a className="button primary" href={t.website} target="_blank" rel="noopener noreferrer">Official track website ↗</a>}</div><div className="panel"><h3>DummyGrid archive</h3><p>{linked.length?"We currently link "+linked.length+" result record"+(linked.length===1?"":"s")+" to this circuit.":"No indexed results for this circuit yet."}</p><p className="muted">{t.source}</p></div></div>
  <SectionHead eyebrow="Results archive" title={"Results at "+t.name} copy="Event results and championship records matched to this circuit."/>
  {linked.length?<div className="results-list">{linked.map(r=><article className="result-row" key={r.id}><div className="result-place">{r.position?("#"+r.position):"—"}</div><div className="result-main"><div className="meta">{r.year} · {r.type==="event"?"Event result":"Standings"}</div><h3>{r.driver}</h3><p>{r.championship} · {r.className}</p><small>{r.round} · {r.event}{r.points!=null?" · "+r.points+" pts":""}</small></div><a className="button" href={r.sourceUrl} target="_blank" rel="noopener noreferrer">Official source ↗</a></article>)}</div>:<Empty text="No indexed results at this circuit yet."/>}
  </section>
