@@ -363,14 +363,41 @@ const tslSeries=[
  {slug:"bsrc",name:"British Superkart Racing Club / Superkart Super Series"}
 ];
 function ResultsPage(){
+ const {data,loading}=useTimingData();
  const [q,setQ]=useState("");
  const providers=[
    ...alphaSeries.map(x=>({...x,provider:"Alpha Timing",href:"#/results/alpha/"+x.slug,copy:"Events, practice, qualifying, heats, pre-finals and finals."})),
    ...tslSeries.map(x=>({...x,provider:"TSL Timing",href:"#/results/tsl/"+x.slug,copy:"Superkart meetings with practice, qualifying, grids and race results."}))
  ].filter(x=>(x.name+" "+x.provider).toLowerCase().includes(q.toLowerCase()));
- return <section><PageTitle kicker="Live timing archive" title="KARTING RESULTS" text="Browse championships from multiple timing providers: championship → event → session → full classification."/>
- <Filters><input placeholder="Search championship or timing provider…" value={q} onChange={e=>setQ(e.target.value)}/></Filters>
- <div className="results-series-grid">{providers.map(x=><a className="results-series-card" key={x.provider+x.slug} href={x.href}><span>{x.provider}</span><h3>{x.name}</h3><p>{x.copy}</p><b>Browse results →</b></a>)}</div>
+ const matches=useMemo(()=>{
+   const term=q.trim().toLowerCase();
+   if(term.length<2)return [];
+   const out=[];
+   for(const [slug,series] of Object.entries(data?.providers?.alpha||{})){
+     for(const ev of Object.values(series?.events||{})){
+       for(const sess of ev.sessions||[]){
+         const sd=ev.sessionData?.[sess.id];
+         const sessionHay=(series.name+" "+ev.title+" "+sess.name+" "+sess.type+" "+(sess.winner||"")).toLowerCase();
+         if(sessionHay.includes(term)){
+           out.push({slug,eventId:ev.id,sessionId:sess.id,series:series.name,event:ev.title,session:sess.name,row:null});
+         }
+         for(const row of sd?.rows||[]){
+           const rowText=row.join(" · ");
+           if(rowText.toLowerCase().includes(term)){
+             out.push({slug,eventId:ev.id,sessionId:sess.id,series:series.name,event:ev.title,session:sess.name,row:rowText});
+           }
+           if(out.length>=80) return out;
+         }
+       }
+     }
+   }
+   return out;
+ },[data,q]);
+ const searching=q.trim().length>=2;
+ return <section><PageTitle kicker="Live timing archive" title="KARTING RESULTS" text="Search drivers, classes, events and full classifications, or browse by championship."/>
+ <Filters><input placeholder="Search driver, class, event or championship…" value={q} onChange={e=>setQ(e.target.value)}/></Filters>
+ {searching&&<div className="global-result-search"><div className="meta">{loading?"Loading timing archive…":matches.length+" matching result"+(matches.length===1?"":"s")}</div>{matches.length?<div className="session-list">{matches.map((m,i)=><a className="session-row search-hit" href={"#/results/alpha/"+m.slug+"/event/"+m.eventId+"/session/"+m.sessionId} key={m.slug+m.eventId+m.sessionId+i}><div className="session-no">↗</div><div><div className="meta">{m.series} · {m.event}</div><h3>{m.session}</h3>{m.row&&<p>{m.row}</p>}</div><b>Open result →</b></a>)}</div>:!loading&&<Empty text="No indexed classifications match that search yet."/>}</div>}
+ {!searching&&<div className="results-series-grid">{providers.map(x=><a className="results-series-card" key={x.provider+x.slug} href={x.href}><span>{x.provider}</span><h3>{x.name}</h3><p>{x.copy}</p><b>Browse results →</b></a>)}</div>}
  </section>
 }
 function useTimingData(){
