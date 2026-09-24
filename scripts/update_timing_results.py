@@ -74,7 +74,7 @@ def parse_event(slug,eid,event_url=None):
  sessions=[];seen=set()
  for a in soup.find_all("a",href=True):
   href=a["href"]
-  m=re.search(rf"/{re.escape(slug)}/e/(\d+)/s/(\d+)/result",href)
+  m=re.search(rf"/{re.escape(slug)}/e/(\d+)/s/(\d+)(?:/result)?$",href)
   if not m:continue
   internal_eid=m.group(1); sid=m.group(2)
   if sid in seen:continue
@@ -152,14 +152,6 @@ def main():
     print("   event failed",ex,flush=True);continue
    if not ev["sessions"]:
     print("   no sessions on completed link",flush=True)
-    if slug=="ukc":
-     try:
-      dbg=BeautifulSoup(get(e.get("url")),"html.parser")
-      print("   DEBUG EVENT HREFS",[a.get("href") for a in dbg.find_all("a",href=True)][:120],flush=True)
-      print("   DEBUG EVENT TEXT",clean(dbg.get_text(" ",strip=True))[:1800],flush=True)
-     except Exception as de:
-      print("   DEBUG EVENT FAILED",de,flush=True)
-     break
     continue
    print("   sessions",len(ev["sessions"]),flush=True)
    sess_data={}
