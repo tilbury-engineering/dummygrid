@@ -14,7 +14,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: dummygrid-global-track-refresh
+  group: dummygrid-global-track-refresh-v2
   cancel-in-progress: true
 
 jobs:
