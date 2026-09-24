@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-24T11:40:48.823Z",
+  "updatedAt": "2026-09-24T11:42:25.012143+00:00",
   "tracks": [
     {
       "id": "bolivar",
@@ -69,7 +69,10 @@
       "source": "Karting Australia 2026 calendar",
       "address": "1005 Seymour-Tooborac Road, Hilldene VIC 3660, Australia",
       "addressSource": "Eastern Lions Kart Club / Karting Victoria",
-      "locationSourceUrl": "https://elkc.com.au/rules-and-regulations/"
+      "locationSourceUrl": "https://elkc.com.au/rules-and-regulations/",
+      "lat": -37.009562,
+      "long": 145.0274731,
+      "locationVerifiedAt": "2026-09-24T11:41:21.042770+00:00"
     },
     {
       "id": "townsville",
@@ -2707,9 +2710,12 @@
       "series": [],
       "source": "GoKartingUK national directory",
       "directorySource": "https://gokartinguk.com/browse-location/",
-      "address": "Bank Quay Trading Estate, 2 Slutchers Lane, Warrington, WA1 1PJ, United Kingdom",
-      "addressSource": "TeamSport official site",
-      "locationSourceUrl": "https://www.team-sport.co.uk/go-kart-tracks/warrington"
+      "address": "Bank Quay Trading Estate, 2 Slutchers Lane, Warrington, WA1 1PJ, GB",
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/teamsport-warrington.html",
+      "lat": 53.38306,
+      "long": -2.60372,
+      "locationVerifiedAt": "2026-09-24T11:42:13.653405+00:00"
     },
     {
       "id": "teamsport-watford",
@@ -2724,9 +2730,12 @@
       "series": [],
       "source": "GoKartingUK national directory",
       "directorySource": "https://gokartinguk.com/browse-location/",
-      "address": "Greatham Road Industrial Estate, Greatham Road, Bushey, WD23 2NZ, United Kingdom",
-      "addressSource": "TeamSport official site",
-      "locationSourceUrl": "https://www.team-sport.co.uk/go-kart-tracks/watford"
+      "address": "Greatham Road Industrial Estate, Watford, WD23 2NZ, GB",
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/teamsport-watford.html",
+      "lat": 51.65639,
+      "long": -0.38497,
+      "locationVerifiedAt": "2026-09-24T11:42:17.389584+00:00"
     },
     {
       "id": "teamworks-birmingham-city",
