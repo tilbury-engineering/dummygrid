@@ -11,6 +11,7 @@ PUBLIC=Path("public/tracks.json")
 BUNDLED=Path("src/data/tracks.json")
 UA={"User-Agent":"DummyGridTrackEnricher/1.0 (https://github.com/tilbury-engineering/dummygrid)"}
 NOMINATIM="https://nominatim.openstreetmap.org/search"
+NOMINATIM_REVERSE="https://nominatim.openstreetmap.org/reverse"
 W3W="https://api.what3words.com/v3/convert-to-3wa"
 GKU_BASE="https://gokartinguk.com"
 GKU_BROWSE=GKU_BASE+"/browse-location/"
@@ -193,6 +194,21 @@ def geocode(track):
   return None
  return best
 
+def geocode_exact_address(address,country):
+ if not address:return None
+ params={"q":address,"format":"jsonv2","addressdetails":1,"limit":1,"countrycodes":COUNTRY_CODES.get(country,"")}
+ r=session.get(NOMINATIM,params=params,timeout=30);r.raise_for_status()
+ rows=r.json()
+ time.sleep(1.05)
+ return rows[0] if rows else None
+
+def reverse_location(lat,lon):
+ params={"lat":lat,"lon":lon,"format":"jsonv2","addressdetails":1,"zoom":18}
+ r=session.get(NOMINATIM_REVERSE,params=params,timeout=30);r.raise_for_status()
+ data=r.json()
+ time.sleep(1.05)
+ return data if data and data.get("address") else None
+
 def format_address(row):
  a=row.get("address") or {}
  parts=[]
@@ -219,6 +235,14 @@ def main():
   if needs_geo:
    try:
     gku=gku_lookup(t)
+    if gku:
+     if (gku.get("lat") is None or gku.get("long") is None) and gku.get("address"):
+      exact=geocode_exact_address(gku["address"],t.get("country"))
+      if exact:
+       gku["lat"]=float(exact["lat"]);gku["long"]=float(exact["lon"])
+     if not gku.get("address") and gku.get("lat") is not None and gku.get("long") is not None:
+      rev=reverse_location(gku["lat"],gku["long"])
+      if rev:gku["address"]=format_address(rev)
     if gku and gku.get("address") and gku.get("lat") is not None and gku.get("long") is not None:
      t["address"]=gku["address"]
      t["lat"]=round(float(gku["lat"]),7)
