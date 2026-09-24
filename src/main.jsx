@@ -3,7 +3,7 @@ import {createRoot} from "react-dom/client";
 import "./styles.css";
 import tracksSeed from "./data/tracks-seed.json";
 
-const DUMMYGRID_LOGO = (import.meta.env.BASE_URL || "/") + "dummygrid-logo.svg";
+const DUMMYGRID_LOGO = (import.meta.env.BASE_URL || "/") + "EDF51C93-50B1-49C8-A98C-8718D80E1B27.png";
 const DUMMYGRID_API = "https://dummygrid-api.onrender.com";
 
 const regions = ["UK","Europe","USA","Australia","Global"];
