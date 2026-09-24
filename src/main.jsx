@@ -145,7 +145,7 @@ function Top({region,setRegion}){
        <a href="#/marketplace" onClick={()=>setMenuOpen(false)}>Marketplace</a>
        <a href="#/drivers" onClick={()=>setMenuOpen(false)}>Drivers</a>
        <a href="#/classes" onClick={()=>setMenuOpen(false)}>Classes</a>
-       <a href="#/manufacturers" onClick={()=>setMenuOpen(false)}>Manufacturers</a>
+       <a href="#/manufacturers" onClick={()=>setMenuOpen(false)}>Manufacturers</a><a href="#/results" onClick={()=>setMenuOpen(false)}>Results</a><a href="#/tracks" onClick={()=>setMenuOpen(false)}>Tracks</a>
        <a href="#/community" onClick={()=>setMenuOpen(false)}>Community</a><a href="#/knowledge-base" onClick={()=>setMenuOpen(false)}>Knowledge Base</a>
      </nav>
      <div className="header-actions">
@@ -159,6 +159,11 @@ function Top({region,setRegion}){
 }
 function Hero({region}){
  return <section className="hero"><div><Pill tone="lime">{region} FEED</Pill><h1>THE WORLD<br/>OF KARTING.<br/><em>ONE GRID.</em></h1><p>News, drivers, classes, community and a proper karting marketplace — local to you, global when you want it.</p><div className="actions"><a className="button primary" href="#/news">Latest news</a><a className="button" href="#/marketplace">Browse classifieds</a></div></div><div className="trackart"><div className="ring"></div><div className="kart">27</div></div></section>
+}
+function useRemoteJson(path,fallback){
+ const [state,setState]=useState({data:fallback,loading:true});
+ useEffect(()=>{let live=true;fetch((import.meta.env.BASE_URL||"/")+path).then(r=>r.ok?r.json():Promise.reject()).then(data=>{if(live)setState({data,loading:false})}).catch(()=>{if(live)setState({data:fallback,loading:false})});return()=>{live=false}},[path]);
+ return state;
 }
 function SectionHead({eyebrow,title,copy,action}){return <div className="sectionhead"><div><span>{eyebrow}</span><h2>{title}</h2>{copy&&<p>{copy}</p>}</div>{action}</div>}
 function useLiveNews(){
@@ -340,6 +345,37 @@ function KnowledgeBase({region}){
    <div className="knowledge-guide-grid">{regionGuides.map((g,i)=><article className="knowledge-guide" key={g.title}><span>{String(i+1).padStart(2,"0")}</span><h3>{g.title}</h3><p>{g.text}</p><a href={g.title.includes("class")||g.title.includes("age")?"#/classes":"#/knowledge-base"}>Read guide →</a></article>)}</div>
  </section>
 }
+function ResultsPage(){
+ const {data,loading}=useRemoteJson("results.json",{records:[],updatedAt:null});
+ const [q,setQ]=useState(""); const [type,setType]=useState("All"); const [year,setYear]=useState("All"); const [country,setCountry]=useState("All"); const [series,setSeries]=useState("All");
+ const rows=(data.records||[]).filter(r=>{
+   const hay=(r.championship+" "+r.round+" "+r.event+" "+r.className+" "+r.driver+" "+r.country+" "+(r.team||"")).toLowerCase();
+   return (type==="All"||r.type===type.toLowerCase())&&(year==="All"||String(r.year)===year)&&(country==="All"||r.country===country)&&(series==="All"||r.championship===series)&&hay.includes(q.toLowerCase());
+ }).sort((a,b)=>String(b.date||"").localeCompare(String(a.date||"")));
+ const countries=[...new Set((data.records||[]).map(r=>r.country).filter(Boolean))].sort();
+ const years=[...new Set((data.records||[]).map(r=>String(r.year)).filter(Boolean))].sort().reverse();
+ const seriesList=[...new Set((data.records||[]).map(r=>r.championship).filter(Boolean))].sort();
+ return <section><PageTitle kicker="Global competition" title="KARTING RESULTS" text={loading?"Loading results…":"Search event results and championship standings from karting series around the world."}/>
+ <Filters><input placeholder="Search driver, class, event or championship…" value={q} onChange={e=>setQ(e.target.value)}/><select value={type} onChange={e=>setType(e.target.value)}><option>All</option><option>Event</option><option>Standings</option></select><select value={year} onChange={e=>setYear(e.target.value)}><option>All</option>{years.map(x=><option key={x}>{x}</option>)}</select><select value={country} onChange={e=>setCountry(e.target.value)}><option>All</option>{countries.map(x=><option key={x}>{x}</option>)}</select><select value={series} onChange={e=>setSeries(e.target.value)}><option>All</option>{seriesList.map(x=><option key={x}>{x}</option>)}</select></Filters>
+ {rows.length?<div className="results-list">{rows.map(r=><article className="result-row" key={r.id}><div className="result-place">{r.position?("#"+r.position):"—"}</div><div className="result-main"><div className="meta">{r.year} · {r.country} · {r.type==="event"?"Event result":"Championship standings"}</div><h3>{r.driver}</h3><p>{r.championship} · {r.className}</p><small>{r.round} · {r.event}{r.points!=null?" · "+r.points+" pts":""}</small></div><a className="button" href={r.sourceUrl} target="_blank" rel="noopener noreferrer">Official source ↗</a></article>)}</div>:<Empty text="No results match those filters."/>}
+ </section>
+}
+function TracksPage(){
+ const {data,loading}=useRemoteJson("tracks.json",{tracks:[],updatedAt:null});
+ const [q,setQ]=useState(""); const [continent,setContinent]=useState("All"); const [country,setCountry]=useState("All"); const [series,setSeries]=useState("All");
+ const tracks=data.tracks||[];
+ const continents=[...new Set(tracks.map(t=>t.continent).filter(Boolean))].sort();
+ const countries=[...new Set(tracks.map(t=>t.country).filter(Boolean))].sort();
+ const seriesList=[...new Set(tracks.flatMap(t=>t.series||[]))].sort();
+ const rows=tracks.filter(t=>{
+   const hay=(t.name+" "+t.city+" "+t.region+" "+t.country+" "+(t.series||[]).join(" ")).toLowerCase();
+   return (continent==="All"||t.continent===continent)&&(country==="All"||t.country===country)&&(series==="All"||(t.series||[]).includes(series))&&hay.includes(q.toLowerCase());
+ });
+ return <section><PageTitle kicker="Global circuit directory" title="KARTING TRACKS" text={loading?"Loading circuits…":"Search karting circuits by country, region, championship and track name."}/>
+ <Filters><input placeholder="Search track, city or country…" value={q} onChange={e=>setQ(e.target.value)}/><select value={continent} onChange={e=>{setContinent(e.target.value);setCountry("All")}}><option>All</option>{continents.map(x=><option key={x}>{x}</option>)}</select><select value={country} onChange={e=>setCountry(e.target.value)}><option>All</option>{countries.filter(c=>continent==="All"||tracks.some(t=>t.country===c&&t.continent===continent)).map(x=><option key={x}>{x}</option>)}</select><select value={series} onChange={e=>setSeries(e.target.value)}><option>All</option>{seriesList.map(x=><option key={x}>{x}</option>)}</select></Filters>
+ {rows.length?<div className="track-grid">{rows.map(t=><article className="track-card" key={t.id}><div className="track-pin">⌖</div><div className="meta">{t.continent} · {t.country}</div><h3>{t.name}</h3><p>{[t.city,t.region].filter(Boolean).join(", ")}</p><div className="product-tags">{(t.series||[]).map(x=><span key={x}>{x}</span>)}</div><div className="track-actions">{t.website&&<a className="button" href={t.website} target="_blank" rel="noopener noreferrer">Official site ↗</a>}<small>{t.source}</small></div></article>)}</div>:<Empty text="No circuits match those filters."/>}
+ </section>
+}
 function Classes(){
  const[q,setQ]=useState("");const[family,setFamily]=useState("All");const[gear,setGear]=useState("All");
  const rows=kartClasses.filter(c=>(family==="All"||c.family===family)&&(gear==="All"||c.gearbox===gear)&&(Object.values(c).join(" ").toLowerCase().includes(q.toLowerCase())));
@@ -451,12 +487,14 @@ function App(){
  else if(parts[0]==="classes") page=<Classes/>;
  else if(parts[0]==="manufacturers"&&parts[1]) page=<ManufacturerDetail id={parts[1]}/>;
  else if(parts[0]==="manufacturers") page=<Manufacturers/>;
+ else if(parts[0]==="results") page=<ResultsPage/>;
+ else if(parts[0]==="tracks") page=<TracksPage/>;
  else if(parts[0]==="community"&&parts[1]==="new") page=<NewPost {...{region,posts,setPosts}}/>;
  else if(parts[0]==="community") page=<Community {...{region,posts,setPosts}}/>;
  else if(parts[0]==="knowledge-base") page=<KnowledgeBase region={region}/>;
  else if(parts[0]==="advertise") page=<Advertise/>;
  else if(parts[0]==="profile") page=<DriverAccount region={region}/>;
  else page=<NotFound/>;
- return <><Top region={region} setRegion={setRegion}/><main>{page}</main><footer><a className="logo footer-logo" href="#/" aria-label="DummyGrid home"><img src={DUMMYGRID_LOGO} alt="DummyGrid"/></a><p>The world of karting, local to you.</p><div><a href="#/news">News</a><a href="#/marketplace">Marketplace</a><a href="#/drivers">Drivers</a><a href="#/classes">Classes</a><a href="#/manufacturers">Manufacturers</a><a href="#/advertise">Advertise</a></div></footer></>
+ return <><Top region={region} setRegion={setRegion}/><main>{page}</main><footer><a className="logo footer-logo" href="#/" aria-label="DummyGrid home"><img src={DUMMYGRID_LOGO} alt="DummyGrid"/></a><p>The world of karting, local to you.</p><div><a href="#/news">News</a><a href="#/marketplace">Marketplace</a><a href="#/drivers">Drivers</a><a href="#/classes">Classes</a><a href="#/manufacturers">Manufacturers</a><a href="#/results">Results</a><a href="#/tracks">Tracks</a><a href="#/advertise">Advertise</a></div></footer></>
 }
 createRoot(document.getElementById("root")).render(<App/>);
