@@ -1,0 +1,29 @@
+name: DummyGrid CI
+
+on:
+  pull_request:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install frontend dependencies
+        run: npm install
+      - name: Build frontend
+        run: npm run build -- --base=/dummygrid/
+      - name: Compile Python automation
+        run: python -m compileall -q scripts
+      - name: Validate seed JSON
+        run: python -m json.tool src/data/tracks-seed.json >/dev/null
