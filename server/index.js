@@ -158,13 +158,44 @@ app.get("/api/me/videos",requireAuth,async(req,res)=>{
 const TSL_SERIES={
   bsrc:{
     name:"British Superkart Racing Club / Superkart Super Series",
-    events:[
-      {id:"261479",title:"BMCRC-MRO Championships - Round 2",track:"Oulton Park",date:"3rd/4th April 2026"},
-      {id:"261979",title:"BMCRC-MRO Championships - Round 3",track:"Donington Park",date:"9th/10th May 2026"},
-      {id:"263679",title:"BMCRC - MRO Championships - Round 8",track:"Snetterton 300",date:"5th/6th September 2026"}
-    ]
+    source:"https://www.tsl-timing.com/results/bmcrc/",
+    section:/superkart|british superkart/i
   }
 };
+const tslEventCache=new Map();
+async function discoverTslEvents(slug){
+ const series=TSL_SERIES[slug];
+ if(!series)return [];
+ const cached=tslEventCache.get(slug);
+ if(cached&&Date.now()-cached.at<6*60*60*1000)return cached.events;
+ const html=await fetchHtml(series.source);
+ const $=cheerio.load(html);
+ const candidates=[]; const seen=new Set();
+ $('a[href*="/event/"]').each((_,a)=>{
+   const href=$(a).attr("href")||"";
+   const m=href.match(/\/event\/(\d+)/);
+   if(!m||seen.has(m[1]))return;
+   seen.add(m[1]);
+   const text=$(a).closest("li,article,div,tr").first().text().replace(/\s+/g," ").trim()||$(a).text().replace(/\s+/g," ").trim();
+   candidates.push({id:m[1],title:text||"TSL event",url:new URL(href,"https://www.tsl-timing.com").href});
+ });
+ const checked=await Promise.all(candidates.map(async event=>{
+   try{
+     const eventHtml=await fetchHtml(event.url);
+     const page=cheerio.load(eventHtml);
+     let hasSeries=false;
+     page("h3").each((_,h)=>{if(series.section.test(page(h).text()))hasSeries=true});
+     if(!hasSeries)return null;
+     const body=page("body").text().replace(/\s+/g," ").trim();
+     const track=page("h1").nextAll().filter((_,el)=>/Track Length:/i.test(page(el).text())).first().prev().text().trim()||null;
+     const date=(body.match(/(\d{1,2}(?:st|nd|rd|th)?\s+[A-Z][a-z]+\s*-\s*\d{1,2}(?:st|nd|rd|th)?\s+[A-Z][a-z]+\s+\d{4}|(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s+\d{1,2}(?:st|nd|rd|th)?\s+[A-Z][a-z]+\s+\d{4})/)||[])[1]||null;
+     return {...event,track,date};
+   }catch{return null}
+ }));
+ const events=checked.filter(Boolean);
+ tslEventCache.set(slug,{at:Date.now(),events});
+ return events;
+}
 const ALPHA_SERIES={
   ukc:{name:"Ultimate Karting Championship"},
   bkc:{name:"The Kart Championship"},
@@ -181,17 +212,21 @@ function absAlpha(href){return href?.startsWith("http")?href:"https://systems.al
 app.get("/api/results/tsl/series",(req,res)=>{
  res.json({ok:true,series:Object.entries(TSL_SERIES).map(([slug,v])=>({slug,name:v.name,provider:"TSL Timing"}))});
 });
-app.get("/api/results/tsl/:slug/events",(req,res)=>{
+app.get("/api/results/tsl/:slug/events",async(req,res)=>{
  const series=TSL_SERIES[req.params.slug];
  if(!series)return res.status(404).json({ok:false,message:"Unknown TSL championship."});
- res.json({ok:true,series:{slug:req.params.slug,name:series.name},events:series.events.map(e=>({...e,provider:"TSL Timing",url:"https://www.tsl-timing.com/event/"+e.id}))});
+ try{
+   const events=await discoverTslEvents(req.params.slug);
+   res.set("Cache-Control","public, max-age=1800, s-maxage=21600");
+   res.json({ok:true,series:{slug:req.params.slug,name:series.name},events:events.map(e=>({...e,provider:"TSL Timing"}))});
+ }catch(err){console.error(err);res.status(502).json({ok:false,message:"Could not discover TSL Timing events."})}
 });
 app.get("/api/results/tsl/:slug/event/:eventId",async(req,res)=>{
  const series=TSL_SERIES[req.params.slug];
  if(!series)return res.status(404).json({ok:false,message:"Unknown TSL championship."});
- const event=series.events.find(e=>e.id===req.params.eventId);
- if(!event)return res.status(404).json({ok:false,message:"Unknown TSL event."});
  try{
+   const event=(await discoverTslEvents(req.params.slug)).find(e=>e.id===req.params.eventId);
+   if(!event)return res.status(404).json({ok:false,message:"Unknown TSL event."});
    const url="https://www.tsl-timing.com/event/"+event.id;
    const html=await fetchHtml(url); const $=cheerio.load(html);
    let section=null;
@@ -236,9 +271,9 @@ app.get("/api/results/tsl/:slug/event/:eventId",async(req,res)=>{
 app.get("/api/results/tsl/:slug/event/:eventId/session/:sessionId",async(req,res)=>{
  const series=TSL_SERIES[req.params.slug];
  if(!series)return res.status(404).json({ok:false,message:"Unknown TSL championship."});
- const event=series.events.find(e=>e.id===req.params.eventId);
- if(!event)return res.status(404).json({ok:false,message:"Unknown TSL event."});
  try{
+   const event=(await discoverTslEvents(req.params.slug)).find(e=>e.id===req.params.eventId);
+   if(!event)return res.status(404).json({ok:false,message:"Unknown TSL event."});
    const eventUrl="https://www.tsl-timing.com/event/"+event.id;
    const html=await fetchHtml(eventUrl); const $=cheerio.load(html);
    let section=null;
