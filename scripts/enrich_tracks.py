@@ -32,25 +32,38 @@ def save(data):
 def norm(text):
  return re.sub(r"[^a-z0-9]+"," ",(text or "").lower()).strip()
 
-def geocode(track):
- bits=[track.get("name"),track.get("city"),track.get("region"),track.get("country")]
- q=", ".join([x for x in bits if x])
- params={"q":q,"format":"jsonv2","addressdetails":1,"limit":6,"countrycodes":COUNTRY_CODES.get(track.get("country"),"")}
- r=session.get(NOMINATIM,params=params,timeout=30)
- r.raise_for_status()
- rows=r.json()
- if not rows:return None
+def query_variants(track):
+ name=track.get("name") or ""
+ city=track.get("city") or ""
+ region=track.get("region") or ""
+ country=track.get("country") or ""
+ aliases=list(track.get("aliases") or [])
+ stripped=re.sub(r"\b(karting|kart|circuit|raceway|club|motorsport|racing|centre|center|indoor|outdoor|activity|activities)\b"," ",name,flags=re.I)
+ stripped=re.sub(r"\s+"," ",stripped).strip(" -")
+ variants=[name,*aliases]
+ if stripped and stripped.lower()!=name.lower():variants.append(stripped)
+ if city:variants.append(city+" karting")
+ if name.lower().startswith("teamsport") and city:variants.append("go karting "+city)
+ seen=set();out=[]
+ for v in variants:
+  q=", ".join([x for x in [v,city,region,country] if x])
+  k=q.lower()
+  if k not in seen:
+   seen.add(k);out.append(q)
+ return out
 
+def geocode(track):
  target=norm(track.get("name"))
  city=norm(track.get("city"))
- generic={"kart","karting","raceway","circuit","club","centre","center","motorsport","racing","team","track","speed","indoor","outdoor"}
+ generic={"kart","karting","raceway","circuit","club","centre","center","motorsport","racing","team","track","speed","indoor","outdoor","activity","activities"}
  target_tokens={x for x in target.split() if len(x)>=3 and x not in generic}
+ aliases=[norm(x) for x in (track.get("aliases") or [])]
 
  def score(row):
   display=norm(row.get("display_name"))
   a=row.get("address") or {}
   row_city=norm(a.get("city") or a.get("town") or a.get("village") or a.get("municipality") or "")
-  name_sim=SequenceMatcher(None,target,display[:max(len(target)*2,25)]).ratio()
+  name_sim=max([SequenceMatcher(None,target,display[:max(len(target)*2,25)]).ratio()]+[SequenceMatcher(None,a,display[:max(len(a)*2,25)]).ratio() for a in aliases])
   token_hits=sum(1 for x in target_tokens if x in display)
   city_match=bool(city and (city in display or city==row_city))
   cls=(row.get("class") or "").lower()
@@ -58,16 +71,33 @@ def geocode(track):
   venueish=cls in {"leisure","amenity","tourism","sport"} or typ in {"sports_centre","track","raceway"}
   return (token_hits*5)+(3 if city_match else 0)+(2 if venueish else 0)+name_sim+float(row.get("importance") or 0)
 
- ranked=sorted(rows,key=score,reverse=True)
+ candidates=[]
+ for q in query_variants(track):
+  params={"q":q,"format":"jsonv2","addressdetails":1,"limit":6,"countrycodes":COUNTRY_CODES.get(track.get("country"),"")}
+  r=session.get(NOMINATIM,params=params,timeout=30)
+  r.raise_for_status()
+  candidates.extend(r.json())
+  time.sleep(1.05)
+  if candidates:
+   # Stop early once we have a strong distinctive-name match.
+   ranked=sorted(candidates,key=score,reverse=True)
+   display=norm(ranked[0].get("display_name"))
+   hits=sum(1 for x in target_tokens if x in display)
+   if hits>=1 and (not city or city in display or len(target_tokens)>=2):
+    break
+ if not candidates:return None
+
+ ranked=sorted(candidates,key=score,reverse=True)
  best=ranked[0]
  display=norm(best.get("display_name"))
  token_hits=sum(1 for x in target_tokens if x in display)
  city_match=bool(city and city in display)
- # Conservative acceptance: at least one distinctive venue token must match.
- # For generic brand/chain names, also require the known city/location.
- if target_tokens and token_hits<1:
+ alias_match=any(a and SequenceMatcher(None,a,display[:max(len(a)*2,25)]).ratio()>=0.55 for a in aliases)
+ # Conservative acceptance. A distinctive venue token/alias must match;
+ # city-only candidates are never saved unless the venue name itself contains the city.
+ if not alias_match and target_tokens and token_hits<1:
   return None
- if city and not city_match and len(target_tokens)<2:
+ if city and not city_match and len(target_tokens)<2 and not alias_match:
   return None
  return best
 
