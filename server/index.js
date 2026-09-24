@@ -300,12 +300,22 @@ app.get("/api/results/tsl/:slug/event/:eventId/session/:sessionId",async(req,res
      const headerLine=lines.find(x=>/^POS NO CL PIC NAME ENTRY LAPS TIME GAP DIFF MPH BEST ON GRD/i.test(x));
      if(headerLine){
        headers=["Pos","No","Class","PIC","Driver / Entry","Laps","Time / Gap","Best"];
+       let classified=true;
        for(const line of lines){
-         if(/^NOT CLASSIFIED$/i.test(line)||/^FASTEST LAP$/i.test(line))break;
+         if(/^NOT CLASSIFIED$/i.test(line)){classified=false;continue}
+         if(/^FASTEST LAP$/i.test(line)||/^FASTEST LAPS?$/i.test(line))break;
          const m=line.match(/^(\d+)\s+(\S+)\s+(\S+)\s+(\d+)\s+(.+?)\s+(\d+)\s+(\d{1,2}:\d{2}\.\d{3})(?:\s+(.+?))?\s+(\d{1,2}:\d{2}\.\d{3})\s+(\d+)(?:\s+\d+\s+-?\d+)?$/);
-         if(!m)continue;
-         const tail=(m[8]||"").trim();
-         rows.push([m[1],m[2],m[3],m[4],m[5],m[6],m[7]+(tail?" · "+tail:""),m[9]+" (lap "+m[10]+")"]);
+         if(m){
+           const tail=(m[8]||"").trim();
+           rows.push([classified?m[1]:"NC",m[2],m[3],m[4],m[5],m[6],m[7]+(tail?" · "+tail:""),m[9]+" (lap "+m[10]+")"]);
+           continue;
+         }
+         if(!classified){
+           const nc=line.match(/^(\S+)\s+(\S+)\s+(\d+)\s+(.+?)\s+(\d+)(?:\s+(\d{1,2}:\d{2}\.\d{3}))?(?:\s+(.+?))?(?:\s+(\d{1,2}:\d{2}\.\d{3})\s+(\d+))?$/);
+           if(nc){
+             rows.push(["NC",nc[1],nc[2],nc[3],nc[4],nc[5],(nc[6]||"")+(nc[7]?" · "+nc[7].trim():""),nc[8]?(nc[8]+(nc[9]?" (lap "+nc[9]+")":"")):""]);
+           }
+         }
        }
      }
    }else{
