@@ -1,0 +1,30 @@
+name: Validate application
+
+on:
+  pull_request:
+    branches: ["main"]
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install frontend
+        run: npm install
+      - name: Build frontend
+        run: npm run build -- --base=/dummygrid/
+      - name: Install API
+        run: cd server && npm install
+      - name: Check API startup syntax
+        run: cd server && npm run check
+      - name: Validate track directory
+        run: python scripts/validate_global_tracks.py
