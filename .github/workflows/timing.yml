@@ -1,0 +1,43 @@
+name: Refresh timing database
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "scripts/update_timing_results.py"
+      - ".github/workflows/timing.yml"
+  schedule:
+    - cron: "12 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dummygrid-timing-refresh
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests beautifulsoup4
+      - name: Build local timing database
+        run: python scripts/update_timing_results.py
+      - name: Commit timing data
+        run: |
+          git config user.name "DummyGrid Timing Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add public/timing-results.json
+          if git diff --cached --quiet; then
+            echo "No timing changes"
+          else
+            git commit -m "Refresh Alpha timing database"
+            git pull --rebase origin main
+            git push
+          fi
