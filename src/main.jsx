@@ -360,8 +360,14 @@ function ResultsPage(){
  {rows.length?<div className="results-list">{rows.map(r=><article className="result-row" key={r.id}><div className="result-place">{r.position?("#"+r.position):"—"}</div><div className="result-main"><div className="meta">{r.year} · {r.country} · {r.type==="event"?"Event result":"Championship standings"}</div><h3>{r.driver}</h3><p>{r.championship} · {r.className}</p><small>{r.round} · {r.event}{r.points!=null?" · "+r.points+" pts":""}</small></div><a className="button" href={r.sourceUrl} target="_blank" rel="noopener noreferrer">Official source ↗</a></article>)}</div>:<Empty text="No results match those filters."/>}
  </section>
 }
+function trackMatchesResult(track,result){
+ const needles=[track.name,track.city,...(track.aliases||[])].filter(Boolean).map(x=>x.toLowerCase());
+ const hay=((result.event||"")+" "+(result.round||"")+" "+(result.championship||"")).toLowerCase();
+ return needles.some(n=>n.length>2&&hay.includes(n));
+}
 function TracksPage(){
  const {data,loading}=useRemoteJson("tracks.json",{tracks:[],updatedAt:null});
+ const {data:resultsData}=useRemoteJson("results.json",{records:[],updatedAt:null});
  const [q,setQ]=useState(""); const [continent,setContinent]=useState("All"); const [country,setCountry]=useState("All"); const [series,setSeries]=useState("All");
  const tracks=data.tracks||[];
  const continents=[...new Set(tracks.map(t=>t.continent).filter(Boolean))].sort();
@@ -373,7 +379,20 @@ function TracksPage(){
  });
  return <section><PageTitle kicker="Global circuit directory" title="KARTING TRACKS" text={loading?"Loading circuits…":"Search karting circuits by country, region, championship and track name."}/>
  <Filters><input placeholder="Search track, city or country…" value={q} onChange={e=>setQ(e.target.value)}/><select value={continent} onChange={e=>{setContinent(e.target.value);setCountry("All")}}><option>All</option>{continents.map(x=><option key={x}>{x}</option>)}</select><select value={country} onChange={e=>setCountry(e.target.value)}><option>All</option>{countries.filter(c=>continent==="All"||tracks.some(t=>t.country===c&&t.continent===continent)).map(x=><option key={x}>{x}</option>)}</select><select value={series} onChange={e=>setSeries(e.target.value)}><option>All</option>{seriesList.map(x=><option key={x}>{x}</option>)}</select></Filters>
- {rows.length?<div className="track-grid">{rows.map(t=><article className="track-card" key={t.id}><div className="track-pin">⌖</div><div className="meta">{t.continent} · {t.country}</div><h3>{t.name}</h3><p>{[t.city,t.region].filter(Boolean).join(", ")}</p><div className="product-tags">{(t.series||[]).map(x=><span key={x}>{x}</span>)}</div><div className="track-actions">{t.website&&<a className="button" href={t.website} target="_blank" rel="noopener noreferrer">Official site ↗</a>}<small>{t.source}</small></div></article>)}</div>:<Empty text="No circuits match those filters."/>}
+ {rows.length?<div className="track-grid">{rows.map(t=>{const count=(resultsData.records||[]).filter(r=>trackMatchesResult(t,r)).length;return <a className="track-card" href={"#/tracks/"+t.id} key={t.id}><div className="track-pin">⌖</div><div className="meta">{t.continent} · {t.country}</div><h3>{t.name}</h3><p>{[t.city,t.region].filter(Boolean).join(", ")}</p><div className="product-tags">{(t.series||[]).map(x=><span key={x}>{x}</span>)}</div><div className="track-actions"><b className="link">View circuit →</b><small>{count} linked result{count===1?"":"s"}</small></div></a>})}</div>:<Empty text="No circuits match those filters."/>}
+ </section>
+}
+function TrackDetail({id}){
+ const {data:tracksData,loading}=useRemoteJson("tracks.json",{tracks:[]});
+ const {data:resultsData}=useRemoteJson("results.json",{records:[]});
+ const t=(tracksData.tracks||[]).find(x=>x.id===id);
+ if(loading)return <section><PageTitle kicker="Circuit" title="LOADING TRACK" text="Loading circuit data…"/></section>;
+ if(!t)return <NotFound/>;
+ const linked=(resultsData.records||[]).filter(r=>trackMatchesResult(t,r)).sort((a,b)=>String(b.date||"").localeCompare(String(a.date||"")));
+ return <section><PageTitle kicker={t.country} title={t.name.toUpperCase()} text={[t.city,t.region,t.country].filter(Boolean).join(", ")} action={<a className="button" href="#/tracks">All tracks</a>}/>
+ <div className="track-detail-grid"><div className="panel"><h3>Track profile</h3><dl className="facts"><div><dt>Country</dt><dd>{t.country}</dd></div><div><dt>Region</dt><dd>{t.region||"—"}</dd></div><div><dt>City</dt><dd>{t.city||"—"}</dd></div><div><dt>Continent</dt><dd>{t.continent||"—"}</dd></div><div><dt>Championships</dt><dd>{(t.series||[]).join(", ")||"—"}</dd></div></dl>{t.website&&<a className="button primary" href={t.website} target="_blank" rel="noopener noreferrer">Official track website ↗</a>}</div><div className="panel"><h3>DummyGrid archive</h3><p>{linked.length?"We currently link "+linked.length+" result record"+(linked.length===1?"":"s")+" to this circuit.":"No indexed results for this circuit yet."}</p><p className="muted">{t.source}</p></div></div>
+ <SectionHead eyebrow="Results archive" title={"Results at "+t.name} copy="Event results and championship records matched to this circuit."/>
+ {linked.length?<div className="results-list">{linked.map(r=><article className="result-row" key={r.id}><div className="result-place">{r.position?("#"+r.position):"—"}</div><div className="result-main"><div className="meta">{r.year} · {r.type==="event"?"Event result":"Standings"}</div><h3>{r.driver}</h3><p>{r.championship} · {r.className}</p><small>{r.round} · {r.event}{r.points!=null?" · "+r.points+" pts":""}</small></div><a className="button" href={r.sourceUrl} target="_blank" rel="noopener noreferrer">Official source ↗</a></article>)}</div>:<Empty text="No indexed results at this circuit yet."/>}
  </section>
 }
 function Classes(){
@@ -488,6 +507,7 @@ function App(){
  else if(parts[0]==="manufacturers"&&parts[1]) page=<ManufacturerDetail id={parts[1]}/>;
  else if(parts[0]==="manufacturers") page=<Manufacturers/>;
  else if(parts[0]==="results") page=<ResultsPage/>;
+ else if(parts[0]==="tracks"&&parts[1]) page=<TrackDetail id={parts[1]}/>;
  else if(parts[0]==="tracks") page=<TracksPage/>;
  else if(parts[0]==="community"&&parts[1]==="new") page=<NewPost {...{region,posts,setPosts}}/>;
  else if(parts[0]==="community") page=<Community {...{region,posts,setPosts}}/>;
