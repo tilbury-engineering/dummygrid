@@ -151,7 +151,16 @@ def main():
    except Exception as ex:
     print("   event failed",ex,flush=True);continue
    if not ev["sessions"]:
-    print("   no sessions on completed link",flush=True);continue
+    print("   no sessions on completed link",flush=True)
+    if slug=="ukc":
+     try:
+      dbg=BeautifulSoup(get(e.get("url")),"html.parser")
+      print("   DEBUG EVENT HREFS",[a.get("href") for a in dbg.find_all("a",href=True)][:120],flush=True)
+      print("   DEBUG EVENT TEXT",clean(dbg.get_text(" ",strip=True))[:1800],flush=True)
+     except Exception as de:
+      print("   DEBUG EVENT FAILED",de,flush=True)
+     break
+    continue
    print("   sessions",len(ev["sessions"]),flush=True)
    sess_data={}
    for n,sess in enumerate(ev["sessions"]):
