@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-24T07:18:40.774164+00:00",
+  "updatedAt": "2026-09-24T07:20:21.549007+00:00",
   "records": [
     {
       "id": "skusa-2026-x30-junior",
@@ -240,6 +240,23 @@
       "sourceUrl": "https://www.fiakarting.com/championshipstandings/2026-fia-karting-team-championship-standings-junior"
     },
     {
+      "id": "bkc-2026-senior-rotax",
+      "type": "standings",
+      "year": 2026,
+      "region": "UK",
+      "country": "United Kingdom",
+      "championship": "British Kart Championships",
+      "round": "Championship standings",
+      "event": "2026 season",
+      "date": "2026-09-24",
+      "className": "Senior Rotax",
+      "position": 1,
+      "driver": "Macauley BISHOP",
+      "points": 124.0,
+      "source": "Motorsport Timing UK",
+      "sourceUrl": "https://www.motorsport-timing.co.uk/championship-standings/"
+    },
+    {
       "id": "rmcet-2026-senior-max",
       "type": "standings",
       "year": 2026,
@@ -454,6 +471,22 @@
       "team": "",
       "source": "Karting Australia",
       "sourceUrl": "https://www.karting.net.au/karting-australia/champions/australian-kart-championship-stars-of-karting-cik-championship-round-winners/"
+    },
+    {
+      "id": "iame-euro-2026-x30-mini",
+      "type": "standings",
+      "year": 2026,
+      "region": "Europe",
+      "country": "International",
+      "championship": "IAME Euro Series",
+      "round": "Championship standings",
+      "event": "2026 season",
+      "date": "2026-08-29",
+      "className": "X30 Mini",
+      "position": 1,
+      "driver": "Ilyas Sami",
+      "source": "KartXpress / IAME Euro Series report",
+      "sourceUrl": "https://www.kartxpress.com/ReadMore/an-unforgettable-genk-finale-brings-the-2026-iame-euro-series-to-a-spectacular-close"
     },
     {
       "id": "wsk-2026-euro-ok-n-junior",
