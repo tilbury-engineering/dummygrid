@@ -357,7 +357,9 @@ const alphaSeries=[
  {slug:"bkc",name:"The Kart Championship"},
  {slug:"nkc",name:"National Kart Cup"},
  {slug:"accesskarting",name:"Access Karting"},
- {slug:"wmkc",name:"Whilton Mill Kart Club"}
+ {slug:"wmkc",name:"Whilton Mill Kart Club"},
+ {slug:"wombwellkarting",name:"Wombwell Karting"},
+ {slug:"tattershall",name:"Tattershall Karting Centre"}
 ];
 const tslSeries=[
  {slug:"bsrc",name:"British Superkart Racing Club / Superkart Super Series"}
