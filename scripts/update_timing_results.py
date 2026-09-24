@@ -93,7 +93,7 @@ def parse_event(slug,eid,event_url=None):
    "raceNumber":int(race.group(1)) if race else None,
    "name":clean(race.group(2)) if race else label,
    "type":classify_type(txt),"winner":clean(winner.group(1)) if winner else None,
-   "text":txt,"url":urljoin(BASE,href)
+   "text":txt,"url":urljoin(BASE,href.rstrip("/")+"/result")
   })
   seen.add(sid)
  return {"id":str(eid),"title":title or clean(body[:100]) or f"Event {eid}","dateStart":dm.group(1) if dm else None,"dateEnd":dm.group(2) if dm else None,"url":url,"sessions":sessions}
