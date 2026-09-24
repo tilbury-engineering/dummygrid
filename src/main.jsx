@@ -634,7 +634,10 @@ function App(){
  else if(parts[0]==="results"&&parts[1]==="tsl"&&parts[2]&&parts[3]==="event"&&parts[4]) page=<TSLResultsEvent slug={parts[2]} eventId={parts[4]}/>;
  else if(parts[0]==="results"&&parts[1]==="tsl"&&parts[2]) page=<TSLResultsSeries slug={parts[2]}/>;
  else if(parts[0]==="results") page=<ResultsPage/>;
- else if(parts[0]==="asns"&&parts[1]) page=<AsnDetail id={parts[1]}/>;\n else if(parts[0]==="asns") page=<AsnsPage/>;\n else if(parts[0]==="contribute"&&parts[1]&&parts[2]) page=<ContributePage kind={parts[1]} id={parts[2]}/>;\n else if(parts[0]==="tracks"&&parts[1]) page=<TrackDetail id={parts[1]}/>;
+ else if(parts[0]==="asns"&&parts[1]) page=<AsnDetail id={parts[1]}/>;
+ else if(parts[0]==="asns") page=<AsnsPage/>;
+ else if(parts[0]==="contribute"&&parts[1]&&parts[2]) page=<ContributePage kind={parts[1]} id={parts[2]}/>;
+ else if(parts[0]==="tracks"&&parts[1]) page=<TrackDetail id={parts[1]}/>;
  else if(parts[0]==="tracks") page=<TracksPage/>;
  else if(parts[0]==="community"&&parts[1]==="new") page=<NewPost {...{region,posts,setPosts}}/>;
  else if(parts[0]==="community") page=<Community {...{region,posts,setPosts}}/>;
