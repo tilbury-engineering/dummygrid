@@ -45,7 +45,11 @@ CONTINENT_BY_CC={
  "US":"North America","CA":"North America","MX":"North America","GT":"North America","BZ":"North America","SV":"North America","HN":"North America","NI":"North America","CR":"North America","PA":"North America","CU":"North America","DO":"North America","JM":"North America","TT":"North America","BS":"North America","BB":"North America",
  "BR":"South America","AR":"South America","CL":"South America","PE":"South America","CO":"South America","EC":"South America","UY":"South America","PY":"South America","BO":"South America","VE":"South America","GY":"South America","SR":"South America",
  "ZA":"Africa","BW":"Africa","NA":"Africa","ZW":"Africa","ZM":"Africa","AO":"Africa","MZ":"Africa","KE":"Africa","TZ":"Africa","UG":"Africa","RW":"Africa","ET":"Africa","GH":"Africa","NG":"Africa","CI":"Africa","SN":"Africa","MA":"Africa","DZ":"Africa","TN":"Africa","EG":"Africa","MU":"Africa","MG":"Africa",
- "AU":"Oceania","NZ":"Oceania","FJ":"Oceania","PG":"Oceania",
+ "AU":"Oceania","NZ":"Oceania","FJ":"Oceania","PG":"Oceania","NC":"Oceania","MP":"Oceania",
+ "AW":"North America","PR":"North America","GP":"North America","MQ":"North America",
+ "GF":"South America","FO":"Europe","GG":"Europe","IM":"Europe","JE":"Europe","LI":"Europe","MC":"Europe","AX":"Europe","RU":"Europe","XK":"Europe",
+ "BN":"Asia","PS":"Asia","SY":"Asia","TJ":"Asia","TM":"Asia",
+ "DJ":"Africa","GA":"Africa","TG":"Africa",
  "JP":"Asia","CN":"Asia","HK":"Asia","MO":"Asia","TW":"Asia","KR":"Asia","KP":"Asia","IN":"Asia","PK":"Asia","BD":"Asia","LK":"Asia","NP":"Asia","TH":"Asia","MY":"Asia","SG":"Asia","ID":"Asia","PH":"Asia","VN":"Asia","KH":"Asia","LA":"Asia","MM":"Asia","AE":"Asia","SA":"Asia","QA":"Asia","BH":"Asia","KW":"Asia","OM":"Asia","IL":"Asia","JO":"Asia","LB":"Asia","IR":"Asia","IQ":"Asia","KZ":"Asia","UZ":"Asia","AZ":"Asia","GE":"Asia","AM":"Asia"
 }
 
@@ -179,7 +183,7 @@ def cleanup_existing(tracks):
   else:
    cleaned.append(t)
  by_country={c.name:c.alpha_2 for c in pycountry.countries}
- aliases={"United Kingdom":"GB","United States":"US","Russia":"RU","Russian Federation":"RU","South Korea":"KR","Korea, Republic of":"KR","Taiwan, Province of China":"TW","Czech Republic":"CZ","Macao":"MO"}
+ aliases={"United Kingdom":"GB","United States":"US","Russia":"RU","Russian Federation":"RU","South Korea":"KR","Korea, Republic of":"KR","Taiwan, Province of China":"TW","Czech Republic":"CZ","Macao":"MO","Kosovo":"XK","XK":"XK"}
  for t in cleaned:
   if not t.get("continent"):
    cc=aliases.get(t.get("country")) or by_country.get(t.get("country"))
