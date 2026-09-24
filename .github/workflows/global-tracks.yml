@@ -31,6 +31,8 @@ jobs:
         run: python scripts/update_global_tracks.py
       - name: Enrich FIA homologated circuits
         run: python scripts/enrich_fia_tracks.py
+      - name: Verify Motorsport UK licensed kart venues
+        run: python scripts/enrich_motorsport_uk_tracks.py
       - name: Validate global track directory
         run: python scripts/validate_global_tracks.py
       - name: Commit global track directory
