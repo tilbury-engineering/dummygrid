@@ -85,8 +85,10 @@ def find_published_w3w(track):
 
 def main():
  data=load();found=0;checked=0
+ batch_limit=200
  for t in data.get("tracks",[]):
   if t.get("what3words"):continue
+  if checked>=batch_limit:break
   checked+=1
   words,src=find_published_w3w(t)
   if words:
