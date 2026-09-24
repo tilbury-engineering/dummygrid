@@ -6,7 +6,6 @@ on:
     paths:
       - "scripts/enrich_tracks.py"
       - ".github/workflows/tracks.yml"
-      - "public/tracks.json"
   schedule:
     - cron: "28 3 * * 1"
   workflow_dispatch:
