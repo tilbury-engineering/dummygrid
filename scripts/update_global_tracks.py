@@ -133,7 +133,8 @@ def address_from_tags(t):
  return ", ".join(parts)
 
 def choose_name(t,el):
- return t.get("name") or t.get("operator") or t.get("brand") or f"Karting venue {el.get('id')}"
+ # Do not publish anonymous OSM geometry as fake-looking venue names.
+ return (t.get("name") or t.get("operator") or t.get("brand") or "").strip()
 
 def classify(t):
  indoor=str(t.get("indoor","")).lower() in ("yes","true","1") or bool(t.get("building"))
@@ -161,8 +162,11 @@ def main():
   lat,lon=coords(el)
   if lat is None:continue
   tags=el.get("tags") or {}
+  # A usable directory entry needs a human-readable venue identity.
+  if not choose_name(tags,el):
+   continue
   raw.append((el,tags,lat,lon))
- print("overpass elements",len(raw),flush=True)
+ print("overpass elements",len(elems),"named venues",len(raw),flush=True)
 
  # Offline nearest-city/country resolution in one batch.
  geo=rg.search([(x[2],x[3]) for x in raw],mode=1) if raw else []
@@ -195,7 +199,7 @@ def main():
   seen_ids.add(tid)
   rec={
    "id":tid,"name":name,"city":city,"region":region,"country":country,
-   "continent":CONTINENT_BY_CC.get(cc,""),"series":[],"website":website,
+   "continent":continent_name(cc),"series":[],"website":website,
    "source":"OpenStreetMap global karting import","osmSource":src,
    "address":addr,"lat":round(lat,7),"long":round(lon,7),
    "addressSource":"OpenStreetMap" if addr else "",
@@ -206,7 +210,7 @@ def main():
  tracks.sort(key=lambda t:((t.get("country") or "ZZZ"),(t.get("name") or "")))
  data["tracks"]=tracks
  data["updatedAt"]=time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime())
- data["globalImport"]={"source":"OpenStreetMap / Overpass","elements":len(raw),"added":added,"merged":merged}
+ data["globalImport"]={"source":"OpenStreetMap / Overpass","elements":len(elems),"namedVenues":len(raw),"added":added,"merged":merged}
  text=json.dumps(data,ensure_ascii=False,separators=(",",":"))+"\n"
  PUBLIC.write_text(text,encoding="utf-8")
  country_counts={}
