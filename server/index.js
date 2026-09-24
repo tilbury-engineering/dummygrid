@@ -154,6 +154,15 @@ app.get("/api/me/videos",requireAuth,async(req,res)=>{
  res.json({ok:true,videos:rows});
 });
 
+const TSL_SERIES={
+  bsrc:{
+    name:"British Superkart Racing Club / Superkart Super Series",
+    events:[
+      {id:"261479",title:"BMCRC-MRO Championships - Round 2",track:"Oulton Park",date:"3rd/4th April 2026"},
+      {id:"261979",title:"BMCRC-MRO Championships - Round 3",track:"Donington Park",date:"9th/10th May 2026"}
+    ]
+  }
+};
 const ALPHA_SERIES={
   ukc:{name:"Ultimate Karting Championship"},
   bkc:{name:"The Kart Championship"},
@@ -167,6 +176,61 @@ async function fetchHtml(url){
  return await r.text();
 }
 function absAlpha(href){return href?.startsWith("http")?href:"https://systems.alphatiming.co.uk"+href}
+app.get("/api/results/tsl/series",(req,res)=>{
+ res.json({ok:true,series:Object.entries(TSL_SERIES).map(([slug,v])=>({slug,name:v.name,provider:"TSL Timing"}))});
+});
+app.get("/api/results/tsl/:slug/events",(req,res)=>{
+ const series=TSL_SERIES[req.params.slug];
+ if(!series)return res.status(404).json({ok:false,message:"Unknown TSL championship."});
+ res.json({ok:true,series:{slug:req.params.slug,name:series.name},events:series.events.map(e=>({...e,provider:"TSL Timing",url:"https://www.tsl-timing.com/event/"+e.id}))});
+});
+app.get("/api/results/tsl/:slug/event/:eventId",async(req,res)=>{
+ const series=TSL_SERIES[req.params.slug];
+ if(!series)return res.status(404).json({ok:false,message:"Unknown TSL championship."});
+ const event=series.events.find(e=>e.id===req.params.eventId);
+ if(!event)return res.status(404).json({ok:false,message:"Unknown TSL event."});
+ try{
+   const url="https://www.tsl-timing.com/event/"+event.id;
+   const html=await fetchHtml(url); const $=cheerio.load(html);
+   let section=null;
+   $("h3").each((_,h)=>{const t=$(h).text().replace(/\s+/g," ").trim(); if(!section && /superkart|british superkart/i.test(t)) section=$(h)});
+   const sessions=[];
+   if(section){
+     let node=section.next();
+     while(node.length){
+       if(node.is("h3")) break;
+       node.find("a").addBack("a").each((_,a)=>{
+         const label=$(a).text().replace(/\s+/g," ").trim();
+         const href=$(a).attr("href")||"";
+         if(!label||/pdf book/i.test(label))return;
+         if(!/(practice|qualifying|grid|race|result|points)/i.test(label))return;
+         sessions.push({
+           id:String(sessions.length+1),
+           name:label,
+           type:/practice/i.test(label)?"Practice":/qualifying/i.test(label)?"Qualifying":/grid/i.test(label)?"Grid":/result/i.test(label)?"Result":"Session",
+           url:href.startsWith("http")?href:new URL(href,"https://www.tsl-timing.com").href
+         });
+       });
+       node=node.next();
+     }
+   }
+   // Some TSL layouts nest the session links inside a wrapper after the h3.
+   if(!sessions.length && section){
+     const parent=section.parent();
+     parent.find("a").each((_,a)=>{
+       const label=$(a).text().replace(/\s+/g," ").trim();
+       const href=$(a).attr("href")||"";
+       if(!label||/pdf book/i.test(label)||!/(practice|qualifying|grid|race|result|points)/i.test(label))return;
+       sessions.push({
+         id:String(sessions.length+1),name:label,
+         type:/practice/i.test(label)?"Practice":/qualifying/i.test(label)?"Qualifying":/grid/i.test(label)?"Grid":/result/i.test(label)?"Result":"Session",
+         url:href.startsWith("http")?href:new URL(href,"https://www.tsl-timing.com").href
+       });
+     });
+   }
+   res.json({ok:true,event:{...event,url,provider:"TSL Timing"},sessions});
+ }catch(err){console.error(err);res.status(502).json({ok:false,message:"Could not load TSL Timing event."})}
+});
 app.get("/api/results/alpha/series",(req,res)=>{
  res.json({ok:true,series:Object.entries(ALPHA_SERIES).map(([slug,v])=>({slug,name:v.name,provider:"Alpha Timing"}))});
 });
