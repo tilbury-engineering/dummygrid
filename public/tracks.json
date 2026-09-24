@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-24T10:24:52.437812+00:00",
+  "updatedAt": "2026-09-24T10:35:00.362686+00:00",
   "tracks": [
     {
       "id": "bolivar",
@@ -12,7 +12,12 @@
         "Australian Kart Championship"
       ],
       "website": "",
-      "source": "Karting Australia 2026 calendar"
+      "source": "Karting Australia 2026 calendar",
+      "address": "Bolivar Wastewater Treatment Plant, Bolivar, Adelaide, South Australia, Australia",
+      "lat": -34.7707943,
+      "long": 138.5841726,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:26:55.458105+00:00"
     },
     {
       "id": "coffs-harbour",
@@ -25,7 +30,12 @@
         "Australian Kart Championship"
       ],
       "website": "",
-      "source": "Karting Australia 2026 calendar"
+      "source": "Karting Australia 2026 calendar",
+      "address": "Coffs Harbour, New South Wales, Australia",
+      "lat": -30.2985996,
+      "long": 153.1094116,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:26:59.229154+00:00"
     },
     {
       "id": "ipswich",
@@ -38,7 +48,12 @@
         "Australian Kart Championship"
       ],
       "website": "",
-      "source": "Karting Australia 2026 calendar"
+      "source": "Karting Australia 2026 calendar",
+      "address": "Bell Street, Ipswich, Queensland, 4305, Australia",
+      "lat": -27.6128766,
+      "long": 152.7604193,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:27:03.534247+00:00"
     },
     {
       "id": "seymour",
@@ -141,7 +156,12 @@
         "FIA Karting"
       ],
       "website": "https://www.lemans-karting.com/",
-      "source": "FIA Karting 2026 calendar"
+      "source": "FIA Karting 2026 calendar",
+      "address": "Chemin aux Bœufs, Technoparc, Le Mans, Sarthe, Pays de la Loire, 72100, France",
+      "lat": 47.9423176,
+      "long": 0.212406,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:27:15.315543+00:00"
     },
     {
       "id": "mulsen",
@@ -176,7 +196,12 @@
       "aliases": [
         "Wackersdorf",
         "Pro Kart Raceland"
-      ]
+      ],
+      "address": "Landkreis Schwandorf, Bayern, 92442, Deutschland",
+      "lat": 49.3123993,
+      "long": 12.1938198,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:27:21.768858+00:00"
     },
     {
       "id": "sarno",
@@ -502,7 +527,12 @@
       "trackLengthM": null,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Aviemore Centre Ring Road, Aviemore, Highland, Alba / Scotland, PH22 1PH, United Kingdom",
+      "lat": 57.1878539,
+      "long": -3.8319183,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:28:20.588961+00:00"
     },
     {
       "id": "bayford-meadows",
@@ -535,7 +565,12 @@
       "trackLengthM": 800,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Brighton Road, Albourne, Mid Sussex, West Sussex, England, BN5 9NJ, United Kingdom",
+      "lat": 50.9119405,
+      "long": -0.2240274,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:28:24.356502+00:00"
     },
     {
       "id": "buckmore-park",
@@ -596,7 +631,12 @@
       "trackLengthM": 350,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Circuit Ring Road, Upper Castle Combe, Chippenham, Wiltshire, England, SN14 7EY, United Kingdom",
+      "lat": 51.4896961,
+      "long": -2.2115794,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:28:37.955074+00:00"
     },
     {
       "id": "clay-pigeon",
@@ -958,7 +998,12 @@
       "trackLengthM": 420,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "43, Kent Road, Swinnow, Pudsey, Leeds, England, LS28 9BB, United Kingdom",
+      "lat": 53.7960488,
+      "long": -1.6535941,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:29:49.221484+00:00"
     },
     {
       "id": "gyg",
@@ -1014,7 +1059,12 @@
       "trackLengthM": 1290,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "North Road, Ellesmere Port, Eastham Village, Cheshire West and Chester, England, CH65 1BR, United Kingdom",
+      "lat": 53.3100153,
+      "long": -2.9419527,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:30:07.526612+00:00"
     },
     {
       "id": "hull-karting",
@@ -1094,7 +1144,12 @@
       "trackLengthM": 1377,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "A43, Towcester, West Northamptonshire, England, NN12 6PG, United Kingdom",
+      "lat": 52.1402894,
+      "long": -0.994399,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:30:20.459191+00:00"
     },
     {
       "id": "karting-haynes",
@@ -1166,7 +1221,12 @@
       "source": "British Kart Championships 2026 calendar",
       "aliases": [
         "Kimbolton"
-      ]
+      ],
+      "address": "Bigham's Lane, Kimbolton, Stow Longa, Huntingdonshire, Cambridgeshire, England, PE19 5NX, United Kingdom",
+      "lat": 52.3160123,
+      "long": -0.3699344,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:30:42.188379+00:00"
     },
     {
       "id": "knockhill-karting",
@@ -1267,7 +1327,12 @@
       "trackLengthM": 850,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Llandow Trading Estate, Llandow, Cowbridge, Vale of Glamorgan, Cymru / Wales, CF71 7PB, United Kingdom",
+      "lat": 51.4347179,
+      "long": -3.5065052,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:30:54.685534+00:00"
     },
     {
       "id": "lochter",
@@ -1281,7 +1346,12 @@
       "trackLengthM": 1200,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Lochter Park, Uryside, Inverurie, Aberdeenshire, Alba / Scotland, AB51 6BE, United Kingdom",
+      "lat": 57.2966668,
+      "long": -2.367291,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:30:58.495950+00:00"
     },
     {
       "id": "lydd",
@@ -1366,7 +1436,12 @@
       "trackLengthM": 270,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Main Road, Shuttington CP, North Warwickshire, Warwickshire, England, B79 0GL, United Kingdom",
+      "lat": 52.6468785,
+      "long": -1.6209361,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:31:09.446576+00:00"
     },
     {
       "id": "need4speed-ballyclare",
@@ -1394,7 +1469,12 @@
       "trackLengthM": 500,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Nottingham Lane, Broughton and Old Dalby, Upper Broughton, Melton, Leicestershire, England, United Kingdom",
+      "lat": 52.8138109,
+      "long": -1.0204984,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:31:18.187781+00:00"
     },
     {
       "id": "nutts-corner",
@@ -1530,7 +1610,12 @@
       "trackLengthM": 1200,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "1, Bellflower Crescent, Red Lodge, West Suffolk, Suffolk, England, IP28 8XQ, United Kingdom",
+      "lat": 52.3050916,
+      "long": 0.4963931,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:31:38.188296+00:00"
     },
     {
       "id": "revolution-karting",
@@ -1630,7 +1715,12 @@
       "source": "British Kart Championships 2026 calendar",
       "aliases": [
         "Silverstone"
-      ]
+      ],
+      "address": "Bridge, Lillingstone Dayrell with Luffield Abbey, Silverstone, Buckinghamshire, England, NN12 8TL, United Kingdom",
+      "lat": 52.0718116,
+      "long": -1.0142991,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:31:57.768107+00:00"
     },
     {
       "id": "smart-kart-raceway",
@@ -1738,7 +1828,12 @@
       "trackLengthM": 500,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "34, Sutton Lane, Broughton Astley, Leicester, Leicestershire, England, LE9 6QF, United Kingdom",
+      "lat": 52.5405799,
+      "long": -1.2357742,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:32:24.770852+00:00"
     },
     {
       "id": "teamkarting-rochdale",
@@ -1799,7 +1894,12 @@
       "trackLengthM": 1000,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Park Lane Industrial Estate, Multipark Park Lane Estate, Oldbury, Sandwell, England, B69 4JX, United Kingdom",
+      "lat": 52.4992414,
+      "long": -2.0146329,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:32:40.149349+00:00"
     },
     {
       "id": "teamsport-bournemouth",
@@ -2077,7 +2177,12 @@
       "trackLengthM": 450,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Unit 4, Circle South, Wharfside, Stretford, Manchester, England, M17 1NF, United Kingdom",
+      "lat": 53.4658635,
+      "long": -2.3010239,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:33:26.034776+00:00"
     },
     {
       "id": "teamsport-manchester-victoria",
@@ -2091,7 +2196,12 @@
       "trackLengthM": 550,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Unit 4, Circle South, Wharfside, Stretford, Manchester, England, M17 1NF, United Kingdom",
+      "lat": 53.4658635,
+      "long": -2.3010239,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:33:29.383471+00:00"
     },
     {
       "id": "teamsport-mitcham",
@@ -2411,7 +2521,12 @@
       "trackLengthM": null,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Tockwith, North Yorkshire, England, United Kingdom",
+      "lat": 53.968003,
+      "long": -1.3120666,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:34:31.624350+00:00"
     },
     {
       "id": "warden-law",
@@ -2427,7 +2542,12 @@
       "source": "British Kart Championships 2026 calendar",
       "aliases": [
         "Warden Law"
-      ]
+      ],
+      "address": "Hetton-le-Hole, Sunderland, Tyne and Wear, England, United Kingdom",
+      "lat": 54.8430828,
+      "long": -1.4285843,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:34:35.056648+00:00"
     },
     {
       "id": "west-coast-karting",
@@ -2455,7 +2575,12 @@
       "trackLengthM": 300,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "High Street, Albert Town, Haverfordwest, Pembrokeshire, Cymru / Wales, SA61 2DE, United Kingdom",
+      "lat": 51.8018124,
+      "long": -4.9692616,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:34:44.404636+00:00"
     },
     {
       "id": "whilton-mill",
@@ -2471,7 +2596,12 @@
       "source": "British Kart Championships 2026 calendar",
       "aliases": [
         "Whilton Mill"
-      ]
+      ],
+      "address": "Roman Road, Whilton, Long Buckby Wharf, Daventry, West Northamptonshire, England, NN11 2NH, United Kingdom",
+      "lat": 52.277121,
+      "long": -1.0893405,
+      "addressSource": "OpenStreetMap / Nominatim",
+      "locationVerifiedAt": "2026-09-24T10:34:48.515646+00:00"
     },
     {
       "id": "wight-karting",
