@@ -36,6 +36,19 @@ def save(data):
 def norm(text):
  return re.sub(r"[^a-z0-9]+"," ",(text or "").lower()).strip()
 
+def gku_get(url):
+ for attempt in range(5):
+  r=session.get(url,timeout=30)
+  if r.status_code==429:
+   wait=2*(attempt+1)
+   print(" GoKartingUK rate limited; sleeping",wait,"sec",flush=True)
+   time.sleep(wait)
+   continue
+  r.raise_for_status()
+  time.sleep(.8)
+  return r
+ raise RuntimeError("GoKartingUK rate limit persisted for "+url)
+
 def _walk_json(obj):
  if isinstance(obj,dict):
   yield obj
@@ -47,7 +60,7 @@ def gku_index():
  global _gku_index
  if _gku_index is not None:return _gku_index
  try:
-  r=session.get(GKU_BROWSE,timeout=30);r.raise_for_status()
+  r=gku_get(GKU_BROWSE)
   soup=BeautifulSoup(r.text,"html.parser")
   idx=[]
   for a in soup.find_all("a",href=True):
@@ -75,7 +88,7 @@ def gku_lookup(track):
    best_score=score;best=item
  if not best or best_score<0.72:return None
  try:
-  r=session.get(best["url"],timeout=30);r.raise_for_status()
+  r=gku_get(best["url"])
   soup=BeautifulSoup(r.text,"html.parser")
   address=None;lat=None;lon=None
   for tag in soup.find_all("script",type="application/ld+json"):
