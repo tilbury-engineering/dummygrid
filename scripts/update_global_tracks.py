@@ -178,6 +178,12 @@ def cleanup_existing(tracks):
    merged_nearby+=1
   else:
    cleaned.append(t)
+ by_country={c.name:c.alpha_2 for c in pycountry.countries}
+ aliases={"United Kingdom":"GB","United States":"US","Russia":"RU","Russian Federation":"RU","South Korea":"KR","Korea, Republic of":"KR","Taiwan, Province of China":"TW","Czech Republic":"CZ","Macao":"MO"}
+ for t in cleaned:
+  if not t.get("continent"):
+   cc=aliases.get(t.get("country")) or by_country.get(t.get("country"))
+   if cc:t["continent"]=continent_name(cc)
  return cleaned,pruned_generic,merged_nearby
 
 def main():
