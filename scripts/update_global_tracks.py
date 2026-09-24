@@ -15,16 +15,26 @@ OVERPASS_ENDPOINTS=[
 UA={"User-Agent":"DummyGridGlobalTracks/1.0 (+https://github.com/tilbury-engineering/dummygrid)"}
 session=requests.Session();session.headers.update(UA)
 
-QUERY=r"""
-[out:json][timeout:120];
+BBOXES={
+ "Europe":(34,-25,72,45),
+ "Africa":(-36,-20,38,55),
+ "North America":(5,-170,84,-50),
+ "South America":(-60,-90,15,-30),
+ "Asia":(5,25,80,180),
+ "Oceania":(-50,95,10,180)
+}
+
+def query_for_bbox(box):
+ s,w,n,e=box
+ return f"""[out:json][timeout:90];
 (
-  nwr["sport"="karting"];
-  nwr["attraction"="karting"];
-  nwr["amenity"="karting"];
-  nwr["karting"="yes"];
+  nwr[\"sport\"=\"karting\"]({s},{w},{n},{e});
+  nwr[\"attraction\"=\"karting\"]({s},{w},{n},{e});
+  nwr[\"amenity\"=\"karting\"]({s},{w},{n},{e});
+  nwr[\"karting\"=\"yes\"]({s},{w},{n},{e});
 );
-out center tags;
-"""
+out center tags;"""
+
 
 CONTINENT_BY_CC={
  "GB":"Europe","IE":"Europe","FR":"Europe","DE":"Europe","IT":"Europe","ES":"Europe","PT":"Europe","BE":"Europe","NL":"Europe","LU":"Europe","CH":"Europe","AT":"Europe","DK":"Europe","NO":"Europe","SE":"Europe","FI":"Europe","IS":"Europe","PL":"Europe","CZ":"Europe","SK":"Europe","HU":"Europe","RO":"Europe","BG":"Europe","GR":"Europe","HR":"Europe","SI":"Europe","RS":"Europe","BA":"Europe","ME":"Europe","MK":"Europe","AL":"Europe","EE":"Europe","LV":"Europe","LT":"Europe","UA":"Europe","MD":"Europe","BY":"Europe","TR":"Europe","CY":"Europe","MT":"Europe",
@@ -53,24 +63,33 @@ def country_name(cc):
  try:return pycountry.countries.get(alpha_2=cc.upper()).name
  except:return cc.upper()
 
-def fetch_overpass():
+def fetch_one(query,label):
  last=None
  for endpoint in OVERPASS_ENDPOINTS:
   for i in range(2):
    try:
-    print("querying",endpoint,flush=True)
-    r=session.post(endpoint,data={"data":QUERY},timeout=180)
+    print("querying",label,endpoint,flush=True)
+    r=session.post(endpoint,data={"data":query},timeout=140)
     if r.status_code in (429,502,503,504):
-     time.sleep(5*(i+1));continue
+     time.sleep(4*(i+1));continue
     r.raise_for_status()
-    rows=r.json().get("elements",[])
-    if rows:return rows
+    return r.json().get("elements",[])
    except Exception as e:
     last=e
-    print(" overpass failed",endpoint,e,flush=True)
-    time.sleep(4*(i+1))
+    print(" overpass failed",label,endpoint,e,flush=True)
+    time.sleep(3*(i+1))
  if last:raise last
  return []
+
+def fetch_overpass():
+ merged={}
+ for label,box in BBOXES.items():
+  rows=fetch_one(query_for_bbox(box),label)
+  print(label,"elements",len(rows),flush=True)
+  for el in rows:
+   key=(el.get("type"),el.get("id"))
+   merged[key]=el
+ return list(merged.values())
 
 def coords(el):
  if "lat" in el and "lon" in el:return float(el["lat"]),float(el["lon"])
