@@ -358,12 +358,18 @@ const alphaSeries=[
  {slug:"accesskarting",name:"Access Karting"},
  {slug:"wmkc",name:"Whilton Mill Kart Club"}
 ];
+const tslSeries=[
+ {slug:"bsrc",name:"British Superkart Racing Club / Superkart Super Series"}
+];
 function ResultsPage(){
  const [q,setQ]=useState("");
- const rows=alphaSeries.filter(x=>x.name.toLowerCase().includes(q.toLowerCase()));
- return <section><PageTitle kicker="Live timing archive" title="KARTING RESULTS" text="Browse championships the same way you would on a timing website: championship → event → session → full classified result."/>
- <Filters><input placeholder="Search championship…" value={q} onChange={e=>setQ(e.target.value)}/></Filters>
- <div className="results-series-grid">{rows.map(x=><a className="results-series-card" key={x.slug} href={"#/results/alpha/"+x.slug}><span>Alpha Timing</span><h3>{x.name}</h3><p>Events, practice, qualifying, heats, pre-finals and finals.</p><b>Browse results →</b></a>)}</div>
+ const providers=[
+   ...alphaSeries.map(x=>({...x,provider:"Alpha Timing",href:"#/results/alpha/"+x.slug,copy:"Events, practice, qualifying, heats, pre-finals and finals."})),
+   ...tslSeries.map(x=>({...x,provider:"TSL Timing",href:"#/results/tsl/"+x.slug,copy:"Superkart meetings with practice, qualifying, grids and race results."}))
+ ].filter(x=>(x.name+" "+x.provider).toLowerCase().includes(q.toLowerCase()));
+ return <section><PageTitle kicker="Live timing archive" title="KARTING RESULTS" text="Browse championships from multiple timing providers: championship → event → session → result."/>
+ <Filters><input placeholder="Search championship or timing provider…" value={q} onChange={e=>setQ(e.target.value)}/></Filters>
+ <div className="results-series-grid">{providers.map(x=><a className="results-series-card" key={x.provider+x.slug} href={x.href}><span>{x.provider}</span><h3>{x.name}</h3><p>{x.copy}</p><b>Browse results →</b></a>)}</div>
  </section>
 }
 function ResultsSeries({slug}){
@@ -391,6 +397,24 @@ function ResultsSession({slug,eventId,sessionId}){
  const sess=data?.session;
  return <section><PageTitle kicker="Full classification" title={(sess?.title||"SESSION RESULT").toUpperCase()} text={sess?.meta?.laps?String(sess.meta.laps)+" laps":"Official classified result"} action={<a className="button" href={"#/results/alpha/"+slug+"/event/"+eventId}>Back to event</a>}/>
  {loading?<Empty text="Loading full classification…"/>:error?<div className="ai-blocked"><h3>Classification unavailable</h3><p>{error}</p></div>:<><div className="timing-summary">{sess?.meta?.start&&<b>{sess.meta.start}<small>Start</small></b>}{sess?.meta?.laps&&<b>{sess.meta.laps}<small>Laps</small></b>}{sess?.meta?.fastestLap&&<b>{sess.meta.fastestLap.time}<small>Fastest · {sess.meta.fastestLap.driver}</small></b>}</div><div className="classification-wrap"><table><thead><tr>{(sess?.headers||[]).map((h,i)=><th key={i}>{h||"#"}</th>)}</tr></thead><tbody>{(sess?.rows||[]).map((row,i)=><tr key={i}>{row.map((c,j)=><td key={j}>{c}</td>)}</tr>)}</tbody></table></div>{sess?.url&&<a className="button" href={sess.url} target="_blank" rel="noopener noreferrer">View original on Alpha Timing ↗</a>}</>}
+ </section>
+}
+function TSLResultsSeries({slug}){
+ const {data,loading,error}=useApi("/api/results/tsl/"+slug+"/events");
+ const [q,setQ]=useState("");
+ const events=(data?.events||[]).filter(e=>(e.title+" "+(e.track||"")+" "+(e.date||"")).toLowerCase().includes(q.toLowerCase()));
+ const name=data?.series?.name||tslSeries.find(x=>x.slug===slug)?.name||slug;
+ return <section><PageTitle kicker="TSL Timing" title={name.toUpperCase()} text="Choose a meeting to view the Superkart sessions and official results." action={<a className="button" href="#/results">All championships</a>}/>
+ <Filters><input placeholder="Search event or circuit…" value={q} onChange={e=>setQ(e.target.value)}/></Filters>
+ {loading?<Empty text="Loading TSL events…"/>:error?<div className="ai-blocked"><h3>Results unavailable</h3><p>{error}</p></div>:events.length?<div className="timing-event-list">{events.map(e=><a className="timing-event" href={"#/results/tsl/"+slug+"/event/"+e.id} key={e.id}><div><span>TSL Timing</span><h3>{e.title}</h3><p>{e.date} · {e.track}</p></div><b>View sessions →</b></a>)}</div>:<Empty text="No events found."/>}
+ </section>
+}
+function TSLResultsEvent({slug,eventId}){
+ const {data,loading,error}=useApi("/api/results/tsl/"+slug+"/event/"+eventId);
+ const ev=data?.event;
+ const sessions=data?.sessions||[];
+ return <section><PageTitle kicker="TSL Timing" title={(ev?.title||"Loading event").toUpperCase()} text={ev?ev.date+" · "+ev.track:"Practice, qualifying, grids and race results"} action={<a className="button" href={"#/results/tsl/"+slug}>Back to events</a>}/>
+ {loading?<Empty text="Loading sessions…"/>:error?<div className="ai-blocked"><h3>Event unavailable</h3><p>{error}</p></div>:sessions.length?<div className="session-list">{sessions.map((x,i)=><a className="session-row" href={x.url} target="_blank" rel="noopener noreferrer" key={x.url||i}><div className="session-no">{x.type.slice(0,1)}</div><div><div className="meta">{x.type}</div><h3>{x.name}</h3></div><b>Open official result ↗</b></a>)}</div>:<Empty text="No Superkart session links were found on the TSL event page."/>}
  </section>
 }
 function trackMatchesResult(track,result){
@@ -542,6 +566,8 @@ function App(){
  else if(parts[0]==="results"&&parts[1]==="alpha"&&parts[2]&&parts[3]==="event"&&parts[4]&&parts[5]==="session"&&parts[6]) page=<ResultsSession slug={parts[2]} eventId={parts[4]} sessionId={parts[6]}/>;
  else if(parts[0]==="results"&&parts[1]==="alpha"&&parts[2]&&parts[3]==="event"&&parts[4]) page=<ResultsEvent slug={parts[2]} eventId={parts[4]}/>;
  else if(parts[0]==="results"&&parts[1]==="alpha"&&parts[2]) page=<ResultsSeries slug={parts[2]}/>;
+ else if(parts[0]==="results"&&parts[1]==="tsl"&&parts[2]&&parts[3]==="event"&&parts[4]) page=<TSLResultsEvent slug={parts[2]} eventId={parts[4]}/>;
+ else if(parts[0]==="results"&&parts[1]==="tsl"&&parts[2]) page=<TSLResultsSeries slug={parts[2]}/>;
  else if(parts[0]==="results") page=<ResultsPage/>;
  else if(parts[0]==="tracks"&&parts[1]) page=<TrackDetail id={parts[1]}/>;
  else if(parts[0]==="tracks") page=<TracksPage/>;
