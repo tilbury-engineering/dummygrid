@@ -234,6 +234,15 @@ def main():
   needs_geo=not (t.get("address") and t.get("lat") is not None and t.get("long") is not None)
   if needs_geo:
    try:
+    if t.get("address") and (t.get("lat") is None or t.get("long") is None):
+     exact=geocode_exact_address(t["address"],t.get("country"))
+     if exact:
+      t["lat"]=round(float(exact["lat"]),7)
+      t["long"]=round(float(exact["lon"]),7)
+      t["locationVerifiedAt"]=datetime.now(timezone.utc).isoformat()
+      changed+=1
+      print(i,t["name"],"->",t["address"],"[verified address geocode]",flush=True)
+      continue
     gku=gku_lookup(t)
     if gku:
      if (gku.get("lat") is None or gku.get("long") is None) and gku.get("address"):
