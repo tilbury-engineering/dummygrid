@@ -7,7 +7,6 @@ import reverse_geocoder as rg
 import pycountry
 
 PUBLIC=Path("public/tracks.json")
-BUNDLED=Path("src/data/tracks.json")
 OVERPASS_ENDPOINTS=[
  "https://overpass-api.de/api/interpreter",
  "https://overpass.kumi.systems/api/interpreter",
@@ -198,9 +197,8 @@ def main():
  data["tracks"]=tracks
  data["updatedAt"]=time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime())
  data["globalImport"]={"source":"OpenStreetMap / Overpass","elements":len(raw),"added":added,"merged":merged}
- text=json.dumps(data,ensure_ascii=False,indent=2)+"\n"
+ text=json.dumps(data,ensure_ascii=False,separators=(",",":"))+"\n"
  PUBLIC.write_text(text,encoding="utf-8")
- BUNDLED.write_text(text,encoding="utf-8")
  print("added",added,"merged",merged,"total",len(tracks),flush=True)
 
 if __name__=="__main__":main()
