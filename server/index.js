@@ -201,7 +201,9 @@ const ALPHA_SERIES={
   bkc:{name:"The Kart Championship"},
   nkc:{name:"National Kart Cup"},
   accesskarting:{name:"Access Karting"},
-  wmkc:{name:"Whilton Mill Kart Club"}
+  wmkc:{name:"Whilton Mill Kart Club"},
+  wombwellkarting:{name:"Wombwell Karting"},
+  tattershall:{name:"Tattershall Karting Centre"}
 };
 async function fetchHtml(url){
  const r=await fetch(url,{headers:{"User-Agent":"Mozilla/5.0 (compatible; DummyGrid/1.0)"}});
