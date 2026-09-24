@@ -362,3 +362,15 @@ footer{
 .video-list{display:grid;gap:10px}.video-item{border:1px solid #e0e6ea;border-radius:14px;padding:14px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}.video-item small{display:block;color:#7a8790;margin-top:4px}.coaching-result{grid-column:1/-1;background:#f6fafb;border-radius:10px;padding:12px}.coaching-result p{white-space:pre-wrap;margin:6px 0 0;color:#40515a}.empty.compact{padding:18px;box-shadow:none}
 @media(max-width:900px){.auth-shell,.driver-hub-grid{grid-template-columns:1fr}}
 @media(max-width:680px){.auth-copy{padding:8px 2px}.auth-copy h2{font-size:30px}.two-inputs{grid-template-columns:1fr}.video-head{align-items:flex-start;flex-direction:column}.video-item{grid-template-columns:1fr}.coaching-result{grid-column:auto}}
+
+.results-list{display:grid;gap:10px}
+.result-row{display:grid;grid-template-columns:64px 1fr auto;gap:16px;align-items:center;background:#fff;border:1px solid #dfe5e9;border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+.result-place{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#e8fbf7,#e9f9fc);display:grid;place-items:center;font-weight:950;font-size:18px;color:#007f72}
+.result-main h3{margin:2px 0 2px;font-size:22px}.result-main p{margin:0;color:#34424a}.result-main small{color:#7a8790}
+.track-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.track-card{background:#fff;border:1px solid #dfe5e9;border-radius:18px;padding:20px;box-shadow:var(--shadow);display:flex;flex-direction:column;min-height:280px}
+.track-card h3{font-size:23px;line-height:1.1;margin:8px 0 6px}.track-card p{color:#68757e;margin:0 0 16px}
+.track-pin{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#00d9bd,#00cfe8);display:grid;place-items:center;font-size:24px;color:#062126;margin-bottom:14px}
+.track-actions{margin-top:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.track-actions small{color:#7a8790}
+@media(max-width:950px){.track-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.result-row{grid-template-columns:52px 1fr}.result-row>.button{grid-column:1/-1;width:100%}.track-grid{grid-template-columns:1fr}}
