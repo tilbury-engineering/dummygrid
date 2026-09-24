@@ -5,6 +5,7 @@ import OpenAI from "openai";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import * as cheerio from "cheerio";
+import pdfParse from "pdf-parse";
 import { spawn } from "node:child_process";
 import { mkdtemp, readFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
@@ -230,6 +231,44 @@ app.get("/api/results/tsl/:slug/event/:eventId",async(req,res)=>{
    }
    res.json({ok:true,event:{...event,url,provider:"TSL Timing"},sessions});
  }catch(err){console.error(err);res.status(502).json({ok:false,message:"Could not load TSL Timing event."})}
+});
+app.get("/api/results/tsl/:slug/event/:eventId/session/:sessionId",async(req,res)=>{
+ const series=TSL_SERIES[req.params.slug];
+ if(!series)return res.status(404).json({ok:false,message:"Unknown TSL championship."});
+ const event=series.events.find(e=>e.id===req.params.eventId);
+ if(!event)return res.status(404).json({ok:false,message:"Unknown TSL event."});
+ try{
+   const eventUrl="https://www.tsl-timing.com/event/"+event.id;
+   const html=await fetchHtml(eventUrl); const $=cheerio.load(html);
+   let section=null;
+   $("h3").each((_,h)=>{const t=$(h).text().replace(/\s+/g," ").trim(); if(!section && /superkart|british superkart/i.test(t)) section=$(h)});
+   const links=[];
+   const addLinks=root=>root.find("a").addBack("a").each((_,a)=>{
+     const label=$(a).text().replace(/\s+/g," ").trim(); const href=$(a).attr("href")||"";
+     if(!label||/pdf book/i.test(label)||!/(practice|qualifying|grid|race|result|points)/i.test(label))return;
+     const url=href.startsWith("http")?href:new URL(href,"https://www.tsl-timing.com").href;
+     if(!links.some(x=>x.url===url))links.push({name:label,url});
+   });
+   if(section){let node=section.next();while(node.length){if(node.is("h3"))break;addLinks(node);node=node.next()}if(!links.length)addLinks(section.parent())}
+   const selected=links[Number(req.params.sessionId)-1];
+   if(!selected)return res.status(404).json({ok:false,message:"Unknown TSL session."});
+   const upstream=await fetch(selected.url,{headers:{"User-Agent":"Mozilla/5.0 (compatible; DummyGrid/1.0)"}});
+   if(!upstream.ok)throw new Error("TSL session returned "+upstream.status);
+   const contentType=upstream.headers.get("content-type")||"";
+   let headers=[],rows=[],lines=[];
+   if(/pdf/i.test(contentType)||/\.pdf(?:$|\?)/i.test(selected.url)){
+     const parsed=await pdfParse(Buffer.from(await upstream.arrayBuffer()));
+     lines=parsed.text.split(/\r?\n/).map(x=>x.replace(/\s+/g," ").trim()).filter(Boolean);
+   }else{
+     const page=cheerio.load(await upstream.text());
+     const table=page("table").filter((_,t)=>page(t).find("th,td").length>=3).first();
+     headers=table.find("thead th").map((_,th)=>page(th).text().replace(/\s+/g," ").trim()).get();
+     table.find("tbody tr").each((_,tr)=>{const cells=page(tr).find("td").map((_,td)=>page(td).text().replace(/\s+/g," ").trim()).get();if(cells.length)rows.push(cells)});
+     if(!rows.length)lines=page("body").text().split(/\r?\n/).map(x=>x.replace(/\s+/g," ").trim()).filter(Boolean);
+   }
+   res.set("Cache-Control","public, max-age=3600, s-maxage=21600");
+   res.json({ok:true,session:{id:req.params.sessionId,title:selected.name,url:selected.url,headers,rows,lines}});
+ }catch(err){console.error(err);res.status(502).json({ok:false,message:"Could not load the TSL classification."})}
 });
 app.get("/api/results/alpha/series",(req,res)=>{
  res.json({ok:true,series:Object.entries(ALPHA_SERIES).map(([slug,v])=>({slug,name:v.name,provider:"Alpha Timing"}))});
