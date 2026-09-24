@@ -307,6 +307,27 @@ app.get("/api/results/alpha/:slug/e/:eventId/s/:sessionId",async(req,res)=>{
    res.json({ok:true,session:{id:sessionId,eventId,title,url,meta,headers,rows}});
  }catch(err){console.error(err);res.status(502).json({ok:false,message:"Could not load full session classification."})}
 });
+app.get("/api/what3words",async(req,res)=>{
+ const lat=Number(req.query.lat), lng=Number(req.query.lng);
+ if(!Number.isFinite(lat)||!Number.isFinite(lng)) return res.status(400).json({ok:false,message:"Valid lat/lng required."});
+ const key=process.env.WHAT3WORDS_API_KEY;
+ if(!key) return res.status(503).json({ok:false,message:"What3Words is not configured."});
+ try{
+   const url=new URL("https://api.what3words.com/v3/convert-to-3wa");
+   url.searchParams.set("coordinates",lat+","+lng);
+   url.searchParams.set("key",key);
+   url.searchParams.set("language","en");
+   const r=await fetch(url,{headers:{"Accept":"application/json"}});
+   const data=await r.json().catch(()=>({}));
+   if(!r.ok||!data.words) return res.status(r.status||502).json({ok:false,message:data?.error?.message||"What3Words lookup failed."});
+   res.set("Cache-Control","public, max-age=2592000, s-maxage=2592000");
+   res.json({ok:true,words:data.words,map:data.map||null,nearestPlace:data.nearestPlace||null,country:data.country||null});
+ }catch(err){
+   console.error(err);
+   res.status(500).json({ok:false,message:"What3Words lookup failed."});
+ }
+});
+
 app.get("/health",(req,res)=>res.json({ok:true,service:"dummygrid-api",ai:!!openai,database:!!pool,storage:!!process.env.S3_BUCKET}));
 
 app.post("/api/search", async (req,res)=>{
