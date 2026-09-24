@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-24T10:52:18.745942+00:00",
+  "updatedAt": "2026-09-24T11:40:41.888Z",
   "tracks": [
     {
       "id": "bolivar",
@@ -66,7 +66,10 @@
         "Australian Kart Championship"
       ],
       "website": "",
-      "source": "Karting Australia 2026 calendar"
+      "source": "Karting Australia 2026 calendar",
+      "address": "1005 Seymour-Tooborac Road, Hilldene VIC 3660, Australia",
+      "addressSource": "Eastern Lions Kart Club / Karting Victoria",
+      "locationSourceUrl": "https://elkc.com.au/rules-and-regulations/"
     },
     {
       "id": "townsville",
@@ -251,7 +254,10 @@
         "WSK"
       ],
       "website": "https://www.franciacortakartingtrack.com/",
-      "source": "WSK 2026 calendar"
+      "source": "WSK 2026 calendar",
+      "address": "Località Bargnana, 25030 Castrezzato BS, Italy",
+      "addressSource": "Franciacorta Karting Track official site",
+      "locationSourceUrl": "https://www.franciacortakartingtrack.com/contact/"
     },
     {
       "id": "viterbo",
@@ -265,7 +271,10 @@
         "WSK"
       ],
       "website": "https://www.leopardcircuit.com/",
-      "source": "FIA Karting / WSK 2026 calendars"
+      "source": "FIA Karting / WSK 2026 calendars",
+      "address": "Strada Cassia Nord Km 90+300, 01100 Viterbo VT, Italy",
+      "addressSource": "Leopard Circuit Viterbo official site",
+      "locationSourceUrl": "https://www.viterbocircuit.com/contatti"
     },
     {
       "id": "pista-azzurra",
@@ -319,7 +328,10 @@
         "WSK"
       ],
       "website": "https://www.laconca.com/",
-      "source": "FIA Karting 2026 calendar"
+      "source": "FIA Karting 2026 calendar",
+      "address": "S.S. 16 Maglie-Otranto Km 989, 73036 Muro Leccese LE, Italy",
+      "addressSource": "World Circuit La Conca official site",
+      "locationSourceUrl": "https://kartodromolaconca.com/"
     },
     {
       "id": "macau",
@@ -332,7 +344,10 @@
         "FIA Karting"
       ],
       "website": "",
-      "source": "FIA Karting 2026 calendar"
+      "source": "FIA Karting 2026 calendar",
+      "address": "Estrada de Seac Pai Van, Kartódromo de Coloane, Coloane, Macao",
+      "addressSource": "Macao Government Tourism Office / IAME",
+      "locationSourceUrl": "https://www.iame-motorsport.com/tracks_dett.php?id=133"
     },
     {
       "id": "lyl-malaysia",
@@ -345,7 +360,10 @@
         "FIA Karting"
       ],
       "website": "",
-      "source": "FIA Karting 2026 calendar"
+      "source": "FIA Karting 2026 calendar",
+      "address": "Monkeys Canopy Resort, Lot 683, Jalan Persiaran Bukit Enggang, Sungai Long Hill, Sungai Long, 43200 Cheras, Selangor, Malaysia",
+      "addressSource": "IAME / LYL International Karting Circuit",
+      "locationSourceUrl": "https://www.iame-motorsport.com/tracks_dett.php?id=127"
     },
     {
       "id": "slomczyn",
@@ -381,7 +399,10 @@
         "Portimao",
         "Portimão",
         "Kartodromo Internacional do Algarve"
-      ]
+      ],
+      "address": "Sítio do Escampadinho, Mexilhoeira Grande, 8500-148 Portimão, Portugal",
+      "addressSource": "Autódromo Internacional do Algarve official site",
+      "locationSourceUrl": "https://autodromodoalgarve.com/the-park/kartodromo/"
     },
     {
       "id": "zuera",
@@ -1353,7 +1374,10 @@
       "trackLengthM": 800,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Lower Clicker Road, Menheniot, Liskeard, Cornwall, PL14 3PJ, United Kingdom",
+      "addressSource": "Kartworld Cornwall directory / venue listing",
+      "locationSourceUrl": "https://www.appforcornwall.com/activities/adrenalin/kartworld"
     },
     {
       "id": "kartworld-extreme",
@@ -2682,7 +2706,10 @@
       "trackLengthM": 1000,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Bank Quay Trading Estate, 2 Slutchers Lane, Warrington, WA1 1PJ, United Kingdom",
+      "addressSource": "TeamSport official site",
+      "locationSourceUrl": "https://www.team-sport.co.uk/go-kart-tracks/warrington"
     },
     {
       "id": "teamsport-watford",
@@ -2696,7 +2723,10 @@
       "trackLengthM": 500,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Greatham Road Industrial Estate, Greatham Road, Bushey, WD23 2NZ, United Kingdom",
+      "addressSource": "TeamSport official site",
+      "locationSourceUrl": "https://www.team-sport.co.uk/go-kart-tracks/watford"
     },
     {
       "id": "teamworks-birmingham-city",
@@ -3089,7 +3119,10 @@
       "aliases": [
         "New Castle Motorsports Park",
         "NCMP"
-      ]
+      ],
+      "address": "5816 South County 125 West, New Castle, IN 47362, United States",
+      "addressSource": "New Castle Motorsports Park official site",
+      "locationSourceUrl": "https://newcastlemotorsportspark.com/contact"
     },
     {
       "id": "trackhouse",
