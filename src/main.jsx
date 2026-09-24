@@ -458,7 +458,7 @@ function trackMatchesResult(track,result){
 function TracksPage(){
  const {data,loading}=useRemoteJson("tracks.json",tracksSeed);
  const {data:resultsData}=useRemoteJson("results.json",{records:[],updatedAt:null});
- const [q,setQ]=useState(""); const [continent,setContinent]=useState("All"); const [country,setCountry]=useState("All"); const [series,setSeries]=useState("All"); const [venueType,setVenueType]=useState("All");
+ const [q,setQ]=useState(""); const [continent,setContinent]=useState("All"); const [country,setCountry]=useState("All"); const [series,setSeries]=useState("All"); const [venueType,setVenueType]=useState("All"); const [limit,setLimit]=useState(60);
  const tracks=data.tracks||[];
  const continents=[...new Set(tracks.map(t=>t.continent).filter(Boolean))].sort();
  const countries=[...new Set(tracks.map(t=>t.country).filter(Boolean))].sort();
@@ -467,9 +467,13 @@ function TracksPage(){
    const hay=(t.name+" "+t.city+" "+t.region+" "+t.country+" "+(t.series||[]).join(" ")).toLowerCase();
    return (continent==="All"||t.continent===continent)&&(country==="All"||t.country===country)&&(series==="All"||(t.series||[]).includes(series))&&(venueType==="All"||t.venueType===venueType)&&hay.includes(q.toLowerCase());
  });
- return <section><PageTitle kicker="Global circuit directory" title="KARTING TRACKS" text={loading?"Loading circuits…":"Search karting circuits by country, region, championship and track name."}/>
+ const visible=rows.slice(0,limit);
+ useEffect(()=>{setLimit(60)},[q,continent,country,series,venueType]);
+ const countryCount=new Set(tracks.map(t=>t.country).filter(Boolean)).size;
+ const continentCount=new Set(tracks.map(t=>t.continent).filter(Boolean)).size;
+ return <section><PageTitle kicker="Global circuit directory" title="KARTING TRACKS" text={loading?"Loading circuits…":tracks.length+" venues across "+countryCount+" countries and "+continentCount+" continents. Search by country, region, championship or track name."}/>
  <Filters><input placeholder="Search track, city or country…" value={q} onChange={e=>setQ(e.target.value)}/><select value={continent} onChange={e=>{setContinent(e.target.value);setCountry("All")}}><option>All</option>{continents.map(x=><option key={x}>{x}</option>)}</select><select value={country} onChange={e=>setCountry(e.target.value)}><option>All</option>{countries.filter(c=>continent==="All"||tracks.some(t=>t.country===c&&t.continent===continent)).map(x=><option key={x}>{x}</option>)}</select><select value={series} onChange={e=>setSeries(e.target.value)}><option>All</option>{seriesList.map(x=><option key={x}>{x}</option>)}</select><select value={venueType} onChange={e=>setVenueType(e.target.value)}><option>All</option><option>Outdoor</option><option>Indoor</option></select></Filters>
- {rows.length?<div className="track-grid">{rows.map(t=>{const count=(resultsData.records||[]).filter(r=>trackMatchesResult(t,r)).length;return <a className="track-card" href={"#/tracks/"+t.id} key={t.id}><div className="track-pin">⌖</div><div className="meta">{t.continent} · {t.country}{t.venueType?" · "+t.venueType:""}</div><h3>{t.name}</h3><p>{[t.city,t.region].filter(Boolean).join(", ")}</p><div className="product-tags">{(t.series||[]).map(x=><span key={x}>{x}</span>)}</div><div className="track-actions"><b className="link">View circuit →</b><small>{count} linked result{count===1?"":"s"}</small></div></a>})}</div>:<Empty text="No circuits match those filters."/>}
+ {rows.length?<><div className="track-directory-summary"><b>{rows.length}</b><span>matching venues</span><b>{countryCount}</b><span>countries indexed</span></div><div className="track-grid">{visible.map(t=>{const count=(resultsData.records||[]).filter(r=>trackMatchesResult(t,r)).length;return <a className="track-card" href={"#/tracks/"+t.id} key={t.id}><div className="track-pin">⌖</div><div className="meta">{t.continent} · {t.country}{t.venueType?" · "+t.venueType:""}</div><h3>{t.name}</h3><p>{[t.city,t.region].filter(Boolean).join(", ")}</p><div className="product-tags">{(t.series||[]).map(x=><span key={x}>{x}</span>)}</div><div className="track-actions"><b className="link">View circuit →</b><small>{count} linked result{count===1?"":"s"}</small></div></a>})}</div>{visible.length<rows.length&&<div className="load-more"><button className="button primary" onClick={()=>setLimit(x=>x+60)}>Load 60 more</button><small>Showing {visible.length} of {rows.length}</small></div>}</>:<Empty text="No circuits match those filters."/>}
  </section>
 }
 function TrackDetail({id}){
