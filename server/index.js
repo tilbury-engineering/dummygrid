@@ -260,6 +260,17 @@ app.get("/api/results/tsl/:slug/event/:eventId/session/:sessionId",async(req,res
    if(/pdf/i.test(contentType)||/\.pdf(?:$|\?)/i.test(selected.url)){
      const parsed=await pdfParse(Buffer.from(await upstream.arrayBuffer()));
      lines=parsed.text.split(/\r?\n/).map(x=>x.replace(/\s+/g," ").trim()).filter(Boolean);
+     const headerLine=lines.find(x=>/^POS NO CL PIC NAME ENTRY LAPS TIME GAP DIFF MPH BEST ON GRD/i.test(x));
+     if(headerLine){
+       headers=["Pos","No","Class","PIC","Driver / Entry","Laps","Time / Gap","Best"];
+       for(const line of lines){
+         if(/^NOT CLASSIFIED$/i.test(line)||/^FASTEST LAP$/i.test(line))break;
+         const m=line.match(/^(\d+)\s+(\S+)\s+(\S+)\s+(\d+)\s+(.+?)\s+(\d+)\s+(\d{1,2}:\d{2}\.\d{3})(?:\s+(.+?))?\s+(\d{1,2}:\d{2}\.\d{3})\s+(\d+)(?:\s+\d+\s+-?\d+)?$/);
+         if(!m)continue;
+         const tail=(m[8]||"").trim();
+         rows.push([m[1],m[2],m[3],m[4],m[5],m[6],m[7]+(tail?" · "+tail:""),m[9]+" (lap "+m[10]+")"]);
+       }
+     }
    }else{
      const page=cheerio.load(await upstream.text());
      const table=page("table").filter((_,t)=>page(t).find("th,td").length>=3).first();
