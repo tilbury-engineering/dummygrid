@@ -26,5 +26,20 @@ jobs:
         run: cd server && npm install
       - name: Check API startup syntax
         run: cd server && npm run check
+      - name: Smoke test API startup
+        run: |
+          cd server
+          PORT=10001 npm start > /tmp/dummygrid-api.log 2>&1 &
+          pid=$!
+          trap 'kill $pid 2>/dev/null || true' EXIT
+          for i in {1..15}; do
+            if curl --fail --silent http://127.0.0.1:10001/api/results/tsl/series > /tmp/dummygrid-smoke.json; then
+              cat /tmp/dummygrid-smoke.json
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/dummygrid-api.log
+          exit 1
       - name: Validate track directory
         run: python scripts/validate_global_tracks.py
