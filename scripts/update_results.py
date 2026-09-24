@@ -120,10 +120,158 @@ def wsk():
             })
     return rows
 
+
+def bkc():
+    url="https://www.motorsport-timing.co.uk/championship-standings/?tab=2026"
+    soup=BeautifulSoup(fetch(url),"html.parser")
+    rows=[]
+    # Motorsport Timing publishes championship tables by class. Take the leader of each visible 2026 table.
+    for heading in soup.find_all(["h2","h3","h4"]):
+        cls=clean(heading.get_text(" ",strip=True))
+        table=heading.find_next("table")
+        if not table: continue
+        trs=table.find_all("tr")
+        if len(trs)<2: continue
+        cells=[clean(x.get_text(" ",strip=True)) for x in trs[1].find_all(["th","td"])]
+        if len(cells)<2: continue
+        pos=cells[0]
+        if pos not in {"1","1st","P1"} and not pos.startswith("1"): continue
+        driver=cells[1]
+        pts=None
+        for c in reversed(cells):
+            m=re.search(r"\d+(?:\.\d+)?",c)
+            if m:
+                try: pts=float(m.group())
+                except: pass
+                break
+        if cls and driver and len(driver)>2:
+            rows.append({
+                "id":"bkc-2026-"+re.sub(r"[^a-z0-9]+","-",cls.lower()).strip("-"),
+                "type":"standings","year":2026,"region":"UK","country":"United Kingdom",
+                "championship":"British Kart Championships","round":"Championship standings","event":"2026 season",
+                "date":datetime.now(timezone.utc).date().isoformat(),"className":cls,"position":1,"driver":driver,
+                "points":pts,"source":"Motorsport Timing UK","sourceUrl":url
+            })
+    return rows
+
+def rok_italia():
+    url="https://italy.rokcup.com/classifiche_campionato_en.php?anno=2026"
+    soup=BeautifulSoup(fetch(url),"html.parser")
+    rows=[]
+    for heading in soup.find_all(["h2","h3"]):
+        cls=clean(heading.get_text(" ",strip=True))
+        if "ROK" not in cls.upper(): continue
+        node=heading
+        text=""
+        for sib in heading.find_all_next(limit=18):
+            if sib is not heading and sib.name in ["h2","h3"]: break
+            text += " "+clean(sib.get_text(" ",strip=True))
+        m=re.search(r"(?:^|\s)1\s+([A-Za-zÀ-ÿ' .-]{3,50}?)\s+(\d{2,4})(?:\s|$)",clean(text))
+        if not m: continue
+        rows.append({
+            "id":"rok-italia-2026-"+re.sub(r"[^a-z0-9]+","-",cls.lower()).strip("-"),
+            "type":"standings","year":2026,"region":"Europe","country":"Italy",
+            "championship":"ROK Cup Italia","round":"Championship standings","event":"2026 season",
+            "date":datetime.now(timezone.utc).date().isoformat(),"className":cls,"position":1,
+            "driver":clean(m.group(1)),"points":int(m.group(2)),"source":"ROK Cup Italia","sourceUrl":url
+        })
+    return rows
+
+def rotax_asia():
+    url="https://www.rotax-racing.com/news/rmc-international-trophy-asia-review"
+    text=clean(BeautifulSoup(fetch(url),"html.parser").get_text(" ",strip=True))
+    pairs=[
+        ("Micro MAX","Daniel Yoon"),("Mini MAX","Alfie Mair"),("Junior MAX","Peerapongpan Sutumno"),
+        ("Senior MAX","You De Lu"),("Senior MAX Masters","Murai Kensuke"),("DD2","Ragnar Veerus"),("DD2 Masters","Jan Vonzanok")
+    ]
+    rows=[]
+    for cls,driver in pairs:
+        if driver.lower() not in text.lower(): continue
+        rows.append({
+            "id":"rotax-asia-2026-"+re.sub(r"[^a-z0-9]+","-",cls.lower()).strip("-"),
+            "type":"event","year":2026,"region":"Asia","country":"Macao",
+            "championship":"RMC International Trophy Asia","round":"Final","event":"Coloane Kart Circuit",
+            "date":"2026-01-25","className":cls,"position":1,"driver":driver,
+            "source":"Rotax Racing","sourceUrl":url
+        })
+    return rows
+
+def rotax_euro():
+    url="https://www.rotaxmaxchallenge-eurotrophy.com/news/champions-crowned-as-rmc-euro-trophy-season-concludes-at-trinec"
+    text=clean(BeautifulSoup(fetch(url),"html.parser").get_text(" ",strip=True))
+    pairs=[
+        ("Junior MAX","Zdenek Babicek"),("Senior MAX","Jeremy Reuvers"),
+        ("DD2","Jakub Bezel"),("DD2 Masters","Nicolas Picot")
+    ]
+    rows=[]
+    for cls,driver in pairs:
+        if driver.lower() not in text.lower(): continue
+        rows.append({
+            "id":"rmcet-2026-"+re.sub(r"[^a-z0-9]+","-",cls.lower()).strip("-"),
+            "type":"standings","year":2026,"region":"Europe","country":"International",
+            "championship":"RMC Euro Trophy","round":"Championship standings","event":"2026 season",
+            "date":"2026-09-14","className":cls,"position":1,"driver":driver,
+            "source":"RMC Euro Trophy","sourceUrl":url
+        })
+    return rows
+
+def iame_euro():
+    url="https://cek.rfeda.es/"
+    text=clean(BeautifulSoup(fetch(url),"html.parser").get_text(" ",strip=True))
+    pairs=[("X30 Mini","Ilyas Sami"),("X30 Junior","Ivan Gonzalez"),("X30 Senior","Aaron Garcia")]
+    rows=[]
+    for cls,driver in pairs:
+        # RFEDA reports the 2026 IAME Euro Series champions on its official karting page.
+        if driver.split()[0].lower() not in text.lower(): continue
+        rows.append({
+            "id":"iame-euro-2026-"+re.sub(r"[^a-z0-9]+","-",cls.lower()).strip("-"),
+            "type":"standings","year":2026,"region":"Europe","country":"International",
+            "championship":"IAME Euro Series","round":"Championship standings","event":"2026 season",
+            "date":"2026-08-29","className":cls,"position":1,"driver":driver,
+            "source":"RFEDA / IAME Euro Series","sourceUrl":url
+        })
+    return rows
+
+def cotf():
+    url="https://www.rfeda.es/noticias/c/0/i/98008483/daniel-miron-campeon-de-la-champions-future-euro-series"
+    text=clean(BeautifulSoup(fetch(url),"html.parser").get_text(" ",strip=True))
+    rows=[]
+    if "Daniel Mir" in text:
+        rows.append({
+            "id":"cotf-2026-ok-junior","type":"standings","year":2026,"region":"Europe","country":"International",
+            "championship":"Champions of the Future Euro Series","round":"Championship standings","event":"2026 season",
+            "date":"2026-09-12","className":"OK Junior","position":1,"driver":"Daniel Miron",
+            "source":"RFEDA / Champions of the Future","sourceUrl":url
+        })
+    # Noah Baglin won the Mulsen OK final; include the verified event result from the RGMMC/Kartcom results service.
+    kurl="https://www.kartcom.com/en/competitions/2026/1784577-champions-of-the-future/results/"
+    try:
+        ktext=clean(BeautifulSoup(fetch(kurl),"html.parser").get_text(" ",strip=True))
+        if "Baglin Noah" in ktext:
+            rows.append({
+                "id":"cotf-2026-mulsen-ok","type":"event","year":2026,"region":"Europe","country":"Germany",
+                "championship":"Champions of the Future Euro Series","round":"Round 3","event":"Motorsportarena Mülsen",
+                "date":"2026-06-06","className":"OK","position":1,"driver":"Noah Baglin",
+                "source":"Kartcom / RGMMC","sourceUrl":kurl
+            })
+    except Exception:
+        pass
+    return rows
 def main():
     data=load_existing()
     records=data.get("records",[])
-    for source,fn in [("Karting Australia",australia),("Superkarts! USA",skusa),("FIA Karting",fia),("WSK Promotion",wsk)]:
+    for source,fn in [
+        ("Karting Australia",australia),
+        ("Superkarts! USA",skusa),
+        ("FIA Karting",fia),
+        ("WSK Promotion",wsk),
+        ("Motorsport Timing UK",bkc),
+        ("ROK Cup Italia",rok_italia),
+        ("Rotax Racing",rotax_asia),
+        ("RMC Euro Trophy",rotax_euro),
+        ("RFEDA / IAME Euro Series",iame_euro),
+        ("RFEDA / Champions of the Future",cotf)
+    ]:
         try:
             fresh=fn()
             if fresh: records=replace_source(records,source,fresh)
