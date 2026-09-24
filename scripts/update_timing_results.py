@@ -136,31 +136,42 @@ def main():
    out["providers"]["alpha"][slug]=prev
    continue
   print(" events",len(events),flush=True)
-  # Most recent 6 race/testing meetings per series; older cached entries remain.
+  # Keep previously indexed meetings, then scan current Alpha event links until
+  # we have six completed 2026 meetings with actual sessions.
   prev_series=old.get("providers",{}).get("alpha",{}).get(slug,{"events":{}})
   event_map=dict(prev_series.get("events",{}))
-  for e in events[:6]:
-   eid=e["id"]
+  completed=0
+  checked=0
+  for e in events[:40]:
+   if completed>=6: break
+   eid=e["id"]; checked+=1
    print("  event",eid,e["title"][:60],flush=True)
    try: ev=parse_event(slug,eid)
    except Exception as ex:
     print("   sessions failed",ex,flush=True);continue
+   # Only retain current-season completed/result-bearing meetings.
+   if not ((ev.get("dateStart") or "").endswith("/2026")):
+    print("   skip non-2026",ev.get("dateStart"),flush=True);continue
+   if not ev["sessions"]:
+    print("   skip no sessions",flush=True);continue
+   completed+=1
    print("   sessions",len(ev["sessions"]),flush=True)
    old_sessions=event_map.get(eid,{}).get("sessionData",{})
    sess_data=dict(old_sessions)
-   for n,s in enumerate(ev["sessions"]):
-    sid=s["id"]
+   for n,sess in enumerate(ev["sessions"]):
+    sid=sess["id"]
     if sid in sess_data and sess_data[sid].get("rows"):
      continue
     try:
-     sd=parse_session(slug,eid,sid,s.get("url"))
+     sd=parse_session(slug,eid,sid,sess.get("url"))
      sess_data[sid]=sd
-     if n%10==0: print("    parsed",n+1,"/",len(ev["sessions"]),flush=True)
+     if n%10==0: print("    parsed",n+1,"/",len(ev["sessions"]),"rows",len(sd.get("rows",[])),flush=True)
     except Exception as ex:
      print("    session",sid,"failed",ex,flush=True)
-    time.sleep(.05)
+    time.sleep(.04)
    ev["sessionData"]=sess_data
    event_map[eid]=ev
+  print(" completed meetings",completed,"checked",checked,flush=True)
   out["providers"]["alpha"][slug]={"name":name,"events":event_map}
  OUT.write_text(json.dumps(out,ensure_ascii=False,separators=(",",":")))
  print("\nwrote",OUT,OUT.stat().st_size,"bytes",flush=True)
