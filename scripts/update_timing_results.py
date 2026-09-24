@@ -128,6 +128,7 @@ def parse_session(slug,eid,sid,url=None):
    if cells:rows.append(cells)
  return {"id":str(sid),"eventId":str(eid),"title":title or "Session result","url":url,"meta":meta,"headers":headers,"rows":rows}
 
+# Each run advances the archive by one completed meeting per Alpha series.
 def main():
  old=load_existing()
  out={"updatedAt":datetime.now(timezone.utc).isoformat(),"providers":{"alpha":{}}}
