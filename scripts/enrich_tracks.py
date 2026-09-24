@@ -8,7 +8,6 @@ import requests
 from bs4 import BeautifulSoup
 
 PUBLIC=Path("public/tracks.json")
-BUNDLED=Path("src/data/tracks.json")
 UA={"User-Agent":"DummyGridTrackEnricher/1.0 (https://github.com/tilbury-engineering/dummygrid)"}
 NOMINATIM="https://nominatim.openstreetmap.org/search"
 NOMINATIM_REVERSE="https://nominatim.openstreetmap.org/reverse"
@@ -29,10 +28,9 @@ def load():
  return json.loads(PUBLIC.read_text(encoding="utf-8"))
 
 def save(data):
- text=json.dumps(data,ensure_ascii=False,indent=2)+"\n"
+ text=json.dumps(data,ensure_ascii=False,separators=(",",":"))+"\n"
  PUBLIC.write_text(text,encoding="utf-8")
- BUNDLED.parent.mkdir(parents=True,exist_ok=True)
- BUNDLED.write_text(text,encoding="utf-8")
+
 
 def norm(text):
  return re.sub(r"[^a-z0-9]+"," ",(text or "").lower()).strip()
