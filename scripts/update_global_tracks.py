@@ -216,8 +216,7 @@ def main():
   country=country_name(cc) if cc else "Unknown"
   city=tags.get("addr:city") or tags.get("addr:town") or tags.get("addr:village") or g.get("name") or ""
   region=tags.get("addr:state") or g.get("admin1") or ""
-  website=tags.get("website") or tags.get("contact:website") or ""
-  addr=address_from_tags(tags)
+  website=tags.get("website") or tags.get("contact:website") or ""\n  image=tags.get("image") or ""\n  wikimedia=tags.get("wikimedia_commons") or ""\n  addr=address_from_tags(tags)
   src=osm_url(el)
   if dup:
    # Never overwrite curated/verified values; only fill gaps.
@@ -225,8 +224,7 @@ def main():
    if not dup.get("city") and city:dup["city"]=city
    if not dup.get("region") and region:dup["region"]=region
    if not dup.get("country") and country!="Unknown":dup["country"]=country
-   if not dup.get("continent") and cc:dup["continent"]=continent_name(cc)
-   dup.setdefault("osmSource",src)
+   if not dup.get("continent") and cc:dup["continent"]=continent_name(cc)\n   if not dup.get("images") and image:dup["images"]=[{"url":image,"credit":"OpenStreetMap-linked venue image","sourceUrl":src}]\n   if wikimedia:dup.setdefault("wikimediaCommons",wikimedia)\n   dup.setdefault("osmSource",src)
    merged+=1
    continue
 
@@ -240,8 +238,7 @@ def main():
    "continent":continent_name(cc),"series":[],"website":website,
    "source":"OpenStreetMap global karting import","osmSource":src,
    "address":addr,"lat":round(lat,7),"long":round(lon,7),
-   "addressSource":"OpenStreetMap" if addr else "",
-   "venueType":classify(tags),"kartType":"Unknown"
+   "addressSource":"OpenStreetMap" if addr else "",\n   "images":[{"url":image,"credit":"OpenStreetMap-linked venue image","sourceUrl":src}] if image else [],\n   "wikimediaCommons":wikimedia,\n   "venueType":classify(tags),"kartType":"Unknown"
   }
   tracks.append(rec);added+=1
 
