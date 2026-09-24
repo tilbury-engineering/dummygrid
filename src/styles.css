@@ -406,3 +406,9 @@ footer{
 .classification-wrap tbody tr:nth-child(1){font-weight:900;background:#f2fbf8}
 @media(max-width:900px){.results-series-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:680px){.results-series-grid{grid-template-columns:1fr}.timing-event{align-items:flex-start;flex-direction:column}.session-row{grid-template-columns:44px 1fr}.session-row>b{grid-column:1/-1}.session-no{width:40px;height:40px}}
+
+.track-directory-summary{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 16px;color:#6f7c84;font-size:13px}
+.track-directory-summary b{font-size:18px;color:#12181d;margin-left:10px}
+.track-directory-summary b:first-child{margin-left:0}
+.load-more{display:flex;align-items:center;justify-content:center;gap:14px;margin:22px 0 4px;flex-wrap:wrap}
+.load-more small{color:#74818a}
