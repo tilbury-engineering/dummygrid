@@ -5,12 +5,16 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlencode
 import requests
+from bs4 import BeautifulSoup
 
 PUBLIC=Path("public/tracks.json")
 BUNDLED=Path("src/data/tracks.json")
 UA={"User-Agent":"DummyGridTrackEnricher/1.0 (https://github.com/tilbury-engineering/dummygrid)"}
 NOMINATIM="https://nominatim.openstreetmap.org/search"
 W3W="https://api.what3words.com/v3/convert-to-3wa"
+GKU_BASE="https://gokartinguk.com"
+GKU_BROWSE=GKU_BASE+"/browse-location/"
+_gku_index=None
 COUNTRY_CODES={
  "United Kingdom":"gb","United States":"us","Australia":"au","Belgium":"be","Brazil":"br",
  "Czech Republic":"cz","France":"fr","Germany":"de","Italy":"it","Macao":"mo","Malaysia":"my",
@@ -31,6 +35,81 @@ def save(data):
 
 def norm(text):
  return re.sub(r"[^a-z0-9]+"," ",(text or "").lower()).strip()
+
+def _walk_json(obj):
+ if isinstance(obj,dict):
+  yield obj
+  for v in obj.values():yield from _walk_json(v)
+ elif isinstance(obj,list):
+  for v in obj:yield from _walk_json(v)
+
+def gku_index():
+ global _gku_index
+ if _gku_index is not None:return _gku_index
+ try:
+  r=session.get(GKU_BROWSE,timeout=30);r.raise_for_status()
+  soup=BeautifulSoup(r.text,"html.parser")
+  idx=[]
+  for a in soup.find_all("a",href=True):
+   href=a.get("href") or ""
+   if "/tracks/" not in href:continue
+   name=" ".join(a.stripped_strings).strip()
+   if not name:continue
+   idx.append({"name":name,"norm":norm(name),"url":href if href.startswith("http") else GKU_BASE+href})
+  _gku_index=idx
+ except Exception as e:
+  print(" GoKartingUK index failed",e,flush=True)
+  _gku_index=[]
+ return _gku_index
+
+def gku_lookup(track):
+ if track.get("country")!="United Kingdom":return None
+ names=[track.get("name") or "",*(track.get("aliases") or [])]
+ norms=[norm(x) for x in names if x]
+ best=None;best_score=0
+ for item in gku_index():
+  score=max(SequenceMatcher(None,n,item["norm"]).ratio() for n in norms)
+  # Prefer exact containment for common directory naming differences.
+  if any(n and (n in item["norm"] or item["norm"] in n) for n in norms):score+=0.35
+  if score>best_score:
+   best_score=score;best=item
+ if not best or best_score<0.72:return None
+ try:
+  r=session.get(best["url"],timeout=30);r.raise_for_status()
+  soup=BeautifulSoup(r.text,"html.parser")
+  address=None;lat=None;lon=None
+  for tag in soup.find_all("script",type="application/ld+json"):
+   try:data=json.loads(tag.string or tag.get_text())
+   except:continue
+   for obj in _walk_json(data):
+    if address is None and isinstance(obj.get("address"),dict):
+     a=obj["address"]
+     vals=[a.get("streetAddress"),a.get("addressLocality"),a.get("addressRegion"),a.get("postalCode"),a.get("addressCountry")]
+     vals=[str(x).strip() for x in vals if x]
+     if len(vals)>=2:address=", ".join(dict.fromkeys(vals))
+    geo=obj.get("geo")
+    if isinstance(geo,dict):
+     try:
+      lat=float(geo.get("latitude"));lon=float(geo.get("longitude"))
+     except:pass
+  # Fallback to explicit geo attributes/JS if present.
+  if lat is None or lon is None:
+   txt=r.text
+   mlat=re.search(r'(?:latitude|lat)["\'\s:=]+(-?\d{1,3}\.\d+)',txt,re.I)
+   mlon=re.search(r'(?:longitude|lng|lon)["\'\s:=]+(-?\d{1,3}\.\d+)',txt,re.I)
+   if mlat and mlon:
+    lat=float(mlat.group(1));lon=float(mlon.group(1))
+  if not address:
+   text=" ".join(soup.stripped_strings)
+   pc=re.search(r"\b([A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2})\b",text,re.I)
+   # Only use this fallback as a partial postal address, never invent a street.
+   if pc:
+    address=", ".join([x for x in [track.get("city"),track.get("region"),pc.group(1).upper(),"United Kingdom"] if x])
+  if address or (lat is not None and lon is not None):
+   return {"address":address,"lat":lat,"long":lon,"source":"GoKartingUK verified venue listing","url":best["url"]}
+ except Exception as e:
+  print(" GoKartingUK lookup failed",track.get("name"),e,flush=True)
+ return None
 
 def query_variants(track):
  name=track.get("name") or ""
@@ -126,17 +205,28 @@ def main():
   needs_geo=not (t.get("address") and t.get("lat") is not None and t.get("long") is not None)
   if needs_geo:
    try:
-    row=geocode(t)
-    if row:
-     t["address"]=format_address(row)
-     t["lat"]=round(float(row["lat"]),7)
-     t["long"]=round(float(row["lon"]),7)
-     t["addressSource"]="OpenStreetMap / Nominatim"
+    gku=gku_lookup(t)
+    if gku and gku.get("address") and gku.get("lat") is not None and gku.get("long") is not None:
+     t["address"]=gku["address"]
+     t["lat"]=round(float(gku["lat"]),7)
+     t["long"]=round(float(gku["long"]),7)
+     t["addressSource"]=gku["source"]
+     t["locationSourceUrl"]=gku["url"]
      t["locationVerifiedAt"]=datetime.now(timezone.utc).isoformat()
      changed+=1
-     print(i,t["name"],"->",t["address"],flush=True)
+     print(i,t["name"],"->",t["address"],"[GoKartingUK]",flush=True)
     else:
-     print(i,t["name"],"NO MATCH",flush=True)
+     row=geocode(t)
+     if row:
+      t["address"]=format_address(row)
+      t["lat"]=round(float(row["lat"]),7)
+      t["long"]=round(float(row["lon"]),7)
+      t["addressSource"]="OpenStreetMap / Nominatim"
+      t["locationVerifiedAt"]=datetime.now(timezone.utc).isoformat()
+      changed+=1
+      print(i,t["name"],"->",t["address"],flush=True)
+     else:
+      print(i,t["name"],"NO MATCH",flush=True)
    except Exception as e:
     print(i,t["name"],"geocode failed",e,flush=True)
    time.sleep(1.05)
