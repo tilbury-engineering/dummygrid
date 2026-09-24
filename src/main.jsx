@@ -4,6 +4,7 @@ import "./styles.css";
 import tracksSeed from "./data/tracks.json";
 
 const DUMMYGRID_LOGO = (import.meta.env.BASE_URL || "/") + "dummygrid-logo.svg";
+const DUMMYGRID_API = "https://dummygrid-api.onrender.com";
 
 const regions = ["UK","Europe","USA","Australia","Global"];
 const demoNews = [
