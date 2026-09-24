@@ -447,7 +447,14 @@ function TSLResultsEvent({slug,eventId}){
  const ev=data?.event;
  const sessions=data?.sessions||[];
  return <section><PageTitle kicker="TSL Timing" title={(ev?.title||"Loading event").toUpperCase()} text={ev?ev.date+" · "+ev.track:"Practice, qualifying, grids and race results"} action={<a className="button" href={"#/results/tsl/"+slug}>Back to events</a>}/>
- {loading?<Empty text="Loading sessions…"/>:error?<div className="ai-blocked"><h3>Event unavailable</h3><p>{error}</p></div>:sessions.length?<div className="session-list">{sessions.map((x,i)=><a className="session-row" href={x.url} target="_blank" rel="noopener noreferrer" key={x.url||i}><div className="session-no">{x.type.slice(0,1)}</div><div><div className="meta">{x.type}</div><h3>{x.name}</h3></div><b>Open official result ↗</b></a>)}</div>:<Empty text="No Superkart session links were found on the TSL event page."/>}
+ {loading?<Empty text="Loading sessions…"/>:error?<div className="ai-blocked"><h3>Event unavailable</h3><p>{error}</p></div>:sessions.length?<div className="session-list">{sessions.map((x,i)=><a className="session-row" href={"#/results/tsl/"+slug+"/event/"+eventId+"/session/"+x.id} key={x.url||i}><div className="session-no">{x.type.slice(0,1)}</div><div><div className="meta">{x.type}</div><h3>{x.name}</h3></div><b>Full result →</b></a>)}</div>:<Empty text="No Superkart session links were found on the TSL event page."/>}
+ </section>
+}
+function TSLResultsSession({slug,eventId,sessionId}){
+ const {data,loading,error}=useApi("/api/results/tsl/"+slug+"/event/"+eventId+"/session/"+sessionId);
+ const sess=data?.session;
+ return <section><PageTitle kicker="Full classification" title={(sess?.title||"TSL SESSION RESULT").toUpperCase()} text="Official TSL Timing classification, displayed inside DummyGrid." action={<a className="button" href={"#/results/tsl/"+slug+"/event/"+eventId}>Back to event</a>}/>
+ {loading?<Empty text="Loading full classification…"/>:error?<div className="ai-blocked"><h3>Classification unavailable</h3><p>{error}</p></div>:sess?<>{sess.rows?.length?<div className="classification-wrap"><table>{sess.headers?.length>0&&<thead><tr>{sess.headers.map((h,i)=><th key={i}>{h||"#"}</th>)}</tr></thead>}<tbody>{sess.rows.map((row,i)=><tr key={i}>{row.map((c,j)=><td key={j}>{c}</td>)}</tr>)}</tbody></table></div>:sess.lines?.length?<div className="panel tsl-text-result">{sess.lines.map((line,i)=><p key={i}>{line}</p>)}</div>:<Empty text="TSL published the session, but no classification text could be extracted."/>}{sess.url&&<a className="button" href={sess.url} target="_blank" rel="noopener noreferrer">View original on TSL Timing ↗</a>}</>:<Empty text="This TSL classification is not available."/>}
  </section>
 }
 function trackMatchesResult(track,result){
@@ -605,7 +612,7 @@ function App(){
  else if(parts[0]==="results"&&parts[1]==="alpha"&&parts[2]&&parts[3]==="event"&&parts[4]&&parts[5]==="session"&&parts[6]) page=<ResultsSession slug={parts[2]} eventId={parts[4]} sessionId={parts[6]}/>;
  else if(parts[0]==="results"&&parts[1]==="alpha"&&parts[2]&&parts[3]==="event"&&parts[4]) page=<ResultsEvent slug={parts[2]} eventId={parts[4]}/>;
  else if(parts[0]==="results"&&parts[1]==="alpha"&&parts[2]) page=<ResultsSeries slug={parts[2]}/>;
- else if(parts[0]==="results"&&parts[1]==="tsl"&&parts[2]&&parts[3]==="event"&&parts[4]) page=<TSLResultsEvent slug={parts[2]} eventId={parts[4]}/>;
+ else if(parts[0]==="results"&&parts[1]==="tsl"&&parts[2]&&parts[3]==="event"&&parts[4]&&parts[5]==="session"&&parts[6]) page=<TSLResultsSession slug={parts[2]} eventId={parts[4]} sessionId={parts[6]}/>;\n else if(parts[0]==="results"&&parts[1]==="tsl"&&parts[2]&&parts[3]==="event"&&parts[4]) page=<TSLResultsEvent slug={parts[2]} eventId={parts[4]}/>;
  else if(parts[0]==="results"&&parts[1]==="tsl"&&parts[2]) page=<TSLResultsSeries slug={parts[2]}/>;
  else if(parts[0]==="results") page=<ResultsPage/>;
  else if(parts[0]==="tracks"&&parts[1]) page=<TrackDetail id={parts[1]}/>;
