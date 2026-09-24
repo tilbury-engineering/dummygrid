@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-24T11:42:25.012143+00:00",
+  "updatedAt": "2026-09-24T11:44:43.125Z",
   "tracks": [
     {
       "id": "bolivar",
@@ -260,7 +260,10 @@
       "source": "WSK 2026 calendar",
       "address": "Località Bargnana, 25030 Castrezzato BS, Italy",
       "addressSource": "Franciacorta Karting Track official site",
-      "locationSourceUrl": "https://www.franciacortakartingtrack.com/contact/"
+      "locationSourceUrl": "https://www.franciacortakartingtrack.com/contact/",
+      "lat": 45.51417,
+      "long": 10.000616,
+      "coordinateSource": "Motornext / FIA karting venue data"
     },
     {
       "id": "viterbo",
@@ -277,7 +280,10 @@
       "source": "FIA Karting / WSK 2026 calendars",
       "address": "Strada Cassia Nord Km 90+300, 01100 Viterbo VT, Italy",
       "addressSource": "Leopard Circuit Viterbo official site",
-      "locationSourceUrl": "https://www.viterbocircuit.com/contatti"
+      "locationSourceUrl": "https://www.viterbocircuit.com/contatti",
+      "lat": 42.4856,
+      "long": 12.0694,
+      "coordinateSource": "Kart-Center / official Leopard Circuit address"
     },
     {
       "id": "pista-azzurra",
@@ -334,7 +340,10 @@
       "source": "FIA Karting 2026 calendar",
       "address": "S.S. 16 Maglie-Otranto Km 989, 73036 Muro Leccese LE, Italy",
       "addressSource": "World Circuit La Conca official site",
-      "locationSourceUrl": "https://kartodromolaconca.com/"
+      "locationSourceUrl": "https://kartodromolaconca.com/",
+      "lat": 40.1266667,
+      "long": 18.3502778,
+      "coordinateSource": "Kartcom circuit guide GPS"
     },
     {
       "id": "macau",
@@ -350,7 +359,10 @@
       "source": "FIA Karting 2026 calendar",
       "address": "Estrada de Seac Pai Van, Kartódromo de Coloane, Coloane, Macao",
       "addressSource": "Macao Government Tourism Office / IAME",
-      "locationSourceUrl": "https://www.iame-motorsport.com/tracks_dett.php?id=133"
+      "locationSourceUrl": "https://www.iame-motorsport.com/tracks_dett.php?id=133",
+      "lat": 22.13279,
+      "long": 113.56118,
+      "coordinateSource": "OpenStreetMap / Mapcarta"
     },
     {
       "id": "lyl-malaysia",
@@ -366,7 +378,10 @@
       "source": "FIA Karting 2026 calendar",
       "address": "Monkeys Canopy Resort, Lot 683, Jalan Persiaran Bukit Enggang, Sungai Long Hill, Sungai Long, 43200 Cheras, Selangor, Malaysia",
       "addressSource": "IAME / LYL International Karting Circuit",
-      "locationSourceUrl": "https://www.iame-motorsport.com/tracks_dett.php?id=127"
+      "locationSourceUrl": "https://www.iame-motorsport.com/tracks_dett.php?id=127",
+      "lat": 3.052,
+      "long": 101.84608,
+      "coordinateSource": "OpenStreetMap / Mapcarta"
     },
     {
       "id": "slomczyn",
@@ -405,7 +420,10 @@
       ],
       "address": "Sítio do Escampadinho, Mexilhoeira Grande, 8500-148 Portimão, Portugal",
       "addressSource": "Autódromo Internacional do Algarve official site",
-      "locationSourceUrl": "https://autodromodoalgarve.com/the-park/kartodromo/"
+      "locationSourceUrl": "https://autodromodoalgarve.com/the-park/kartodromo/",
+      "lat": 37.23327,
+      "long": -8.63579,
+      "coordinateSource": "OpenStreetMap / Mapcarta"
     },
     {
       "id": "zuera",
@@ -1380,7 +1398,10 @@
       "directorySource": "https://gokartinguk.com/browse-location/",
       "address": "Lower Clicker Road, Menheniot, Liskeard, Cornwall, PL14 3PJ, United Kingdom",
       "addressSource": "Kartworld Cornwall directory / venue listing",
-      "locationSourceUrl": "https://www.appforcornwall.com/activities/adrenalin/kartworld"
+      "locationSourceUrl": "https://www.appforcornwall.com/activities/adrenalin/kartworld",
+      "lat": 50.42702,
+      "long": -4.42,
+      "coordinateSource": "OpenStreetMap / Mapcarta"
     },
     {
       "id": "kartworld-extreme",
@@ -3131,7 +3152,10 @@
       ],
       "address": "5816 South County 125 West, New Castle, IN 47362, United States",
       "addressSource": "New Castle Motorsports Park official site",
-      "locationSourceUrl": "https://newcastlemotorsportspark.com/contact"
+      "locationSourceUrl": "https://newcastlemotorsportspark.com/contact",
+      "lat": 39.8504,
+      "long": -85.4095,
+      "coordinateSource": "New Castle Motorsports Park track data"
     },
     {
       "id": "trackhouse",
