@@ -160,7 +160,8 @@ const TSL_SERIES={
     name:"British Superkart Racing Club / Superkart Super Series",
     events:[
       {id:"261479",title:"BMCRC-MRO Championships - Round 2",track:"Oulton Park",date:"3rd/4th April 2026"},
-      {id:"261979",title:"BMCRC-MRO Championships - Round 3",track:"Donington Park",date:"9th/10th May 2026"}
+      {id:"261979",title:"BMCRC-MRO Championships - Round 3",track:"Donington Park",date:"9th/10th May 2026"},
+      {id:"263679",title:"BMCRC - MRO Championships - Round 8",track:"Snetterton 300",date:"5th/6th September 2026"}
     ]
   }
 };
