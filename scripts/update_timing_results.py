@@ -20,7 +20,17 @@ SERIES={
 session=requests.Session();session.headers.update(UA)
 
 def get(url):
- r=session.get(url,timeout=30);r.raise_for_status();return r.text
+ for attempt in range(6):
+  r=session.get(url,timeout=30)
+  if r.status_code==429:
+   wait=2.5*(attempt+1)
+   print(" rate limited; sleeping",wait,"sec",flush=True)
+   time.sleep(wait)
+   continue
+  r.raise_for_status()
+  time.sleep(.65)
+  return r.text
+ raise RuntimeError("Alpha Timing rate limit persisted for "+url)
 
 def clean(x): return re.sub(r"\s+"," ",x or "").strip()
 
@@ -31,24 +41,22 @@ def load_existing():
 def parse_events(slug):
  soup=BeautifulSoup(get(f"{BASE}/{slug}"),"html.parser")
  events=[];seen=set()
+ # Completed Alpha meetings are linked from the championship page using /e/<internalEventId>.
+ # /event/<id> links are largely upcoming/public event pages and are not the correct result ID.
  for a in soup.find_all("a",href=True):
   href=a["href"]
-  m=re.search(rf"/{re.escape(slug)}/event/(\d+)(?:/results)?",href)
+  m=re.search(rf"/{re.escape(slug)}/e/(\d+)$",href)
   if not m: continue
   eid=m.group(1)
   if eid in seen: continue
   card=a
-  for _ in range(4):
+  for _ in range(5):
    if not getattr(card,"parent",None):break
    card=card.parent
    txt=clean(card.get_text(" ",strip=True))
-   if re.search(r"20\d{2}",txt) and len(txt)<500:break
+   if re.search(r"20\d{2}",txt) and len(txt)<650:break
   txt=clean(card.get_text(" ",strip=True))
-  # Current season only; keep 2026 events.
-  if "2026" not in txt: continue
-  title=clean(a.get_text(" ",strip=True))
-  if not title or len(title)<3:
-   title=txt
+  title=clean(a.get_text(" ",strip=True)) or txt
   events.append({"id":eid,"title":title,"summary":txt,"url":urljoin(BASE,href)})
   seen.add(eid)
  return events
@@ -62,41 +70,38 @@ def classify_type(text):
  if "final" in t or "repechage" in t:return "Final"
  return "Session"
 
-def parse_event(slug,eid):
- url=f"{BASE}/{slug}/event/{eid}/results"
+def parse_event(slug,eid,event_url=None):
+ url=event_url or f"{BASE}/{slug}/e/{eid}"
  soup=BeautifulSoup(get(url),"html.parser")
- title=clean((soup.find("h1") or {}).get_text(" ",strip=True) if soup.find("h1") else "")
+ title=clean(soup.find("h1").get_text(" ",strip=True) if soup.find("h1") else "")
  body=clean(soup.get_text(" ",strip=True))
  dm=re.search(r"(\d{2}/\d{2}/\d{4})\s*-\s*(\d{2}/\d{2}/\d{4})",body)
  sessions=[];seen=set()
  for a in soup.find_all("a",href=True):
   href=a["href"]
   m=re.search(rf"/{re.escape(slug)}/e/(\d+)/s/(\d+)/result",href)
-  if not m or m.group(1)!=str(eid):continue
-  sid=m.group(2)
+  if not m:continue
+  internal_eid=m.group(1); sid=m.group(2)
   if sid in seen:continue
   parent=a
-  for _ in range(4):
+  for _ in range(5):
    if not getattr(parent,"parent",None):break
    parent=parent.parent
    txt=clean(parent.get_text(" ",strip=True))
-   if ("Finished" in txt or "Live" in txt or "Scheduled" in txt) and len(txt)<700:break
+   if ("Finished" in txt or "Live" in txt or "Scheduled" in txt) and len(txt)<800:break
   txt=clean(parent.get_text(" ",strip=True))
   label=clean(a.get_text(" ",strip=True)) or txt
   race=re.search(r"Race\s*(\d+)\s*:\s*(.+?)(?:\s+Finished|\s+Live|\s+Scheduled|$)",txt,re.I)
   winner=re.search(r"(?:Practice|Qualifying|Heat|PreFinal|Final) Winner:\s*(.+?)(?:\s{2,}|$)",txt,re.I)
   sessions.append({
-   "id":sid,
-   "eventId":str(eid),
+   "id":sid,"eventId":str(eid),"internalEventId":internal_eid,
    "raceNumber":int(race.group(1)) if race else None,
    "name":clean(race.group(2)) if race else label,
-   "type":classify_type(txt),
-   "winner":clean(winner.group(1)) if winner else None,
-   "text":txt,
-   "url":urljoin(BASE,href)
+   "type":classify_type(txt),"winner":clean(winner.group(1)) if winner else None,
+   "text":txt,"url":urljoin(BASE,href)
   })
   seen.add(sid)
- return {"id":str(eid),"title":title or f"Event {eid}","dateStart":dm.group(1) if dm else None,"dateEnd":dm.group(2) if dm else None,"url":url,"sessions":sessions}
+ return {"id":str(eid),"title":title or clean(body[:100]) or f"Event {eid}","dateStart":dm.group(1) if dm else None,"dateEnd":dm.group(2) if dm else None,"url":url,"sessions":sessions}
 
 def parse_session(slug,eid,sid,url=None):
  url=url or f"{BASE}/{slug}/e/{eid}/s/{sid}/result"
@@ -136,50 +141,36 @@ def main():
    out["providers"]["alpha"][slug]=prev
    continue
   print(" events",len(events),flush=True)
-  if slug=="ukc" and not events:
-   try:
-    dbg=BeautifulSoup(get(f"{BASE}/{slug}"),"html.parser")
-    print(" DEBUG hrefs",[a.get("href") for a in dbg.find_all("a",href=True)][:80],flush=True)
-    print(" DEBUG scripts",[x.get("src") for x in dbg.find_all("script") if x.get("src")][:40],flush=True)
-    print(" DEBUG text",clean(dbg.get_text(" ",strip=True))[:1200],flush=True)
-   except Exception as de:
-    print(" DEBUG failed",de,flush=True)
-  # Keep previously indexed meetings, then scan current Alpha event links until
-  # we have six completed 2026 meetings with actual sessions.
+  # Preserve the archive and add at most one new completed meeting per series on each run.
+  # This deliberately limits traffic to Alpha Timing and allows the archive to grow safely.
   prev_series=old.get("providers",{}).get("alpha",{}).get(slug,{"events":{}})
   event_map=dict(prev_series.get("events",{}))
-  completed=0
-  checked=0
-  for e in events[:40]:
-   if completed>=6: break
-   eid=e["id"]; checked+=1
-   print("  event",eid,e["title"][:60],flush=True)
-   try: ev=parse_event(slug,eid)
+  added=0
+  for e in events:
+   eid=e["id"]
+   existing=event_map.get(eid)
+   if existing and existing.get("sessions") and existing.get("sessionData"):
+    continue
+   print("  indexing completed event",eid,e["title"][:70],flush=True)
+   try: ev=parse_event(slug,eid,e.get("url"))
    except Exception as ex:
-    print("   sessions failed",ex,flush=True);continue
-   # Only retain current-season completed/result-bearing meetings.
-   if not ((ev.get("dateStart") or "").endswith("/2026")):
-    print("   skip non-2026",ev.get("dateStart"),flush=True);continue
+    print("   event failed",ex,flush=True);continue
    if not ev["sessions"]:
-    print("   skip no sessions",flush=True);continue
-   completed+=1
+    print("   no sessions on completed link",flush=True);continue
    print("   sessions",len(ev["sessions"]),flush=True)
-   old_sessions=event_map.get(eid,{}).get("sessionData",{})
-   sess_data=dict(old_sessions)
+   sess_data={}
    for n,sess in enumerate(ev["sessions"]):
-    sid=sess["id"]
-    if sid in sess_data and sess_data[sid].get("rows"):
-     continue
     try:
-     sd=parse_session(slug,eid,sid,sess.get("url"))
-     sess_data[sid]=sd
-     if n%10==0: print("    parsed",n+1,"/",len(ev["sessions"]),"rows",len(sd.get("rows",[])),flush=True)
+     sd=parse_session(slug,eid,sess["id"],sess.get("url"))
+     sess_data[sess["id"]]=sd
+     if n%8==0: print("    classified",n+1,"/",len(ev["sessions"]),"rows",len(sd.get("rows",[])),flush=True)
     except Exception as ex:
-     print("    session",sid,"failed",ex,flush=True)
-    time.sleep(.04)
+     print("    session",sess["id"],"failed",ex,flush=True)
    ev["sessionData"]=sess_data
    event_map[eid]=ev
-  print(" completed meetings",completed,"checked",checked,flush=True)
+   added=1
+   break
+  print(" added",added,"archive events",len(event_map),flush=True)
   out["providers"]["alpha"][slug]={"name":name,"events":event_map}
  OUT.write_text(json.dumps(out,ensure_ascii=False,separators=(",",":")))
  print("\nwrote",OUT,OUT.stat().st_size,"bytes",flush=True)
