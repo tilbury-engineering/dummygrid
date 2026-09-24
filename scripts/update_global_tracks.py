@@ -50,7 +50,8 @@ CONTINENT_BY_CC={
 }
 
 def norm(s):
- return re.sub(r"[^a-z0-9]+"," ",(s or "").lower()).strip()
+ # Unicode-aware so names in Cyrillic, Korean, Arabic, etc. dedupe correctly.
+ return re.sub(r"[^\\w]+"," ",(s or "").casefold(),flags=re.UNICODE).replace("_"," ").strip()
 
 def slugify(s):
  base=re.sub(r"[^a-z0-9]+","-",norm(s)).strip("-")
@@ -153,9 +154,36 @@ def likely_duplicate(existing,name,lat,lon):
    best=t;bestd=d
  return best
 
+def cleanup_existing(tracks):
+ # Remove anonymous placeholders created by the first OSM import and collapse
+ # duplicate OSM geometries that describe the same named venue.
+ cleaned=[];pruned_generic=0;merged_nearby=0
+ for t in tracks:
+  if t.get("source")=="OpenStreetMap global karting import" and re.fullmatch(r"Karting venue \\d+",t.get("name") or "",re.I):
+   pruned_generic+=1
+   continue
+  name_key=norm(t.get("name"))
+  duplicate=None
+  if t.get("source")=="OpenStreetMap global karting import" and name_key and t.get("lat") is not None and t.get("long") is not None:
+   for e in cleaned:
+    if e.get("source")!="OpenStreetMap global karting import" or norm(e.get("name"))!=name_key:
+     continue
+    if e.get("lat") is None or e.get("long") is None:
+     continue
+    if hav_km(float(t["lat"]),float(t["long"]),float(e["lat"]),float(e["long"]))<=0.15:
+     duplicate=e;break
+  if duplicate:
+   for key in ("website","address","addressSource","city","region","continent","osmSource"):
+    if not duplicate.get(key) and t.get(key):duplicate[key]=t[key]
+   merged_nearby+=1
+  else:
+   cleaned.append(t)
+ return cleaned,pruned_generic,merged_nearby
+
 def main():
  data=json.loads(PUBLIC.read_text(encoding="utf-8"))
- tracks=data.get("tracks",[])
+ tracks,pruned_generic,merged_nearby=cleanup_existing(data.get("tracks",[]))
+ print("cleanup generic",pruned_generic,"nearby duplicates",merged_nearby,flush=True)
  elems=fetch_overpass()
  raw=[]
  for el in elems:
@@ -210,7 +238,7 @@ def main():
  tracks.sort(key=lambda t:((t.get("country") or "ZZZ"),(t.get("name") or "")))
  data["tracks"]=tracks
  data["updatedAt"]=time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime())
- data["globalImport"]={"source":"OpenStreetMap / Overpass","elements":len(elems),"namedVenues":len(raw),"added":added,"merged":merged}
+ data["globalImport"]={"source":"OpenStreetMap / Overpass","elements":len(elems),"namedVenues":len(raw),"added":added,"merged":merged,"prunedGeneric":pruned_generic,"mergedNearby":merged_nearby}
  text=json.dumps(data,ensure_ascii=False,separators=(",",":"))+"\n"
  PUBLIC.write_text(text,encoding="utf-8")
  country_counts={}
