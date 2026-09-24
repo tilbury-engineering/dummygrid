@@ -11,7 +11,7 @@ BUNDLED=Path("src/data/tracks.json")
 OVERPASS_ENDPOINTS=[
  "https://overpass-api.de/api/interpreter",
  "https://overpass.kumi.systems/api/interpreter",
- "https://overpass.nchc.org.tw/api/interpreter"
+ "https://overpass.private.coffee/api/interpreter"
 ]
 UA={"User-Agent":"DummyGridGlobalTracks/1.0 (+https://github.com/tilbury-engineering/dummygrid)"}
 session=requests.Session();session.headers.update(UA)
@@ -19,7 +19,9 @@ session=requests.Session();session.headers.update(UA)
 BBOXES={
  "Europe":(34,-25,72,45),
  "Africa":(-36,-20,38,55),
- "North America":(5,-170,84,-50),
+ "North America West":(5,-170,84,-120),
+ "North America Central":(5,-120,84,-90),
+ "North America East":(5,-90,84,-50),
  "South America":(-60,-90,15,-30),
  "Asia":(5,25,80,180),
  "Oceania":(-50,95,10,180)
@@ -88,7 +90,11 @@ def fetch_overpass():
   futs={pool.submit(fetch_one,query_for_bbox(box),label):label for label,box in BBOXES.items()}
   for fut in as_completed(futs):
    label=futs[fut]
-   rows=fut.result()
+   try:
+    rows=fut.result()
+   except Exception as e:
+    print(label,"SKIPPED after all mirrors failed:",e,flush=True)
+    continue
    print(label,"elements",len(rows),flush=True)
    for el in rows:
     key=(el.get("type"),el.get("id"))
