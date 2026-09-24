@@ -11,7 +11,7 @@ UA={"User-Agent":"Mozilla/5.0 (compatible; DummyGridTimingBot/1.0; +https://gith
 BASE="https://systems.alphatiming.co.uk"
 SERIES={
  "ukc":"Ultimate Karting Championship"
-}session=requests.Session();session.headers.update(UA)
+}\nsession=requests.Session();session.headers.update(UA)
 
 def get(url):
  for attempt in range(6):
