@@ -29,7 +29,7 @@ jobs:
       - run: pip install requests reverse_geocoder pycountry pycountry-convert scipy
       - name: Import worldwide karting venues
         run: python scripts/update_global_tracks.py
-      - name: Commit global track directory
+      - name: Validate global track directory\n        run: python scripts/validate_global_tracks.py\n      - name: Commit global track directory
         run: |
           git config user.name "DummyGrid Global Tracks Bot"
           git config user.email "actions@users.noreply.github.com"
