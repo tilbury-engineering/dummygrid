@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo, useState} from "react";
 import {createRoot} from "react-dom/client";
 import "./styles.css";
-import tracksSeed from "./data/tracks.json";
+import tracksSeed from "./data/tracks-seed.json";
 
 const DUMMYGRID_LOGO = (import.meta.env.BASE_URL || "/") + "dummygrid-logo.svg";
 const DUMMYGRID_API = "https://dummygrid-api.onrender.com";
