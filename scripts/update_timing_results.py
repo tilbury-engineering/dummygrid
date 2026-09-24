@@ -14,7 +14,9 @@ SERIES={
  "bkc":"The Kart Championship",
  "nkc":"National Kart Cup",
  "accesskarting":"Access Karting",
- "wmkc":"Whilton Mill Kart Club"
+ "wmkc":"Whilton Mill Kart Club",
+ "wombwellkarting":"Wombwell Karting",
+ "tattershall":"Tattershall Karting Centre"
 }
 session=requests.Session();session.headers.update(UA)
 
