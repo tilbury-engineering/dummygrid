@@ -373,31 +373,36 @@ function ResultsPage(){
  <div className="results-series-grid">{providers.map(x=><a className="results-series-card" key={x.provider+x.slug} href={x.href}><span>{x.provider}</span><h3>{x.name}</h3><p>{x.copy}</p><b>Browse results →</b></a>)}</div>
  </section>
 }
+function useTimingData(){
+ return useRemoteJson("timing-results.json",{updatedAt:null,providers:{alpha:{}}});
+}
 function ResultsSeries({slug}){
- const {data,loading,error}=useApi("/api/results/alpha/"+slug+"/events");
+ const {data,loading}=useTimingData();
  const [q,setQ]=useState("");
- const events=(data?.events||[]).filter(e=>(e.title+" "+(e.summary||"")).toLowerCase().includes(q.toLowerCase()));
- const name=data?.series?.name||alphaSeries.find(x=>x.slug===slug)?.name||slug;
- return <section><PageTitle kicker="Alpha Timing" title={name.toUpperCase()} text="Choose an event to see every session and result." action={<a className="button" href="#/results">All championships</a>}/>
+ const series=data?.providers?.alpha?.[slug];
+ const events=Object.values(series?.events||{}).filter(e=>(e.title+" "+(e.dateStart||"")+" "+(e.dateEnd||"")).toLowerCase().includes(q.toLowerCase())).sort((a,b)=>String(b.dateStart||"").localeCompare(String(a.dateStart||"")));
+ const name=series?.name||alphaSeries.find(x=>x.slug===slug)?.name||slug;
+ return <section><PageTitle kicker="Alpha Timing archive" title={name.toUpperCase()} text="Choose an event to see every indexed session and full classification." action={<a className="button" href="#/results">All championships</a>}/>
  <Filters><input placeholder="Search event or circuit…" value={q} onChange={e=>setQ(e.target.value)}/></Filters>
- {loading?<Empty text="Loading events…"/>:error?<div className="ai-blocked"><h3>Results unavailable</h3><p>{error}</p></div>:events.length?<div className="timing-event-list">{events.map(e=><a className="timing-event" href={"#/results/alpha/"+slug+"/event/"+e.id} key={e.id}><div><span>Event</span><h3>{e.title}</h3><p>{e.summary}</p></div><b>View sessions →</b></a>)}</div>:<Empty text="No events found."/>}
+ {loading?<Empty text="Loading events…"/>:events.length?<div className="timing-event-list">{events.map(e=><a className="timing-event" href={"#/results/alpha/"+slug+"/event/"+e.id} key={e.id}><div><span>Alpha Timing</span><h3>{e.title}</h3><p>{[e.dateStart,e.dateEnd].filter(Boolean).join(" – ")} · {(e.sessions||[]).length} sessions</p></div><b>View sessions →</b></a>)}</div>:<Empty text="No event data has been indexed yet. The timing database is refreshing."/>}
  </section>
 }
 function ResultsEvent({slug,eventId}){
- const {data,loading,error}=useApi("/api/results/alpha/"+slug+"/event/"+eventId);
+ const {data,loading}=useTimingData();
  const [type,setType]=useState("All"); const [q,setQ]=useState("");
- const ev=data?.event;
- const sessions=(data?.sessions||[]).filter(x=>(type==="All"||x.type===type)&&((x.name+" "+x.text+" "+(x.winner||"")).toLowerCase().includes(q.toLowerCase())));
+ const ev=data?.providers?.alpha?.[slug]?.events?.[eventId];
+ const sessions=(ev?.sessions||[]).filter(x=>(type==="All"||x.type===type)&&((x.name+" "+x.text+" "+(x.winner||"")).toLowerCase().includes(q.toLowerCase())));
  return <section><PageTitle kicker="Event results" title={(ev?.title||"Loading event").toUpperCase()} text={ev?.dateStart?(ev.dateStart+" – "+(ev.dateEnd||ev.dateStart)):"Practice, qualifying, heats and finals"} action={<a className="button" href={"#/results/alpha/"+slug}>Back to events</a>}/>
- <Filters><input placeholder="Search driver, class or session…" value={q} onChange={e=>setQ(e.target.value)}/><select value={type} onChange={e=>setType(e.target.value)}><option>All</option><option>Practice</option><option>Qualifying</option><option>Heat</option><option>PreFinal</option><option>Final</option></select></Filters>
- {loading?<Empty text="Loading sessions…"/>:error?<div className="ai-blocked"><h3>Event unavailable</h3><p>{error}</p></div>:sessions.length?<div className="session-list">{sessions.map(x=><a className="session-row" href={"#/results/alpha/"+slug+"/event/"+eventId+"/session/"+x.id} key={x.id}><div className="session-no">{x.raceNumber?"R"+x.raceNumber:x.type.slice(0,1)}</div><div><div className="meta">{x.type}{x.winner?" · Winner: "+x.winner:""}</div><h3>{x.name}</h3></div><b>Full result →</b></a>)}</div>:<Empty text="No sessions found."/>}
+ <Filters><input placeholder="Search driver, class or session…" value={q} onChange={e=>setQ(e.target.value)}/><select value={type} onChange={e=>setType(e.target.value)}><option>All</option><option>Practice</option><option>Qualifying</option><option>Heat</option><option>PreFinal</option><option>Final</option><option>Session</option></select></Filters>
+ {loading?<Empty text="Loading sessions…"/>:sessions.length?<div className="session-list">{sessions.map(x=><a className="session-row" href={"#/results/alpha/"+slug+"/event/"+eventId+"/session/"+x.id} key={x.id}><div className="session-no">{x.raceNumber?"R"+x.raceNumber:x.type.slice(0,1)}</div><div><div className="meta">{x.type}{x.winner?" · Winner: "+x.winner:""}</div><h3>{x.name}</h3></div><b>Full result →</b></a>)}</div>:<Empty text="No sessions have been indexed for this event yet."/>}
  </section>
 }
 function ResultsSession({slug,eventId,sessionId}){
- const {data,loading,error}=useApi("/api/results/alpha/"+slug+"/e/"+eventId+"/s/"+sessionId);
- const sess=data?.session;
+ const {data,loading}=useTimingData();
+ const ev=data?.providers?.alpha?.[slug]?.events?.[eventId];
+ const sess=ev?.sessionData?.[sessionId];
  return <section><PageTitle kicker="Full classification" title={(sess?.title||"SESSION RESULT").toUpperCase()} text={sess?.meta?.laps?String(sess.meta.laps)+" laps":"Official classified result"} action={<a className="button" href={"#/results/alpha/"+slug+"/event/"+eventId}>Back to event</a>}/>
- {loading?<Empty text="Loading full classification…"/>:error?<div className="ai-blocked"><h3>Classification unavailable</h3><p>{error}</p></div>:<><div className="timing-summary">{sess?.meta?.start&&<b>{sess.meta.start}<small>Start</small></b>}{sess?.meta?.laps&&<b>{sess.meta.laps}<small>Laps</small></b>}{sess?.meta?.fastestLap&&<b>{sess.meta.fastestLap.time}<small>Fastest · {sess.meta.fastestLap.driver}</small></b>}</div><div className="classification-wrap"><table><thead><tr>{(sess?.headers||[]).map((h,i)=><th key={i}>{h||"#"}</th>)}</tr></thead><tbody>{(sess?.rows||[]).map((row,i)=><tr key={i}>{row.map((c,j)=><td key={j}>{c}</td>)}</tr>)}</tbody></table></div>{sess?.url&&<a className="button" href={sess.url} target="_blank" rel="noopener noreferrer">View original on Alpha Timing ↗</a>}</>}
+ {loading?<Empty text="Loading full classification…"/>:sess?<><div className="timing-summary">{sess.meta?.start&&<b>{sess.meta.start}<small>Start</small></b>}{sess.meta?.laps&&<b>{sess.meta.laps}<small>Laps</small></b>}</div>{(sess.headers||[]).length&& (sess.rows||[]).length?<div className="classification-wrap"><table><thead><tr>{sess.headers.map((h,i)=><th key={i}>{h||"#"}</th>)}</tr></thead><tbody>{sess.rows.map((row,i)=><tr key={i}>{row.map((c,j)=><td key={j}>{c}</td>)}</tr>)}</tbody></table></div>:<Empty text="The session is indexed but its classification table was not available."/>}{sess.url&&<a className="button" href={sess.url} target="_blank" rel="noopener noreferrer">View original on Alpha Timing ↗</a>}</>:<Empty text="This classification has not been indexed yet."/>}
  </section>
 }
 function TSLResultsSeries({slug}){
