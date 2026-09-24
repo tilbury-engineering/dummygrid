@@ -1,6 +1,7 @@
 import React, {useEffect, useMemo, useState} from "react";
 import {createRoot} from "react-dom/client";
 import "./styles.css";
+import tracksSeed from "./data/tracks.json";
 
 const DUMMYGRID_LOGO = (import.meta.env.BASE_URL || "/") + "dummygrid-logo.svg";
 
@@ -345,19 +346,51 @@ function KnowledgeBase({region}){
    <div className="knowledge-guide-grid">{regionGuides.map((g,i)=><article className="knowledge-guide" key={g.title}><span>{String(i+1).padStart(2,"0")}</span><h3>{g.title}</h3><p>{g.text}</p><a href={g.title.includes("class")||g.title.includes("age")?"#/classes":"#/knowledge-base"}>Read guide →</a></article>)}</div>
  </section>
 }
+function useApi(path){
+ const [state,setState]=useState({data:null,loading:true,error:""});
+ useEffect(()=>{let alive=true;setState({data:null,loading:true,error:""});fetch(DUMMYGRID_API+path).then(async r=>{const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.message||"Request failed");return d}).then(data=>{if(alive)setState({data,loading:false,error:""})}).catch(e=>{if(alive)setState({data:null,loading:false,error:e.message})});return()=>{alive=false}},[path]);
+ return state;
+}
+const alphaSeries=[
+ {slug:"ukc",name:"Ultimate Karting Championship"},
+ {slug:"bkc",name:"The Kart Championship"},
+ {slug:"nkc",name:"National Kart Cup"},
+ {slug:"accesskarting",name:"Access Karting"},
+ {slug:"wmkc",name:"Whilton Mill Kart Club"}
+];
 function ResultsPage(){
- const {data,loading}=useRemoteJson("results.json",{records:[],updatedAt:null});
- const [q,setQ]=useState(""); const [type,setType]=useState("All"); const [year,setYear]=useState("All"); const [country,setCountry]=useState("All"); const [series,setSeries]=useState("All");
- const rows=(data.records||[]).filter(r=>{
-   const hay=(r.championship+" "+r.round+" "+r.event+" "+r.className+" "+r.driver+" "+r.country+" "+(r.team||"")).toLowerCase();
-   return (type==="All"||r.type===type.toLowerCase())&&(year==="All"||String(r.year)===year)&&(country==="All"||r.country===country)&&(series==="All"||r.championship===series)&&hay.includes(q.toLowerCase());
- }).sort((a,b)=>String(b.date||"").localeCompare(String(a.date||"")));
- const countries=[...new Set((data.records||[]).map(r=>r.country).filter(Boolean))].sort();
- const years=[...new Set((data.records||[]).map(r=>String(r.year)).filter(Boolean))].sort().reverse();
- const seriesList=[...new Set((data.records||[]).map(r=>r.championship).filter(Boolean))].sort();
- return <section><PageTitle kicker="Global competition" title="KARTING RESULTS" text={loading?"Loading results…":"Search event results and championship standings from karting series around the world."}/>
- <Filters><input placeholder="Search driver, class, event or championship…" value={q} onChange={e=>setQ(e.target.value)}/><select value={type} onChange={e=>setType(e.target.value)}><option>All</option><option>Event</option><option>Standings</option></select><select value={year} onChange={e=>setYear(e.target.value)}><option>All</option>{years.map(x=><option key={x}>{x}</option>)}</select><select value={country} onChange={e=>setCountry(e.target.value)}><option>All</option>{countries.map(x=><option key={x}>{x}</option>)}</select><select value={series} onChange={e=>setSeries(e.target.value)}><option>All</option>{seriesList.map(x=><option key={x}>{x}</option>)}</select></Filters>
- {rows.length?<div className="results-list">{rows.map(r=><article className="result-row" key={r.id}><div className="result-place">{r.position?("#"+r.position):"—"}</div><div className="result-main"><div className="meta">{r.year} · {r.country} · {r.type==="event"?"Event result":"Championship standings"}</div><h3>{r.driver}</h3><p>{r.championship} · {r.className}</p><small>{r.round} · {r.event}{r.points!=null?" · "+r.points+" pts":""}</small></div><a className="button" href={r.sourceUrl} target="_blank" rel="noopener noreferrer">Official source ↗</a></article>)}</div>:<Empty text="No results match those filters."/>}
+ const [q,setQ]=useState("");
+ const rows=alphaSeries.filter(x=>x.name.toLowerCase().includes(q.toLowerCase()));
+ return <section><PageTitle kicker="Live timing archive" title="KARTING RESULTS" text="Browse championships the same way you would on a timing website: championship → event → session → full classified result."/>
+ <Filters><input placeholder="Search championship…" value={q} onChange={e=>setQ(e.target.value)}/></Filters>
+ <div className="results-series-grid">{rows.map(x=><a className="results-series-card" key={x.slug} href={"#/results/alpha/"+x.slug}><span>Alpha Timing</span><h3>{x.name}</h3><p>Events, practice, qualifying, heats, pre-finals and finals.</p><b>Browse results →</b></a>)}</div>
+ </section>
+}
+function ResultsSeries({slug}){
+ const {data,loading,error}=useApi("/api/results/alpha/"+slug+"/events");
+ const [q,setQ]=useState("");
+ const events=(data?.events||[]).filter(e=>(e.title+" "+(e.summary||"")).toLowerCase().includes(q.toLowerCase()));
+ const name=data?.series?.name||alphaSeries.find(x=>x.slug===slug)?.name||slug;
+ return <section><PageTitle kicker="Alpha Timing" title={name.toUpperCase()} text="Choose an event to see every session and result." action={<a className="button" href="#/results">All championships</a>}/>
+ <Filters><input placeholder="Search event or circuit…" value={q} onChange={e=>setQ(e.target.value)}/></Filters>
+ {loading?<Empty text="Loading events…"/>:error?<div className="ai-blocked"><h3>Results unavailable</h3><p>{error}</p></div>:events.length?<div className="timing-event-list">{events.map(e=><a className="timing-event" href={"#/results/alpha/"+slug+"/event/"+e.id} key={e.id}><div><span>Event</span><h3>{e.title}</h3><p>{e.summary}</p></div><b>View sessions →</b></a>)}</div>:<Empty text="No events found."/>}
+ </section>
+}
+function ResultsEvent({slug,eventId}){
+ const {data,loading,error}=useApi("/api/results/alpha/"+slug+"/event/"+eventId);
+ const [type,setType]=useState("All"); const [q,setQ]=useState("");
+ const ev=data?.event;
+ const sessions=(data?.sessions||[]).filter(x=>(type==="All"||x.type===type)&&((x.name+" "+x.text+" "+(x.winner||"")).toLowerCase().includes(q.toLowerCase())));
+ return <section><PageTitle kicker="Event results" title={(ev?.title||"Loading event").toUpperCase()} text={ev?.dateStart?(ev.dateStart+" – "+(ev.dateEnd||ev.dateStart)):"Practice, qualifying, heats and finals"} action={<a className="button" href={"#/results/alpha/"+slug}>Back to events</a>}/>
+ <Filters><input placeholder="Search driver, class or session…" value={q} onChange={e=>setQ(e.target.value)}/><select value={type} onChange={e=>setType(e.target.value)}><option>All</option><option>Practice</option><option>Qualifying</option><option>Heat</option><option>PreFinal</option><option>Final</option></select></Filters>
+ {loading?<Empty text="Loading sessions…"/>:error?<div className="ai-blocked"><h3>Event unavailable</h3><p>{error}</p></div>:sessions.length?<div className="session-list">{sessions.map(x=><a className="session-row" href={"#/results/alpha/"+slug+"/event/"+eventId+"/session/"+x.id} key={x.id}><div className="session-no">{x.raceNumber?"R"+x.raceNumber:x.type.slice(0,1)}</div><div><div className="meta">{x.type}{x.winner?" · Winner: "+x.winner:""}</div><h3>{x.name}</h3></div><b>Full result →</b></a>)}</div>:<Empty text="No sessions found."/>}
+ </section>
+}
+function ResultsSession({slug,eventId,sessionId}){
+ const {data,loading,error}=useApi("/api/results/alpha/"+slug+"/e/"+eventId+"/s/"+sessionId);
+ const sess=data?.session;
+ return <section><PageTitle kicker="Full classification" title={(sess?.title||"SESSION RESULT").toUpperCase()} text={sess?.meta?.laps?String(sess.meta.laps)+" laps":"Official classified result"} action={<a className="button" href={"#/results/alpha/"+slug+"/event/"+eventId}>Back to event</a>}/>
+ {loading?<Empty text="Loading full classification…"/>:error?<div className="ai-blocked"><h3>Classification unavailable</h3><p>{error}</p></div>:<><div className="timing-summary">{sess?.meta?.start&&<b>{sess.meta.start}<small>Start</small></b>}{sess?.meta?.laps&&<b>{sess.meta.laps}<small>Laps</small></b>}{sess?.meta?.fastestLap&&<b>{sess.meta.fastestLap.time}<small>Fastest · {sess.meta.fastestLap.driver}</small></b>}</div><div className="classification-wrap"><table><thead><tr>{(sess?.headers||[]).map((h,i)=><th key={i}>{h||"#"}</th>)}</tr></thead><tbody>{(sess?.rows||[]).map((row,i)=><tr key={i}>{row.map((c,j)=><td key={j}>{c}</td>)}</tr>)}</tbody></table></div>{sess?.url&&<a className="button" href={sess.url} target="_blank" rel="noopener noreferrer">View original on Alpha Timing ↗</a>}</>}
  </section>
 }
 function trackMatchesResult(track,result){
@@ -366,7 +399,7 @@ function trackMatchesResult(track,result){
  return needles.some(n=>n.length>2&&hay.includes(n));
 }
 function TracksPage(){
- const {data,loading}=useRemoteJson("tracks.json",{tracks:[],updatedAt:null});
+ const {data,loading}=useRemoteJson("tracks.json",tracksSeed);
  const {data:resultsData}=useRemoteJson("results.json",{records:[],updatedAt:null});
  const [q,setQ]=useState(""); const [continent,setContinent]=useState("All"); const [country,setCountry]=useState("All"); const [series,setSeries]=useState("All"); const [venueType,setVenueType]=useState("All");
  const tracks=data.tracks||[];
@@ -383,7 +416,7 @@ function TracksPage(){
  </section>
 }
 function TrackDetail({id}){
- const {data:tracksData,loading}=useRemoteJson("tracks.json",{tracks:[]});
+ const {data:tracksData,loading}=useRemoteJson("tracks.json",tracksSeed);
  const {data:resultsData}=useRemoteJson("results.json",{records:[]});
  const t=(tracksData.tracks||[]).find(x=>x.id===id);
  if(loading)return <section><PageTitle kicker="Circuit" title="LOADING TRACK" text="Loading circuit data…"/></section>;
@@ -506,6 +539,9 @@ function App(){
  else if(parts[0]==="classes") page=<Classes/>;
  else if(parts[0]==="manufacturers"&&parts[1]) page=<ManufacturerDetail id={parts[1]}/>;
  else if(parts[0]==="manufacturers") page=<Manufacturers/>;
+ else if(parts[0]==="results"&&parts[1]==="alpha"&&parts[2]&&parts[3]==="event"&&parts[4]&&parts[5]==="session"&&parts[6]) page=<ResultsSession slug={parts[2]} eventId={parts[4]} sessionId={parts[6]}/>;
+ else if(parts[0]==="results"&&parts[1]==="alpha"&&parts[2]&&parts[3]==="event"&&parts[4]) page=<ResultsEvent slug={parts[2]} eventId={parts[4]}/>;
+ else if(parts[0]==="results"&&parts[1]==="alpha"&&parts[2]) page=<ResultsSeries slug={parts[2]}/>;
  else if(parts[0]==="results") page=<ResultsPage/>;
  else if(parts[0]==="tracks"&&parts[1]) page=<TrackDetail id={parts[1]}/>;
  else if(parts[0]==="tracks") page=<TracksPage/>;
