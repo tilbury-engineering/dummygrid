@@ -136,6 +136,14 @@ def main():
    out["providers"]["alpha"][slug]=prev
    continue
   print(" events",len(events),flush=True)
+  if slug=="ukc" and not events:
+   try:
+    dbg=BeautifulSoup(get(f"{BASE}/{slug}"),"html.parser")
+    print(" DEBUG hrefs",[a.get("href") for a in dbg.find_all("a",href=True)][:80],flush=True)
+    print(" DEBUG scripts",[x.get("src") for x in dbg.find_all("script") if x.get("src")][:40],flush=True)
+    print(" DEBUG text",clean(dbg.get_text(" ",strip=True))[:1200],flush=True)
+   except Exception as de:
+    print(" DEBUG failed",de,flush=True)
   # Keep previously indexed meetings, then scan current Alpha event links until
   # we have six completed 2026 meetings with actual sessions.
   prev_series=old.get("providers",{}).get("alpha",{}).get(slug,{"events":{}})
