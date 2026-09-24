@@ -368,7 +368,7 @@ function ResultsPage(){
    ...alphaSeries.map(x=>({...x,provider:"Alpha Timing",href:"#/results/alpha/"+x.slug,copy:"Events, practice, qualifying, heats, pre-finals and finals."})),
    ...tslSeries.map(x=>({...x,provider:"TSL Timing",href:"#/results/tsl/"+x.slug,copy:"Superkart meetings with practice, qualifying, grids and race results."}))
  ].filter(x=>(x.name+" "+x.provider).toLowerCase().includes(q.toLowerCase()));
- return <section><PageTitle kicker="Live timing archive" title="KARTING RESULTS" text="Browse championships from multiple timing providers: championship → event → session → result."/>
+ return <section><PageTitle kicker="Live timing archive" title="KARTING RESULTS" text="Browse championships from multiple timing providers: championship → event → session → full classification."/>
  <Filters><input placeholder="Search championship or timing provider…" value={q} onChange={e=>setQ(e.target.value)}/></Filters>
  <div className="results-series-grid">{providers.map(x=><a className="results-series-card" key={x.provider+x.slug} href={x.href}><span>{x.provider}</span><h3>{x.name}</h3><p>{x.copy}</p><b>Browse results →</b></a>)}</div>
  </section>
