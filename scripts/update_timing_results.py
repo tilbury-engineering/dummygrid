@@ -1,5 +1,22 @@
 #!/usr/bin/env python3
-import json,re,time
+import json,re,time,os
+from datetime import datetime,timezone
+from pathlib import Path
+from urllib.parse import urljoin
+import requests
+from bs4 import BeautifulSoup
+
+OUT=Path("public/timing-results.json")
+UA={"User-Agent":"Mozilla/5.0 (compatible; DummyGridTimingBot/1.0; +https://github.com/tilbury-engineering/dummygrid)"}
+BASE="https://systems.alphatiming.co.uk"
+SERIES={
+ "ukc":"Ultimate Karting Championship",
+ "bkc":"The Kart Championship",
+ "nkc":"National Kart Cup",
+ "accesskarting":"Access Karting",
+ "wmkc":"Whilton Mill Kart Club"
+}!/usr/bin/env python3
+import json,re,time,os
 from datetime import datetime,timezone
 from pathlib import Path
 from urllib.parse import urljoin
