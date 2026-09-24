@@ -7,17 +7,21 @@ import pycountry
 
 PUBLIC=Path("public/tracks.json")
 BUNDLED=Path("src/data/tracks.json")
-OVERPASS="https://overpass-api.de/api/interpreter"
+OVERPASS_ENDPOINTS=[
+ "https://overpass-api.de/api/interpreter",
+ "https://overpass.kumi.systems/api/interpreter",
+ "https://overpass.nchc.org.tw/api/interpreter"
+]
 UA={"User-Agent":"DummyGridGlobalTracks/1.0 (+https://github.com/tilbury-engineering/dummygrid)"}
 session=requests.Session();session.headers.update(UA)
 
 QUERY=r"""
-[out:json][timeout:240];
+[out:json][timeout:120];
 (
   nwr["sport"="karting"];
-  nwr["leisure"="track"]["sport"~"kart|karting",i];
-  nwr["leisure"="sports_centre"]["sport"~"kart|karting",i];
-  nwr["attraction"~"kart|karting",i];
+  nwr["attraction"="karting"];
+  nwr["amenity"="karting"];
+  nwr["karting"="yes"];
 );
 out center tags;
 """
@@ -50,16 +54,22 @@ def country_name(cc):
  except:return cc.upper()
 
 def fetch_overpass():
- for i in range(4):
-  try:
-   r=session.post(OVERPASS,data={"data":QUERY},timeout=300)
-   if r.status_code in (429,502,503,504):
-    time.sleep(8*(i+1));continue
-   r.raise_for_status()
-   return r.json().get("elements",[])
-  except Exception:
-   if i==3:raise
-   time.sleep(8*(i+1))
+ last=None
+ for endpoint in OVERPASS_ENDPOINTS:
+  for i in range(2):
+   try:
+    print("querying",endpoint,flush=True)
+    r=session.post(endpoint,data={"data":QUERY},timeout=180)
+    if r.status_code in (429,502,503,504):
+     time.sleep(5*(i+1));continue
+    r.raise_for_status()
+    rows=r.json().get("elements",[])
+    if rows:return rows
+   except Exception as e:
+    last=e
+    print(" overpass failed",endpoint,e,flush=True)
+    time.sleep(4*(i+1))
+ if last:raise last
  return []
 
 def coords(el):
