@@ -5,8 +5,10 @@ from pathlib import Path
 import requests
 import reverse_geocoder as rg
 import pycountry
+import pycountry_convert as pc
 
 PUBLIC=Path("public/tracks.json")
+SUMMARY=Path("public/tracks-summary.json")
 OVERPASS_ENDPOINTS=[
  "https://overpass-api.de/api/interpreter",
  "https://overpass.kumi.systems/api/interpreter",
@@ -60,6 +62,14 @@ def hav_km(a,b,c,d):
  dp=math.radians(c-a);dl=math.radians(d-b)
  x=math.sin(dp/2)**2+math.cos(p1)*math.cos(p2)*math.sin(dl/2)**2
  return 2*R*math.asin(math.sqrt(x))
+
+def continent_name(cc):
+ if not cc:return ""
+ try:
+  code=pc.country_alpha2_to_continent_code(cc.upper())
+  return {"AF":"Africa","AS":"Asia","EU":"Europe","NA":"North America","SA":"South America","OC":"Oceania","AN":"Antarctica"}.get(code,"")
+ except:
+  return CONTINENT_BY_CC.get(cc.upper(),"")
 
 def country_name(cc):
  try:return pycountry.countries.get(alpha_2=cc.upper()).name
@@ -173,7 +183,7 @@ def main():
    if not dup.get("city") and city:dup["city"]=city
    if not dup.get("region") and region:dup["region"]=region
    if not dup.get("country") and country!="Unknown":dup["country"]=country
-   if not dup.get("continent") and cc:dup["continent"]=CONTINENT_BY_CC.get(cc,"")
+   if not dup.get("continent") and cc:dup["continent"]=continent_name(cc)
    dup.setdefault("osmSource",src)
    merged+=1
    continue
@@ -199,6 +209,21 @@ def main():
  data["globalImport"]={"source":"OpenStreetMap / Overpass","elements":len(raw),"added":added,"merged":merged}
  text=json.dumps(data,ensure_ascii=False,separators=(",",":"))+"\n"
  PUBLIC.write_text(text,encoding="utf-8")
- print("added",added,"merged",merged,"total",len(tracks),flush=True)
+ country_counts={}
+ continent_counts={}
+ for t in tracks:
+  country=t.get("country") or "Unknown"
+  continent=t.get("continent") or "Unknown"
+  country_counts[country]=country_counts.get(country,0)+1
+  continent_counts[continent]=continent_counts.get(continent,0)+1
+ summary={
+  "updatedAt":data["updatedAt"],
+  "totalTracks":len(tracks),
+  "countryCount":len([x for x in country_counts if x!="Unknown"]),
+  "countries":dict(sorted(country_counts.items())),
+  "continents":dict(sorted(continent_counts.items()))
+ }
+ SUMMARY.write_text(json.dumps(summary,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf-8")
+ print("added",added,"merged",merged,"total",len(tracks),"countries",summary["countryCount"],flush=True)
 
 if __name__=="__main__":main()
