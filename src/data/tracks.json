@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-24T10:47:35.359925+00:00",
+  "updatedAt": "2026-09-24T10:52:18.745942+00:00",
   "tracks": [
     {
       "id": "bolivar",
@@ -1408,7 +1408,13 @@
       "trackLengthM": null,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Knockhill Racing Circuit, Dunfermline, KY12 9TF, GB",
+      "lat": 56.132,
+      "long": -3.513,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/knockhill-karting.html",
+      "locationVerifiedAt": "2026-09-24T10:49:51.119386+00:00"
     },
     {
       "id": "lakeland-karting",
@@ -1481,7 +1487,13 @@
       "trackLengthM": 250,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "18-19 Captain Cook Square, Middlesbrough, TS1 5UB, GB",
+      "lat": 54.574,
+      "long": -1.235,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/level-x-middlesbrough.html",
+      "locationVerifiedAt": "2026-09-24T10:49:53.150560+00:00"
     },
     {
       "id": "llandow",
@@ -1552,7 +1564,13 @@
       "trackLengthM": 500,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "112 Comber Road, Hillsborough, Hillsborough, BT26 6NA, GB",
+      "lat": 54.47025,
+      "long": -6.02571,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/lyons-karting.html",
+      "locationVerifiedAt": "2026-09-24T10:49:55.200380+00:00"
     },
     {
       "id": "m4-karting",
@@ -1623,7 +1641,13 @@
       "trackLengthM": null,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "11 Kilbride Road, Ballyclare, BT39 0QA, GB",
+      "lat": 54.755,
+      "long": -5.995,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/need-4-speed-karting.html",
+      "locationVerifiedAt": "2026-09-24T10:49:57.262061+00:00"
     },
     {
       "id": "nottingham-raceway",
@@ -1698,7 +1722,13 @@
         "PFI",
         "PFi",
         "Paul Fletcher International"
-      ]
+      ],
+      "address": "Stragglethorpe Lane, Brandon, Grantham, NG32 2AY, GB",
+      "lat": 53.03897,
+      "long": -0.65994,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/pf-international.html",
+      "locationVerifiedAt": "2026-09-24T10:49:59.343824+00:00"
     },
     {
       "id": "prestige-colne",
@@ -1712,7 +1742,13 @@
       "trackLengthM": 360,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Holker Mill, Holker Street, off Burnley Road, Colne, BB8 8EG, GB",
+      "lat": 53.856,
+      "long": -2.17,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/prestige-karting-colne.html",
+      "locationVerifiedAt": "2026-09-24T10:50:01.367903+00:00"
     },
     {
       "id": "raceview-ballymena",
@@ -1764,7 +1800,13 @@
       "trackLengthM": 960,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "48 Cookstown Road, Magherafelt, Moneymore, BT45 7QF, GB",
+      "lat": 54.68234,
+      "long": -6.68395,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/railway-karting.html",
+      "locationVerifiedAt": "2026-09-24T10:50:03.704574+00:00"
     },
     {
       "id": "red-lodge",
@@ -1797,7 +1839,13 @@
       "trackLengthM": 450,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "422-424, The Arches, Burdett Road, East London (Mile End), E3 4AA, GB",
+      "lat": 51.51805,
+      "long": -0.03081,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/revolution-karting.html",
+      "locationVerifiedAt": "2026-09-24T10:50:05.763188+00:00"
     },
     {
       "id": "rogue-racing",
@@ -1811,7 +1859,13 @@
       "trackLengthM": 350,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Unit 6 The Point, Gatehouse Way, Aylesbury, HP19 8DB, GB",
+      "lat": 51.811,
+      "long": -0.832,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/rogue-racing-aylesbury.html",
+      "locationVerifiedAt": "2026-09-24T10:50:07.783823+00:00"
     },
     {
       "id": "rowrah",
@@ -1827,7 +1881,13 @@
       "source": "British Kart Championships 2026 calendar",
       "aliases": [
         "Rowrah"
-      ]
+      ],
+      "address": "Cumbria Kart Racing Club, Kirkland, Frizington, Cumbria, CA26 3XU, GB",
+      "lat": 54.55122,
+      "long": -3.44291,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/rowrah-kart-circuit.html",
+      "locationVerifiedAt": "2026-09-24T10:50:09.833150+00:00"
     },
     {
       "id": "rye-house",
@@ -1902,7 +1962,13 @@
       "trackLengthM": 500,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Greenfields, Bogton Farm, Lhanbryde, Elgin, IV30 8LN, GB",
+      "lat": 57.61,
+      "long": -3.22,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/smart-kart-raceway.html",
+      "locationVerifiedAt": "2026-09-24T10:50:11.861583+00:00"
     },
     {
       "id": "soar-gillingham",
@@ -1916,7 +1982,13 @@
       "trackLengthM": 305,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Units 1&2 Medway Distribution Centre, Gillingham, ME8 0RT, GB",
+      "lat": 51.36,
+      "long": 0.58,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/soar-electric-karting.html",
+      "locationVerifiedAt": "2026-09-24T10:50:14.081270+00:00"
     },
     {
       "id": "south-coast-karting",
@@ -1930,7 +2002,13 @@
       "trackLengthM": 580,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Chapel Gate Circuit, Parley, Christchurch, BH23 6BL, GB",
+      "lat": 50.78,
+      "long": -1.83,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/south-coast-karting.html",
+      "locationVerifiedAt": "2026-09-24T10:50:16.110871+00:00"
     },
     {
       "id": "st-eval",
@@ -1944,7 +2022,13 @@
       "trackLengthM": 1000,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "St Eval, Wadebridge, Wadebridge, PL27 7UN, GB",
+      "lat": 50.48358,
+      "long": -5.01069,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/st-eval-kart-circuit.html",
+      "locationVerifiedAt": "2026-09-24T10:50:18.154861+00:00"
     },
     {
       "id": "stretton",
@@ -2015,7 +2099,13 @@
       "trackLengthM": null,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Ensor Mill, Queensway, Rochdale, OL11 2NU, GB",
+      "lat": 53.61,
+      "long": -2.17,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/teamkarting-rochdale.html",
+      "locationVerifiedAt": "2026-09-24T10:50:20.203760+00:00"
     },
     {
       "id": "teamsport-acton",
@@ -2029,7 +2119,13 @@
       "trackLengthM": 500,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "20 Allied Way, West London, W3 0RF, GB",
+      "lat": 51.50557,
+      "long": -0.25512,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/teamsport-acton.html",
+      "locationVerifiedAt": "2026-09-24T10:50:22.265340+00:00"
     },
     {
       "id": "teamsport-basildon",
@@ -2081,7 +2177,13 @@
       "trackLengthM": 450,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "510 Wallisdown Road, Bournemouth, BH11 8QN, GB",
+      "lat": 50.75271,
+      "long": -1.92853,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/teamsport-bournemouth.html",
+      "locationVerifiedAt": "2026-09-24T10:50:24.311741+00:00"
     },
     {
       "id": "teamsport-brent-cross",
@@ -2095,7 +2197,13 @@
       "trackLengthM": 400,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Brent Cross Shopping Centre, North London, NW4 3FP, GB",
+      "lat": 51.57669,
+      "long": -0.22314,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/teamsport-brent-cross.html",
+      "locationVerifiedAt": "2026-09-24T10:50:26.340258+00:00"
     },
     {
       "id": "teamsport-brighton",
@@ -2109,7 +2217,13 @@
       "trackLengthM": 450,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Business Park, 30 Chartwell Road, Lancing, Brighton, BN15 8TU, GB",
+      "lat": 50.82162,
+      "long": -0.33265,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/teamsport-brighton.html",
+      "locationVerifiedAt": "2026-09-24T10:50:28.380286+00:00"
     },
     {
       "id": "teamsport-bristol",
@@ -2142,7 +2256,13 @@
       "trackLengthM": 500,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "11 Dominion Way, Cardiff, CF24 1RF, GB",
+      "lat": 51.4939,
+      "long": -3.14919,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/teamsport-cardiff.html",
+      "locationVerifiedAt": "2026-09-24T10:50:30.413557+00:00"
     },
     {
       "id": "teamsport-coventry",
@@ -2194,7 +2314,13 @@
       "trackLengthM": 800,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "3 Herringham Road, East London, SE7 8NJ, GB",
+      "lat": 51.49462,
+      "long": 0.03576,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/teamsport-docklands.html",
+      "locationVerifiedAt": "2026-09-24T10:50:32.465389+00:00"
     },
     {
       "id": "teamsport-dunstable",
@@ -2227,7 +2353,13 @@
       "trackLengthM": 800,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "30 Nobel Road, North London, N18 3BA, GB",
+      "lat": 51.61857,
+      "long": -0.0448,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/teamsport-edmonton.html",
+      "locationVerifiedAt": "2026-09-24T10:50:34.500073+00:00"
     },
     {
       "id": "teamsport-farnborough",
@@ -2317,7 +2449,13 @@
       "trackLengthM": 500,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Unit 8a, 2 New Star Road, Leicester, LE4 9JD, GB",
+      "lat": 52.66307,
+      "long": -1.08477,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/teamsport-leicester.html",
+      "locationVerifiedAt": "2026-09-24T10:50:36.564947+00:00"
     },
     {
       "id": "teamsport-liverpool",
@@ -2331,7 +2469,13 @@
       "trackLengthM": 475,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "182 Sefton Street, Liverpool, L3 4BQ, GB",
+      "lat": 53.38154,
+      "long": -2.9752,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/teamsport-liverpool.html",
+      "locationVerifiedAt": "2026-09-24T10:50:38.600970+00:00"
     },
     {
       "id": "teamsport-manchester-trafford",
@@ -2459,7 +2603,13 @@
       "trackLengthM": 450,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Cradock Road, Reading, RG2 0EE, GB",
+      "lat": 51.43913,
+      "long": -0.97461,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/teamsport-reading.html",
+      "locationVerifiedAt": "2026-09-24T10:50:40.627955+00:00"
     },
     {
       "id": "teamsport-southampton",
@@ -2492,7 +2642,13 @@
       "trackLengthM": 500,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "1-3, Portrack Lane, Stockton-on-Tees, TS18 2QR, GB",
+      "lat": 54.57097,
+      "long": -1.29269,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/teamsport-stockton.html",
+      "locationVerifiedAt": "2026-09-24T10:50:42.659590+00:00"
     },
     {
       "id": "teamsport-stoke",
@@ -2506,7 +2662,13 @@
       "trackLengthM": 500,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Waterloo Road, Burslem, Stoke-on-Trent, ST6 2QB, GB",
+      "lat": 53.04291,
+      "long": -2.19351,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/teamsport-stoke.html",
+      "locationVerifiedAt": "2026-09-24T10:50:44.693227+00:00"
     },
     {
       "id": "teamsport-warrington",
@@ -2548,7 +2710,13 @@
       "trackLengthM": null,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "202 Fazeley Street, Birmingham, B5 5SE, GB",
+      "lat": 52.477,
+      "long": -1.885,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/teamworks-birmingham-city.html",
+      "locationVerifiedAt": "2026-09-24T10:51:58.172767+00:00"
     },
     {
       "id": "teamworks-birmingham-west",
@@ -2562,7 +2730,13 @@
       "trackLengthM": null,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "225 Dudley Road, Halesowen, B63 3NR, GB",
+      "lat": 52.449,
+      "long": -2.049,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/teamworks-birmingham-west.html",
+      "locationVerifiedAt": "2026-09-24T10:52:00.210946+00:00"
     },
     {
       "id": "teamworks-east-midlands",
@@ -2576,7 +2750,13 @@
       "trackLengthM": null,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "4 Fulwood Road North, Huthwaite, Sutton-in-Ashfield, NG17 2NB, GB",
+      "lat": 53.118,
+      "long": -1.296,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/teamworks-east-midlands.html",
+      "locationVerifiedAt": "2026-09-24T10:52:02.264602+00:00"
     },
     {
       "id": "teamworks-plymouth",
@@ -2590,7 +2770,13 @@
       "trackLengthM": null,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "300 Ernesettle Lane, Plymouth, PL5 2SA, GB",
+      "lat": 50.416,
+      "long": -4.181,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/teamworks-plymouth.html",
+      "locationVerifiedAt": "2026-09-24T10:52:04.327358+00:00"
     },
     {
       "id": "teamworks-york",
@@ -2623,7 +2809,13 @@
       "trackLengthM": 2100,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "South Tees Motor Sports Park, South Bank Road, Middlesbrough, TS6 6XH, GB",
+      "lat": 54.57682,
+      "long": -1.18963,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/teesside-motorsports.html",
+      "locationVerifiedAt": "2026-09-24T10:52:06.365200+00:00"
     },
     {
       "id": "garage-kilmarnock",
@@ -2675,7 +2867,13 @@
       "trackLengthM": 1100,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Thruxton Circuit, Thruxton, Andover, SP11 8PW, GB",
+      "lat": 51.20315,
+      "long": -1.60966,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/thruxton-kart-centre.html",
+      "locationVerifiedAt": "2026-09-24T10:52:08.397591+00:00"
     },
     {
       "id": "tockwith",
@@ -2729,7 +2927,13 @@
       "trackLengthM": null,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "Solway Trading Estate, Maryport, CA15 8NG, GB",
+      "lat": 54.713,
+      "long": -3.49,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/west-coast-karting.html",
+      "locationVerifiedAt": "2026-09-24T10:52:10.423959+00:00"
     },
     {
       "id": "west-wales-karting",
@@ -2821,7 +3025,13 @@
       "trackLengthM": 450,
       "series": [],
       "source": "GoKartingUK national directory",
-      "directorySource": "https://gokartinguk.com/browse-location/"
+      "directorySource": "https://gokartinguk.com/browse-location/",
+      "address": "2 Huly Hill Road, Newbridge, Edinburgh, EH28 8PH, GB",
+      "lat": 55.9372,
+      "long": -3.4057,
+      "addressSource": "GoKartingUK verified venue listing",
+      "locationSourceUrl": "https://gokartinguk.com/tracks/xtreme-karting-edinburgh.html",
+      "locationVerifiedAt": "2026-09-24T10:52:12.481552+00:00"
     },
     {
       "id": "xtreme-falkirk",
