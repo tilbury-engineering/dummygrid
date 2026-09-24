@@ -51,7 +51,7 @@ CONTINENT_BY_CC={
 
 def norm(s):
  # Unicode-aware so names in Cyrillic, Korean, Arabic, etc. dedupe correctly.
- return re.sub(r"[^\\w]+"," ",(s or "").casefold(),flags=re.UNICODE).replace("_"," ").strip()
+ return re.sub(r"[^\w]+"," ",(s or "").casefold(),flags=re.UNICODE).replace("_"," ").strip()
 
 def slugify(s):
  base=re.sub(r"[^a-z0-9]+","-",norm(s)).strip("-")
@@ -159,7 +159,7 @@ def cleanup_existing(tracks):
  # duplicate OSM geometries that describe the same named venue.
  cleaned=[];pruned_generic=0;merged_nearby=0
  for t in tracks:
-  if t.get("source")=="OpenStreetMap global karting import" and re.fullmatch(r"Karting venue \\d+",t.get("name") or "",re.I):
+  if t.get("source")=="OpenStreetMap global karting import" and re.fullmatch(r"Karting venue \d+",t.get("name") or "",re.I):
    pruned_generic+=1
    continue
   name_key=norm(t.get("name"))
