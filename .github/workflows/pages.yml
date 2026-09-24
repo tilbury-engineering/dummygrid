@@ -4,7 +4,7 @@ on:
   push:
     branches: ["main"]
   workflow_run:
-    workflows: ["Refresh live karting news"]
+    workflows: ["Refresh live karting news", "Refresh timing database", "Enrich track locations"]
     types: [completed]
   workflow_dispatch:
 
