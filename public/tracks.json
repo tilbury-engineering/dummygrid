@@ -1,0 +1,268 @@
+{
+  "updatedAt": "2026-09-24T07:20:00Z",
+  "tracks": [
+    {
+      "id": "la-conca",
+      "name": "World Circuit La Conca",
+      "city": "Muro Leccese",
+      "region": "Puglia",
+      "country": "Italy",
+      "continent": "Europe",
+      "series": [
+        "FIA Karting",
+        "WSK"
+      ],
+      "website": "https://www.laconca.com/",
+      "source": "FIA Karting 2026 calendar"
+    },
+    {
+      "id": "lucas-guerrero",
+      "name": "Kartodromo Internacional Lucas Guerrero",
+      "city": "Chiva-Valencia",
+      "region": "Valencia",
+      "country": "Spain",
+      "continent": "Europe",
+      "series": [
+        "FIA Karting"
+      ],
+      "website": "https://www.kartodromovalencia.com/",
+      "source": "FIA Karting 2026 calendar"
+    },
+    {
+      "id": "genk",
+      "name": "Karting Genk",
+      "city": "Genk",
+      "region": "Limburg",
+      "country": "Belgium",
+      "continent": "Europe",
+      "series": [
+        "FIA Karting"
+      ],
+      "website": "https://www.kartinggenk.be/",
+      "source": "FIA Karting 2026 calendar"
+    },
+    {
+      "id": "mulsen",
+      "name": "Motorsportarena Mülsen",
+      "city": "Mülsen",
+      "region": "Saxony",
+      "country": "Germany",
+      "continent": "Europe",
+      "series": [
+        "FIA Karting"
+      ],
+      "website": "https://www.motorsportarena.com/",
+      "source": "FIA Karting 2026 calendar"
+    },
+    {
+      "id": "sarno",
+      "name": "Circuito Internazionale Napoli",
+      "city": "Sarno",
+      "region": "Campania",
+      "country": "Italy",
+      "continent": "Europe",
+      "series": [
+        "FIA Karting",
+        "WSK"
+      ],
+      "website": "https://www.circuitointernazionalenapoli.com/",
+      "source": "FIA Karting 2026 calendar"
+    },
+    {
+      "id": "kristianstad",
+      "name": "Asum Ring",
+      "city": "Kristianstad",
+      "region": "Skåne",
+      "country": "Sweden",
+      "continent": "Europe",
+      "series": [
+        "FIA Karting"
+      ],
+      "website": "",
+      "source": "FIA Karting 2026 calendar"
+    },
+    {
+      "id": "slomczyn",
+      "name": "Autodrom Słomczyn",
+      "city": "Słomczyn",
+      "region": "Masovian",
+      "country": "Poland",
+      "continent": "Europe",
+      "series": [
+        "FIA Karting"
+      ],
+      "website": "",
+      "source": "FIA Karting 2026 calendar"
+    },
+    {
+      "id": "le-mans",
+      "name": "Le Mans Karting International",
+      "city": "Le Mans",
+      "region": "Pays de la Loire",
+      "country": "France",
+      "continent": "Europe",
+      "series": [
+        "FIA Karting"
+      ],
+      "website": "https://www.lemans-karting.com/",
+      "source": "FIA Karting 2026 calendar"
+    },
+    {
+      "id": "viterbo",
+      "name": "Leopard Circuit Viterbo",
+      "city": "Viterbo",
+      "region": "Lazio",
+      "country": "Italy",
+      "continent": "Europe",
+      "series": [
+        "FIA Karting",
+        "WSK"
+      ],
+      "website": "https://www.leopardcircuit.com/",
+      "source": "FIA Karting / WSK 2026 calendars"
+    },
+    {
+      "id": "franciacorta",
+      "name": "Franciacorta Karting Track",
+      "city": "Castrezzato",
+      "region": "Lombardy",
+      "country": "Italy",
+      "continent": "Europe",
+      "series": [
+        "WSK"
+      ],
+      "website": "https://www.franciacortakartingtrack.com/",
+      "source": "WSK 2026 calendar"
+    },
+    {
+      "id": "south-garda",
+      "name": "South Garda Karting",
+      "city": "Lonato",
+      "region": "Lombardy",
+      "country": "Italy",
+      "continent": "Europe",
+      "series": [
+        "WSK"
+      ],
+      "website": "https://www.southgardakarting.it/",
+      "source": "WSK 2026 calendar"
+    },
+    {
+      "id": "cremona",
+      "name": "Cremona Circuit",
+      "city": "San Martino del Lago",
+      "region": "Lombardy",
+      "country": "Italy",
+      "continent": "Europe",
+      "series": [
+        "WSK"
+      ],
+      "website": "https://www.cremonacircuit.it/",
+      "source": "WSK 2026 calendar"
+    },
+    {
+      "id": "coffs-harbour",
+      "name": "Coffs Harbour Kart Racing Club",
+      "city": "Coffs Harbour",
+      "region": "New South Wales",
+      "country": "Australia",
+      "continent": "Oceania",
+      "series": [
+        "Australian Kart Championship"
+      ],
+      "website": "",
+      "source": "Karting Australia 2026 calendar"
+    },
+    {
+      "id": "ipswich",
+      "name": "Ipswich Kart Club",
+      "city": "Ipswich",
+      "region": "Queensland",
+      "country": "Australia",
+      "continent": "Oceania",
+      "series": [
+        "Australian Kart Championship"
+      ],
+      "website": "",
+      "source": "Karting Australia 2026 calendar"
+    },
+    {
+      "id": "townsville",
+      "name": "Townsville Kart Club",
+      "city": "Townsville",
+      "region": "Queensland",
+      "country": "Australia",
+      "continent": "Oceania",
+      "series": [
+        "Australian Kart Championship"
+      ],
+      "website": "",
+      "source": "Karting Australia 2026 calendar"
+    },
+    {
+      "id": "seymour",
+      "name": "Seymour / Eastern Lions Kart Club",
+      "city": "Seymour",
+      "region": "Victoria",
+      "country": "Australia",
+      "continent": "Oceania",
+      "series": [
+        "Australian Kart Championship"
+      ],
+      "website": "",
+      "source": "Karting Australia 2026 calendar"
+    },
+    {
+      "id": "bolivar",
+      "name": "Bolivar Raceway",
+      "city": "Bolivar",
+      "region": "South Australia",
+      "country": "Australia",
+      "continent": "Oceania",
+      "series": [
+        "Australian Kart Championship"
+      ],
+      "website": "",
+      "source": "Karting Australia 2026 calendar"
+    },
+    {
+      "id": "macau",
+      "name": "Circuit of Macao – Coloane",
+      "city": "Coloane",
+      "region": "Macao",
+      "country": "Macao",
+      "continent": "Asia",
+      "series": [
+        "FIA Karting"
+      ],
+      "website": "",
+      "source": "FIA Karting 2026 calendar"
+    },
+    {
+      "id": "imperatriz",
+      "name": "Kartodromo de Imperatriz",
+      "city": "Imperatriz",
+      "region": "Maranhão",
+      "country": "Brazil",
+      "continent": "South America",
+      "series": [
+        "FIA Karting"
+      ],
+      "website": "",
+      "source": "FIA Karting 2026 calendar"
+    },
+    {
+      "id": "lyl-malaysia",
+      "name": "LYL International Karting Circuit",
+      "city": "Cheras",
+      "region": "Selangor",
+      "country": "Malaysia",
+      "continent": "Asia",
+      "series": [
+        "FIA Karting"
+      ],
+      "website": "",
+      "source": "FIA Karting 2026 calendar"
+    }
+  ]
+}
