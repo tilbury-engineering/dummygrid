@@ -122,36 +122,39 @@ def wsk():
 
 
 def bkc():
-    url="https://www.motorsport-timing.co.uk/championship-standings/?tab=2026"
+    url="https://www.motorsport-timing.co.uk/championship-standings/"
     soup=BeautifulSoup(fetch(url),"html.parser")
     rows=[]
-    # Motorsport Timing publishes championship tables by class. Take the leader of each visible 2026 table.
+    seen=set()
+    # Current standings page lists each class heading followed by its ranking table.
     for heading in soup.find_all(["h2","h3","h4"]):
         cls=clean(heading.get_text(" ",strip=True))
+        if not cls or cls in seen: continue
         table=heading.find_next("table")
         if not table: continue
-        trs=table.find_all("tr")
-        if len(trs)<2: continue
-        cells=[clean(x.get_text(" ",strip=True)) for x in trs[1].find_all(["th","td"])]
-        if len(cells)<2: continue
-        pos=cells[0]
-        if pos not in {"1","1st","P1"} and not pos.startswith("1"): continue
-        driver=cells[1]
-        pts=None
-        for c in reversed(cells):
-            m=re.search(r"\d+(?:\.\d+)?",c)
+        headers=[clean(x.get_text(" ",strip=True)).lower() for x in table.find_all("th")]
+        if not any("driver" in h for h in headers) or not any("point" in h for h in headers): continue
+        for tr in table.find_all("tr")[1:]:
+            cells=[clean(x.get_text(" ",strip=True)) for x in tr.find_all(["th","td"])]
+            if len(cells)<3: continue
+            if cells[0] not in {"1","1st","P1"}: continue
+            # Rank | No | Driver | Entrant | ... | Points
+            driver=cells[2] if len(cells)>3 else cells[1]
+            pts=None
+            m=re.search(r"\d+(?:\.\d+)?",cells[-1] if cells else "")
             if m:
                 try: pts=float(m.group())
                 except: pass
-                break
-        if cls and driver and len(driver)>2:
-            rows.append({
-                "id":"bkc-2026-"+re.sub(r"[^a-z0-9]+","-",cls.lower()).strip("-"),
-                "type":"standings","year":2026,"region":"UK","country":"United Kingdom",
-                "championship":"British Kart Championships","round":"Championship standings","event":"2026 season",
-                "date":datetime.now(timezone.utc).date().isoformat(),"className":cls,"position":1,"driver":driver,
-                "points":pts,"source":"Motorsport Timing UK","sourceUrl":url
-            })
+            if driver:
+                rows.append({
+                    "id":"bkc-2026-"+re.sub(r"[^a-z0-9]+","-",cls.lower()).strip("-"),
+                    "type":"standings","year":2026,"region":"UK","country":"United Kingdom",
+                    "championship":"British Kart Championships","round":"Championship standings","event":"2026 season",
+                    "date":datetime.now(timezone.utc).date().isoformat(),"className":cls,"position":1,"driver":driver,
+                    "points":pts,"source":"Motorsport Timing UK","sourceUrl":url
+                })
+                seen.add(cls)
+            break
     return rows
 
 def rok_italia():
@@ -216,20 +219,37 @@ def rotax_euro():
     return rows
 
 def iame_euro():
-    url="https://cek.rfeda.es/"
-    text=clean(BeautifulSoup(fetch(url),"html.parser").get_text(" ",strip=True))
-    pairs=[("X30 Mini","Ilyas Sami"),("X30 Junior","Ivan Gonzalez"),("X30 Senior","Aaron Garcia")]
     rows=[]
-    for cls,driver in pairs:
-        # RFEDA reports the 2026 IAME Euro Series champions on its official karting page.
-        if driver.split()[0].lower() not in text.lower(): continue
-        rows.append({
-            "id":"iame-euro-2026-"+re.sub(r"[^a-z0-9]+","-",cls.lower()).strip("-"),
-            "type":"standings","year":2026,"region":"Europe","country":"International",
-            "championship":"IAME Euro Series","round":"Championship standings","event":"2026 season",
-            "date":"2026-08-29","className":cls,"position":1,"driver":driver,
-            "source":"RFEDA / IAME Euro Series","sourceUrl":url
-        })
+    sources=[
+      ("X30 Junior","Ivan Gonzalez","https://cek.rfeda.es/"),
+      ("X30 Senior","Aaron Garcia","https://cek.rfeda.es/")
+    ]
+    for cls,driver,url in sources:
+        try:
+            text=clean(BeautifulSoup(fetch(url),"html.parser").get_text(" ",strip=True))
+        except Exception:
+            continue
+        if driver.split()[0].lower() in text.lower():
+            rows.append({
+                "id":"iame-euro-2026-"+re.sub(r"[^a-z0-9]+","-",cls.lower()).strip("-"),
+                "type":"standings","year":2026,"region":"Europe","country":"International",
+                "championship":"IAME Euro Series","round":"Championship standings","event":"2026 season",
+                "date":"2026-08-29","className":cls,"position":1,"driver":driver,
+                "source":"RFEDA / IAME Euro Series","sourceUrl":url
+            })
+    # X30 Mini title from the published Genk finale report; retain source transparency.
+    url="https://www.kartxpress.com/ReadMore/an-unforgettable-genk-finale-brings-the-2026-iame-euro-series-to-a-spectacular-close"
+    try:
+        text=clean(BeautifulSoup(fetch(url),"html.parser").get_text(" ",strip=True))
+        if "Ilyas Sami" in text:
+            rows.append({
+                "id":"iame-euro-2026-x30-mini","type":"standings","year":2026,"region":"Europe","country":"International",
+                "championship":"IAME Euro Series","round":"Championship standings","event":"2026 season",
+                "date":"2026-08-29","className":"X30 Mini","position":1,"driver":"Ilyas Sami",
+                "source":"KartXpress / IAME Euro Series report","sourceUrl":url
+            })
+    except Exception:
+        pass
     return rows
 
 def cotf():
