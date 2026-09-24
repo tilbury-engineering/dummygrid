@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-import json, os, time, re\nfrom difflib import SequenceMatcher
+import json, os, time, re
+from difflib import SequenceMatcher
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlencode
