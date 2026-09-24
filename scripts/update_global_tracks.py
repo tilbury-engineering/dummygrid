@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import json, math, re, time, hashlib
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 import requests
 import reverse_geocoder as rg
@@ -83,12 +84,15 @@ def fetch_one(query,label):
 
 def fetch_overpass():
  merged={}
- for label,box in BBOXES.items():
-  rows=fetch_one(query_for_bbox(box),label)
-  print(label,"elements",len(rows),flush=True)
-  for el in rows:
-   key=(el.get("type"),el.get("id"))
-   merged[key]=el
+ with ThreadPoolExecutor(max_workers=3) as pool:
+  futs={pool.submit(fetch_one,query_for_bbox(box),label):label for label,box in BBOXES.items()}
+  for fut in as_completed(futs):
+   label=futs[fut]
+   rows=fut.result()
+   print(label,"elements",len(rows),flush=True)
+   for el in rows:
+    key=(el.get("type"),el.get("id"))
+    merged[key]=el
  return list(merged.values())
 
 def coords(el):
