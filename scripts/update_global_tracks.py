@@ -217,6 +217,8 @@ def main():
   city=tags.get("addr:city") or tags.get("addr:town") or tags.get("addr:village") or g.get("name") or ""
   region=tags.get("addr:state") or g.get("admin1") or ""
   website=tags.get("website") or tags.get("contact:website") or ""
+  image=tags.get("image") or ""
+  wikimedia=tags.get("wikimedia_commons") or ""
   addr=address_from_tags(tags)
   src=osm_url(el)
   if dup:
@@ -226,6 +228,8 @@ def main():
    if not dup.get("region") and region:dup["region"]=region
    if not dup.get("country") and country!="Unknown":dup["country"]=country
    if not dup.get("continent") and cc:dup["continent"]=continent_name(cc)
+   if not dup.get("images") and image:dup["images"]=[{"url":image,"credit":"OpenStreetMap-linked venue image","sourceUrl":src}]
+   if wikimedia:dup.setdefault("wikimediaCommons",wikimedia)
    dup.setdefault("osmSource",src)
    merged+=1
    continue
@@ -241,6 +245,8 @@ def main():
    "source":"OpenStreetMap global karting import","osmSource":src,
    "address":addr,"lat":round(lat,7),"long":round(lon,7),
    "addressSource":"OpenStreetMap" if addr else "",
+   "images":[{"url":image,"credit":"OpenStreetMap-linked venue image","sourceUrl":src}] if image else [],
+   "wikimediaCommons":wikimedia,
    "venueType":classify(tags),"kartType":"Unknown"
   }
   tracks.append(rec);added+=1
@@ -249,7 +255,7 @@ def main():
  data["tracks"]=tracks
  data["updatedAt"]=time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime())
  data["globalImport"]={"source":"OpenStreetMap / Overpass","elements":len(elems),"namedVenues":len(raw),"added":added,"merged":merged,"prunedGeneric":pruned_generic,"mergedNearby":merged_nearby}
- text=json.dumps(data,ensure_ascii=False,separators=(",",":"))+"\n"
+ text=json.dumps(data,ensure_ascii=False,separators=(",",":"))+"\\n"
  PUBLIC.write_text(text,encoding="utf-8")
  country_counts={}
  continent_counts={}
@@ -265,7 +271,7 @@ def main():
   "countries":dict(sorted(country_counts.items())),
   "continents":dict(sorted(continent_counts.items()))
  }
- SUMMARY.write_text(json.dumps(summary,ensure_ascii=False,separators=(",",":"))+"\n",encoding="utf-8")
+ SUMMARY.write_text(json.dumps(summary,ensure_ascii=False,separators=(",",":"))+"\\n",encoding="utf-8")
  print("added",added,"merged",merged,"total",len(tracks),"countries",summary["countryCount"],flush=True)
 
 if __name__=="__main__":main()
