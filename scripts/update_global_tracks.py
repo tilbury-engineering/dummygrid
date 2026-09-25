@@ -255,8 +255,7 @@ def main():
  data["tracks"]=tracks
  data["updatedAt"]=time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime())
  data["globalImport"]={"source":"OpenStreetMap / Overpass","elements":len(elems),"namedVenues":len(raw),"added":added,"merged":merged,"prunedGeneric":pruned_generic,"mergedNearby":merged_nearby}
- text=json.dumps(data,ensure_ascii=False,separators=(",",":"))+"
-"
+ text=json.dumps(data,ensure_ascii=False,separators=(",",":"))+"\\n"
  PUBLIC.write_text(text,encoding="utf-8")
  country_counts={}
  continent_counts={}
