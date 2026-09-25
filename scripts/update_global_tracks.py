@@ -271,8 +271,7 @@ def main():
   "countries":dict(sorted(country_counts.items())),
   "continents":dict(sorted(continent_counts.items()))
  }
- SUMMARY.write_text(json.dumps(summary,ensure_ascii=False,separators=(",",":"))+"
-",encoding="utf-8")
+ SUMMARY.write_text(json.dumps(summary,ensure_ascii=False,separators=(",",":"))+"\\n",encoding="utf-8")
  print("added",added,"merged",merged,"total",len(tracks),"countries",summary["countryCount"],flush=True)
 
 if __name__=="__main__":main()
