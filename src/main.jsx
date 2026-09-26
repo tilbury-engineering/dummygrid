@@ -662,42 +662,13 @@ function HallOfFame(){
 }
 
 const worldChampions=[
- {year:2026,cat:"KZ",name:"Viktor Gustafsson",country:"Sweden"},
- {year:2025,cat:"KZ",name:"Senna van Walstijn",country:"Netherlands"},
- {year:2025,cat:"OK",name:"Thibaut Ramaekers",country:"Belgium"},
- {year:2025,cat:"OK-Junior",name:"Noah Baglin",country:"United Kingdom"},
- {year:2024,cat:"KZ",name:"Giuseppe Palomba",country:"Italy"},
- {year:2024,cat:"OK",name:"Thibaut Ramaekers",country:"Belgium"},
- {year:2024,cat:"OK-Junior",name:"Dries Van Langendonck",country:"Belgium"},
- {year:2023,cat:"KZ",name:"Paolo Ippolito",country:"Italy"},
- {year:2023,cat:"OK",name:"Kirill Kutskov",country:"Neutral"},
- {year:2023,cat:"OK-Junior",name:"Dries Van Langendonck",country:"Belgium"},
- {year:2022,cat:"KZ",name:"Viktor Gustafsson",country:"Sweden"},
- {year:2022,cat:"OK",name:"Matheus Morgatto",country:"Brazil"},
- {year:2022,cat:"OK-Junior",name:"Enzo Tarnvanichkul",country:"Thailand"},
- {year:2021,cat:"KZ",name:"Jérémy Iglesias",country:"France"},
- {year:2021,cat:"OK",name:"Nikita Bedrin",country:"Neutral"},
- {year:2021,cat:"OK-Junior",name:"Freddie Slater",country:"United Kingdom"},
- {year:2020,cat:"KZ",name:"Jérémy Iglesias",country:"France"},
- {year:2020,cat:"OK",name:"Callum Bradshaw",country:"United Kingdom"},
- {year:2020,cat:"OK-Junior",name:"Freddie Slater",country:"United Kingdom"},
- {year:2019,cat:"KZ",name:"Marijn Kremers",country:"Netherlands"},
- {year:2019,cat:"OK",name:"Callum Bradshaw",country:"United Kingdom"},
- {year:2019,cat:"OK-Junior",name:"Lorenzo Travisanutto",country:"Italy"},
- {year:2018,cat:"OK",name:"Lorenzo Travisanutto",country:"Italy"},
- {year:2018,cat:"KZ",name:"Jorrit Pex",country:"Netherlands"},
- {year:2017,cat:"KZ",name:"Paolo De Conto",country:"Italy"},
- {year:2016,cat:"KZ",name:"Jorrit Pex",country:"Netherlands"},
- {year:2015,cat:"KZ",name:"Jorrit Pex",country:"Netherlands"},
- {year:2014,cat:"KZ",name:"Marco Ardigò",country:"Italy"},
- {year:2013,cat:"KZ",name:"Jonathan Thonon",country:"Belgium"},
- {year:2012,cat:"KZ",name:"Flavio Camponeschi",country:"Italy"},
- {year:2011,cat:"KZ",name:"Jordon Lennox-Lamb",country:"United Kingdom"},
- {year:2010,cat:"KZ",name:"Arnaud Kozlinski",country:"France"},
- {year:2009,cat:"KZ",name:"Arnaud Kozlinski",country:"France"},
- {year:2008,cat:"KZ",name:"Davide Forè",country:"Italy"},
- {year:2007,cat:"KZ",name:"Marco Ardigò",country:"Italy"}
-];
+[1964,"100cc","Guido Sala"],[1965,"100cc","Guido Sala"],[1966,"100cc","Susanna Raganelli"],[1967,"100cc","Edgardo Rossi"],[1968,"100cc","Thomas Nilsson"],[1969,"100cc","François Goldstein"],[1970,"100cc","François Goldstein"],[1971,"100cc","François Goldstein"],[1972,"100cc","François Goldstein"],[1973,"100cc","Terry Fullerton"],[1974,"100cc","Riccardo Patrese"],[1975,"100cc","François Goldstein"],[1976,"100cc","Felice Rovelli"],[1977,"100cc","Felice Rovelli"],[1978,"100cc","Lake Speed"],[1979,"100cc","Peter Koene"],[1980,"100cc","Peter de Bruijn"],[1981,"Formula K","Mike Wilson"],[1982,"Formula K","Mike Wilson"],[1983,"Formula K","Mike Wilson"],[1984,"Formula K","Jörn Haase"],[1985,"Formula K","Mike Wilson"],[1986,"Formula K","Augusto Ribas"],[1987,"Formula K","Giampiero Simoni"],[1988,"Formula K","Mike Wilson"],[1989,"Formula K","Mike Wilson"],[1990,"Formula A","Jan Magnussen"],[1991,"Formula K","Jarno Trulli"],[1992,"Formula K","Danilo Rossi"],[1993,"Formula Super A","Nicola Gianniberti"],[1994,"Formula Super A","Alessandro Manetti"],[1995,"Formula Super A","Massimiliano Orsini"],[1996,"Formula Super A","Johnny Mislijevic"],[1997,"Formula Super A","Danilo Rossi"],[1998,"Formula Super A","Davide Forè"],[1999,"Formula Super A","Danilo Rossi"],[2000,"Formula Super A","Davide Forè"],[2001,"Formula Super A","Vitantonio Liuzzi"],[2002,"Formula Super A","Giedo van der Garde"],[2003,"Formula A","Wade Cunningham"],[2004,"Formula A","Davide Forè"],[2005,"Formula A","Oliver Oakes"],[2006,"Formula A","Davide Forè"],[2007,"KF1","Marco Ardigò"],[2008,"KF1","Marco Ardigò"],[2009,"KF1","Arnaud Kozlinski"],[2010,"KF2","Nyck de Vries"],[2011,"KF1","Nyck de Vries"],[2012,"KF1","Flavio Camponeschi"],[2013,"KF","Tom Joyner"],[2014,"KF","Lando Norris"],[2015,"KF","Karol Basz"],[2016,"OK","Pedro Hiltbrand"],[2017,"OK","Danny Keirle"],[2018,"OK","Lorenzo Travisanutto"],[2019,"OK","Lorenzo Travisanutto"],[2020,"OK","Callum Bradshaw"],[2021,"OK","Tuukka Taponen"],[2022,"OK","Matheus Morgatto"],[2023,"OK","Kirill Kutskov"],[2024,"OK","Ethan Jeff-Hall"],[2025,"OK","Thibaut Ramaekers"],
+[1988,"FS100","Emmanuel Collard"],[1989,"FS100","Gert Munkholm"],[1990,"FA","Danilo Rossi"],[1991,"FA","Alessandro Manetti"],[1992,"FA","Nicola Gianniberti"],[1993,"FA","David Terrien"],[1994,"FA","Marco Barindelli"],[1995,"FA","Gastão Fráguas"],[1996,"FA","Jean-Christophe Ravier"],[1997,"FA","James Courtney"],[1998,"FA","Ruben Carrapatoso"],[1999,"FA","Franck Perera"],[2000,"FA","Colin Brown"],
+[2010,"U18","Jake Dennis"],[2011,"U18","Matthew Graham"],[2012,"U18","Henry Easthope"],[2013,"KF-Junior","Alessio Lorandi"],[2014,"KF-Junior","Enaam Ahmed"],[2015,"KF-Junior","Logan Sargeant"],[2016,"OK-Junior","Victor Martins"],[2017,"OK-Junior","Dexter Patterson"],[2018,"OK-Junior","Victor Bernier"],[2019,"OK-Junior","Thomas ten Brinke"],[2020,"OK-Junior","Freddie Slater"],[2021,"OK-Junior","Kean Nakamura-Berta"],[2022,"OK-Junior","Enzo Tarnvanichkul"],[2023,"OK-Junior","Dries Van Langendonck"],[2024,"OK-Junior","Kenzo Craigie"],[2025,"OK-Junior","Noah Baglin"],
+[1983,"Formula C","Gianni Mazzola"],[1984,"Formula C","Gabriele Tarquini"],[1985,"Formula C","Piermario Cantoni"],[1986,"Formula C","Fabrizio Giovanardi"],[1987,"Formula C","Alessandro Piccini"],[1988,"Formula C","Peter Rydell"],[1989,"Formula C","Gianluca Giorgi"],[1990,"Formula C","Alessandro Piccini"],[1991,"Formula C","Alessandro Piccini"],[1992,"Formula C","Danilo Rossi"],[1993,"Formula C","Alessandro Piccini"],[1994,"Formula C","Jarno Trulli"],[1995,"Formula C","Gianluca Beggio"],[1996,"Formula C","Gianluca Beggio"],[1997,"Formula C","Gianluca Beggio"],[1998,"Formula C","Gianluca Beggio"],[1999,"Formula C","Francesco Laudato"],[2000,"Formula C","Gianluca Beggio"],[2013,"KZ","Max Verstappen"],[2014,"KZ","Marco Ardigò"],[2015,"KZ","Jorrit Pex"],[2016,"KZ","Paolo De Conto"],[2017,"KZ","Paolo De Conto"],[2018,"KZ","Patrik Hájek"],[2019,"KZ","Marijn Kremers"],[2020,"KZ","Jérémy Iglesias"],[2021,"KZ","Noah Milell"],[2022,"KZ","Viktor Gustavsson"],[2023,"KZ","Paolo Ippolito"],[2024,"KZ","Giuseppe Palomba"],[2025,"KZ","Senna van Walstijn"],
+[1983,"Superkart","Martin Hines"],[1984,"Superkart","Lennart Bohlin"],[1985,"Superkart","Poul Petersen"],[1986,"Superkart","Wade Nelson"],[1987,"Superkart","Éric Gassin"],[1988,"Superkart","Poul Petersen"],[1989,"Superkart","Tim Parrott"],[1990,"Superkart","Tim Parrott"],[1991,"Superkart","Martin Hines"],[1992,"Superkart","Martin Hines"],[1993,"Superkart","Perry Grondstra"],[1994,"Superkart","Perry Grondstra"],[1995,"Superkart","Trevor Roberts"],
+[1968,"Junior World Cup","Amedeo Pacitto"],[1969,"Junior World Cup","D. Carlsson"],[1970,"Junior World Cup","Alan Lane"],[1992,"Five Continents Cup","Bruno Balocco"],[1993,"Five Continents Cup","Ennio Gandolfi"],[1994,"Five Continents Cup","Giorgio Pantano"],[1995,"Five Continents Cup","James Courtney"],[1996,"Five Continents Cup","Fernando Alonso"],[2007,"KF1 World Cup","Marco Ardigò"],[2008,"KF1 World Cup","Davide Forè"],[2009,"KF1 World Cup","Yannick de Brabander"],[2010,"KF1 World Cup","Oliver Rowland"],[2007,"KF2 World Cup","Michael Ryall"],[2008,"KF2 World Cup","Oliver Rowland"],[2009,"KF2 World Cup","David da Luz"],[2011,"KF2 World Cup","Loris Spinelli"],[2012,"KF2 World Cup","Felice Tiene"],[2009,"KF3 World Cup","Giuliano Maria Niceta"],[2010,"KF3 World Cup","Alexander Albon"],[2011,"KF3 World Cup","Charles Leclerc"],[2012,"KF3 World Cup","Luca Corberi"],[2003,"S-ICC World Cup","Robert Dirks"],[2004,"S-ICC World Cup","Ennio Gandolfi"],[2005,"S-ICC World Cup","Francesco Laudato"],[2006,"S-ICC World Cup","Davide Forè"],[2007,"KZ1 World Cup","Jonathan Thonon"],[2008,"KZ1 World Cup","Jonathan Thonon"],[2009,"KZ1 World Cup","Jonathan Thonon"],[2010,"KZ1 World Cup","Bas Lammers"],[2011,"KZ1 World Cup","Jonathan Thonon"],[2012,"KZ1 World Cup","Bas Lammers"],[2022,"KZ2 World Cup","Arthur Carbonnel"],[2023,"KZ2 World Cup","Niels Tröger"],[2024,"KZ2 World Cup","Cristian Bertuca"],[2024,"OK-N World Cup","Kyuho Lee"],[2025,"OK-N World Cup","Manuel Scognamiglio"],[2025,"OKN-J World Cup","Gioele Girardello"]
+].map(([year,cat,name])=>({year,cat,name,country:""}));
 function WorldChampions(){
  const [cat,setCat]=useState("All");
  const cats=["All",...new Set(worldChampions.map(x=>x.cat))];
