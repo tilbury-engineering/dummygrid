@@ -149,8 +149,9 @@ function Top({region,setRegion}){
         {directoryOpen&&<div className="nav-dropdown-menu" role="menu">
          <a href="#/manufacturers" onClick={()=>{setMenuOpen(false);setDirectoryOpen(false)}}>Manufacturers</a>
          <a href="#/asns" onClick={()=>{setMenuOpen(false);setDirectoryOpen(false)}}>ASNs</a>
+         <a href="#/tracks" onClick={()=>{setMenuOpen(false);setDirectoryOpen(false)}}>Tracks</a>
         </div>}
-       </div><a href="#/results" onClick={()=>setMenuOpen(false)}>Results</a><a href="#/tracks" onClick={()=>setMenuOpen(false)}>Tracks</a>
+       </div><a href="#/results" onClick={()=>setMenuOpen(false)}>Results</a>
        <a href="#/community" onClick={()=>setMenuOpen(false)}>Community</a><a href="#/knowledge-base" onClick={()=>setMenuOpen(false)}>Knowledge Base</a>
        <div className="nav-dropdown">
         <button className="nav-dropdown-toggle" type="button" aria-haspopup="true" aria-expanded={legacyOpen} onClick={()=>setLegacyOpen(v=>!v)}>Legacy <span>⌄</span></button>
