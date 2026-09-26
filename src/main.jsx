@@ -605,12 +605,55 @@ const hallOfFame=[
  {year:2024,name:"Kyle Larson",country:"USA",path:"Karting → NASCAR → IndyCar → Le Mans",note:"A cross-discipline champion who has competed at the Indianapolis 500 and in endurance racing."}
 ];
 
+const additionalHall=[
+{name:"Klaus Ludwig",country:"Germany",year:1984,path:"Karting → Touring Cars → Le Mans",note:"Three-time 24 Hours of Le Mans winner and three-time DTM champion."},
+{name:"Roberto Ravaglia",country:"Italy",year:1985,path:"Karting → Touring Cars → Le Mans",note:"Three-time 24 Hours of Le Mans winner and inaugural DTM champion."},
+{name:"Kurt Thiim",country:"Denmark",year:1986,path:"Karting → Touring Cars → Le Mans",note:"1986 DTM champion and international touring and endurance racer."},
+{name:"Per Stureson",country:"Sweden",year:1987,path:"Karting → Touring Cars",note:"1985 DTM champion."},
+{name:"Eric van de Poele",country:"Belgium",year:1987,path:"Karting → Formula 1 → Touring Cars → Le Mans",note:"Formula 1 driver, DTM champion and endurance racer."},
+{name:"Hans-Joachim Stuck",country:"Germany",year:1970,path:"Karting → Formula 1 → Touring Cars → Le Mans",note:"Formula 1 Grand Prix winner, DTM champion and two-time Le Mans winner."},
+{name:"Frank Biela",country:"Germany",year:1987,path:"Karting → Touring Cars → Le Mans",note:"DTM champion and multiple Le Mans winner."},
+{name:"Nicola Larini",country:"Italy",year:1986,path:"Karting → Formula 1 → Touring Cars",note:"Formula 1 podium finisher and DTM champion."},
+{name:"Laurent Aiello",country:"France",year:1988,path:"Karting → Touring Cars → Le Mans",note:"2002 DTM champion and 1998 Le Mans winner."},
+{name:"Bernd Schneider",country:"Germany",year:1980,path:"Karting → Formula 1 → Touring Cars → Le Mans",note:"Five-time DTM champion and Formula 1 driver."},
+{name:"Mattias Ekström",country:"Sweden",year:1988,path:"Karting → Touring Cars → Le Mans",note:"Three-time DTM champion and international endurance winner."},
+{name:"Timo Scheider",country:"Germany",year:1985,path:"Karting → Touring Cars → Le Mans",note:"Two-time DTM champion and endurance racer."},
+{name:"René Rast",country:"Germany",year:1995,path:"Karting → Touring Cars → Le Mans",note:"Three-time DTM champion and multiple endurance winner."},
+{name:"Marco Wittmann",country:"Germany",year:1995,path:"Karting → Touring Cars → Le Mans",note:"Two-time DTM champion and international endurance racer."},
+{name:"Paul di Resta",country:"United Kingdom",year:1998,path:"Karting → Formula 1 → Touring Cars → Le Mans",note:"DTM champion and Formula 1 driver."},
+{name:"Mike Rockenfeller",country:"Germany",year:1990,path:"Karting → Touring Cars → Le Mans",note:"DTM champion and 24 Hours of Le Mans winner."},
+{name:"Bruno Spengler",country:"Canada",year:1990,path:"Karting → Touring Cars → Le Mans",note:"2012 DTM champion and international endurance racer."},
+{name:"Martin Tomczyk",country:"Germany",year:1987,path:"Karting → Touring Cars → Le Mans",note:"2011 DTM champion and endurance racer."},
+{name:"Pascal Wehrlein",country:"Germany",year:2000,path:"Karting → Touring Cars → Formula 1",note:"2015 DTM champion and Formula 1 driver."},
+{name:"Gary Paffett",country:"United Kingdom",year:1993,path:"Karting → Formula 3 → Touring Cars → Formula 1 testing → Formula E",note:"Two-time DTM champion, British karting champion and former McLaren and Williams F1 test driver."},
+{name:"Jamie Green",country:"United Kingdom",year:1996,path:"Karting → Formula 3 → Touring Cars",note:"Long-time DTM race winner and championship contender."},
+{name:"Johnny Cecotto",country:"Venezuela",year:1972,path:"Karting → Formula 2 → Formula 1 → Touring Cars → Le Mans",note:"Formula 1 driver and international touring and endurance winner."},
+{name:"Andy Priaulx",country:"United Kingdom",year:1987,path:"Karting → Touring Cars → Le Mans",note:"Three-time World Touring Car champion and Le Mans class winner."},
+{name:"Rob Huff",country:"United Kingdom",year:1994,path:"Karting → Touring Cars",note:"World Touring Car champion."},
+{name:"Jason Plato",country:"United Kingdom",year:1984,path:"Karting → Touring Cars",note:"Two-time British Touring Car champion."},
+{name:"Colin Turkington",country:"United Kingdom",year:1993,path:"Karting → Touring Cars",note:"Three-time British Touring Car champion."},
+{name:"Gabriele Tarquini",country:"Italy",year:1975,path:"Karting → Formula 1 → Touring Cars → Le Mans",note:"1984 CIK-FIA gearbox world champion and World Touring Car champion."},
+{name:"Yvan Muller",country:"France",year:1980,path:"Karting → Touring Cars → Le Mans",note:"Four-time World Touring Car champion."},
+{name:"Dario Franchitti",country:"United Kingdom",year:1987,path:"Karting → IndyCar → Le Mans",note:"Four-time IndyCar champion, three-time Indianapolis 500 winner and Le Mans winner."},
+{name:"Helio Castroneves",country:"Brazil",year:1990,path:"Karting → IndyCar → Le Mans",note:"Four-time Indianapolis 500 winner and IndyCar champion."},
+{name:"Josef Newgarden",country:"USA",year:2001,path:"Karting → IndyCar",note:"Two-time IndyCar champion and two-time Indianapolis 500 winner."},
+{name:"Ryan Hunter-Reay",country:"USA",year:1995,path:"Karting → IndyCar → Le Mans",note:"IndyCar champion and Indianapolis 500 winner."},
+{name:"Alexander Rossi",country:"USA",year:1997,path:"Karting → Formula 1 testing → IndyCar → Le Mans",note:"Indianapolis 500 winner and international endurance racer."},
+{name:"Mark Blundell",country:"United Kingdom",year:1976,path:"Karting → Formula 1 → IndyCar → Le Mans",note:"Formula 1 driver, CART race winner and Le Mans winner."},
+{name:"Nigel Mansell",country:"United Kingdom",year:1970,path:"Karting → Formula 1 → IndyCar → Le Mans",note:"Formula 1 World Champion and CART champion."},
+{name:"Martin Brundle",country:"United Kingdom",year:1975,path:"Karting → Formula 1 → Le Mans → Touring Cars",note:"Formula 1 podium finisher, Le Mans winner and touring-car competitor."},
+{name:"Johnny Herbert",country:"United Kingdom",year:1977,path:"Karting → Formula 1 → Le Mans → Touring Cars",note:"Formula 1 Grand Prix winner and three-time Le Mans winner."},
+{name:"David Coulthard",country:"United Kingdom",year:1983,path:"Karting → Formula 1 → Le Mans",note:"Formula 1 Grand Prix winner and endurance competitor."},
+{name:"Damon Hill",country:"United Kingdom",year:1981,path:"Karting → Formula 1 → Le Mans",note:"1996 Formula 1 World Champion."},
+{name:"Jacques Laffite",country:"France",year:1960,path:"Karting → Formula 1 → Touring Cars → Le Mans",note:"Six-time Formula 1 Grand Prix winner."},
+{name:"Alain Menu",country:"Switzerland",year:1981,path:"Karting → Touring Cars → Le Mans",note:"Two-time British Touring Car champion."}
+];
 function HallOfFame(){
  const [series,setSeries]=useState("All");
  const filters=["All","Formula 1","IndyCar","Le Mans","Touring Cars"];
- const rows=hallOfFame.filter(d=>series==="All"||d.path.includes(series));
+ const rows=[...hallOfFame,...additionalHall].filter((d,i,a)=>a.findIndex(x=>x.name===d.name)===i).filter(d=>series==="All"||d.path.includes(series));
  return <section><PageTitle kicker="Karting's pathway to the world stage" title="HALL OF FAME" text="A chronological record of drivers who came through karting and reached Formula 1, IndyCar, Le Mans or international Touring Cars."/>
- <div className="hof-intro"><div><b>FROM THE GRID TO THE WORLD</b><p>Karting has been the starting point for generations of elite drivers. KartGrid traces that journey and records the major disciplines reached after karting.</p></div><div className="hof-stat"><strong>{hallOfFame.length}</strong><span>featured drivers</span></div></div>
+ <div className="hof-intro"><div><b>FROM THE GRID TO THE WORLD</b><p>Karting has been the starting point for generations of elite drivers. KartGrid traces that journey and records the major disciplines reached after karting.</p></div><div className="hof-stat"><strong>{[...hallOfFame,...additionalHall].filter((d,i,a)=>a.findIndex(x=>x.name===d.name)===i).length}</strong><span>featured drivers</span></div></div>
  <Filters>{filters.map(x=><button key={x} className={"filter-button "+(series===x?"active":"")} onClick={()=>setSeries(x)}>{x}</button>)}</Filters>
  <div className="hof-grid">{rows.sort((a,b)=>a.year-b.year||a.name.localeCompare(b.name)).map((d,i)=><article className="hof-card" key={d.name}><div className="hof-year">{d.year}</div><div className="hof-country">{d.country}</div><h3>{d.name}</h3><div className="hof-path">{d.path}</div><p>{d.note}</p><div className="hof-footer"><span>Karting → {d.path.split("→").slice(-1)[0].trim()}</span><b>Hall of Fame</b></div></article>)}</div>
  <SectionHead eyebrow="Karting World Champions" title="World Champions" copy="A dedicated record of FIA / CIK-FIA karting world champions across the principal world championship categories."/>
