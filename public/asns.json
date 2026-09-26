@@ -1421,7 +1421,8 @@
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/sa.png"
     },
     {
       "id": "senegal",
