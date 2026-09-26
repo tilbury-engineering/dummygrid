@@ -669,22 +669,31 @@ function KartingWorldChampions(){
 }
 function HallOfFameProfile({name}){
  const driver=[...hallOfFame,...additionalHall].find(d=>d.name===decodeURIComponent(name));
- const portrait=driver?.name?useDriverPortrait(driver.name):"";
+ const [wiki,setWiki]=useState(null);
+ useEffect(()=>{if(!driver?.name)return;let cancelled=false; const slug=driver.name.replace(/ /g,"_"); fetch("https://en.wikipedia.org/api/rest_v1/page/summary/"+encodeURIComponent(slug)).then(r=>r.ok?r.json():null).then(d=>{if(!cancelled)setWiki(d)}).catch(()=>{}); return()=>{cancelled=true}},[driver?.name]);
+ const portrait=wiki?.originalimage?.source||wiki?.thumbnail?.source||"";
  if(!driver)return <section><PageTitle kicker="Hall of Fame" title="DRIVER NOT FOUND" text="This Hall of Fame profile could not be found." action={<a className="button" href="#/hall-of-fame">Back to Hall of Fame</a>}/></section>;
  const disciplines=["Formula 1","IndyCar","Le Mans","Touring Cars","DTM","Formula E","WEC"].filter(x=>driver.path.includes(x));
+ const pathway=driver.path.split("→").map(x=>x.trim());
  return <section>
-  <PageTitle kicker="KartGrid Hall of Fame" title={driver.name} text="A standardised driver profile documenting the karting achievement that qualifies this driver for the Hall of Fame and the championship pathway that followed." action={<a className="button" href="#/hall-of-fame">← Hall of Fame</a>}/>
+  <PageTitle kicker="KartGrid Hall of Fame" title={driver.name} text="Standardised driver profile: karting achievement, career pathway, championship record and major international motorsport involvement." action={<a className="button" href="#/hall-of-fame">← Hall of Fame</a>}/>
   <div className="driver-profile-hero">
    {portrait?<img src={portrait} alt={driver.name} className="driver-profile-photo"/>:<div className="driver-profile-photo hof-driver-placeholder"><span>{driver.name.split(" ").map(x=>x[0]).join("").slice(0,2)}</span></div>}
-   <div className="driver-profile-summary"><div className="meta">HALL OF FAME ENTRY</div><div className="driver-profile-year">{driver.year}</div><h2>{driver.name}</h2><p className="driver-profile-country">{driver.country}</p><div className="driver-badges">{disciplines.map(x=><span key={x}>{x}</span>)}</div></div>
+   <div className="driver-profile-summary"><div className="meta">HALL OF FAME ENTRY · {driver.year}</div><h2>{driver.name}</h2><p className="driver-profile-country">{driver.country}</p>{wiki?.description&&<p className="driver-wiki-role">{wiki.description}</p>}<div className="driver-badges">{disciplines.map(x=><span key={x}>{x}</span>)}</div></div>
   </div>
   <div className="driver-profile-grid">
-   <div className="panel"><div className="meta">QUALIFYING KARTING ACHIEVEMENT</div><h3>{driver.year}</h3><p>{driver.note}</p><p className="muted">Hall of Fame entry year is based on the documented national or international karting championship achievement that qualifies the driver for inclusion.</p></div>
-   <div className="panel"><div className="meta">CAREER PATHWAY</div><h3>From karting to the world stage</h3><p>{driver.path}</p></div>
+   <div className="panel"><div className="meta">WHY THEY ARE IN THE HALL OF FAME</div><h3>Karting → Championship success</h3><p>{driver.note}</p><p className="muted">The entry year is the year of the documented national or international karting championship achievement used to qualify the driver for KartGrid's Hall of Fame.</p></div>
+   <div className="panel"><div className="meta">CAREER PATHWAY</div><h3>From karting to the world stage</h3><div className="career-timeline">{pathway.map((step,i)=><div className="career-step" key={step}><span>{i+1}</span><b>{step}</b></div>)}</div></div>
   </div>
-  <div className="panel driver-career"><div className="meta">CHAMPIONSHIP PROFILE</div><h3>Recognised championship success</h3><p>{driver.name} is included because the driver's post-karting career includes a championship title at international or internationally recognised level. The Hall of Fame is not based solely on participation, race wins or reaching a major series.</p></div>
+  <div className="profile-three-col">
+   <div className="panel"><div className="meta">KARTING</div><h3>Qualifying achievement</h3><p><strong>{driver.year}</strong></p><p>{driver.note}</p><p className="muted">Karting is the foundation of this profile and the qualifying achievement determines the Hall of Fame entry year.</p></div>
+   <div className="panel"><div className="meta">CHAMPIONSHIP DISCIPLINES</div><h3>International success</h3>{disciplines.length?<ul className="profile-list">{disciplines.map(x=><li key={x}>{x}</li>)}</ul>:<p className="muted">Championship discipline information is being expanded.</p>}</div>
+   <div className="panel"><div className="meta">CAREER SUMMARY</div><h3>Driver overview</h3><p>{wiki?.extract||driver.note}</p>{wiki?.content_urls?.desktop?.page&&<a className="link" href={wiki.content_urls.desktop.page} target="_blank" rel="noopener noreferrer">Wikipedia biography ↗</a>}</div>
+  </div>
+  <div className="panel driver-career"><div className="meta">HALL OF FAME RECORD</div><h3>Championship record & legacy</h3><p>{driver.name} is recorded here because the driver's career connects an identifiable karting championship achievement with later success at internationally recognised championship level. KartGrid will continue to expand this profile with verified championship seasons, titles, race statistics, teams, manufacturers and career milestones.</p>{wiki?.wikibase_item&&<span className="source-tag">Wikidata: {wiki.wikibase_item}</span>}</div>
  </section>
 }
+
 function HallOfFame(){
  const [series,setSeries]=useState("All");
  const filters=["All","Formula 1","IndyCar","Le Mans","Touring Cars","DTM","Formula E","WEC"];
