@@ -667,6 +667,24 @@ function KartingWorldChampions(){
   <WorldChampions/>
  </section>
 }
+function HallOfFameProfile({name}){
+ const driver=[...hallOfFame,...additionalHall].find(d=>d.name===decodeURIComponent(name));
+ const portrait=driver?.name?useDriverPortrait(driver.name):"";
+ if(!driver)return <section><PageTitle kicker="Hall of Fame" title="DRIVER NOT FOUND" text="This Hall of Fame profile could not be found." action={<a className="button" href="#/hall-of-fame">Back to Hall of Fame</a>}/></section>;
+ const disciplines=["Formula 1","IndyCar","Le Mans","Touring Cars","DTM","Formula E","WEC"].filter(x=>driver.path.includes(x));
+ return <section>
+  <PageTitle kicker="KartGrid Hall of Fame" title={driver.name} text="A standardised driver profile documenting the karting achievement that qualifies this driver for the Hall of Fame and the championship pathway that followed." action={<a className="button" href="#/hall-of-fame">← Hall of Fame</a>}/>
+  <div className="driver-profile-hero">
+   {portrait?<img src={portrait} alt={driver.name} className="driver-profile-photo"/>:<div className="driver-profile-photo hof-driver-placeholder"><span>{driver.name.split(" ").map(x=>x[0]).join("").slice(0,2)}</span></div>}
+   <div className="driver-profile-summary"><div className="meta">HALL OF FAME ENTRY</div><div className="driver-profile-year">{driver.year}</div><h2>{driver.name}</h2><p className="driver-profile-country">{driver.country}</p><div className="driver-badges">{disciplines.map(x=><span key={x}>{x}</span>)}</div></div>
+  </div>
+  <div className="driver-profile-grid">
+   <div className="panel"><div className="meta">QUALIFYING KARTING ACHIEVEMENT</div><h3>{driver.year}</h3><p>{driver.note}</p><p className="muted">Hall of Fame entry year is based on the documented national or international karting championship achievement that qualifies the driver for inclusion.</p></div>
+   <div className="panel"><div className="meta">CAREER PATHWAY</div><h3>From karting to the world stage</h3><p>{driver.path}</p></div>
+  </div>
+  <div className="panel driver-career"><div className="meta">CHAMPIONSHIP PROFILE</div><h3>Recognised championship success</h3><p>{driver.name} is included because the driver's post-karting career includes a championship title at international or internationally recognised level. The Hall of Fame is not based solely on participation, race wins or reaching a major series.</p></div>
+ </section>
+}
 function HallOfFame(){
  const [series,setSeries]=useState("All");
  const filters=["All","Formula 1","IndyCar","Le Mans","Touring Cars","DTM","Formula E","WEC"];
@@ -674,7 +692,7 @@ function HallOfFame(){
  return <section><PageTitle kicker="Karting's pathway to the world stage" title="HALL OF FAME" text="A chronological record of drivers who came through karting and went on to win a World Championship or another internationally recognised championship."/>
  <div className="hof-intro"><div><b>FROM THE GRID TO THE WORLD</b><p>Karting has been the starting point for generations of elite drivers. KartGrid traces the drivers who converted that foundation into recognised championship success at international level.</p></div><div className="hof-stat"><strong>{[...hallOfFame,...additionalHall].filter((d,i,a)=>a.findIndex(x=>x.name===d.name)===i).length}</strong><span>featured drivers</span></div></div>
  <Filters>{filters.map(x=><button key={x} className={"filter-button "+(series===x?"active":"")} onClick={()=>setSeries(x)}>{x}</button>)}</Filters>
- <div className="hof-grid">{rows.sort((a,b)=>a.year-b.year||a.name.localeCompare(b.name)).map((d,i)=><article className="hof-card" key={d.name}><DriverPortrait name={d.name}/><div className="hof-year">{d.year}</div><div className="hof-country">{d.country}</div><h3>{d.name}</h3><div className="hof-path">{d.path}</div><p>{d.note}</p><div className="hof-footer"><span>Karting → {d.path.split("→").slice(-1)[0].trim()}</span><b>Hall of Fame</b></div></article>)}</div>
+ <div className="hof-grid">{rows.sort((a,b)=>a.year-b.year||a.name.localeCompare(b.name)).map((d,i)=><a className="hof-card" key={d.name} href={"#/hall-of-fame/driver/"+encodeURIComponent(d.name)}><DriverPortrait name={d.name}/><div className="hof-year">{d.year}</div><div className="hof-country">{d.country}</div><h3>{d.name}</h3><div className="hof-path">{d.path}</div><p>{d.note}</p><div className="hof-footer"><span>Karting → {d.path.split("→").slice(-1)[0].trim()}</span><b>View profile →</b></div></a>)}</div>
 
  </section>
 }
@@ -824,6 +842,7 @@ function App(){
  const parts=route.split("/").filter(Boolean);
  if(route==="/") page=<Home {...{region,listings,drivers,posts,saved,toggleSave}}/>;
  else if(parts[0]==="hall-of-fame"&&parts[1]==="karting-world-champions") page=<KartingWorldChampions/>;
+ else if(parts[0]==="hall-of-fame"&&parts[1]==="driver"&&parts[2]) page=<HallOfFameProfile name={parts.slice(2).join("/")}/>;
  else if(parts[0]==="hall-of-fame") page=<HallOfFame/>;
  else if(parts[0]==="fia"&&parts[1]==="cik") page=<CIKProfile/>;
  else if(parts[0]==="fia") page=<FIAProfile/>;
