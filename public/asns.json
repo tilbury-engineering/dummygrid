@@ -1,73 +1,57 @@
 {
-  "updatedAt": "2026-09-26T12:19:36.678Z",
+  "updatedAt": "2026-09-26T12:21:56.956Z",
   "source": "FIA member club directory",
   "asns": [
     {
-      "id": "motorsport-uk",
-      "name": "Motorsport UK",
-      "country": "United Kingdom",
-      "continent": "Europe",
+      "id": "algeria",
+      "name": "Federation Algerienne des Sports Mecaniques",
+      "country": "Algeria",
+      "continent": "",
       "type": "Sport",
-      "address": "Motorsport UK House, Bicester Motion, Oxfordshire",
-      "sourceUrl": "https://www.fia.com/members/country/GB",
-      "flag": "🇬🇧",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇩🇿",
       "contact": {
-        "phone": "+44 1753 765000",
-        "email": "info@motorsportuk.org",
-        "website": "https://motorsportuk.org/"
-      },
-      "logoUrl": "https://www.google.com/s2/favicons?domain=motorsportuk.org&sz=128"
-    },
-    {
-      "id": "dmsb",
-      "name": "Deutscher Motor Sport Bund e.V. (DMSB)",
-      "abbreviation": "DMSB",
-      "country": "Germany",
-      "continent": "Europe",
-      "type": "Sport",
-      "address": "Lyoner Stern, Hahnstrasse 70",
-      "sourceUrl": "https://www.fia.com/members/country/country/DE?field_member_club=2",
-      "flag": "🇩🇪",
-      "contact": {
-        "phone": "+49 69 633007-0",
+        "phone": null,
         "email": null,
-        "website": "https://www.dmsb.de/"
+        "website": null
       },
-      "logoUrl": "https://www.google.com/s2/favicons?domain=dmsb.de&sz=128"
+      "logoUrl": null,
+      "source": "FIA member directory"
     },
     {
-      "id": "fpa-k",
-      "name": "Federação Portuguesa de Automobilismo e Karting",
-      "abbreviation": "FPAK",
-      "country": "Portugal",
-      "continent": "Europe",
+      "id": "angola",
+      "name": "Federação Angolana de Desportos Motorizados",
+      "country": "Angola",
+      "continent": "",
       "type": "Sport",
-      "address": "Estrada da Portela, n.º 73, Piso 2, Escritório 6",
+      "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇵🇹",
+      "flag": "🇦🇴",
       "contact": {
-        "phone": "+351 217 112 800",
-        "email": "secretariado@fpak.pt",
-        "website": "https://fpak.pt/"
+        "phone": null,
+        "email": null,
+        "website": null
       },
-      "logoUrl": "https://www.google.com/s2/favicons?domain=fpak.pt&sz=128"
+      "logoUrl": null,
+      "source": "FIA member directory"
     },
     {
-      "id": "rfeda",
-      "name": "Real Federación Española de Automovilismo",
-      "abbreviation": "RFEDA",
-      "country": "Spain",
-      "continent": "Europe",
+      "id": "antigua-and-barbuda",
+      "name": "Antigua Pro Racing Ltd",
+      "country": "Antigua and Barbuda",
+      "continent": "",
       "type": "Sport",
-      "address": "Calle Vereda de los Barros n. 15",
+      "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇪🇸",
+      "flag": "🇦🇬",
       "contact": {
-        "phone": "+34 91 729 94 30",
-        "email": "info@rfeda.es",
-        "website": "https://www.rfeda.es/"
+        "phone": null,
+        "email": null,
+        "website": null
       },
-      "logoUrl": "https://www.google.com/s2/favicons?domain=rfeda.es&sz=128"
+      "logoUrl": null,
+      "source": "FIA member directory"
     },
     {
       "id": "motorsport-australia",
@@ -86,36 +70,140 @@
       "logoUrl": "https://www.google.com/s2/favicons?domain=motorsport.org.au&sz=128"
     },
     {
-      "id": "motorsport-new-zealand",
-      "name": "Motorsport New Zealand",
-      "country": "New Zealand",
-      "continent": "Oceania",
+      "id": "austria",
+      "name": "Österreichischer Automobil-, Motorrad- und Touring Club",
+      "country": "Austria",
+      "continent": "",
       "type": "Sport",
-      "address": "102a Kapiti Road",
+      "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇳🇿",
+      "flag": "🇦🇹",
       "contact": {
-        "phone": "+64 4 815 8015",
-        "email": "admin@motorsport.org.nz",
-        "website": "https://motorsport.org.nz/"
+        "phone": null,
+        "email": null,
+        "website": null
       },
-      "logoUrl": "https://www.google.com/s2/favicons?domain=motorsport.org.nz&sz=128"
+      "logoUrl": null,
+      "source": "FIA member directory"
     },
     {
-      "id": "motorsport-south-africa",
-      "name": "Motorsport South Africa",
-      "country": "South Africa",
-      "continent": "Africa",
+      "id": "bahamas",
+      "name": "Bahamas Motor Sports Association Ltd",
+      "country": "Bahamas",
+      "continent": "",
       "type": "Sport",
-      "address": "Quadrum Office Park, Constantia Kloof, Roodepoort",
+      "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇿🇦",
+      "flag": "🇧🇸",
       "contact": {
-        "phone": "+27 11 675 2220",
-        "email": "info@motorsport.co.za",
-        "website": "https://www.motorsport.co.za/"
+        "phone": null,
+        "email": null,
+        "website": null
       },
-      "logoUrl": "https://www.google.com/s2/favicons?domain=motorsport.co.za&sz=128"
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "barbados",
+      "name": "Barbados Motoring Federation Inc",
+      "country": "Barbados",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇧🇧",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "belarus",
+      "name": "Federation de l'Automobile de Belarus",
+      "country": "Belarus",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇧🇾",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "belgium",
+      "name": "Royal Automobile Club de Belgique",
+      "country": "Belgium",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇧🇪",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "belize",
+      "name": "Belize Automobile Club",
+      "country": "Belize",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇧🇿",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "bosnia-and-herzegovina",
+      "name": "Bosnia and Herzegovina Automobile Club",
+      "country": "Bosnia and Herzegovina",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇧🇦",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "botswana",
+      "name": "Botswana Motor Sports",
+      "country": "Botswana",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇧🇼",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
     },
     {
       "id": "cba",
@@ -135,21 +223,241 @@
       "logoUrl": "https://www.google.com/s2/favicons?domain=cba.org.br&sz=128"
     },
     {
-      "id": "akk",
-      "name": "AKK - Motorsport",
-      "abbreviation": "AKK",
-      "country": "Finland",
+      "id": "bulgaria",
+      "name": "Union des Automobilistes Bulgares",
+      "country": "Bulgaria",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇧🇬",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "burundi",
+      "name": "Club Automobile du Burundi",
+      "country": "Burundi",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇧🇮",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "cambodia",
+      "name": "Cambodia Motorsports Federation",
+      "country": "Cambodia",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇰🇭",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "cayman-islands",
+      "name": "Cayman Motoring Federation",
+      "country": "Cayman Islands",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇰🇾",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "chile",
+      "name": "Federacion Chilena de Automovilismo Deportivo",
+      "country": "Chile",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇨🇱",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "china",
+      "name": "Federation of Automobile and Motorcycle Sports of the People's Republic of China",
+      "country": "China",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇨🇳",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "chinese-taipei",
+      "name": "Chinese Taipei Motor Sports Ltd",
+      "country": "Chinese Taipei",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇹🇼",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "colombia",
+      "name": "Touring y Automovil Club de Colombia",
+      "country": "Colombia",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇨🇴",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "c-te-d-ivoire",
+      "name": "Federation Ivoirienne du Sport Automobile",
+      "country": "Côte d'Ivoire",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇨🇮",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "cik-croatia",
+      "name": "Croatian Automobile & Karting Federation",
+      "country": "Croatia",
       "continent": "Europe",
       "type": "Sport",
-      "address": "Kellokukantie 7",
+      "address": "Kršnjavoga 1",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇫🇮",
+      "flag": "🇭🇷",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null
+    },
+    {
+      "id": "cuba",
+      "name": "Federacion de Automovilismo y Kartismo de Cuba",
+      "country": "Cuba",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇨🇺",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "cyprus",
+      "name": "Cyprus Automobile Association",
+      "country": "Cyprus",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇨🇾",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "czech-republic",
+      "name": "The Autoclub of the Czech Republic",
+      "country": "Czech Republic",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇨🇿",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "democratic-republic-of-the-congo",
+      "name": "Federation Automobile de la Republique Democratique du Congo",
+      "country": "Democratic Republic of the Congo",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇨🇩",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
     },
     {
       "id": "dasu",
@@ -167,6 +475,1194 @@
         "website": null
       },
       "logoUrl": null
+    },
+    {
+      "id": "dominican-republic",
+      "name": "Federacion Dominicana de Automovilismo Inc.",
+      "country": "Dominican Republic",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇩🇴",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "eritrea",
+      "name": "National Federation Motor Racing Eritrea",
+      "country": "Eritrea",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇪🇷",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "estonia",
+      "name": "Estonian Autosport Union",
+      "country": "Estonia",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇪🇪",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "ethiopia",
+      "name": "Ethiopian Motor Sport Association",
+      "country": "Ethiopia",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇪🇹",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "akk",
+      "name": "AKK - Motorsport",
+      "abbreviation": "AKK",
+      "country": "Finland",
+      "continent": "Europe",
+      "type": "Sport",
+      "address": "Kellokukantie 7",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇫🇮",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null
+    },
+    {
+      "id": "france",
+      "name": "Federation Francaise du Sport Automobile",
+      "country": "France",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇫🇷",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "georgia",
+      "name": "Georgian Automobile Sport Federation",
+      "country": "Georgia",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇬🇪",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "dmsb",
+      "name": "Deutscher Motor Sport Bund e.V. (DMSB)",
+      "abbreviation": "DMSB",
+      "country": "Germany",
+      "continent": "Europe",
+      "type": "Sport",
+      "address": "Lyoner Stern, Hahnstrasse 70",
+      "sourceUrl": "https://www.fia.com/members/country/country/DE?field_member_club=2",
+      "flag": "🇩🇪",
+      "contact": {
+        "phone": "+49 69 633007-0",
+        "email": null,
+        "website": "https://www.dmsb.de/"
+      },
+      "logoUrl": "https://www.google.com/s2/favicons?domain=dmsb.de&sz=128"
+    },
+    {
+      "id": "greece",
+      "name": "Hellenic Motorsport Federation",
+      "country": "Greece",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇬🇷",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "guyana",
+      "name": "Guyana Motor Racing and Sports Club",
+      "country": "Guyana",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇬🇾",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "hungary",
+      "name": "National Autosport Federation of Hungary",
+      "country": "Hungary",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇭🇺",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "iceland",
+      "name": "Icelandic Motorsport Association",
+      "country": "Iceland",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇮🇸",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "india",
+      "name": "The Federation of Motor Sports Clubs of India",
+      "country": "India",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇮🇳",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "indonesia",
+      "name": "Ikatan Motor Indonesia",
+      "country": "Indonesia",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇮🇩",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "iran",
+      "name": "Motorcycle and Automobile Federation of the Islamic Republic of Iran",
+      "country": "Iran",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇮🇷",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "iraq",
+      "name": "Iraq Automobile and Motorcycle Federation",
+      "country": "Iraq",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇮🇶",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "ireland",
+      "name": "Royal Irish Automobile Club",
+      "country": "Ireland",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇮🇪",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "israel",
+      "name": "Israel Automobile & Karting Association",
+      "country": "Israel",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇮🇱",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "jamaica",
+      "name": "Jamaica Millennium Motoring Club",
+      "country": "Jamaica",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇯🇲",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "jaf",
+      "name": "Japan Automobile Federation",
+      "abbreviation": "JAF",
+      "country": "Japan",
+      "continent": "Asia",
+      "type": "Sport & Mobility",
+      "address": "Jidosha Kaikan 14F, 1-1-30 Shibadaimon, Minato-Ku",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇯🇵",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": "https://www.jaf.or.jp/"
+      },
+      "logoUrl": "https://www.google.com/s2/favicons?domain=jaf.or.jp&sz=128"
+    },
+    {
+      "id": "jordan",
+      "name": "The Royal Automobile Club of Jordan",
+      "country": "Jordan",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇯🇴",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "kmsa",
+      "name": "Kenya Motor Sports Federation",
+      "abbreviation": "KMSF",
+      "country": "Kenya",
+      "continent": "Africa",
+      "type": "Sport",
+      "address": "Moi International Sports Complex, Kasarani",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇰🇪",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null
+    },
+    {
+      "id": "kosovo",
+      "name": "Federation of Auto Sport of Kosovo",
+      "country": "Kosovo",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇽🇰",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "kuwait",
+      "name": "Kuwait International Automobile Club",
+      "country": "Kuwait",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇰🇼",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "laf",
+      "name": "Latvijas Automobilu Federacija",
+      "abbreviation": "LAF",
+      "country": "Latvia",
+      "continent": "Europe",
+      "type": "Sport",
+      "address": "G. Zemgala gatve 71 k5",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇱🇻",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null
+    },
+    {
+      "id": "libya",
+      "name": "Libyan Automobile & Touring Club",
+      "country": "Libya",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇱🇾",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "lasf",
+      "name": "Lithuanian Automobile Sport Federation",
+      "abbreviation": "LASF",
+      "country": "Lithuania",
+      "continent": "Europe",
+      "type": "Sport",
+      "address": "Savanoriu ave. 56",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇱🇹",
+      "contact": {
+        "phone": "+370 37 350026",
+        "email": "lasf@lasf.lt",
+        "website": "https://www.lasf.lt/"
+      },
+      "logoUrl": "https://www.google.com/s2/favicons?domain=lasf.lt&sz=128"
+    },
+    {
+      "id": "madagascar",
+      "name": "Federation du Sport Automobile de Madagascar",
+      "country": "Madagascar",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇲🇬",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "msa-malaysia",
+      "name": "Motorsports Association of Malaysia",
+      "abbreviation": "MAM",
+      "country": "Malaysia",
+      "continent": "Asia",
+      "type": "Sport",
+      "address": "The Nizra Building, Jalan Sri Penchala",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇲🇾",
+      "contact": {
+        "phone": "+60 3 7731 5888",
+        "email": "mam@mam.org.my",
+        "website": "https://mam.org.my/"
+      },
+      "logoUrl": "https://www.google.com/s2/favicons?domain=mam.org.my&sz=128"
+    },
+    {
+      "id": "maldives",
+      "name": "Racing Association of the Maldives",
+      "country": "Maldives",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇲🇻",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "malta",
+      "name": "Malta Motorsport Federation",
+      "country": "Malta",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇲🇹",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "mauritania",
+      "name": "Federation Mauritanienne des Sports Mecaniques",
+      "country": "Mauritania",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇲🇷",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "mauritius",
+      "name": "Motor Racing Club",
+      "country": "Mauritius",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇲🇺",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "mexico",
+      "name": "OMDAI FIA Mexico",
+      "country": "Mexico",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇲🇽",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "mongolia",
+      "name": "Mongolian Automobile Motorcycle Sports Federation",
+      "country": "Mongolia",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇲🇳",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "morocco",
+      "name": "Federation Royale Marocaine de Sport Automobile",
+      "country": "Morocco",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇲🇦",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "nmsf",
+      "name": "Namibia Motor Sport Federation",
+      "abbreviation": "NMSF",
+      "country": "Namibia",
+      "continent": "Africa",
+      "type": "Sport",
+      "address": "Auas Hills Retirement Village, Windhoek",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇳🇦",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null
+    },
+    {
+      "id": "nepal",
+      "name": "Nepal Automobiles' Association",
+      "country": "Nepal",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇳🇵",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "netherlands",
+      "name": "KNAC Nationale Autosport Federatie",
+      "country": "Netherlands",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇳🇱",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "motorsport-new-zealand",
+      "name": "Motorsport New Zealand",
+      "country": "New Zealand",
+      "continent": "Oceania",
+      "type": "Sport",
+      "address": "102a Kapiti Road",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇳🇿",
+      "contact": {
+        "phone": "+64 4 815 8015",
+        "email": "admin@motorsport.org.nz",
+        "website": "https://motorsport.org.nz/"
+      },
+      "logoUrl": "https://www.google.com/s2/favicons?domain=motorsport.org.nz&sz=128"
+    },
+    {
+      "id": "nicaragua",
+      "name": "Club Automovilistico de Nicaragua",
+      "country": "Nicaragua",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇳🇮",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "norway",
+      "name": "Royal Automobile Club of Norway",
+      "country": "Norway",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇳🇴",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "oman",
+      "name": "Oman Automobile Association",
+      "country": "Oman",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇴🇲",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "pakistan",
+      "name": "Motorsport Association of Pakistan",
+      "country": "Pakistan",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇵🇰",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "palestine",
+      "name": "Palestinian Motor Sport and Motorcycle Federation",
+      "country": "Palestine",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇵🇸",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "paraguay",
+      "name": "Touring y Automóvil Club Paraguayo",
+      "country": "Paraguay",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇵🇾",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "peru",
+      "name": "Touring y Automovil Club del Peru",
+      "country": "Peru",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇵🇪",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "poland",
+      "name": "Polish Automobile and Motorcycle Federation",
+      "country": "Poland",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇵🇱",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "fpa-k",
+      "name": "Federação Portuguesa de Automobilismo e Karting",
+      "abbreviation": "FPAK",
+      "country": "Portugal",
+      "continent": "Europe",
+      "type": "Sport",
+      "address": "Estrada da Portela, n.º 73, Piso 2, Escritório 6",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇵🇹",
+      "contact": {
+        "phone": "+351 217 112 800",
+        "email": "secretariado@fpak.pt",
+        "website": "https://fpak.pt/"
+      },
+      "logoUrl": "https://www.google.com/s2/favicons?domain=fpak.pt&sz=128"
+    },
+    {
+      "id": "puerto-rico",
+      "name": "Federacion de Automovilismo de Puerto Rico",
+      "country": "Puerto Rico",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇵🇷",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "qatar",
+      "name": "Qatar Motor and Motorcycle Federation",
+      "country": "Qatar",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇶🇦",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "russia",
+      "name": "Russian Automobile Federation",
+      "country": "Russia",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇷🇺",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "rwanda",
+      "name": "Rwanda Automobile Club",
+      "country": "Rwanda",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇷🇼",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "san-marino",
+      "name": "Federazione Auto Motoristica Sammarinese",
+      "country": "San Marino",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇸🇲",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "saudi-arabia",
+      "name": "Saudi Automobile and Motorcycle Federation",
+      "country": "Saudi Arabia",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇸🇦",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "senegal",
+      "name": "Federation Senegalaise de Sport Automobile et Motocycliste",
+      "country": "Senegal",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇸🇳",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "singapore",
+      "name": "Motor Sports Singapore",
+      "country": "Singapore",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇸🇬",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "slovakia",
+      "name": "Slovak Association of Motor Sport",
+      "country": "Slovakia",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇸🇰",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "motorsport-south-africa",
+      "name": "Motorsport South Africa",
+      "country": "South Africa",
+      "continent": "Africa",
+      "type": "Sport",
+      "address": "Quadrum Office Park, Constantia Kloof, Roodepoort",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇿🇦",
+      "contact": {
+        "phone": "+27 11 675 2220",
+        "email": "info@motorsport.co.za",
+        "website": "https://www.motorsport.co.za/"
+      },
+      "logoUrl": "https://www.google.com/s2/favicons?domain=motorsport.co.za&sz=128"
+    },
+    {
+      "id": "south-korea",
+      "name": "Korea Automobile Racing Association",
+      "country": "South Korea",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇰🇷",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "rfeda",
+      "name": "Real Federación Española de Automovilismo",
+      "abbreviation": "RFEDA",
+      "country": "Spain",
+      "continent": "Europe",
+      "type": "Sport",
+      "address": "Calle Vereda de los Barros n. 15",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇪🇸",
+      "contact": {
+        "phone": "+34 91 729 94 30",
+        "email": "info@rfeda.es",
+        "website": "https://www.rfeda.es/"
+      },
+      "logoUrl": "https://www.google.com/s2/favicons?domain=rfeda.es&sz=128"
+    },
+    {
+      "id": "sri-lanka",
+      "name": "Ceylon Motor Sports Club",
+      "country": "Sri Lanka",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇱🇰",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "sudan",
+      "name": "Sudanese Automobile and Touring Club",
+      "country": "Sudan",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇸🇩",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "sbf",
+      "name": "Svenska Bilsportförbundet",
+      "abbreviation": "SBF",
+      "country": "Sweden",
+      "continent": "Europe",
+      "type": "Sport",
+      "address": "Bergkällavägen 31 A, Bilsportens Hus",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇸🇪",
+      "contact": {
+        "phone": "+46 8 626 33 00",
+        "email": "mailbox@sbf.se",
+        "website": "https://www.sbf.se/"
+      },
+      "logoUrl": "https://www.google.com/s2/favicons?domain=sbf.se&sz=128"
+    },
+    {
+      "id": "syria",
+      "name": "Syrian Automobile Club",
+      "country": "Syria",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇸🇾",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "thailand",
+      "name": "The Royal Automobile Association of Thailand",
+      "country": "Thailand",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇹🇭",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "trinidad-and-tobago",
+      "name": "Trinidad and Tobago Automobile Sports Association",
+      "country": "Trinidad and Tobago",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇹🇹",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "turkey",
+      "name": "Turkish Automobile Sports Federation",
+      "country": "Turkey",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇹🇷",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "turkmenistan",
+      "name": "Federation Automobile Sport of Turkmenistan",
+      "country": "Turkmenistan",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇹🇲",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "uganda",
+      "name": "Federation of Motor Sports Clubs of Uganda",
+      "country": "Uganda",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇺🇬",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
     },
     {
       "id": "msukraine",
@@ -202,139 +1698,122 @@
       "logoUrl": "https://www.google.com/s2/favicons?domain=emso.ae&sz=128"
     },
     {
-      "id": "jaf",
-      "name": "Japan Automobile Federation",
-      "abbreviation": "JAF",
-      "country": "Japan",
-      "continent": "Asia",
-      "type": "Sport & Mobility",
-      "address": "Jidosha Kaikan 14F, 1-1-30 Shibadaimon, Minato-Ku",
-      "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇯🇵",
+      "id": "motorsport-uk",
+      "name": "Motorsport UK",
+      "country": "United Kingdom",
+      "continent": "Europe",
+      "type": "Sport",
+      "address": "Motorsport UK House, Bicester Motion, Oxfordshire",
+      "sourceUrl": "https://www.fia.com/members/country/GB",
+      "flag": "🇬🇧",
       "contact": {
-        "phone": null,
-        "email": null,
-        "website": "https://www.jaf.or.jp/"
+        "phone": "+44 1753 765000",
+        "email": "info@motorsportuk.org",
+        "website": "https://motorsportuk.org/"
       },
-      "logoUrl": "https://www.google.com/s2/favicons?domain=jaf.or.jp&sz=128"
+      "logoUrl": "https://www.google.com/s2/favicons?domain=motorsportuk.org&sz=128"
     },
     {
-      "id": "msa-malaysia",
-      "name": "Motorsports Association of Malaysia",
-      "abbreviation": "MAM",
-      "country": "Malaysia",
-      "continent": "Asia",
+      "id": "uzbekistan",
+      "name": "Uzbekistan Motor and Motorcycle National Federation",
+      "country": "Uzbekistan",
+      "continent": "",
       "type": "Sport",
-      "address": "The Nizra Building, Jalan Sri Penchala",
+      "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇲🇾",
-      "contact": {
-        "phone": "+60 3 7731 5888",
-        "email": "mam@mam.org.my",
-        "website": "https://mam.org.my/"
-      },
-      "logoUrl": "https://www.google.com/s2/favicons?domain=mam.org.my&sz=128"
-    },
-    {
-      "id": "kmsa",
-      "name": "Kenya Motor Sports Federation",
-      "abbreviation": "KMSF",
-      "country": "Kenya",
-      "continent": "Africa",
-      "type": "Sport",
-      "address": "Moi International Sports Complex, Kasarani",
-      "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇰🇪",
+      "flag": "🇺🇿",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
-      "logoUrl": null
+      "logoUrl": null,
+      "source": "FIA member directory"
     },
     {
-      "id": "nmsf",
-      "name": "Namibia Motor Sport Federation",
-      "abbreviation": "NMSF",
-      "country": "Namibia",
-      "continent": "Africa",
+      "id": "venezuela",
+      "name": "Touring y Automovil Club de Venezuela",
+      "country": "Venezuela",
+      "continent": "",
       "type": "Sport",
-      "address": "Auas Hills Retirement Village, Windhoek",
+      "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇳🇦",
+      "flag": "🇻🇪",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
-      "logoUrl": null
+      "logoUrl": null,
+      "source": "FIA member directory"
     },
     {
-      "id": "cik-croatia",
-      "name": "Croatian Automobile & Karting Federation",
-      "country": "Croatia",
-      "continent": "Europe",
+      "id": "vietnam",
+      "name": "Vietnamese Motorsports Association, LLC",
+      "country": "Vietnam",
+      "continent": "",
       "type": "Sport",
-      "address": "Kršnjavoga 1",
+      "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇭🇷",
+      "flag": "🇻🇳",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
-      "logoUrl": null
+      "logoUrl": null,
+      "source": "FIA member directory"
     },
     {
-      "id": "lasf",
-      "name": "Lithuanian Automobile Sport Federation",
-      "abbreviation": "LASF",
-      "country": "Lithuania",
-      "continent": "Europe",
+      "id": "yemen",
+      "name": "Yemen Club for Touring and Automobile",
+      "country": "Yemen",
+      "continent": "",
       "type": "Sport",
-      "address": "Savanoriu ave. 56",
+      "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇱🇹",
-      "contact": {
-        "phone": "+370 37 350026",
-        "email": "lasf@lasf.lt",
-        "website": "https://www.lasf.lt/"
-      },
-      "logoUrl": "https://www.google.com/s2/favicons?domain=lasf.lt&sz=128"
-    },
-    {
-      "id": "laf",
-      "name": "Latvijas Automobilu Federacija",
-      "abbreviation": "LAF",
-      "country": "Latvia",
-      "continent": "Europe",
-      "type": "Sport",
-      "address": "G. Zemgala gatve 71 k5",
-      "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇱🇻",
+      "flag": "🇾🇪",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
-      "logoUrl": null
+      "logoUrl": null,
+      "source": "FIA member directory"
     },
     {
-      "id": "sbf",
-      "name": "Svenska Bilsportförbundet",
-      "abbreviation": "SBF",
-      "country": "Sweden",
-      "continent": "Europe",
+      "id": "zambia",
+      "name": "Zambia Motor Sport Association",
+      "country": "Zambia",
+      "continent": "",
       "type": "Sport",
-      "address": "Bergkällavägen 31 A, Bilsportens Hus",
+      "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇸🇪",
+      "flag": "🇿🇲",
       "contact": {
-        "phone": "+46 8 626 33 00",
-        "email": "mailbox@sbf.se",
-        "website": "https://www.sbf.se/"
+        "phone": null,
+        "email": null,
+        "website": null
       },
-      "logoUrl": "https://www.google.com/s2/favicons?domain=sbf.se&sz=128"
+      "logoUrl": null,
+      "source": "FIA member directory"
+    },
+    {
+      "id": "zimbabwe",
+      "name": "Motorsport Zimbabwe",
+      "country": "Zimbabwe",
+      "continent": "",
+      "type": "Sport",
+      "address": "",
+      "sourceUrl": "https://www.fia.com/members",
+      "flag": "🇿🇼",
+      "contact": {
+        "phone": null,
+        "email": null,
+        "website": null
+      },
+      "logoUrl": null,
+      "source": "FIA member directory"
     }
   ]
 }
