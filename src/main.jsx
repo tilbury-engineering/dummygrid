@@ -135,6 +135,7 @@ function Pill({children,tone=""}){return <span className={"pill "+tone}>{childre
 function Top({region,setRegion}){
  const [menuOpen,setMenuOpen]=useState(false);
  const [legacyOpen,setLegacyOpen]=useState(false);
+ const [directoryOpen,setDirectoryOpen]=useState(false);
  return <><header className="site-header">
    <div className="masthead">
      <nav className={"main-nav "+(menuOpen?"open":"")}>
@@ -143,7 +144,13 @@ function Top({region,setRegion}){
        <a href="#/marketplace" onClick={()=>setMenuOpen(false)}>Marketplace</a>
        <a href="#/drivers" onClick={()=>setMenuOpen(false)}>Drivers</a>
        <a href="#/classes" onClick={()=>setMenuOpen(false)}>Classes</a>
-       <a href="#/manufacturers" onClick={()=>setMenuOpen(false)}>Manufacturers</a><a href="#/asns" onClick={()=>setMenuOpen(false)}>ASNs</a><a href="#/results" onClick={()=>setMenuOpen(false)}>Results</a><a href="#/tracks" onClick={()=>setMenuOpen(false)}>Tracks</a>
+       <div className="nav-dropdown">
+        <button className="nav-dropdown-toggle" type="button" aria-haspopup="true" aria-expanded={directoryOpen} onClick={()=>setDirectoryOpen(v=>!v)}>Directory <span>⌄</span></button>
+        {directoryOpen&&<div className="nav-dropdown-menu" role="menu">
+         <a href="#/manufacturers" onClick={()=>{setMenuOpen(false);setDirectoryOpen(false)}}>Manufacturers</a>
+         <a href="#/asns" onClick={()=>{setMenuOpen(false);setDirectoryOpen(false)}}>ASNs</a>
+        </div>}
+       </div><a href="#/results" onClick={()=>setMenuOpen(false)}>Results</a><a href="#/tracks" onClick={()=>setMenuOpen(false)}>Tracks</a>
        <a href="#/community" onClick={()=>setMenuOpen(false)}>Community</a><a href="#/knowledge-base" onClick={()=>setMenuOpen(false)}>Knowledge Base</a>
        <div className="nav-dropdown">
         <button className="nav-dropdown-toggle" type="button" aria-haspopup="true" aria-expanded={legacyOpen} onClick={()=>setLegacyOpen(v=>!v)}>Legacy <span>⌄</span></button>
