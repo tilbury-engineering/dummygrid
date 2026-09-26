@@ -1,0 +1,31 @@
+name: Update KartGrid press-release news
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-pr-news:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Scan PR websites for karting releases
+        run: python scripts/pr_news.py
+      - name: Commit updated news feed
+        run: |
+          if git diff --quiet -- public/news.json; then
+            echo "No new PR stories"
+            exit 0
+          fi
+          git config user.name "kartgrid-newsbot"
+          git config user.email "actions@users.noreply.github.com"
+          git add public/news.json
+          git commit -m "Update KartGrid press-release news"
+          git push
