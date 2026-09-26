@@ -718,12 +718,25 @@ function HallOfFameProfile({name}){
 }
 
 const qualificationLabels={
-"Alain Prost":"Formula 1 World Champion","Ayrton Senna":"Formula 1 World Champion","Michael Schumacher":"Formula 1 World Champion","Nelson Piquet":"Formula 1 World Champion","Mika Häkkinen":"Formula 1 World Champion","Fernando Alonso":"Formula 1 World Champion","Lewis Hamilton":"Formula 1 World Champion","Sebastian Vettel":"Formula 1 World Champion","Max Verstappen":"Formula 1 World Champion","Nico Rosberg":"Formula 1 World Champion",
-"Gary Paffett":"DTM Champion · 2×","Bernd Schneider":"DTM Champion","Roberto Ravaglia":"DTM Champion","Mattias Ekström":"DTM Champion","René Rast":"DTM Champion","Paul di Resta":"DTM Champion","Andy Priaulx":"FIA World Touring Car Champion","Yvan Muller":"FIA World Touring Car Champion",
-"Dario Franchitti":"IndyCar Series Champion","Scott Dixon":"IndyCar Series Champion","Will Power":"IndyCar Series Champion","Juan Pablo Montoya":"IndyCar Series Champion",
-"Mark Webber":"WEC World Champion","Nico Hülkenberg":"24 Hours of Le Mans Winner","Gabriele Tarquini":"FIA World Touring Car Champion","Fabrizio Giovanardi":"European Touring Car Champion",
-"Marco Ardigò":"CIK-FIA KF1 World Champion","Davide Forè":"Karting World Champion","Danilo Rossi":"Karting World Champion","Jonathan Thonon":"Karting World Champion","Paolo De Conto":"Karting World Champion","Jorrit Pex":"Karting World Champion","Lando Norris":"Karting World Champion","Charles Leclerc":"Karting Champion"
+"Alain Prost":"Formula 1 World Champion","Ayrton Senna":"Formula 1 World Champion","Nelson Piquet":"Formula 1 World Champion","Michael Schumacher":"Formula 1 World Champion","Mika Häkkinen":"Formula 1 World Champion","Jenson Button":"Formula 1 World Champion","Kimi Räikkönen":"Formula 1 World Champion","Fernando Alonso":"Formula 1 World Champion","Nico Rosberg":"Formula 1 World Champion","Lewis Hamilton":"Formula 1 World Champion","Sebastian Vettel":"Formula 1 World Champion","Max Verstappen":"Formula 1 World Champion","Jacques Villeneuve":"Formula 1 World Champion",
+"Mario Andretti":"IndyCar Champion","Emerson Fittipaldi":"Formula 1 World Champion","Dario Franchitti":"IndyCar Series Champion","Scott Dixon":"IndyCar Series Champion","Tony Kanaan":"IndyCar Champion","Dan Wheldon":"IndyCar Champion","Will Power":"IndyCar Series Champion","Juan Pablo Montoya":"CART Champion","Sébastien Bourdais":"Champ Car Champion","Alex Palou":"IndyCar Series Champion",
+"Andy Priaulx":"FIA World Touring Car Champion","Yvan Muller":"FIA World Touring Car Champion","Gabriele Tarquini":"FIA World Touring Car Champion","Rob Huff":"FIA World Touring Car Champion","Fabrizio Giovanardi":"CIK-FIA KZ World Champion",
+"Gary Paffett":"DTM Champion · 2×","Roberto Ravaglia":"DTM Champion","Mark Webber":"WEC World Champion · 2×","Allan McNish":"WEC World Champion","Anthony Davidson":"WEC World Champion","Brendon Hartley":"WEC World Champion","Nico Hülkenberg":"24 Hours of Le Mans Winner","Tom Kristensen":"24 Hours of Le Mans Winner · 9×","Kamui Kobayashi":"24 Hours of Le Mans Winner","Giancarlo Fisichella":"24 Hours of Le Mans Winner · 3×",
+"Jarno Trulli":"CIK-FIA Karting World Champion","Marco Ardigò":"CIK-FIA KF1 World Champion","Davide Forè":"Karting World Champion","Danilo Rossi":"Karting World Champion","Jonathan Thonon":"Karting World Champion","Paolo De Conto":"Karting World Champion","Jorrit Pex":"Karting World Champion","Lando Norris":"CIK-FIA Karting Champion","Max Verstappen":"Formula 1 World Champion",
+"Charles Leclerc":"CIK-FIA Karting Champion","Sébastien Buemi":"WEC World Champion","Stoffel Vandoorne":"Formula E World Champion"
 };
+function qualificationLabel(driver){
+ if(qualificationLabels[driver.name]) return qualificationLabels[driver.name];
+ const note=(driver.note||"").toLowerCase();
+ if(note.includes("world touring car champion")) return "FIA World Touring Car Champion";
+ if(note.includes("world endurance champion")) return "WEC World Champion";
+ if(note.includes("formula 1 world champion")) return "Formula 1 World Champion";
+ if(note.includes("champ car champion")) return "Champ Car Champion";
+ if(note.includes("indycar champion")) return "IndyCar Champion";
+ if(note.includes("champion")) return "International Championship Winner";
+ if(note.includes("24 hours of le mans winner")) return "24 Hours of Le Mans Winner";
+ return "International Championship Winner";
+}
 function qualificationLabel(driver){
  if(qualificationLabels[driver.name]) return qualificationLabels[driver.name];
  const note=(driver.note||"").toLowerCase();
