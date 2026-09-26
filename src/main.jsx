@@ -547,6 +547,120 @@ function CIKProfile(){
   <div className="resource-grid"><a className="resource-card" href="https://www.fiakarting.com/" target="_blank" rel="noopener noreferrer"><b>FIA Karting ↗</b><span>Official dedicated karting portal</span></a><a className="resource-card" href="https://www.fia.com/events/karting" target="_blank" rel="noopener noreferrer"><b>FIA Karting on FIA.com ↗</b><span>Official FIA karting information</span></a><a className="resource-card" href="https://www.fia.com/members" target="_blank" rel="noopener noreferrer"><b>FIA ASNs ↗</b><span>National Sporting Authorities</span></a></div>
  </section>
 }
+const hallOfFame=[
+ {year:1965,name:"Mario Andretti",country:"USA",path:"Karting → IndyCar → Formula 1 → Le Mans",note:"A multiple-time Indy car champion and Formula 1 race winner whose early career included karting."},
+ {year:1972,name:"Emerson Fittipaldi",country:"Brazil",path:"Karting → Formula 1 → IndyCar → Le Mans",note:"Two-time Formula 1 World Champion who later became an IndyCar champion."},
+ {year:1978,name:"Alain Prost",country:"France",path:"Karting → Formula 1",note:"Four-time Formula 1 World Champion."},
+ {year:1980,name:"Ayrton Senna",country:"Brazil",path:"Karting → Formula 1",note:"Three-time Formula 1 World Champion and one of karting’s most famous alumni."},
+ {year:1980,name:"Gilles Villeneuve",country:"Canada",path:"Karting → Formula 1 → Le Mans",note:"Formula 1 Grand Prix winner who began his racing career in karting."},
+ {year:1982,name:"Nelson Piquet",country:"Brazil",path:"Karting → Formula 1",note:"Three-time Formula 1 World Champion."},
+ {year:1984,name:"Michael Schumacher",country:"Germany",path:"Karting → Formula 1 → Le Mans",note:"Seven-time Formula 1 World Champion and 24 Hours of Le Mans competitor."},
+ {year:1984,name:"Mika Häkkinen",country:"Finland",path:"Karting → Formula 1",note:"Two-time Formula 1 World Champion."},
+ {year:1985,name:"Jean Alesi",country:"France",path:"Karting → Formula 1 → Touring Cars",note:"Formula 1 Grand Prix winner who later raced in DTM and endurance competition."},
+ {year:1987,name:"Gerhard Berger",country:"Austria",path:"Karting → Formula 1 → Touring Cars",note:"Ten-time Formula 1 Grand Prix winner and later a DTM competitor."},
+ {year:1988,name:"Jarno Trulli",country:"Italy",path:"Karting → Formula 1 → Le Mans",note:"Formula 1 Grand Prix winner and 1991 CIK-FIA Karting World Champion."},
+ {year:1989,name:"Fabrizio Giovanardi",country:"Italy",path:"Karting → Touring Cars",note:"Multiple touring-car champion and 1995 CIK-FIA KZ World Champion."},
+ {year:1990,name:"Andy Priaulx",country:"United Kingdom",path:"Karting → Touring Cars → Le Mans",note:"Three-time World Touring Car champion and multiple Le Mans competitor."},
+ {year:1991,name:"Yvan Muller",country:"France",path:"Karting → Touring Cars → Le Mans",note:"Four-time World Touring Car champion and long-time international touring-car benchmark."},
+ {year:1992,name:"Tom Kristensen",country:"Denmark",path:"Karting → Formula 3 → Le Mans",note:"Nine-time 24 Hours of Le Mans winner."},
+ {year:1993,name:"Allan McNish",country:"United Kingdom",path:"Karting → Formula 3 → Formula 1 testing → Le Mans",note:"Three-time Le Mans winner and World Endurance champion."},
+ {year:1993,name:"Dario Franchitti",country:"United Kingdom",path:"Karting → IndyCar → Le Mans",note:"Four-time IndyCar Series champion and three-time Indianapolis 500 winner."},
+ {year:1994,name:"Jacques Villeneuve",country:"Canada",path:"Karting → IndyCar → Formula 1 → Le Mans",note:"Indy 500 winner, CART champion and Formula 1 World Champion."},
+ {year:1994,name:"Juan Pablo Montoya",country:"Colombia",path:"Karting → IndyCar → Formula 1 → Le Mans",note:"Two-time Indianapolis 500 winner and Formula 1 Grand Prix winner."},
+ {year:1995,name:"Rubens Barrichello",country:"Brazil",path:"Karting → Formula 1 → IndyCar → Le Mans",note:"Long-serving Formula 1 driver and Grand Prix winner."},
+ {year:1996,name:"Jenson Button",country:"United Kingdom",path:"Karting → Formula 1 → Le Mans",note:"2009 Formula 1 World Champion who later raced at Le Mans."},
+ {year:1997,name:"Giancarlo Fisichella",country:"Italy",path:"Karting → Formula 1 → Le Mans",note:"Three-time Formula 1 Grand Prix winner and three-time Le Mans winner."},
+ {year:1998,name:"Gabriele Tarquini",country:"Italy",path:"Karting → Formula 1 → Touring Cars",note:"Formula 1 driver and World Touring Car champion."},
+ {year:1998,name:"Rob Huff",country:"United Kingdom",path:"Karting → Touring Cars",note:"World Touring Car champion and multiple international touring-car race winner."},
+ {year:1999,name:"Jason Plato",country:"United Kingdom",path:"Karting → Touring Cars",note:"One of Britain’s most successful touring-car drivers."},
+ {year:2000,name:"Scott Dixon",country:"New Zealand",path:"Karting → IndyCar → Le Mans",note:"Multiple IndyCar champion and Indianapolis 500 winner."},
+ {year:2000,name:"Tony Kanaan",country:"Brazil",path:"Karting → IndyCar → Le Mans",note:"IndyCar champion and Indianapolis 500 winner."},
+ {year:2000,name:"Dan Wheldon",country:"United Kingdom",path:"Karting → IndyCar → Le Mans",note:"Two-time Indianapolis 500 winner and IndyCar champion."},
+ {year:2001,name:"Kimi Räikkönen",country:"Finland",path:"Karting → Formula 1 → Le Mans",note:"2007 Formula 1 World Champion and later endurance racer."},
+ {year:2001,name:"Fernando Alonso",country:"Spain",path:"Karting → Formula 1 → IndyCar → Le Mans",note:"Two-time Formula 1 World Champion, two-time Le Mans winner and Indianapolis 500 competitor."},
+ {year:2001,name:"Felipe Massa",country:"Brazil",path:"Karting → Formula 1 → Le Mans",note:"Formula 1 Grand Prix winner who later raced at Le Mans."},
+ {year:2002,name:"Mark Webber",country:"Australia",path:"Karting → Formula 1 → Le Mans",note:"Formula 1 Grand Prix winner and two-time World Endurance champion."},
+ {year:2003,name:"Max Chilton",country:"United Kingdom",path:"Karting → Formula 1 → IndyCar → Le Mans",note:"Formula 1 driver and later IndyCar and endurance racer."},
+ {year:2004,name:"Sébastien Bourdais",country:"France",path:"Karting → IndyCar → Formula 1 → Le Mans",note:"Four-time Champ Car champion, Formula 1 driver and Le Mans podium finisher."},
+ {year:2004,name:"Anthony Davidson",country:"United Kingdom",path:"Karting → Formula 1 → Le Mans",note:"Formula 1 driver and World Endurance champion."},
+ {year:2005,name:"Robert Kubica",country:"Poland",path:"Karting → Formula 1 → Le Mans",note:"Formula 1 Grand Prix winner who later competed in endurance racing."},
+ {year:2005,name:"Kamui Kobayashi",country:"Japan",path:"Karting → Formula 1 → Le Mans",note:"Formula 1 driver, Super Formula competitor and 2021 Le Mans winner."},
+ {year:2006,name:"Nico Rosberg",country:"Germany",path:"Karting → Formula 1",note:"2016 Formula 1 World Champion."},
+ {year:2007,name:"Lewis Hamilton",country:"United Kingdom",path:"Karting → Formula 1",note:"Seven-time Formula 1 World Champion and the first McLaren junior to progress from karting to F1."},
+ {year:2008,name:"Sebastian Vettel",country:"Germany",path:"Karting → Formula 1",note:"Four-time Formula 1 World Champion."},
+ {year:2009,name:"Sébastien Buemi",country:"Switzerland",path:"Karting → Formula 1 → Le Mans",note:"Formula 1 driver and multiple Le Mans winner."},
+ {year:2010,name:"Brendon Hartley",country:"New Zealand",path:"Karting → Formula 1 → Le Mans",note:"Formula 1 driver and multiple Le Mans / World Endurance champion."},
+ {year:2011,name:"Will Power",country:"Australia",path:"Karting → IndyCar",note:"IndyCar champion and Indianapolis 500 winner."},
+ {year:2014,name:"Valtteri Bottas",country:"Finland",path:"Karting → Formula 1",note:"Formula 1 Grand Prix winner who progressed through European single-seaters after karting."},
+ {year:2015,name:"Stoffel Vandoorne",country:"Belgium",path:"Karting → Formula 1 → Le Mans",note:"Formula 1 driver and World Endurance competitor."},
+ {year:2016,name:"Esteban Ocon",country:"France",path:"Karting → Formula 1 → Le Mans",note:"Formula 1 Grand Prix winner and international endurance competitor."},
+ {year:2017,name:"Charles Leclerc",country:"Monaco",path:"Karting → Formula 1 → Le Mans",note:"Formula 1 Grand Prix winner whose international career began in karting."},
+ {year:2017,name:"Pierre Gasly",country:"France",path:"Karting → Formula 1 → Le Mans",note:"Formula 1 Grand Prix winner and karting graduate."},
+ {year:2018,name:"Lando Norris",country:"United Kingdom",path:"Karting → Formula 1 → Le Mans",note:"FIA Karting champion and Formula 1 World Champion."},
+ {year:2019,name:"George Russell",country:"United Kingdom",path:"Karting → Formula 1",note:"Formula 1 Grand Prix winner and Mercedes driver."},
+ {year:2020,name:"Alex Palou",country:"Spain",path:"Karting → IndyCar → Le Mans",note:"Multiple IndyCar champion and international endurance competitor."},
+ {year:2021,name:"Max Verstappen",country:"Netherlands",path:"Karting → Formula 1 → Le Mans",note:"Four-time Formula 1 World Champion and former CIK-FIA KZ World Champion."},
+ {year:2022,name:"Oscar Piastri",country:"Australia",path:"Karting → Formula 1",note:"Formula 1 race winner and one of the leading modern graduates from karting."},
+ {year:2023,name:"Colton Herta",country:"USA",path:"Karting → IndyCar → Le Mans",note:"IndyCar race winner who progressed through karting and junior single-seaters."},
+ {year:2024,name:"Kyle Larson",country:"USA",path:"Karting → NASCAR → IndyCar → Le Mans",note:"A cross-discipline champion who has competed at the Indianapolis 500 and in endurance racing."}
+];
+
+function HallOfFame(){
+ const [series,setSeries]=useState("All");
+ const filters=["All","Formula 1","IndyCar","Le Mans","Touring Cars"];
+ const rows=hallOfFame.filter(d=>series==="All"||d.path.includes(series));
+ return <section><PageTitle kicker="Karting's pathway to the world stage" title="HALL OF FAME" text="A chronological record of drivers who came through karting and reached Formula 1, IndyCar, Le Mans or international Touring Cars."/>
+ <div className="hof-intro"><div><b>FROM THE GRID TO THE WORLD</b><p>Karting has been the starting point for generations of elite drivers. KartGrid traces that journey and records the major disciplines reached after karting.</p></div><div className="hof-stat"><strong>{hallOfFame.length}</strong><span>featured drivers</span></div></div>
+ <Filters>{filters.map(x=><button key={x} className={"filter-button "+(series===x?"active":"")} onClick={()=>setSeries(x)}>{x}</button>)}</Filters>
+ <div className="hof-grid">{rows.sort((a,b)=>a.year-b.year||a.name.localeCompare(b.name)).map((d,i)=><article className="hof-card" key={d.name}><div className="hof-year">{d.year}</div><div className="hof-country">{d.country}</div><h3>{d.name}</h3><div className="hof-path">{d.path}</div><p>{d.note}</p><div className="hof-footer"><span>Karting → {d.path.split("→").slice(-1)[0].trim()}</span><b>Hall of Fame</b></div></article>)}</div>
+ <SectionHead eyebrow="Karting World Champions" title="World Champions" copy="A dedicated record of FIA / CIK-FIA karting world champions across the principal world championship categories."/>
+ <WorldChampions/>
+ </section>
+}
+
+const worldChampions=[
+ {year:2026,cat:"KZ",name:"Viktor Gustafsson",country:"Sweden"},
+ {year:2025,cat:"KZ",name:"Senna van Walstijn",country:"Netherlands"},
+ {year:2025,cat:"OK",name:"Thibaut Ramaekers",country:"Belgium"},
+ {year:2025,cat:"OK-Junior",name:"Noah Baglin",country:"United Kingdom"},
+ {year:2024,cat:"KZ",name:"Giuseppe Palomba",country:"Italy"},
+ {year:2024,cat:"OK",name:"Thibaut Ramaekers",country:"Belgium"},
+ {year:2024,cat:"OK-Junior",name:"Dries Van Langendonck",country:"Belgium"},
+ {year:2023,cat:"KZ",name:"Paolo Ippolito",country:"Italy"},
+ {year:2023,cat:"OK",name:"Kirill Kutskov",country:"Neutral"},
+ {year:2023,cat:"OK-Junior",name:"Dries Van Langendonck",country:"Belgium"},
+ {year:2022,cat:"KZ",name:"Viktor Gustafsson",country:"Sweden"},
+ {year:2022,cat:"OK",name:"Matheus Morgatto",country:"Brazil"},
+ {year:2022,cat:"OK-Junior",name:"Enzo Tarnvanichkul",country:"Thailand"},
+ {year:2021,cat:"KZ",name:"Jérémy Iglesias",country:"France"},
+ {year:2021,cat:"OK",name:"Nikita Bedrin",country:"Neutral"},
+ {year:2021,cat:"OK-Junior",name:"Freddie Slater",country:"United Kingdom"},
+ {year:2020,cat:"KZ",name:"Jérémy Iglesias",country:"France"},
+ {year:2020,cat:"OK",name:"Callum Bradshaw",country:"United Kingdom"},
+ {year:2020,cat:"OK-Junior",name:"Freddie Slater",country:"United Kingdom"},
+ {year:2019,cat:"KZ",name:"Marijn Kremers",country:"Netherlands"},
+ {year:2019,cat:"OK",name:"Callum Bradshaw",country:"United Kingdom"},
+ {year:2019,cat:"OK-Junior",name:"Lorenzo Travisanutto",country:"Italy"},
+ {year:2018,cat:"OK",name:"Lorenzo Travisanutto",country:"Italy"},
+ {year:2018,cat:"KZ",name:"Jorrit Pex",country:"Netherlands"},
+ {year:2017,cat:"KZ",name:"Paolo De Conto",country:"Italy"},
+ {year:2016,cat:"KZ",name:"Jorrit Pex",country:"Netherlands"},
+ {year:2015,cat:"KZ",name:"Jorrit Pex",country:"Netherlands"},
+ {year:2014,cat:"KZ",name:"Marco Ardigò",country:"Italy"},
+ {year:2013,cat:"KZ",name:"Jonathan Thonon",country:"Belgium"},
+ {year:2012,cat:"KZ",name:"Flavio Camponeschi",country:"Italy"},
+ {year:2011,cat:"KZ",name:"Jordon Lennox-Lamb",country:"United Kingdom"},
+ {year:2010,cat:"KZ",name:"Arnaud Kozlinski",country:"France"},
+ {year:2009,cat:"KZ",name:"Arnaud Kozlinski",country:"France"},
+ {year:2008,cat:"KZ",name:"Davide Forè",country:"Italy"},
+ {year:2007,cat:"KZ",name:"Marco Ardigò",country:"Italy"}
+];
+function WorldChampions(){
+ const [cat,setCat]=useState("All");
+ const cats=["All",...new Set(worldChampions.map(x=>x.cat))];
+ const rows=worldChampions.filter(x=>cat==="All"||x.cat===cat);
+ return <div className="world-champions"><div className="champ-filters">{cats.map(x=><button key={x} className={"filter-button "+(cat===x?"active":"")} onClick={()=>setCat(x)}>{x}</button>)}</div><div className="champ-list">{rows.sort((a,b)=>b.year-a.year).map((x,i)=><div className="champ-row" key={x.year+"-"+x.cat}><strong>{x.year}</strong><span>{x.cat}</span><b>{x.name}</b><small>{x.country}</small></div>)}</div></div>
+}
 function ContributePage({kind,id}){
  return <section><PageTitle kicker="Community contribution" title="HELP BUILD KARTGRID" text="The strongest karting database comes from combining verified public data with knowledge from the people who race, work and spend weekends at these venues."/><div className="panel ugc-callout"><span>COMMUNITY POWERED</span><h3>Help improve this profile</h3><p>Useful contributions include track photos, facility information, layout details, classes, championships, official results links, historical notes and factual corrections.</p><p className="muted">Contribution tools are being connected to KartGrid accounts and moderation so additions can be reviewed before becoming part of the public record.</p><a className="button" href={kind==="track"?"#/tracks/"+id:"#/asns/"+id}>Back to profile</a></div></section>
 }
@@ -673,6 +787,7 @@ function App(){
  let page;
  const parts=route.split("/").filter(Boolean);
  if(route==="/") page=<Home {...{region,listings,drivers,posts,saved,toggleSave}}/>;
+ else if(parts[0]==="hall-of-fame") page=<HallOfFame/>;
  else if(parts[0]==="fia"&&parts[1]==="cik") page=<CIKProfile/>;
  else if(parts[0]==="fia") page=<FIAProfile/>;
  else if(parts[0]==="news"&&parts[1]) page=<NewsDetail id={parts[1]}/>;
@@ -705,6 +820,6 @@ function App(){
  else if(parts[0]==="about") page=<About/>;
  else if(parts[0]==="profile") page=<DriverAccount region={region}/>;
  else page=<NotFound/>;
- return <><Top region={region} setRegion={setRegion}/><main>{page}</main><footer className="site-footer"><div className="footer-grid"><div className="footer-column"><h3>KartGrid</h3><a href="#/">Home</a><a href="#/about">About Us</a></div><div className="footer-column"><h3>Main Menu</h3><a href="#/">Home</a><a href="#/news">News</a><a href="#/marketplace">Marketplace</a><a href="#/drivers">Drivers</a><a href="#/classes">Classes</a><a href="#/manufacturers">Manufacturers</a><a href="#/asns">ASNs</a><a href="#/results">Results</a><a href="#/tracks">Tracks</a><a href="#/community">Community</a><a href="#/knowledge-base">Knowledge Base</a></div><div className="footer-column"><h3>Knowledge Base</h3><a href="#/knowledge-base">Karting Knowledge Base</a><a href="#/classes">Karting Classes</a><a href="#/tracks">Track Directory</a><a href="#/asns">National Authorities</a><a href="#/results">Results Archive</a></div><div className="footer-column"><h3>Connect with us</h3><a href="#/community">Community</a><a href="#/profile">Driver Hub</a><a href="#/advertise">Advertise</a><a href="#/about">About KartGrid</a></div></div><div className="footer-bottom"><p>The world of karting, local to you.</p></div></footer></>
+ return <><Top region={region} setRegion={setRegion}/><main>{page}</main><footer className="site-footer"><div className="footer-grid"><div className="footer-column"><h3>KartGrid</h3><a href="#/">Home</a><a href="#/about">About Us</a></div><div className="footer-column"><h3>Main Menu</h3><a href="#/">Home</a><a href="#/news">News</a><a href="#/marketplace">Marketplace</a><a href="#/drivers">Drivers</a><a href="#/classes">Classes</a><a href="#/manufacturers">Manufacturers</a><a href="#/asns">ASNs</a><a href="#/results">Results</a><a href="#/hall-of-fame">Hall of Fame</a><a href="#/tracks">Tracks</a><a href="#/community">Community</a><a href="#/knowledge-base">Knowledge Base</a></div><div className="footer-column"><h3>Knowledge Base</h3><a href="#/knowledge-base">Karting Knowledge Base</a><a href="#/classes">Karting Classes</a><a href="#/tracks">Track Directory</a><a href="#/asns">National Authorities</a><a href="#/results">Results Archive</a><a href="#/hall-of-fame">Hall of Fame</a></div><div className="footer-column"><h3>Connect with us</h3><a href="#/community">Community</a><a href="#/profile">Driver Hub</a><a href="#/advertise">Advertise</a><a href="#/about">About KartGrid</a></div></div><div className="footer-bottom"><p>The world of karting, local to you.</p></div></footer></>
 }
 createRoot(document.getElementById("root")).render(<App/>);
