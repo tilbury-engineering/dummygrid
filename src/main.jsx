@@ -1002,7 +1002,8 @@ function App(){
  else if(parts[0]==="news"&&parts[1]==="new") page=<NewNews/>;
  else if(parts[0]==="news"&&parts[1]) page=<NewsDetail id={parts[1]}/>;
  else if(parts[0]==="news") page=<News/>;
- else if(parts[0]==="shop") page=<Shop/>;\n else if(parts[0]==="marketplace"&&parts[1]==="new") page=<NewListing {...{region,listings,setListings}}/>;
+ else if(parts[0]==="shop") page=<Shop/>;
+ else if(parts[0]==="marketplace"&&parts[1]==="new") page=<NewListing {...{region,listings,setListings}}/>;
  else if(parts[0]==="marketplace"&&parts[1]) page=<ListingDetail id={parts[1]} {...{listings,saved,toggleSave}}/>;
  else if(parts[0]==="marketplace") page=<Marketplace {...{region,listings,setListings,saved,toggleSave}}/>;
  else if(parts[0]==="drivers"&&parts[1]) page=<DriverDetail id={parts[1]} drivers={drivers}/>;
