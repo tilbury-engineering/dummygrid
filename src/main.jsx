@@ -183,8 +183,10 @@ function useRemoteJson(path,fallback){
 }
 function SectionHead({eyebrow,title,copy,action}){return <div className="sectionhead"><div><span>{eyebrow}</span><h2>{title}</h2>{copy&&<p>{copy}</p>}</div>{action}</div>}
 function useLiveNews(){
- const [state,setState]=useState({items:demoNews.map(n=>({...n,country:n.region==="UK"?"United Kingdom":n.region,continent:n.region==="UK"?"Europe":n.region,summary:n.dek,published:n.time,url:""})),updatedAt:null,live:false});
- useEffect(()=>{fetch((import.meta.env.BASE_URL||"/")+"news.json",{cache:"no-store"}).then(r=>r.ok?r.json():Promise.reject()).then(d=>{if(d?.items?.length)setState({items:d.items,updatedAt:d.updatedAt,live:true})}).catch(()=>{})},[]);
+ const local=()=>load("kg_user_news",[]);
+ const seed=demoNews.map(n=>({...n,country:n.region==="UK"?"United Kingdom":n.region,continent:n.region==="UK"?"Europe":n.region,summary:n.dek,published:n.time,url:""}));
+ const [state,setState]=useState({items:[...local(),...seed],updatedAt:null,live:false});
+ useEffect(()=>{fetch((import.meta.env.BASE_URL||"/")+"news.json",{cache:"no-store"}).then(r=>r.ok?r.json():Promise.reject()).then(d=>{if(d?.items?.length)setState({items:[...local(),...d.items],updatedAt:d.updatedAt,live:true})}).catch(()=>{})},[]);
  return state;
 }
 function newsFor(region,items){
@@ -230,8 +232,8 @@ function News(){
  const rows=base.filter(n=>(country==="All"||n.country===country)&&(continent==="All"||n.continent===continent)&&(source==="All"||n.source===source)&&((n.title+" "+(n.summary||n.dek||"")+" "+(n.source||"")).toLowerCase().includes(q.toLowerCase())));
  useEffect(()=>setLimit(24),[q,country,continent,source]);
  const visible=rows.slice(0,limit);
- return <section><PageTitle kicker={liveNews.live?"Live global aggregator":"Newsroom"} title="ALL KARTING NEWS" text={liveNews.live?("Live karting coverage from specialist media, governing bodies and selected wider publications · updated "+fmtDate(liveNews.updatedAt)):"Loading live feed…"}/>
- <div className="news-intro"><b>Specialist karting coverage</b><span>Vroomkart · eKartingNews · Kartcom · Kart Mag · TKART · KartSportNews · Karting Australia · Motorsport UK · FIA Karting and more</span></div>
+ return <section><PageTitle kicker={liveNews.live?"Live global aggregator":"Newsroom"} title="ALL KARTING NEWS" text={liveNews.live?("Live karting coverage from specialist media, governing bodies, press-release wires and selected wider publications · updated "+fmtDate(liveNews.updatedAt)):"Loading live feed…"} action={<a className="button primary" href="#/news/new">+ Post news</a>}/>
+ <div className="news-intro"><b>Specialist karting coverage + press releases</b><span>Vroomkart · eKartingNews · Kartcom · Kart Mag · TKART · KartSportNews · Canadian Karting News · Karting Australia · FIA Karting · PR Newswire · GlobeNewswire · Business Wire · PublicNow and more</span></div>
  <Filters><input placeholder="Search karting news, driver, championship or circuit…" value={q} onChange={e=>setQ(e.target.value)}/><select value={continent} onChange={e=>{setContinent(e.target.value);setCountry("All")}}><option>All continents</option>{continents.map(x=><option key={x}>{x}</option>)}</select><select value={country} onChange={e=>setCountry(e.target.value)}><option>All countries</option>{countries.filter(c=>continent==="All"||base.some(n=>n.country===c&&n.continent===continent)).map(x=><option key={x}>{x}</option>)}</select><select value={source} onChange={e=>setSource(e.target.value)}><option>All publications</option>{sources.map(x=><option key={x}>{x}</option>)}</select></Filters>
  <div className="news-count"><b>{rows.length}</b> stories available {source!=="All"&&<>from <b>{source}</b></>}</div>
  {visible.length?<><div className="news-grid">{visible.map((n,i)=><NewsCard key={n.id||n.url||i} n={n} big={i===0}/>)}</div>{visible.length<rows.length&&<div className="load-more"><button className="button primary" onClick={()=>setLimit(x=>x+24)}>Load 24 more</button><small>Showing {visible.length} of {rows.length}</small></div>}</>:<Empty text="No live stories match those filters."/>}
@@ -285,7 +287,49 @@ function ManufacturerDetail({id}){
  <Ad format="Manufacturer sponsor"/>
  </section>
 }
-function NewsDetail({id}){const live=useLiveNews();const n=live.items.find(x=>String(x.id)===id)||demoNews.find(x=>String(x.id)===id);const [imageFailed,setImageFailed]=useState(false);if(!n)return <NotFound/>;const region=n.country&&n.country!=="Global"?n.country:(n.continent||n.region||"Global");const summary=n.summary||n.dek||"";return <section className="article"><Pill>{region}</Pill><h1>{n.title}</h1><p className="lead">{summary.slice(0,900)}</p><div className="article-meta">Source: <b>{n.source||"Original publisher"}</b> · {n.published?fmtDate(n.published):(n.time||"")}</div>{n.image&&!imageFailed?<img className="article-hero-image" src={n.image} alt="" onError={()=>setImageFailed(true)}/>:<div className="article-hero-fallback"><b>KARTING NEWS</b><span>{n.source||"Original publisher"}</span></div>}<div className="panel article-summary"><div className="article-source-label">SOURCE REPORT</div><h3>{n.source||"Original publisher"}</h3><p>{summary}</p><p className="muted">KartGrid provides an on-site summary and source attribution. Copyright in the original reporting remains with its publisher.</p>{n.url&&<a className="button primary" href={n.url} target="_blank" rel="noopener noreferrer">Read the full report at {n.source||"source"} ↗</a>}</div>{n.sources?.length>0&&<div className="panel"><h3>Additional coverage</h3>{n.sources.map((x,i)=><p key={i}><a className="link" href={x.url} target="_blank" rel="noopener noreferrer">{x.source} ↗</a></p>)}</div>}<Ad format="In-article MPU"/></section>}
+function NewNews(){
+ const [form,setForm]=useState({title:"",summary:"",body:"",source:"KartGrid Community",author:"",country:"United Kingdom",continent:"Europe",tag:"COMMUNITY",image:"",imageCredit:"",sourceUrl:""});
+ const submit=e=>{e.preventDefault(); const item={...form,id:"user-"+Date.now(),published:new Date().toISOString(),url:form.sourceUrl||"",userSubmitted:true}; const current=load("kg_user_news",[]); save("kg_user_news",[item,...current]); location.hash="/news/"+item.id};
+ return <section><PageTitle kicker="KartGrid Newsroom" title="POST NEWS" text="Share karting news, team announcements, event reports, product launches and press releases with the KartGrid community." action={<a className="button" href="#/news">Back to news</a>}/>
+  <form className="form-card news-submit-form" onSubmit={submit}>
+   <label className="wide">Headline<input required value={form.title} onChange={e=>setForm({...form,title:e.target.value})}/></label>
+   <label className="wide">Standfirst / summary<textarea required value={form.summary} onChange={e=>setForm({...form,summary:e.target.value})}/></label>
+   <label className="wide">Full story<textarea required className="news-body-input" value={form.body} onChange={e=>setForm({...form,body:e.target.value})}/></label>
+   <label>Author / organisation<input required value={form.author} onChange={e=>setForm({...form,author:e.target.value})}/></label>
+   <label>Source name<input value={form.source} onChange={e=>setForm({...form,source:e.target.value})}/></label>
+   <label>Country<input value={form.country} onChange={e=>setForm({...form,country:e.target.value})}/></label>
+   <label>Continent<select value={form.continent} onChange={e=>setForm({...form,continent:e.target.value})}>{["Europe","North America","South America","Asia","Africa","Oceania","Global"].map(x=><option key={x}>{x}</option>)}</select></label>
+   <label className="wide">Main image URL<input placeholder="https://…" value={form.image} onChange={e=>setForm({...form,image:e.target.value})}/></label>
+   <label>Image credit<input value={form.imageCredit} onChange={e=>setForm({...form,imageCredit:e.target.value})}/></label>
+   <label>Original source URL<input placeholder="https://…" value={form.sourceUrl} onChange={e=>setForm({...form,sourceUrl:e.target.value})}/></label>
+   <p className="muted wide">Submitted stories are marked as community content. Please only submit material and images you have permission to publish, and credit the original source where applicable.</p>
+   <button className="button primary wide">Publish to KartGrid</button>
+  </form>
+ </section>
+}
+function NewsDetail({id}){
+ const live=useLiveNews();
+ const n=live.items.find(x=>String(x.id)===id)||demoNews.find(x=>String(x.id)===id);
+ const [imageFailed,setImageFailed]=useState(false);
+ if(!n)return <NotFound/>;
+ const region=n.country&&n.country!=="Global"?n.country:(n.continent||n.region||"Global");
+ const summary=n.summary||n.dek||"";
+ const rawBody=n.body||n.content||n.article||n.description||"";
+ const bodyParagraphs=String(rawBody).split(/\n{2,}|\r?\n/).map(x=>x.trim()).filter(Boolean);
+ return <section className="article">
+  <Pill>{n.userSubmitted?"COMMUNITY NEWS":region}</Pill>
+  <h1>{n.title}</h1>
+  {summary&&<p className="lead">{summary}</p>}
+  <div className="article-meta">Source: <b>{n.source||"Original publisher"}</b>{n.author&&<> · By {n.author}</>} · {n.published?fmtDate(n.published):(n.time||"")}</div>
+  {n.image&&!imageFailed?<><img className="article-hero-image" src={n.image} alt={n.title} onError={()=>setImageFailed(true)}/>{n.imageCredit&&<div className="image-credit">Image: {n.imageCredit}</div>}</>:<div className="article-hero-fallback"><b>KARTING NEWS</b><span>{n.source||"Original publisher"}</span></div>}
+  <article className="panel article-body">
+   {bodyParagraphs.length?bodyParagraphs.map((p,i)=><p key={i}>{p}</p>):<><p>{summary}</p><p className="muted">This source feed currently provides a summary rather than the full article text. KartGrid is expanding source ingestion so supported publishers and press-release feeds can provide fuller on-site coverage while retaining source attribution.</p></>}
+  </article>
+  <div className="panel article-summary"><div className="article-source-label">{n.userSubmitted?"COMMUNITY SUBMISSION":"SOURCE & ATTRIBUTION"}</div><h3>{n.source||"Original publisher"}</h3>{n.url&&<a className="button primary" href={n.url} target="_blank" rel="noopener noreferrer">View original source ↗</a>}</div>
+  {n.sources?.length>0&&<div className="panel"><h3>Additional coverage</h3>{n.sources.map((x,i)=><p key={i}><a className="link" href={x.url} target="_blank" rel="noopener noreferrer">{x.source} ↗</a></p>)}</div>}
+  <Ad format="In-article MPU"/>
+ </section>
+}
 function Marketplace({region,listings,setListings,saved,toggleSave}){
  const [q,setQ]=useState("");const [cat,setCat]=useState("All");const [cond,setCond]=useState("All");
  const rows=listings.filter(x=>(region==="Global"||x.region===region)&&(cat==="All"||x.category===cat)&&(cond==="All"||x.condition===cond)&&((x.title+" "+x.location+" "+x.compat).toLowerCase().includes(q.toLowerCase())));
@@ -930,6 +974,7 @@ function App(){
  else if(parts[0]==="hall-of-fame") page=<HallOfFame/>;
  else if(parts[0]==="fia"&&parts[1]==="cik") page=<CIKProfile/>;
  else if(parts[0]==="fia") page=<FIAProfile/>;
+ else if(parts[0]==="news"&&parts[1]==="new") page=<NewNews/>;
  else if(parts[0]==="news"&&parts[1]) page=<NewsDetail id={parts[1]}/>;
  else if(parts[0]==="news") page=<News/>;
  else if(parts[0]==="marketplace"&&parts[1]==="new") page=<NewListing {...{region,listings,setListings}}/>;
