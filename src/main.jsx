@@ -734,7 +734,6 @@ function qualificationLabel(driver){
  if(note.includes("champion")) return "International Champion";
  return "International Championship";
 }
-function qualificationLabel(driver){return qualificationLabels[driver.name]||((driver.note||"").toLowerCase().includes("world champion")?"World Champion":"International Champion")}
 const HallOfFameFeatured=()=> <div className="hof-featured"><a className="hof-feature-card" href="#/hall-of-fame/driver/Art%20Ingels"><div className="pioneer-banner">PIONEER</div><DriverPortrait name="Art Ingels"/><div className="hof-feature-copy"><div className="meta">FOUNDERS & PIONEERS</div><h2>Art Ingels</h2><strong>THE FOUNDING FATHER</strong><p>Widely recognised as the father of karting and builder of the first go-kart in 1956.</p><span>View profile →</span></div></a><a className="hof-feature-card" href="#/hall-of-fame/driver/Martin%20Hines"><div className="pioneer-banner">PIONEER</div><DriverPortrait name="Martin Hines"/><div className="hof-feature-copy"><div className="meta">HALL OF FAME · SUPERKART</div><h2>Martin Hines</h2><strong>MR KARTING</strong><p>Three-time World Champion, Zip Kart pioneer and one of the most influential figures in the development of modern karting.</p><span>View profile →</span></div></a></div>;
 function HallOfFame(){
  const [series,setSeries]=useState("All");
