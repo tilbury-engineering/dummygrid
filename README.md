@@ -30,3 +30,6 @@ Publish directory:
 ## Prototype persistence
 
 User-created listings, saved listings, driver profile data, locale selection and community posts are stored in the browser with localStorage for this prototype.
+
+
+<!-- GitHub Pages deployment trigger: 2026-09-26 -->
