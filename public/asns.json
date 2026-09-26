@@ -10,14 +10,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇩🇿",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/dz.png"
     },
     {
       "id": "angola",
@@ -27,14 +27,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇦🇴",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/ao.png"
     },
     {
       "id": "antigua-and-barbuda",
@@ -44,14 +44,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇦🇬",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/ag.png"
     },
     {
       "id": "motorsport-australia",
@@ -61,14 +61,14 @@
       "type": "Sport",
       "address": "275 Canterbury Road",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇦🇺",
       "contact": {
         "phone": "1300 883 959",
         "email": "info@motorsport.org.au",
         "website": "https://motorsport.org.au/"
       },
       "logoUrl": "https://www.google.com/s2/favicons?domain=motorsport.org.au&sz=128",
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/au.png"
     },
     {
       "id": "austria",
@@ -78,14 +78,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇦🇹",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/at.png"
     },
     {
       "id": "bahamas",
@@ -95,14 +95,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇧🇸",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/bs.png"
     },
     {
       "id": "barbados",
@@ -112,14 +112,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇧🇧",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/bb.png"
     },
     {
       "id": "belarus",
@@ -129,14 +129,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇧🇾",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/by.png"
     },
     {
       "id": "belgium",
@@ -146,14 +146,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇧🇪",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/be.png"
     },
     {
       "id": "belize",
@@ -163,14 +163,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇧🇿",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/bz.png"
     },
     {
       "id": "bosnia-and-herzegovina",
@@ -180,14 +180,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇧🇦",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/ba.png"
     },
     {
       "id": "botswana",
@@ -197,14 +197,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇧🇼",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/bw.png"
     },
     {
       "id": "cba",
@@ -215,14 +215,14 @@
       "type": "Sport",
       "address": "Rua Da Glória 290, 8° Andar",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇧🇷",
       "contact": {
         "phone": "+55 21 2221 4895",
         "email": "cba@cba.org.br",
         "website": "https://www.cba.org.br/"
       },
       "logoUrl": "https://www.google.com/s2/favicons?domain=cba.org.br&sz=128",
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/br.png"
     },
     {
       "id": "bulgaria",
@@ -232,14 +232,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇧🇬",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/bg.png"
     },
     {
       "id": "burundi",
@@ -249,14 +249,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇧🇮",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/bi.png"
     },
     {
       "id": "cambodia",
@@ -266,14 +266,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇰🇭",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/kh.png"
     },
     {
       "id": "cayman-islands",
@@ -283,14 +283,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇰🇾",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/ky.png"
     },
     {
       "id": "chile",
@@ -300,14 +300,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇨🇱",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/cl.png"
     },
     {
       "id": "china",
@@ -317,14 +317,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇨🇳",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/cn.png"
     },
     {
       "id": "chinese-taipei",
@@ -334,14 +334,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇹🇼",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/tw.png"
     },
     {
       "id": "colombia",
@@ -351,14 +351,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇨🇴",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/co.png"
     },
     {
       "id": "c-te-d-ivoire",
@@ -368,14 +368,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇨🇮",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/ci.png"
     },
     {
       "id": "cik-croatia",
@@ -385,14 +385,14 @@
       "type": "Sport",
       "address": "Kršnjavoga 1",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇭🇷",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/hr.png"
     },
     {
       "id": "cuba",
@@ -402,14 +402,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇨🇺",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/cu.png"
     },
     {
       "id": "cyprus",
@@ -419,14 +419,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇨🇾",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/cy.png"
     },
     {
       "id": "czech-republic",
@@ -436,14 +436,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇨🇿",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/cz.png"
     },
     {
       "id": "democratic-republic-of-the-congo",
@@ -453,14 +453,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇨🇩",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/cd.png"
     },
     {
       "id": "dasu",
@@ -471,14 +471,14 @@
       "type": "Sport",
       "address": "Brøndby Stadion 20",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇩🇰",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/dk.png"
     },
     {
       "id": "dominican-republic",
@@ -488,14 +488,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇩🇴",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/do.png"
     },
     {
       "id": "eritrea",
@@ -505,14 +505,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇪🇷",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/er.png"
     },
     {
       "id": "estonia",
@@ -522,14 +522,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇪🇪",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/ee.png"
     },
     {
       "id": "ethiopia",
@@ -539,14 +539,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇪🇹",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/et.png"
     },
     {
       "id": "akk",
@@ -557,14 +557,14 @@
       "type": "Sport",
       "address": "Kellokukantie 7",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇫🇮",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/fi.png"
     },
     {
       "id": "france",
@@ -574,14 +574,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇫🇷",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/fr.png"
     },
     {
       "id": "georgia",
@@ -591,14 +591,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇬🇪",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/ge.png"
     },
     {
       "id": "dmsb",
@@ -609,14 +609,14 @@
       "type": "Sport",
       "address": "Lyoner Stern, Hahnstrasse 70",
       "sourceUrl": "https://www.fia.com/members/country/country/DE?field_member_club=2",
-      "flag": "🇩🇪",
       "contact": {
         "phone": "+49 69 633007-0",
         "email": null,
         "website": "https://www.dmsb.de/"
       },
       "logoUrl": "https://www.google.com/s2/favicons?domain=dmsb.de&sz=128",
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/de.png"
     },
     {
       "id": "greece",
@@ -626,14 +626,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇬🇷",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/gr.png"
     },
     {
       "id": "guyana",
@@ -643,14 +643,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇬🇾",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/gy.png"
     },
     {
       "id": "hungary",
@@ -660,14 +660,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇭🇺",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/hu.png"
     },
     {
       "id": "iceland",
@@ -677,14 +677,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇮🇸",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/is.png"
     },
     {
       "id": "india",
@@ -694,14 +694,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇮🇳",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/in.png"
     },
     {
       "id": "indonesia",
@@ -711,14 +711,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇮🇩",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/id.png"
     },
     {
       "id": "iran",
@@ -728,14 +728,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇮🇷",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/ir.png"
     },
     {
       "id": "iraq",
@@ -745,14 +745,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇮🇶",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/iq.png"
     },
     {
       "id": "ireland",
@@ -762,14 +762,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇮🇪",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/ie.png"
     },
     {
       "id": "israel",
@@ -779,14 +779,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇮🇱",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/il.png"
     },
     {
       "id": "jamaica",
@@ -796,14 +796,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇯🇲",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/jm.png"
     },
     {
       "id": "jaf",
@@ -814,14 +814,14 @@
       "type": "Sport & Mobility",
       "address": "Jidosha Kaikan 14F, 1-1-30 Shibadaimon, Minato-Ku",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇯🇵",
       "contact": {
         "phone": null,
         "email": null,
         "website": "https://www.jaf.or.jp/"
       },
       "logoUrl": "https://www.google.com/s2/favicons?domain=jaf.or.jp&sz=128",
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/jp.png"
     },
     {
       "id": "jordan",
@@ -831,14 +831,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇯🇴",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/jo.png"
     },
     {
       "id": "kmsa",
@@ -849,14 +849,14 @@
       "type": "Sport",
       "address": "Moi International Sports Complex, Kasarani",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇰🇪",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/ke.png"
     },
     {
       "id": "kosovo",
@@ -866,14 +866,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇽🇰",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/xk.png"
     },
     {
       "id": "kuwait",
@@ -883,14 +883,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇰🇼",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/kw.png"
     },
     {
       "id": "laf",
@@ -901,14 +901,14 @@
       "type": "Sport",
       "address": "G. Zemgala gatve 71 k5",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇱🇻",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/lv.png"
     },
     {
       "id": "libya",
@@ -918,14 +918,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇱🇾",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/ly.png"
     },
     {
       "id": "lasf",
@@ -936,14 +936,14 @@
       "type": "Sport",
       "address": "Savanoriu ave. 56",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇱🇹",
       "contact": {
         "phone": "+370 37 350026",
         "email": "lasf@lasf.lt",
         "website": "https://www.lasf.lt/"
       },
       "logoUrl": "https://www.google.com/s2/favicons?domain=lasf.lt&sz=128",
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/lt.png"
     },
     {
       "id": "madagascar",
@@ -953,14 +953,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇲🇬",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/mg.png"
     },
     {
       "id": "msa-malaysia",
@@ -971,14 +971,14 @@
       "type": "Sport",
       "address": "The Nizra Building, Jalan Sri Penchala",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇲🇾",
       "contact": {
         "phone": "+60 3 7731 5888",
         "email": "mam@mam.org.my",
         "website": "https://mam.org.my/"
       },
       "logoUrl": "https://www.google.com/s2/favicons?domain=mam.org.my&sz=128",
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/my.png"
     },
     {
       "id": "maldives",
@@ -988,14 +988,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇲🇻",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/mv.png"
     },
     {
       "id": "malta",
@@ -1005,14 +1005,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇲🇹",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/mt.png"
     },
     {
       "id": "mauritania",
@@ -1022,14 +1022,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇲🇷",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/mr.png"
     },
     {
       "id": "mauritius",
@@ -1039,14 +1039,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇲🇺",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/mu.png"
     },
     {
       "id": "mexico",
@@ -1056,14 +1056,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇲🇽",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/mx.png"
     },
     {
       "id": "mongolia",
@@ -1073,14 +1073,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇲🇳",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/mn.png"
     },
     {
       "id": "morocco",
@@ -1090,14 +1090,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇲🇦",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/ma.png"
     },
     {
       "id": "nmsf",
@@ -1108,14 +1108,14 @@
       "type": "Sport",
       "address": "Auas Hills Retirement Village, Windhoek",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇳🇦",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/na.png"
     },
     {
       "id": "nepal",
@@ -1125,14 +1125,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇳🇵",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/np.png"
     },
     {
       "id": "netherlands",
@@ -1142,14 +1142,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇳🇱",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/nl.png"
     },
     {
       "id": "motorsport-new-zealand",
@@ -1159,14 +1159,14 @@
       "type": "Sport",
       "address": "102a Kapiti Road",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇳🇿",
       "contact": {
         "phone": "+64 4 815 8015",
         "email": "admin@motorsport.org.nz",
         "website": "https://motorsport.org.nz/"
       },
       "logoUrl": "https://www.google.com/s2/favicons?domain=motorsport.org.nz&sz=128",
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/nz.png"
     },
     {
       "id": "nicaragua",
@@ -1176,14 +1176,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇳🇮",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/ni.png"
     },
     {
       "id": "norway",
@@ -1193,14 +1193,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇳🇴",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/no.png"
     },
     {
       "id": "oman",
@@ -1210,14 +1210,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇴🇲",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/om.png"
     },
     {
       "id": "pakistan",
@@ -1227,14 +1227,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇵🇰",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/pk.png"
     },
     {
       "id": "palestine",
@@ -1244,14 +1244,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇵🇸",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/ps.png"
     },
     {
       "id": "paraguay",
@@ -1261,14 +1261,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇵🇾",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/py.png"
     },
     {
       "id": "peru",
@@ -1278,14 +1278,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇵🇪",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/pe.png"
     },
     {
       "id": "poland",
@@ -1295,14 +1295,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇵🇱",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/pl.png"
     },
     {
       "id": "fpa-k",
@@ -1313,14 +1313,14 @@
       "type": "Sport",
       "address": "Estrada da Portela, n.º 73, Piso 2, Escritório 6",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇵🇹",
       "contact": {
         "phone": "+351 217 112 800",
         "email": "secretariado@fpak.pt",
         "website": "https://fpak.pt/"
       },
       "logoUrl": "https://www.google.com/s2/favicons?domain=fpak.pt&sz=128",
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/pt.png"
     },
     {
       "id": "puerto-rico",
@@ -1330,14 +1330,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇵🇷",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/pr.png"
     },
     {
       "id": "qatar",
@@ -1347,14 +1347,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇶🇦",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/qa.png"
     },
     {
       "id": "russia",
@@ -1364,14 +1364,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇷🇺",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/ru.png"
     },
     {
       "id": "rwanda",
@@ -1381,14 +1381,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇷🇼",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/rw.png"
     },
     {
       "id": "san-marino",
@@ -1398,14 +1398,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇸🇲",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/sm.png"
     },
     {
       "id": "saudi-arabia",
@@ -1415,7 +1415,6 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇸🇦",
       "contact": {
         "phone": null,
         "email": null,
@@ -1432,14 +1431,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇸🇳",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/sn.png"
     },
     {
       "id": "singapore",
@@ -1449,14 +1448,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇸🇬",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/sg.png"
     },
     {
       "id": "slovakia",
@@ -1466,14 +1465,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇸🇰",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/sk.png"
     },
     {
       "id": "motorsport-south-africa",
@@ -1483,14 +1482,14 @@
       "type": "Sport",
       "address": "Quadrum Office Park, Constantia Kloof, Roodepoort",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇿🇦",
       "contact": {
         "phone": "+27 11 675 2220",
         "email": "info@motorsport.co.za",
         "website": "https://www.motorsport.co.za/"
       },
       "logoUrl": "https://www.google.com/s2/favicons?domain=motorsport.co.za&sz=128",
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/za.png"
     },
     {
       "id": "south-korea",
@@ -1500,14 +1499,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇰🇷",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/kr.png"
     },
     {
       "id": "rfeda",
@@ -1518,14 +1517,14 @@
       "type": "Sport",
       "address": "Calle Vereda de los Barros n. 15",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇪🇸",
       "contact": {
         "phone": "+34 91 729 94 30",
         "email": "info@rfeda.es",
         "website": "https://www.rfeda.es/"
       },
       "logoUrl": "https://www.google.com/s2/favicons?domain=rfeda.es&sz=128",
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/es.png"
     },
     {
       "id": "sri-lanka",
@@ -1535,14 +1534,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇱🇰",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/lk.png"
     },
     {
       "id": "sudan",
@@ -1552,14 +1551,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇸🇩",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/sd.png"
     },
     {
       "id": "sbf",
@@ -1570,14 +1569,14 @@
       "type": "Sport",
       "address": "Bergkällavägen 31 A, Bilsportens Hus",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇸🇪",
       "contact": {
         "phone": "+46 8 626 33 00",
         "email": "mailbox@sbf.se",
         "website": "https://www.sbf.se/"
       },
       "logoUrl": "https://www.google.com/s2/favicons?domain=sbf.se&sz=128",
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/se.png"
     },
     {
       "id": "syria",
@@ -1587,14 +1586,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇸🇾",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/sy.png"
     },
     {
       "id": "thailand",
@@ -1604,14 +1603,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇹🇭",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/th.png"
     },
     {
       "id": "trinidad-and-tobago",
@@ -1621,14 +1620,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇹🇹",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/tt.png"
     },
     {
       "id": "turkey",
@@ -1638,14 +1637,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇹🇷",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/tr.png"
     },
     {
       "id": "turkmenistan",
@@ -1655,14 +1654,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇹🇲",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/tm.png"
     },
     {
       "id": "uganda",
@@ -1672,14 +1671,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇺🇬",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/ug.png"
     },
     {
       "id": "msukraine",
@@ -1689,14 +1688,14 @@
       "type": "Sport & Mobility",
       "address": "36B, Symyrenko str.",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇺🇦",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/ua.png"
     },
     {
       "id": "emso",
@@ -1707,14 +1706,14 @@
       "type": "Sport & Mobility",
       "address": "Al Wuheida Street, Al Mamzar",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇦🇪",
       "contact": {
         "phone": "+971 4 2961122",
         "email": "info@emso.ae",
         "website": "https://www.emso.ae/"
       },
       "logoUrl": "https://www.google.com/s2/favicons?domain=emso.ae&sz=128",
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/ae.png"
     },
     {
       "id": "motorsport-uk",
@@ -1724,14 +1723,14 @@
       "type": "Sport",
       "address": "Motorsport UK House, Bicester Motion, Oxfordshire",
       "sourceUrl": "https://www.fia.com/members/country/GB",
-      "flag": "🇬🇧",
       "contact": {
         "phone": "+44 1753 765000",
         "email": "info@motorsportuk.org",
         "website": "https://motorsportuk.org/"
       },
       "logoUrl": "https://www.google.com/s2/favicons?domain=motorsportuk.org&sz=128",
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/gb.png"
     },
     {
       "id": "uzbekistan",
@@ -1741,14 +1740,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇺🇿",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/uz.png"
     },
     {
       "id": "venezuela",
@@ -1758,14 +1757,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇻🇪",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/ve.png"
     },
     {
       "id": "vietnam",
@@ -1775,14 +1774,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇻🇳",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/vn.png"
     },
     {
       "id": "yemen",
@@ -1792,14 +1791,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇾🇪",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/ye.png"
     },
     {
       "id": "zambia",
@@ -1809,14 +1808,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇿🇲",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/zm.png"
     },
     {
       "id": "zimbabwe",
@@ -1826,14 +1825,14 @@
       "type": "Sport",
       "address": "",
       "sourceUrl": "https://www.fia.com/members",
-      "flag": "🇿🇼",
       "contact": {
         "phone": null,
         "email": null,
         "website": null
       },
       "logoUrl": null,
-      "source": "FIA member directory"
+      "source": "FIA member directory",
+      "flagUrl": "https://flagcdn.com/w160/zw.png"
     }
   ]
 }
