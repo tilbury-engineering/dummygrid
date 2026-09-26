@@ -709,11 +709,13 @@ function HallOfFameProfile({name}){
  </section>
 }
 
+const HallOfFameFeatured=()=> <div className="hof-featured"><a className="hof-feature-card" href="#/hall-of-fame/driver/Martin%20Hines"><DriverPortrait name="Martin Hines"/><div className="hof-feature-copy"><div className="meta">HALL OF FAME · SUPERKART</div><h2>Martin Hines</h2><strong>MR KARTING</strong><p>Three-time World Champion, Zip Kart pioneer and one of the most influential figures in the development of modern karting.</p><span>View profile →</span></div></a><a className="hof-feature-card" href="#/hall-of-fame/driver/Art%20Ingels"><DriverPortrait name="Art Ingels"/><div className="hof-feature-copy"><div className="meta">FOUNDERS & PIONEERS</div><h2>Art Ingels</h2><strong>THE FOUNDING FATHER</strong><p>Widely recognised as the father of karting and builder of the first go-kart in 1956.</p><span>View profile →</span></div></a></div>;
 function HallOfFame(){
  const [series,setSeries]=useState("All");
  const filters=["All","Formula 1","IndyCar","Le Mans","Touring Cars","DTM","Formula E","WEC","Superkart"];
  const rows=[...hallOfFame,...additionalHall].filter((d,i,a)=>a.findIndex(x=>x.name===d.name)===i).filter(d=>series==="All"||d.path.includes(series));
  return <section><PageTitle kicker="Karting's pathway to the world stage" title="HALL OF FAME" text="A chronological record of drivers who came through karting and went on to win a World Championship or another internationally recognised championship."/>
+ <HallOfFameFeatured/>
  <div className="hof-intro"><div><b>FROM THE GRID TO THE WORLD</b><p>Karting has been the starting point for generations of elite drivers. KartGrid traces the drivers who converted that foundation into recognised championship success at international level.</p></div><div className="hof-stat"><strong>{[...hallOfFame,...additionalHall].filter((d,i,a)=>a.findIndex(x=>x.name===d.name)===i).length}</strong><span>featured drivers</span></div></div>
  <Filters>{filters.map(x=><button key={x} className={"filter-button "+(series===x?"active":"")} onClick={()=>setSeries(x)}>{x}</button>)}</Filters>
  <div className="hof-grid">{rows.sort((a,b)=>a.year-b.year||a.name.localeCompare(b.name)).map((d,i)=><a className="hof-card" key={d.name} href={"#/hall-of-fame/driver/"+encodeURIComponent(d.name)}><DriverPortrait name={d.name}/><div className="hof-year"><span>QUALIFIED</span><strong>{d.year}</strong></div><div className="hof-country">{d.country}</div><h3>{d.name}</h3><div className="hof-path">{d.path}</div><p>{d.note}</p><div className="hof-footer"><span>Karting → {d.path.split("→").slice(-1)[0].trim()}</span><b>View profile →</b></div></a>)}</div>
