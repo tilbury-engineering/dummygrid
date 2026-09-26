@@ -9,6 +9,31 @@ from bs4 import BeautifulSoup
 
 OUT = "public/news.json"
 UA = {"User-Agent":"Mozilla/5.0 (compatible; KARTGRID-NewsBot/1.0; +https://github.com/tilbury-engineering/dummygrid)"}
+# Search directly against specialist karting media and national karting organisations first.
+# These are deliberately explicit so general Google News coverage cannot crowd out the specialist publications.
+SPECIALIST_QUERIES = [
+  "site:vroomkart.com karting",
+  "site:ekartingnews.com karting",
+  "site:kartcom.com karting",
+  "site:kartmag.fr karting",
+  "site:tkart.it karting",
+  "site:kartsportnews.com karting",
+  "site:karting.net.au karting",
+  "site:motorsportuk.org karting",
+  "site:fiakarting.com karting",
+  "site:fia.com karting",
+  "site:superkartsusa.com karting",
+  "site:uspks.com karting",
+  "site:rokcupusa.com karting",
+  "site:kartchaser.com karting",
+  "site:karting.co.uk karting",
+  "site:total-karting.com karting",
+  "site:parolinracing.com karting",
+  "site:rotax-kart.com karting",
+  "site:iamekarting.com karting",
+  "site:otkkart.com karting"
+]
+
 QUERIES = [
   "karting",
   "SKUSA karting",
@@ -169,7 +194,7 @@ def fetch_google(q, hl="en-GB", gl="GB", ceid="GB:en"):
                 country,continent="United States","North America"
             elif au_hint:
                 country,continent="Australia","Oceania"
-        rows.append({"title":title,"summary":desc[:420],"url":raw,"source":clean(source),"published":iso,"country":country,"continent":continent,"image":image_from_entry(e),"sources":[]})
+        rows.append({"title":title,"summary":desc[:1200],"url":raw,"source":clean(source),"published":iso,"country":country,"continent":continent,"image":image_from_entry(e),"sources":[]})
     return rows
 
 def fetch_direct_rss(url, source_name, country, continent):
@@ -184,7 +209,7 @@ def fetch_direct_rss(url, source_name, country, continent):
             date=getattr(e,"published","")
             try: iso=datetime(*e.published_parsed[:6],tzinfo=timezone.utc).isoformat()
             except Exception: iso=date
-            rows.append({"title":title,"summary":summary[:420],"url":getattr(e,"link",""),"source":source_name,"published":iso,"country":country,"continent":continent,"image":image_from_entry(e),"sources":[]})
+            rows.append({"title":title,"summary":summary[:1200],"url":getattr(e,"link",""),"source":source_name,"published":iso,"country":country,"continent":continent,"image":image_from_entry(e),"sources":[]})
     except Exception as ex:
         print("direct rss failed",source_name,ex)
     return rows
@@ -197,7 +222,7 @@ def main():
         ("en-US","US","US:en"),
         ("en-AU","AU","AU:en"),
     ]
-    for q in QUERIES:
+    for q in SPECIALIST_QUERIES + QUERIES:
         for hl,gl,ceid in locales:
             try: candidates.extend(fetch_google(q,hl,gl,ceid))
             except Exception as ex: print("query failed",q,gl,ex)
@@ -242,7 +267,7 @@ def main():
         if len(selected)>=120: break
     selected.sort(key=lambda x:x.get("published",""),reverse=True)
 
-    # Prioritise US and manufacturer stories for publisher image enrichment, then newest stories.
+    # Enrich every selected story so article images are not limited to the first subset.
     enrich=[]
     enrich_seen=set()
     for group in (us,brand,selected):
@@ -250,8 +275,8 @@ def main():
             key=norm_title(x["title"])
             if key in enrich_seen: continue
             enrich_seen.add(key); enrich.append(x)
-            if len(enrich)>=60: break
-        if len(enrich)>=60: break
+            if len(enrich)>=120: break
+        if len(enrich)>=120: break
     enriched_keys=set()
     for x in enrich:
         original,img=resolve_and_image(x["url"])
