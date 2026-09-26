@@ -632,7 +632,7 @@ const additionalHall=[
 {name:"Dario Franchitti",country:"United Kingdom",year:1984,path:"Karting → IndyCar → Le Mans",note:"Won Scottish karting championships before becoming a four-time IndyCar champion and Indianapolis 500 winner."},
 {name:"Scott Dixon",country:"New Zealand",year:1994,path:"Karting → IndyCar → Le Mans",note:"Won New Zealand karting championships before moving to North America and becoming a multiple IndyCar champion."},
 {name:"Will Power",country:"Australia",year:1997,path:"Karting → IndyCar",note:"Won Australian karting championships before moving to Europe and North America and becoming an IndyCar champion."},
-{name:"Gary Paffett",country:"United Kingdom",year:1995,path:"Karting → Formula 3 → Touring Cars → Formula 1 testing → Formula E",note:"Won the British Junior TKM Championship in 1995 and finished runner-up in the Junior ICA European Championship before progressing through single-seaters to a two-time DTM championship career."},
+{name:"Gary Paffett",country:"United Kingdom",year:1995,path:"Karting → Formula 3 → DTM → Formula 1 testing → Formula E",note:"Won the British Junior TKM Championship in 1995, repeated the title in 1996, then progressed through single-seaters to become a two-time DTM champion and later a Formula E driver."},
 {name:"Roberto Ravaglia",country:"Italy",year:1979,path:"Karting → Touring Cars → Le Mans",note:"Won Italian karting championships before becoming a three-time Le Mans winner and DTM champion."},
 {name:"Klaus Ludwig",country:"Germany",year:1970,path:"Karting → Touring Cars → Le Mans",note:"Won German karting championships before becoming a three-time Le Mans winner and three-time DTM champion."},
 {name:"Bernd Schneider",country:"Germany",year:1980,path:"Karting → Formula 1 → Touring Cars → Le Mans",note:"Won German karting titles before progressing to Formula 1 and becoming a five-time DTM champion."},
@@ -662,7 +662,7 @@ function DriverPortrait({name}){
 }
 function HallOfFame(){
  const [series,setSeries]=useState("All");
- const filters=["All","Formula 1","IndyCar","Le Mans","Touring Cars"];
+ const filters=["All","Formula 1","IndyCar","Le Mans","Touring Cars","DTM","Formula E","WEC"];
  const rows=[...hallOfFame,...additionalHall].filter((d,i,a)=>a.findIndex(x=>x.name===d.name)===i).filter(d=>series==="All"||d.path.includes(series));
  return <section><PageTitle kicker="Karting's pathway to the world stage" title="HALL OF FAME" text="A chronological record of drivers who came through karting and reached Formula 1, IndyCar, Le Mans or international Touring Cars."/>
  <div className="hof-intro"><div><b>FROM THE GRID TO THE WORLD</b><p>Karting has been the starting point for generations of elite drivers. KartGrid traces that journey and records the major disciplines reached after karting.</p></div><div className="hof-stat"><strong>{[...hallOfFame,...additionalHall].filter((d,i,a)=>a.findIndex(x=>x.name===d.name)===i).length}</strong><span>featured drivers</span></div></div>
