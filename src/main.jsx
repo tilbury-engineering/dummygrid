@@ -134,6 +134,7 @@ function Ad({format="Leaderboard",text="Your brand in the paddock"}) {
 function Pill({children,tone=""}){return <span className={"pill "+tone}>{children}</span>}
 function Top({region,setRegion}){
  const [menuOpen,setMenuOpen]=useState(false);
+ const [legacyOpen,setLegacyOpen]=useState(false);
  return <><header className="site-header">
    <div className="masthead">
      <nav className={"main-nav "+(menuOpen?"open":"")}>
@@ -144,6 +145,16 @@ function Top({region,setRegion}){
        <a href="#/classes" onClick={()=>setMenuOpen(false)}>Classes</a>
        <a href="#/manufacturers" onClick={()=>setMenuOpen(false)}>Manufacturers</a><a href="#/asns" onClick={()=>setMenuOpen(false)}>ASNs</a><a href="#/results" onClick={()=>setMenuOpen(false)}>Results</a><a href="#/tracks" onClick={()=>setMenuOpen(false)}>Tracks</a>
        <a href="#/community" onClick={()=>setMenuOpen(false)}>Community</a><a href="#/knowledge-base" onClick={()=>setMenuOpen(false)}>Knowledge Base</a>
+       <div className="nav-dropdown">
+        <button className="nav-dropdown-toggle" type="button" aria-haspopup="true" aria-expanded={legacyOpen} onClick={()=>setLegacyOpen(v=>!v)}>Legacy <span>⌄</span></button>
+        {legacyOpen&&<div className="nav-dropdown-menu" role="menu">
+         <a href="#/history-of-karting" onClick={()=>{setMenuOpen(false);setLegacyOpen(false)}}>History of Karting</a>
+         <a href="#/hall-of-fame/driver/Art%20Ingels" onClick={()=>{setMenuOpen(false);setLegacyOpen(false)}}>Art Ingels</a>
+         <a href="#/hall-of-fame/driver/Martin%20Hines" onClick={()=>{setMenuOpen(false);setLegacyOpen(false)}}>Martin Hines</a>
+         <a href="#/hall-of-fame/pioneer/Angelo%20Parrilla" onClick={()=>{setMenuOpen(false);setLegacyOpen(false)}}>Angelo Parrilla</a>
+         <a href="#/hall-of-fame" onClick={()=>{setMenuOpen(false);setLegacyOpen(false)}}>Hall of Fame</a>
+        </div>}
+       </div>
      </nav>
      <div className="header-actions">
        <select aria-label="Choose region" value={region} onChange={e=>setRegion(e.target.value)}>{regions.map(r=><option key={r}>{r}</option>)}</select>
