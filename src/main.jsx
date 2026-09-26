@@ -651,9 +651,10 @@ const additionalHall=[{name:"Martin Hines",country:"United Kingdom",year:1983,pa
 {name:"Jorrit Pex",country:"Netherlands",year:2015,path:"Karting → Touring Cars",note:"Won the CIK-FIA KZ World Championship in 2015 after a highly successful international karting career."},
 {name:"Marco Ardigò",country:"Italy",year:2007,path:"Karting → Touring Cars",note:"Won the CIK-FIA KF1 World Championship in 2007 and became one of the most successful senior karting drivers of the modern era."}
 ];
+const portraitOverrides={"Art Ingels":"https://sfcriga.com/images/others/sfcriga_art-ingels-the-inventor-of-the-go-kart_photo07.jpg","Martin Hines":"https://tkart.it/uploads/2025/04/martin-hines-c-tavola-disegno-1-3.jpg"};
 function useDriverPortrait(name){
- const [portrait,setPortrait]=useState("");
- useEffect(()=>{let cancelled=false; const slug=name.trim().replace(/ /g,"_"); fetch("https://en.wikipedia.org/api/rest_v1/page/summary/"+encodeURIComponent(slug)).then(r=>r.ok?r.json():null).then(d=>{if(!cancelled)portraitSetter(d)}).catch(()=>{}); function portraitSetter(d){const src=d?.originalimage?.source||d?.thumbnail?.source;if(src)setPortrait(src)} return()=>{cancelled=true}},[name]);
+ const [portrait,setPortrait]=useState(portraitOverrides[name]||"");
+ useEffect(()=>{if(portraitOverrides[name])return; let cancelled=false; const slug=name.trim().replace(/ /g,"_"); fetch("https://en.wikipedia.org/api/rest_v1/page/summary/"+encodeURIComponent(slug)).then(r=>r.ok?r.json():null).then(d=>{if(!cancelled)portraitSetter(d)}).catch(()=>{}); function portraitSetter(d){const src=d?.originalimage?.source||d?.thumbnail?.source;if(src)setPortrait(src)} return()=>{cancelled=true}},[name]);
  return portrait;
 }
 function DriverPortrait({name}){
