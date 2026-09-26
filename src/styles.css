@@ -400,10 +400,18 @@ footer{
 .timing-summary>b{background:#fff;border:1px solid #dfe5e9;border-radius:14px;padding:12px 16px;font-size:20px}
 .timing-summary small{display:block;font-size:10px;color:#78858d;margin-top:3px}
 .classification-wrap{overflow:auto;background:#fff;border:1px solid #dfe5e9;border-radius:16px;margin-bottom:14px}
-.classification-wrap table{width:100%;border-collapse:collapse;min-width:900px}
-.classification-wrap th{position:sticky;top:0;background:#f3f6f8;text-align:left;padding:10px;font-size:11px;color:#596771;white-space:nowrap}
-.classification-wrap td{padding:10px;border-top:1px solid #edf1f3;white-space:nowrap;font-size:13px}
-.classification-wrap tbody tr:nth-child(1){font-weight:900;background:#f2fbf8}
+.classification-wrap table{width:100%;border-collapse:separate;border-spacing:0;min-width:760px;table-layout:auto}
+.classification-wrap th{position:sticky;top:0;z-index:2;background:#f3f6f8;text-align:left;padding:11px 12px;font-size:11px;color:#596771;font-weight:900;white-space:nowrap;border-bottom:2px solid #d7dfe3}
+.classification-wrap td{padding:10px 12px;border-top:1px solid #edf1f3;white-space:nowrap;font-size:13px;line-height:1.25;vertical-align:middle}
+.classification-wrap th:first-child,.classification-wrap td:first-child{text-align:center;width:56px;min-width:56px;font-weight:900}
+.classification-wrap th:nth-child(2),.classification-wrap td:nth-child(2){text-align:center}
+.classification-wrap tbody tr:nth-child(even){background:#fafcfd}
+.classification-wrap tbody tr:hover{background:#f1f8f6}
+.classification-wrap tbody tr:first-child{font-weight:900;background:#f2fbf8}
+.classification-wrap tbody tr:first-child td{border-top-color:#d8eee8}
+.classification-wrap td:not(:first-child){border-left:1px solid #f0f3f5}
+.classification-wrap th:not(:first-child){border-left:1px solid #e2e8eb}
+@media(max-width:680px){.classification-wrap{border-radius:12px}.classification-wrap table{min-width:680px}.classification-wrap th,.classification-wrap td{padding:9px 10px;font-size:12px}}
 @media(max-width:900px){.results-series-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:680px){.results-series-grid{grid-template-columns:1fr}.timing-event{align-items:flex-start;flex-direction:column}.session-row{grid-template-columns:44px 1fr}.session-row>b{grid-column:1/-1}.session-no{width:40px;height:40px}}
 
