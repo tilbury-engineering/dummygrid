@@ -756,16 +756,6 @@ function qualificationLabel(driver){
  if(note.includes("24 hours of le mans winner")) return "24 Hours of Le Mans Winner";
  return "International Championship Winner";
 }
-function qualificationLabel(driver){
- if(qualificationLabels[driver.name]) return qualificationLabels[driver.name];
- const note=(driver.note||"").toLowerCase();
- if(note.includes("formula 1 world champion")) return "Formula 1 World Champion";
- if(note.includes("world endurance champion")) return "WEC World Champion";
- if(note.includes("world touring car champion")) return "FIA World Touring Car Champion";
- if(note.includes("world champion")) return "World Champion";
- if(note.includes("champion")) return "International Champion";
- return "International Championship";
-}
 const HallOfFameFeatured=()=> <div className="hof-featured"><a className="hof-feature-card" href="#/hall-of-fame/driver/Art%20Ingels"><div className="pioneer-banner">PIONEER</div><DriverPortrait name="Art Ingels"/><div className="hof-feature-copy"><div className="meta">FOUNDERS & PIONEERS</div><h2>Art Ingels</h2><strong>THE FOUNDING FATHER</strong><p>Widely recognised as the father of karting and builder of the first go-kart in 1956.</p><span>View profile →</span></div></a><a className="hof-feature-card" href="#/hall-of-fame/driver/Martin%20Hines"><div className="pioneer-banner">PIONEER</div><DriverPortrait name="Martin Hines"/><div className="hof-feature-copy"><div className="meta">HALL OF FAME · SUPERKART</div><h2>Martin Hines</h2><strong>MR KARTING</strong><p>Three-time World Champion, Zip Kart pioneer and one of the most influential figures in the development of modern karting.</p><span>View profile →</span></div></a></div>;
 function HallOfFame(){
  const [series,setSeries]=useState("All");
