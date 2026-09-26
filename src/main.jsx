@@ -660,6 +660,13 @@ function DriverPortrait({name}){
  const src=useDriverPortrait(name);
  return src?<img className="hof-driver-photo" src={src} alt={name} loading="lazy"/>:<div className="hof-driver-photo hof-driver-placeholder" aria-label={name+" photograph unavailable"}><span>{name.split(" ").map(x=>x[0]).join("").slice(0,2)}</span></div>;
 }
+function KartingWorldChampions(){
+ return <section>
+  <PageTitle kicker="Hall of Fame archive" title="KARTING WORLD CHAMPIONS" text="A dedicated historical record of FIA and CIK-FIA World Champions and internationally recognised karting championship winners across the evolution of karting classes." action={<a className="button" href="#/hall-of-fame">Hall of Fame</a>}/>
+  <div className="hof-intro"><div><b>THE WORLD CHAMPIONS ARCHIVE</b><p>Browse championship winners by class and year, from the earliest 100cc World Championship era through Formula K, Formula A, Formula Super A, KF, OK, KZ, junior and other recognised international championships.</p></div></div>
+  <WorldChampions/>
+ </section>
+}
 function HallOfFame(){
  const [series,setSeries]=useState("All");
  const filters=["All","Formula 1","IndyCar","Le Mans","Touring Cars","DTM","Formula E","WEC"];
@@ -668,8 +675,7 @@ function HallOfFame(){
  <div className="hof-intro"><div><b>FROM THE GRID TO THE WORLD</b><p>Karting has been the starting point for generations of elite drivers. KartGrid traces the drivers who converted that foundation into recognised championship success at international level.</p></div><div className="hof-stat"><strong>{[...hallOfFame,...additionalHall].filter((d,i,a)=>a.findIndex(x=>x.name===d.name)===i).length}</strong><span>featured drivers</span></div></div>
  <Filters>{filters.map(x=><button key={x} className={"filter-button "+(series===x?"active":"")} onClick={()=>setSeries(x)}>{x}</button>)}</Filters>
  <div className="hof-grid">{rows.sort((a,b)=>a.year-b.year||a.name.localeCompare(b.name)).map((d,i)=><article className="hof-card" key={d.name}><DriverPortrait name={d.name}/><div className="hof-year">{d.year}</div><div className="hof-country">{d.country}</div><h3>{d.name}</h3><div className="hof-path">{d.path}</div><p>{d.note}</p><div className="hof-footer"><span>Karting → {d.path.split("→").slice(-1)[0].trim()}</span><b>Hall of Fame</b></div></article>)}</div>
- <SectionHead eyebrow="Karting World Champions" title="World Champions" copy="A dedicated record of FIA / CIK-FIA karting world champions across the principal world championship categories."/>
- <WorldChampions/>
+
  </section>
 }
 
@@ -817,6 +823,7 @@ function App(){
  let page;
  const parts=route.split("/").filter(Boolean);
  if(route==="/") page=<Home {...{region,listings,drivers,posts,saved,toggleSave}}/>;
+ else if(parts[0]==="hall-of-fame"&&parts[1]==="karting-world-champions") page=<KartingWorldChampions/>;
  else if(parts[0]==="hall-of-fame") page=<HallOfFame/>;
  else if(parts[0]==="fia"&&parts[1]==="cik") page=<CIKProfile/>;
  else if(parts[0]==="fia") page=<FIAProfile/>;
@@ -850,6 +857,6 @@ function App(){
  else if(parts[0]==="about") page=<About/>;
  else if(parts[0]==="profile") page=<DriverAccount region={region}/>;
  else page=<NotFound/>;
- return <><Top region={region} setRegion={setRegion}/><main>{page}</main><footer className="site-footer"><div className="footer-grid"><div className="footer-column"><h3>KartGrid</h3><a href="#/">Home</a><a href="#/about">About Us</a></div><div className="footer-column"><h3>Main Menu</h3><a href="#/">Home</a><a href="#/news">News</a><a href="#/marketplace">Marketplace</a><a href="#/drivers">Drivers</a><a href="#/classes">Classes</a><a href="#/manufacturers">Manufacturers</a><a href="#/asns">ASNs</a><a href="#/results">Results</a><a href="#/hall-of-fame">Hall of Fame</a><a href="#/tracks">Tracks</a><a href="#/community">Community</a><a href="#/knowledge-base">Knowledge Base</a></div><div className="footer-column"><h3>Knowledge Base</h3><a href="#/knowledge-base">Karting Knowledge Base</a><a href="#/classes">Karting Classes</a><a href="#/tracks">Track Directory</a><a href="#/asns">National Authorities</a><a href="#/results">Results Archive</a><a href="#/hall-of-fame">Hall of Fame</a></div><div className="footer-column"><h3>Connect with us</h3><a href="#/community">Community</a><a href="#/profile">Driver Hub</a><a href="#/advertise">Advertise</a><a href="#/about">About KartGrid</a></div></div><div className="footer-bottom"><p>The world of karting, local to you.</p></div></footer></>
+ return <><Top region={region} setRegion={setRegion}/><main>{page}</main><footer className="site-footer"><div className="footer-grid"><div className="footer-column"><h3>KartGrid</h3><a href="#/">Home</a><a href="#/about">About Us</a></div><div className="footer-column"><h3>Main Menu</h3><a href="#/">Home</a><a href="#/news">News</a><a href="#/marketplace">Marketplace</a><a href="#/drivers">Drivers</a><a href="#/classes">Classes</a><a href="#/manufacturers">Manufacturers</a><a href="#/asns">ASNs</a><a href="#/results">Results</a><a href="#/hall-of-fame">Hall of Fame</a><a href="#/hall-of-fame/karting-world-champions">Karting World Champions</a><a href="#/tracks">Tracks</a><a href="#/community">Community</a><a href="#/knowledge-base">Knowledge Base</a></div><div className="footer-column"><h3>Knowledge Base</h3><a href="#/knowledge-base">Karting Knowledge Base</a><a href="#/classes">Karting Classes</a><a href="#/tracks">Track Directory</a><a href="#/asns">National Authorities</a><a href="#/results">Results Archive</a><a href="#/hall-of-fame">Hall of Fame</a></div><div className="footer-column"><h3>Connect with us</h3><a href="#/community">Community</a><a href="#/profile">Driver Hub</a><a href="#/advertise">Advertise</a><a href="#/about">About KartGrid</a></div></div><div className="footer-bottom"><p>The world of karting, local to you.</p></div></footer></>
 }
 createRoot(document.getElementById("root")).render(<App/>);
