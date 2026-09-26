@@ -6,6 +6,16 @@ import tracksSeed from "./data/tracks-seed.json";
 const KARTGRID_API = "https://dummygrid-api.onrender.com";
 
 const regions = ["UK","Europe","USA","Australia","Global"];
+const shopProducts = [
+ {id:"kg-tee",name:"KartGrid Gridline Tee",category:"T-Shirts",price:24.95,tag:"CORE",desc:"Heavyweight paddock T-shirt with clean KartGrid front and back graphics.",sizes:["S","M","L","XL","XXL"]},
+ {id:"kg-hoodie",name:"KartGrid Paddock Hoodie",category:"Hoodies",price:54.95,tag:"FEATURED",desc:"Premium everyday hoodie designed for cold mornings at the circuit.",sizes:["S","M","L","XL","XXL"]},
+ {id:"kg-cap",name:"KartGrid Race Cap",category:"Headwear",price:22.95,tag:"NEW",desc:"Structured KartGrid cap with adjustable rear closure.",sizes:["One size"]},
+ {id:"kg-beanie",name:"KartGrid Pitlane Beanie",category:"Headwear",price:19.95,tag:"PADDOCK",desc:"Warm ribbed beanie for winter testing and race weekends.",sizes:["One size"]},
+ {id:"kg-jacket",name:"KartGrid Team Jacket",category:"Outerwear",price:79.95,tag:"TEAM",desc:"Lightweight team-style jacket for travel, paddock and trackside use.",sizes:["S","M","L","XL","XXL"]},
+ {id:"kg-bottle",name:"KartGrid Track Bottle",category:"Accessories",price:18.95,tag:"ESSENTIAL",desc:"Reusable paddock bottle with minimal KartGrid branding.",sizes:["750 ml"]},
+ {id:"kg-mug",name:"KartGrid Garage Mug",category:"Accessories",price:14.95,tag:"GARAGE",desc:"KartGrid mug for the workshop, office or race transporter.",sizes:["One size"]},
+ {id:"kg-stickers",name:"KartGrid Sticker Pack",category:"Accessories",price:8.95,tag:"PACK",desc:"A mixed pack of KartGrid marks for toolboxes, laptops and kart cases.",sizes:["Pack of 6"]}
+];
 const demoNews = [
  {id:1,region:"UK",tag:"National",title:"British karting weekend hub",dek:"Results, paddock notes and championship updates from across the UK.",source:"KARTGRID Newsroom",time:"Today"},
  {id:2,region:"Global",tag:"FIA",title:"International gearbox karting focus",dek:"The latest stories from KZ and KZ2 competition around the world.",source:"KARTGRID Newsroom",time:"Today"},
@@ -141,7 +151,7 @@ function Top({region,setRegion}){
      <nav className={"main-nav "+(menuOpen?"open":"")}>
        <a href="#/" onClick={()=>setMenuOpen(false)}>Home</a>
        <a href="#/news" onClick={()=>setMenuOpen(false)}>News</a>
-       <a href="#/marketplace" onClick={()=>setMenuOpen(false)}>Marketplace</a>
+       <a href="#/marketplace" onClick={()=>setMenuOpen(false)}>Marketplace</a>\n       <a href="#/shop" onClick={()=>setMenuOpen(false)}>Shop</a>
        <a href="#/drivers" onClick={()=>setMenuOpen(false)}>Drivers</a>
        <a href="#/classes" onClick={()=>setMenuOpen(false)}>Classes</a>
        <div className="nav-dropdown">
@@ -328,6 +338,21 @@ function NewsDetail({id}){
   <div className="panel article-summary"><div className="article-source-label">{n.userSubmitted?"COMMUNITY SUBMISSION":"SOURCE & ATTRIBUTION"}</div><h3>{n.source||"Original publisher"}</h3>{n.url&&<a className="button primary" href={n.url} target="_blank" rel="noopener noreferrer">View original source ↗</a>}</div>
   {n.sources?.length>0&&<div className="panel"><h3>Additional coverage</h3>{n.sources.map((x,i)=><p key={i}><a className="link" href={x.url} target="_blank" rel="noopener noreferrer">{x.source} ↗</a></p>)}</div>}
   <Ad format="In-article MPU"/>
+ </section>
+}
+function Shop(){
+ const [cat,setCat]=useState("All"); const [basket,setBasket]=useState([]); const [open,setOpen]=useState(false);
+ const cats=["All",...new Set(shopProducts.map(p=>p.category))];
+ const rows=shopProducts.filter(p=>cat==="All"||p.category===cat);
+ const add=p=>{setBasket(x=>[...x,p]);setOpen(true)};
+ const total=basket.reduce((n,p)=>n+p.price,0);
+ return <section className="shop-page">
+  <div className="shop-hero"><div><span>KARTGRID MERCHANDISE</span><h1>WEAR THE<br/><em>GRID.</em></h1><p>Official-looking KartGrid paddock merchandise concept. Products, stock and checkout shown here are for demonstration only.</p><a className="button primary" href="#shop-products">Shop the collection</a></div><div className="shop-hero-mark"><b>KG</b><small>PADDOCK<br/>SUPPLY</small></div></div>
+  <div className="shop-toolbar" id="shop-products"><div><span>THE COLLECTION</span><h2>KartGrid Shop</h2></div><button className="shop-basket-button" onClick={()=>setOpen(true)}>Bag <b>{basket.length}</b></button></div>
+  <div className="shop-categories">{cats.map(x=><button key={x} className={cat===x?"active":""} onClick={()=>setCat(x)}>{x}</button>)}</div>
+  <div className="shop-grid">{rows.map((p,i)=><article className="shop-card" key={p.id}><div className={"shop-product-art art-"+(i%4)}><span>{p.tag}</span><div className="merch-shape"><b>KART<span>GRID</span></b><small>{p.category}</small></div></div><div className="shop-card-copy"><div><small>{p.category}</small><h3>{p.name}</h3></div><strong>£{p.price.toFixed(2)}</strong><p>{p.desc}</p><div className="shop-sizes">{p.sizes.map(x=><span key={x}>{x}</span>)}</div><button className="button primary" onClick={()=>add(p)}>Add to bag</button></div></article>)}</div>
+  <div className="shop-note"><b>Store preview</b><p>This is the KartGrid shop concept. Inventory, product photography, fulfilment and payment processing will be connected later.</p></div>
+  {open&&<div className="basket-backdrop" onClick={()=>setOpen(false)}><aside className="basket-drawer" onClick={e=>e.stopPropagation()}><div className="basket-head"><div><span>KARTGRID SHOP</span><h2>Your bag</h2></div><button onClick={()=>setOpen(false)}>×</button></div>{basket.length?<><div className="basket-items">{basket.map((p,i)=><div key={p.id+"-"+i}><div><b>{p.name}</b><small>{p.category}</small></div><span>£{p.price.toFixed(2)}</span></div>)}</div><div className="basket-total"><span>Subtotal</span><b>£{total.toFixed(2)}</b></div><button className="button primary basket-checkout" onClick={()=>alert("Checkout is not connected yet — this is the KartGrid shop demo.")}>Checkout preview</button><small className="basket-demo">Demo only · no payment will be taken</small></>:<div className="empty compact"><h3>Your bag is empty.</h3><p>Add something from the collection to preview the shop flow.</p></div>}</aside></div>}
  </section>
 }
 function Marketplace({region,listings,setListings,saved,toggleSave}){
@@ -977,7 +1002,7 @@ function App(){
  else if(parts[0]==="news"&&parts[1]==="new") page=<NewNews/>;
  else if(parts[0]==="news"&&parts[1]) page=<NewsDetail id={parts[1]}/>;
  else if(parts[0]==="news") page=<News/>;
- else if(parts[0]==="marketplace"&&parts[1]==="new") page=<NewListing {...{region,listings,setListings}}/>;
+ else if(parts[0]==="shop") page=<Shop/>;\n else if(parts[0]==="marketplace"&&parts[1]==="new") page=<NewListing {...{region,listings,setListings}}/>;
  else if(parts[0]==="marketplace"&&parts[1]) page=<ListingDetail id={parts[1]} {...{listings,saved,toggleSave}}/>;
  else if(parts[0]==="marketplace") page=<Marketplace {...{region,listings,setListings,saved,toggleSave}}/>;
  else if(parts[0]==="drivers"&&parts[1]) page=<DriverDetail id={parts[1]} drivers={drivers}/>;
@@ -1005,6 +1030,6 @@ function App(){
  else if(parts[0]==="about") page=<About/>;
  else if(parts[0]==="profile") page=<DriverAccount region={region}/>;
  else page=<NotFound/>;
- return <><Top region={region} setRegion={setRegion}/><main>{page}</main><footer className="site-footer"><div className="footer-grid"><div className="footer-column"><h3>KartGrid</h3><a href="#/">Home</a><a href="#/about">About Us</a></div><div className="footer-column"><h3>Main Menu</h3><a href="#/">Home</a><a href="#/news">News</a><a href="#/marketplace">Marketplace</a><a href="#/drivers">Drivers</a><a href="#/classes">Classes</a><a href="#/manufacturers">Manufacturers</a><a href="#/asns">ASNs</a><a href="#/results">Results</a><a href="#/hall-of-fame">Hall of Fame</a><a href="#/hall-of-fame/karting-world-champions">Karting World Champions</a><a href="#/tracks">Tracks</a><a href="#/community">Community</a><a href="#/knowledge-base">Knowledge Base</a></div><div className="footer-column"><h3>Knowledge Base</h3><a href="#/knowledge-base">Karting Knowledge Base</a><a href="#/classes">Karting Classes</a><a href="#/tracks">Track Directory</a><a href="#/asns">National Authorities</a><a href="#/results">Results Archive</a><a href="#/hall-of-fame">Hall of Fame</a></div><div className="footer-column"><h3>Connect with us</h3><a href="#/community">Community</a><a href="#/profile">Driver Hub</a><a href="#/advertise">Advertise</a><a href="#/about">About KartGrid</a></div></div><div className="footer-bottom"><p>The world of karting, local to you.</p></div></footer></>
+ return <><Top region={region} setRegion={setRegion}/><main>{page}</main><footer className="site-footer"><div className="footer-grid"><div className="footer-column"><h3>KartGrid</h3><a href="#/">Home</a><a href="#/about">About Us</a></div><div className="footer-column"><h3>Main Menu</h3><a href="#/">Home</a><a href="#/news">News</a><a href="#/marketplace">Marketplace</a><a href="#/shop">Shop</a><a href="#/drivers">Drivers</a><a href="#/classes">Classes</a><a href="#/manufacturers">Manufacturers</a><a href="#/asns">ASNs</a><a href="#/results">Results</a><a href="#/hall-of-fame">Hall of Fame</a><a href="#/hall-of-fame/karting-world-champions">Karting World Champions</a><a href="#/tracks">Tracks</a><a href="#/community">Community</a><a href="#/knowledge-base">Knowledge Base</a></div><div className="footer-column"><h3>Knowledge Base</h3><a href="#/knowledge-base">Karting Knowledge Base</a><a href="#/classes">Karting Classes</a><a href="#/tracks">Track Directory</a><a href="#/asns">National Authorities</a><a href="#/results">Results Archive</a><a href="#/hall-of-fame">Hall of Fame</a></div><div className="footer-column"><h3>Connect with us</h3><a href="#/community">Community</a><a href="#/profile">Driver Hub</a><a href="#/advertise">Advertise</a><a href="#/about">About KartGrid</a></div></div><div className="footer-bottom"><p>The world of karting, local to you.</p></div></footer></>
 }
 createRoot(document.getElementById("root")).render(<App/>);
