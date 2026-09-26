@@ -718,12 +718,22 @@ function HallOfFameProfile({name}){
 }
 
 const qualificationLabels={
-"Alain Prost":"F1 World Champion","Ayrton Senna":"F1 World Champion","Michael Schumacher":"F1 World Champion","Nelson Piquet":"F1 World Champion","Mika Häkkinen":"F1 World Champion","Fernando Alonso":"F1 World Champion","Lewis Hamilton":"F1 World Champion","Sebastian Vettel":"F1 World Champion","Max Verstappen":"F1 World Champion","Nico Rosberg":"F1 World Champion",
-"Gary Paffett":"DTM Champion","Bernd Schneider":"DTM Champion","Roberto Ravaglia":"DTM Champion","Mattias Ekström":"DTM Champion","René Rast":"DTM Champion","Paul di Resta":"DTM Champion","Andy Priaulx":"World Touring Car Champion","Yvan Muller":"World Touring Car Champion",
-"Dario Franchitti":"IndyCar Champion","Scott Dixon":"IndyCar Champion","Will Power":"IndyCar Champion","Juan Pablo Montoya":"IndyCar Champion",
-"Nico Hülkenberg":"Le Mans Winner","Mark Webber":"WEC World Champion","Gabriele Tarquini":"World Touring Car Champion","Fabrizio Giovanardi":"European Touring Car Champion",
-"Marco Ardigò":"Karting World Champion","Davide Forè":"Karting World Champion","Danilo Rossi":"Karting World Champion","Jonathan Thonon":"Karting World Champion","Paolo De Conto":"Karting World Champion","Jorrit Pex":"Karting World Champion","Lando Norris":"Karting World Champion","Charles Leclerc":"Karting Champion"
+"Alain Prost":"Formula 1 World Champion","Ayrton Senna":"Formula 1 World Champion","Michael Schumacher":"Formula 1 World Champion","Nelson Piquet":"Formula 1 World Champion","Mika Häkkinen":"Formula 1 World Champion","Fernando Alonso":"Formula 1 World Champion","Lewis Hamilton":"Formula 1 World Champion","Sebastian Vettel":"Formula 1 World Champion","Max Verstappen":"Formula 1 World Champion","Nico Rosberg":"Formula 1 World Champion",
+"Gary Paffett":"DTM Champion · 2×","Bernd Schneider":"DTM Champion","Roberto Ravaglia":"DTM Champion","Mattias Ekström":"DTM Champion","René Rast":"DTM Champion","Paul di Resta":"DTM Champion","Andy Priaulx":"FIA World Touring Car Champion","Yvan Muller":"FIA World Touring Car Champion",
+"Dario Franchitti":"IndyCar Series Champion","Scott Dixon":"IndyCar Series Champion","Will Power":"IndyCar Series Champion","Juan Pablo Montoya":"IndyCar Series Champion",
+"Mark Webber":"WEC World Champion","Nico Hülkenberg":"24 Hours of Le Mans Winner","Gabriele Tarquini":"FIA World Touring Car Champion","Fabrizio Giovanardi":"European Touring Car Champion",
+"Marco Ardigò":"CIK-FIA KF1 World Champion","Davide Forè":"Karting World Champion","Danilo Rossi":"Karting World Champion","Jonathan Thonon":"Karting World Champion","Paolo De Conto":"Karting World Champion","Jorrit Pex":"Karting World Champion","Lando Norris":"Karting World Champion","Charles Leclerc":"Karting Champion"
 };
+function qualificationLabel(driver){
+ if(qualificationLabels[driver.name]) return qualificationLabels[driver.name];
+ const note=(driver.note||"").toLowerCase();
+ if(note.includes("formula 1 world champion")) return "Formula 1 World Champion";
+ if(note.includes("world endurance champion")) return "WEC World Champion";
+ if(note.includes("world touring car champion")) return "FIA World Touring Car Champion";
+ if(note.includes("world champion")) return "World Champion";
+ if(note.includes("champion")) return "International Champion";
+ return "International Championship";
+}
 function qualificationLabel(driver){return qualificationLabels[driver.name]||((driver.note||"").toLowerCase().includes("world champion")?"World Champion":"International Champion")}
 const HallOfFameFeatured=()=> <div className="hof-featured"><a className="hof-feature-card" href="#/hall-of-fame/driver/Art%20Ingels"><div className="pioneer-banner">PIONEER</div><DriverPortrait name="Art Ingels"/><div className="hof-feature-copy"><div className="meta">FOUNDERS & PIONEERS</div><h2>Art Ingels</h2><strong>THE FOUNDING FATHER</strong><p>Widely recognised as the father of karting and builder of the first go-kart in 1956.</p><span>View profile →</span></div></a><a className="hof-feature-card" href="#/hall-of-fame/driver/Martin%20Hines"><div className="pioneer-banner">PIONEER</div><DriverPortrait name="Martin Hines"/><div className="hof-feature-copy"><div className="meta">HALL OF FAME · SUPERKART</div><h2>Martin Hines</h2><strong>MR KARTING</strong><p>Three-time World Champion, Zip Kart pioneer and one of the most influential figures in the development of modern karting.</p><span>View profile →</span></div></a></div>;
 function HallOfFame(){
