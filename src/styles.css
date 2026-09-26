@@ -443,3 +443,6 @@ footer{
  .nav-dropdown-menu{position:static;transform:none;box-shadow:none;border:0;border-radius:0;padding:0 0 8px 14px;min-width:0;background:transparent}
  .nav-dropdown-menu a{white-space:normal}
 }
+.product-image{width:138px;height:110px;border-radius:14px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.product-image>img{width:100%;height:100%;object-fit:contain}
+.product-logo-fallback{width:100%;height:100%;border:0;border-radius:0}
