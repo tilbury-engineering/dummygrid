@@ -605,7 +605,7 @@ const hallOfFame=[
  {year:2024,name:"Kyle Larson",country:"USA",path:"Karting → NASCAR → IndyCar → Le Mans",note:"A cross-discipline champion who has competed at the Indianapolis 500 and in endurance racing."}
 ];
 
-const additionalHall=[
+const additionalHall=[{name:"Martin Hines",country:"United Kingdom",year:1983,path:"Karting → Superkart / Formula E",note:"Three-time Karting World Champion in the Superkart / Formula E era, with further European and British titles."},
 {name:"Alain Prost",country:"France",year:1973,path:"Karting → Formula 1",note:"Won the French Junior Karting Championship before progressing into single-seaters and becoming a four-time Formula 1 World Champion."},
 {name:"Ayrton Senna",country:"Brazil",year:1978,path:"Karting → Formula 1",note:"Won Brazilian and South American karting championships before progressing to Formula Ford and Formula 1."},
 {name:"Michael Schumacher",country:"Germany",year:1980,path:"Karting → Formula 1 → Le Mans",note:"Won the German Junior Karting Championship in 1980 and later became a seven-time Formula 1 World Champion."},
@@ -700,7 +700,7 @@ function HallOfFameProfile({name}){
 
 function HallOfFame(){
  const [series,setSeries]=useState("All");
- const filters=["All","Formula 1","IndyCar","Le Mans","Touring Cars","DTM","Formula E","WEC"];
+ const filters=["All","Formula 1","IndyCar","Le Mans","Touring Cars","DTM","Formula E","WEC","Superkart"];
  const rows=[...hallOfFame,...additionalHall].filter((d,i,a)=>a.findIndex(x=>x.name===d.name)===i).filter(d=>series==="All"||d.path.includes(series));
  return <section><PageTitle kicker="Karting's pathway to the world stage" title="HALL OF FAME" text="A chronological record of drivers who came through karting and went on to win a World Championship or another internationally recognised championship."/>
  <div className="hof-intro"><div><b>FROM THE GRID TO THE WORLD</b><p>Karting has been the starting point for generations of elite drivers. KartGrid traces the drivers who converted that foundation into recognised championship success at international level.</p></div><div className="hof-stat"><strong>{[...hallOfFame,...additionalHall].filter((d,i,a)=>a.findIndex(x=>x.name===d.name)===i).length}</strong><span>featured drivers</span></div></div>
