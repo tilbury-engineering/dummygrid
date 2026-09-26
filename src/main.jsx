@@ -648,6 +648,15 @@ const additionalHall=[
 {name:"Jacques Laffite",country:"France",year:1960,path:"Karting → Formula 1 → Touring Cars → Le Mans",note:"Six-time Formula 1 Grand Prix winner."},
 {name:"Alain Menu",country:"Switzerland",year:1981,path:"Karting → Touring Cars → Le Mans",note:"Two-time British Touring Car champion."}
 ];
+function useDriverPortrait(name){
+ const [portrait,setPortrait]=useState("");
+ useEffect(()=>{let cancelled=false; const slug=name.trim().replace(/ /g,"_"); fetch("https://en.wikipedia.org/api/rest_v1/page/summary/"+encodeURIComponent(slug)).then(r=>r.ok?r.json():null).then(d=>{if(!cancelled)portraitSetter(d)}).catch(()=>{}); function portraitSetter(d){const src=d?.originalimage?.source||d?.thumbnail?.source;if(src)setPortrait(src)} return()=>{cancelled=true}},[name]);
+ return portrait;
+}
+function DriverPortrait({name}){
+ const src=useDriverPortrait(name);
+ return src?<img className="hof-driver-photo" src={src} alt={name} loading="lazy"/>:<div className="hof-driver-photo hof-driver-placeholder" aria-label={name+" photograph unavailable"}><span>{name.split(" ").map(x=>x[0]).join("").slice(0,2)}</span></div>;
+}
 function HallOfFame(){
  const [series,setSeries]=useState("All");
  const filters=["All","Formula 1","IndyCar","Le Mans","Touring Cars"];
@@ -655,7 +664,7 @@ function HallOfFame(){
  return <section><PageTitle kicker="Karting's pathway to the world stage" title="HALL OF FAME" text="A chronological record of drivers who came through karting and reached Formula 1, IndyCar, Le Mans or international Touring Cars."/>
  <div className="hof-intro"><div><b>FROM THE GRID TO THE WORLD</b><p>Karting has been the starting point for generations of elite drivers. KartGrid traces that journey and records the major disciplines reached after karting.</p></div><div className="hof-stat"><strong>{[...hallOfFame,...additionalHall].filter((d,i,a)=>a.findIndex(x=>x.name===d.name)===i).length}</strong><span>featured drivers</span></div></div>
  <Filters>{filters.map(x=><button key={x} className={"filter-button "+(series===x?"active":"")} onClick={()=>setSeries(x)}>{x}</button>)}</Filters>
- <div className="hof-grid">{rows.sort((a,b)=>a.year-b.year||a.name.localeCompare(b.name)).map((d,i)=><article className="hof-card" key={d.name}><div className="hof-year">{d.year}</div><div className="hof-country">{d.country}</div><h3>{d.name}</h3><div className="hof-path">{d.path}</div><p>{d.note}</p><div className="hof-footer"><span>Karting → {d.path.split("→").slice(-1)[0].trim()}</span><b>Hall of Fame</b></div></article>)}</div>
+ <div className="hof-grid">{rows.sort((a,b)=>a.year-b.year||a.name.localeCompare(b.name)).map((d,i)=><article className="hof-card" key={d.name}><DriverPortrait name={d.name}/><div className="hof-year">{d.year}</div><div className="hof-country">{d.country}</div><h3>{d.name}</h3><div className="hof-path">{d.path}</div><p>{d.note}</p><div className="hof-footer"><span>Karting → {d.path.split("→").slice(-1)[0].trim()}</span><b>Hall of Fame</b></div></article>)}</div>
  <SectionHead eyebrow="Karting World Champions" title="World Champions" copy="A dedicated record of FIA / CIK-FIA karting world champions across the principal world championship categories."/>
  <WorldChampions/>
  </section>
