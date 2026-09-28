@@ -89,6 +89,44 @@ async function ensureDb(){
    result jsonb NOT NULL,
    created_at timestamptz NOT NULL DEFAULT now()
  );
+ CREATE TABLE IF NOT EXISTS teams(
+   id bigserial PRIMARY KEY,
+   owner_user_id text NOT NULL,
+   name text NOT NULL,
+   slug text UNIQUE NOT NULL,
+   created_at timestamptz NOT NULL DEFAULT now()
+ );
+ CREATE TABLE IF NOT EXISTS team_members(
+   id bigserial PRIMARY KEY,
+   team_id bigint NOT NULL REFERENCES teams(id) ON DELETE CASCADE,
+   user_id text NOT NULL,
+   role text NOT NULL DEFAULT 'staff',
+   status text NOT NULL DEFAULT 'active',
+   permissions jsonb NOT NULL DEFAULT '{}'::jsonb,
+   created_at timestamptz NOT NULL DEFAULT now(),
+   UNIQUE(team_id,user_id)
+ );
+ CREATE TABLE IF NOT EXISTS team_driver_invites(
+   id bigserial PRIMARY KEY,
+   team_id bigint NOT NULL REFERENCES teams(id) ON DELETE CASCADE,
+   driver_user_id text,
+   driver_email text NOT NULL,
+   invited_by text NOT NULL,
+   status text NOT NULL DEFAULT 'pending',
+   share_permissions jsonb NOT NULL DEFAULT '{"telemetry":false,"video":false,"setups":false,"setup_history":false,"coach_analysis":false,"results":false}'::jsonb,
+   created_at timestamptz NOT NULL DEFAULT now(),
+   responded_at timestamptz
+ );
+ CREATE TABLE IF NOT EXISTS team_driver_roster(
+   id bigserial PRIMARY KEY,
+   team_id bigint NOT NULL REFERENCES teams(id) ON DELETE CASCADE,
+   driver_user_id text NOT NULL,
+   status text NOT NULL DEFAULT 'confirmed',
+   share_permissions jsonb NOT NULL DEFAULT '{"telemetry":false,"video":false,"setups":false,"setup_history":false,"coach_analysis":false,"results":false}'::jsonb,
+   joined_at timestamptz NOT NULL DEFAULT now(),
+   updated_at timestamptz NOT NULL DEFAULT now(),
+   UNIQUE(team_id,driver_user_id)
+ );
  CREATE TABLE IF NOT EXISTS coaching_setups(
    id bigserial PRIMARY KEY,
    user_id text NOT NULL,
