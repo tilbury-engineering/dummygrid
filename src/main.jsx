@@ -1045,7 +1045,8 @@ function App(){
  else if(parts[0]==="knowledge-base") page=<KnowledgeBase region={region}/>;
  else if(parts[0]==="advertise") page=<Advertise/>;
  else if(parts[0]==="about") page=<About/>;
- else if(parts[0]==="coach") page=<CoachPreview/>;\n else if(parts[0]==="team-hub") page=<TeamHub/>;
+ else if(parts[0]==="coach") page=<CoachPreview/>;
+ else if(parts[0]==="team-hub") page=<TeamHub/>;
  else if(parts[0]==="profile") page=<DriverAccount region={region}/>;
  else page=<NotFound/>;
  return <><Top region={region} setRegion={setRegion}/><main>{page}</main><footer className="site-footer"><div className="footer-grid"><div className="footer-column"><h3>KartGrid</h3><a href="#/">Home</a><a href="#/about">About Us</a></div><div className="footer-column"><h3>Main Menu</h3><a href="#/">Home</a><a href="#/news">News</a><a href="#/marketplace">Marketplace</a><a href="#/shop">Shop</a><a href="#/drivers">Drivers</a><a href="#/classes">Classes</a><a href="#/manufacturers">Manufacturers</a><a href="#/asns">ASNs</a><a href="#/results">Results</a><a href="#/hall-of-fame">Hall of Fame</a><a href="#/hall-of-fame/karting-world-champions">Karting World Champions</a><a href="#/tracks">Tracks</a><a href="#/community">Community</a><a href="#/knowledge-base">Knowledge Base</a></div><div className="footer-column"><h3>Knowledge Base</h3><a href="#/knowledge-base">Karting Knowledge Base</a><a href="#/classes">Karting Classes</a><a href="#/tracks">Track Directory</a><a href="#/asns">National Authorities</a><a href="#/results">Results Archive</a><a href="#/hall-of-fame">Hall of Fame</a></div><div className="footer-column"><h3>Connect with us</h3><a href="#/community">Community</a><a href="#/profile">Driver Hub</a><a href="#/advertise">Advertise</a><a href="#/about">About KartGrid</a></div></div><div className="footer-bottom"><p>The world of karting, local to you.</p></div></footer></>
