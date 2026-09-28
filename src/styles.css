@@ -461,3 +461,10 @@ footer{
 /* Compact home icon in main navigation */
 .home-nav-icon{display:inline-flex!important;align-items:center;justify-content:center;padding-left:6px!important;padding-right:6px!important}
 .home-nav-icon svg{width:18px;height:18px;display:block;fill:#000}
+
+/* Integrated main-nav dropdown chevrons */
+.nav-dropdown-toggle{display:inline-flex;align-items:center;gap:6px}
+.nav-chevron{display:inline-flex;align-items:center;justify-content:center;width:10px;height:8px;transition:transform .18s ease;transform-origin:center}
+.nav-chevron svg{width:10px;height:7px;display:block;overflow:visible}
+.nav-chevron path{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.nav-dropdown-toggle[aria-expanded="true"] .nav-chevron{transform:rotate(180deg)}
