@@ -149,7 +149,7 @@ function Top({region,setRegion}){
  return <><header className="site-header">
    <div className="masthead">
      <nav className={"main-nav "+(menuOpen?"open":"")}>
-       <a href="#/" onClick={()=>setMenuOpen(false)}>Home</a>
+       <a href="#/" className="home-nav-icon" aria-label="Home" title="Home" onClick={()=>setMenuOpen(false)}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.8 12 3l9 7.8v9.7a.5.5 0 0 1-.5.5H15v-6H9v6H3.5a.5.5 0 0 1-.5-.5z"/></svg></a>
        <a href="#/news" onClick={()=>setMenuOpen(false)}>News</a>
        <a href="#/marketplace" onClick={()=>setMenuOpen(false)}>Marketplace</a>
        <a href="#/shop" onClick={()=>setMenuOpen(false)}>Shop</a>
