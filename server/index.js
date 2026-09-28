@@ -127,6 +127,42 @@ async function ensureDb(){
    updated_at timestamptz NOT NULL DEFAULT now(),
    UNIQUE(team_id,driver_user_id)
  );
+ CREATE TABLE IF NOT EXISTS race_weekends(
+   id bigserial PRIMARY KEY,user_id text NOT NULL,team_id bigint REFERENCES teams(id) ON DELETE SET NULL,
+   title text NOT NULL,circuit text,event_date date,class_name text,conditions jsonb NOT NULL DEFAULT '{}'::jsonb,
+   notes text NOT NULL DEFAULT '',created_at timestamptz NOT NULL DEFAULT now(),updated_at timestamptz NOT NULL DEFAULT now()
+ );
+ CREATE TABLE IF NOT EXISTS garage_assets(
+   id bigserial PRIMARY KEY,user_id text NOT NULL,team_id bigint REFERENCES teams(id) ON DELETE SET NULL,
+   asset_type text NOT NULL,name text NOT NULL,serial_number text,details jsonb NOT NULL DEFAULT '{}'::jsonb,
+   service_hours numeric,created_at timestamptz NOT NULL DEFAULT now(),updated_at timestamptz NOT NULL DEFAULT now()
+ );
+ CREATE TABLE IF NOT EXISTS tyre_sets(
+   id bigserial PRIMARY KEY,user_id text NOT NULL,team_id bigint REFERENCES teams(id) ON DELETE SET NULL,
+   label text NOT NULL,compound text,details jsonb NOT NULL DEFAULT '{}'::jsonb,heat_cycles integer NOT NULL DEFAULT 0,
+   created_at timestamptz NOT NULL DEFAULT now(),updated_at timestamptz NOT NULL DEFAULT now()
+ );
+ CREATE TABLE IF NOT EXISTS coaching_sessions(
+   id bigserial PRIMARY KEY,user_id text NOT NULL,team_id bigint REFERENCES teams(id) ON DELETE SET NULL,
+   weekend_id bigint REFERENCES race_weekends(id) ON DELETE SET NULL,setup_id bigint,
+   title text NOT NULL DEFAULT 'Session',session_type text,circuit text,class_name text,conditions jsonb NOT NULL DEFAULT '{}'::jsonb,
+   analysis jsonb NOT NULL DEFAULT '{}'::jsonb,created_at timestamptz NOT NULL DEFAULT now()
+ );
+ CREATE TABLE IF NOT EXISTS calendar_items(
+   id bigserial PRIMARY KEY,user_id text,team_id bigint REFERENCES teams(id) ON DELETE CASCADE,title text NOT NULL,
+   starts_at timestamptz,ends_at timestamptz,item_type text NOT NULL DEFAULT 'event',details jsonb NOT NULL DEFAULT '{}'::jsonb,
+   created_at timestamptz NOT NULL DEFAULT now()
+ );
+ CREATE TABLE IF NOT EXISTS engineering_notes(
+   id bigserial PRIMARY KEY,user_id text NOT NULL,team_id bigint REFERENCES teams(id) ON DELETE CASCADE,driver_user_id text,
+   session_id bigint REFERENCES coaching_sessions(id) ON DELETE CASCADE,visibility text NOT NULL DEFAULT 'private',note text NOT NULL,
+   created_at timestamptz NOT NULL DEFAULT now()
+ );
+ CREATE TABLE IF NOT EXISTS audit_log(
+   id bigserial PRIMARY KEY,actor_user_id text NOT NULL,team_id bigint REFERENCES teams(id) ON DELETE SET NULL,
+   entity_type text NOT NULL,entity_id text NOT NULL,action text NOT NULL,changes jsonb NOT NULL DEFAULT '{}'::jsonb,
+   created_at timestamptz NOT NULL DEFAULT now()
+ );
  CREATE TABLE IF NOT EXISTS coaching_setups(
    id bigserial PRIMARY KEY,
    user_id text NOT NULL,
