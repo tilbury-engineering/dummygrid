@@ -151,7 +151,8 @@ function Top({region,setRegion}){
      <nav className={"main-nav "+(menuOpen?"open":"")}>
        <a href="#/" onClick={()=>setMenuOpen(false)}>Home</a>
        <a href="#/news" onClick={()=>setMenuOpen(false)}>News</a>
-       <a href="#/marketplace" onClick={()=>setMenuOpen(false)}>Marketplace</a>\n       <a href="#/shop" onClick={()=>setMenuOpen(false)}>Shop</a>
+       <a href="#/marketplace" onClick={()=>setMenuOpen(false)}>Marketplace</a>
+       <a href="#/shop" onClick={()=>setMenuOpen(false)}>Shop</a>
        <a href="#/drivers" onClick={()=>setMenuOpen(false)}>Drivers</a>
        <a href="#/classes" onClick={()=>setMenuOpen(false)}>Classes</a>
        <div className="nav-dropdown">
