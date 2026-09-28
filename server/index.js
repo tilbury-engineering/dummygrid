@@ -503,6 +503,28 @@ async function extractFrames(videoPath,outDir){
  });
 }
 
+function parseTelemetryCsv(raw){
+ const lines=String(raw||"").trim().split(/\r?\n/).filter(Boolean);if(lines.length<3)throw new Error("Telemetry CSV needs a header and at least two data rows.");
+ const split=line=>line.split(",").map(x=>x.trim().replace(/^"|"$/g,""));const headers=split(lines[0]).map(x=>x.toLowerCase().replace(/[^a-z0-9]+/g,"_"));
+ const aliases={time:["time","timestamp","elapsed_time","session_time"],lap:["lap","lap_number","lapnumber"],speed:["speed","speed_kph","velocity","gps_speed"],throttle:["throttle","throttle_pos","throttle_position"],brake:["brake","brake_pressure","brake_pos"],distance:["distance","lap_distance","distance_m"],lat:["lat","latitude"],lon:["lon","lng","longitude"]};
+ const index={};for(const [key,names] of Object.entries(aliases)){index[key]=headers.findIndex(h=>names.includes(h))}
+ if(index.time<0||index.speed<0)throw new Error("Telemetry needs time and speed columns.");
+ const rows=lines.slice(1).map((line,n)=>{const c=split(line),v=k=>index[k]>=0?Number(c[index[k]]):null;return {row:n+2,time:v("time"),lap:v("lap"),speed:v("speed"),throttle:v("throttle"),brake:v("brake"),distance:v("distance"),lat:v("lat"),lon:v("lon")}}).filter(x=>Number.isFinite(x.time)&&Number.isFinite(x.speed));
+ if(rows.length<2)throw new Error("No usable telemetry rows found.");return {headers,rows,channels:Object.fromEntries(Object.entries(index).map(([k,v])=>[k,v>=0]))};
+}
+function analyseTelemetry(rows){
+ const lapMap=new Map();for(const r of rows){const k=Number.isFinite(r.lap)?r.lap:1;if(!lapMap.has(k))lapMap.set(k,[]);lapMap.get(k).push(r)}
+ const laps=[...lapMap.entries()].map(([lap,points])=>{points.sort((a,b)=>a.time-b.time);const duration=points.at(-1).time-points[0].time;const speeds=points.map(x=>x.speed);return {lap,points,duration,avgSpeed:speeds.reduce((a,b)=>a+b,0)/speeds.length,minSpeed:Math.min(...speeds),maxSpeed:Math.max(...speeds)}}).filter(x=>x.duration>0).sort((a,b)=>a.duration-b.duration);
+ if(!laps.length)throw new Error("Could not derive a complete lap.");const best=laps[0];
+ const segments=8;const segs=[];for(let i=0;i<segments;i++){const a=Math.floor(best.points.length*i/segments),b=Math.max(a+1,Math.floor(best.points.length*(i+1)/segments));const p=best.points.slice(a,b);const speeds=p.map(x=>x.speed);segs.push({segment:i+1,startTime:p[0]?.time,endTime:p.at(-1)?.time,minSpeed:Math.min(...speeds),avgSpeed:speeds.reduce((x,y)=>x+y,0)/speeds.length})}
+ const consistency=laps.length>1?Math.max(...laps.map(x=>x.duration))-Math.min(...laps.map(x=>x.duration)):0;const slow=[...segs].sort((a,b)=>a.minSpeed-b.minSpeed).slice(0,3);
+ return {bestLap:{lap:best.lap,time:Number(best.duration.toFixed(3)),avgSpeed:Number(best.avgSpeed.toFixed(1)),minSpeed:Number(best.minSpeed.toFixed(1)),maxSpeed:Number(best.maxSpeed.toFixed(1))},laps:laps.map(x=>({lap:x.lap,time:Number(x.duration.toFixed(3)),avgSpeed:Number(x.avgSpeed.toFixed(1))})).sort((a,b)=>a.lap-b.lap),consistencySpread:Number(consistency.toFixed(3)),segments:segs.map(x=>({...x,minSpeed:Number(x.minSpeed.toFixed(1)),avgSpeed:Number(x.avgSpeed.toFixed(1))})),prioritySegments:slow.map(x=>x.segment)};
+}
+app.post("/api/coaching/telemetry/analyze",requireAuth,async(req,res)=>{
+ try{const raw=String(req.body?.csv||"");if(raw.length>8_000_000)return res.status(413).json({ok:false,message:"Telemetry file is too large."});const parsed=parseTelemetryCsv(raw);const analysis=analyseTelemetry(parsed.rows);res.json({ok:true,channels:parsed.channels,analysis,note:"Telemetry-derived metrics. Coaching interpretation should only use channels present in the uploaded data."});}
+ catch(err){res.status(400).json({ok:false,message:err.message||"Telemetry analysis failed."})}
+});
+
 app.post("/api/videos/:id/analyze", requireAuth, async(req,res)=>{
  const userId=String(req.user.sub);
  if(!pool||!openai||!s3()) return res.status(503).json({ok:false,message:"Video AI is not fully configured yet."});
