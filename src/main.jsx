@@ -156,7 +156,7 @@ function Top({region,setRegion}){
        <a href="#/drivers" onClick={()=>setMenuOpen(false)}>Drivers</a>
        <a href="#/classes" onClick={()=>setMenuOpen(false)}>Classes</a>
        <div className="nav-dropdown">
-        <button className="nav-dropdown-toggle" type="button" aria-haspopup="true" aria-expanded={directoryOpen} onClick={()=>setDirectoryOpen(v=>!v)}>Directory <span>⌄</span></button>
+        <button className="nav-dropdown-toggle" type="button" aria-haspopup="true" aria-expanded={directoryOpen} onClick={()=>setDirectoryOpen(v=>!v)}>Directory <span className="nav-chevron" aria-hidden="true"><svg viewBox="0 0 12 8"><path d="M1 1.5 6 6.5l5-5"/></svg></span></button>
         {directoryOpen&&<div className="nav-dropdown-menu" role="menu">
          <a href="#/manufacturers" onClick={()=>{setMenuOpen(false);setDirectoryOpen(false)}}>Manufacturers</a>
          <a href="#/asns" onClick={()=>{setMenuOpen(false);setDirectoryOpen(false)}}>ASNs</a>
@@ -165,7 +165,7 @@ function Top({region,setRegion}){
        </div><a href="#/results" onClick={()=>setMenuOpen(false)}>Results</a>
        <a href="#/community" onClick={()=>setMenuOpen(false)}>Community</a><a href="#/knowledge-base" onClick={()=>setMenuOpen(false)}>Knowledge Base</a>
        <div className="nav-dropdown">
-        <button className="nav-dropdown-toggle" type="button" aria-haspopup="true" aria-expanded={legacyOpen} onClick={()=>setLegacyOpen(v=>!v)}>Legacy <span>⌄</span></button>
+        <button className="nav-dropdown-toggle" type="button" aria-haspopup="true" aria-expanded={legacyOpen} onClick={()=>setLegacyOpen(v=>!v)}>Legacy <span className="nav-chevron" aria-hidden="true"><svg viewBox="0 0 12 8"><path d="M1 1.5 6 6.5l5-5"/></svg></span></button>
         {legacyOpen&&<div className="nav-dropdown-menu" role="menu">
          <a href="#/history-of-karting" onClick={()=>{setMenuOpen(false);setLegacyOpen(false)}}>History of Karting</a>
          <a href="#/hall-of-fame/pioneer/Art%20Ingels" onClick={()=>{setMenuOpen(false);setLegacyOpen(false)}}>Art Ingels</a>
