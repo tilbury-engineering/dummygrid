@@ -154,6 +154,7 @@ function Top({region,setRegion}){
        <a href="#/marketplace" onClick={()=>setMenuOpen(false)}>Marketplace</a>
        <a href="#/shop" onClick={()=>setMenuOpen(false)}>Shop</a>
        <a href="#/drivers" onClick={()=>setMenuOpen(false)}>Drivers</a>
+       <a href="#/coach" className="coach-temp-link" onClick={()=>setMenuOpen(false)}>AI Coach</a>
        <a href="#/classes" onClick={()=>setMenuOpen(false)}>Classes</a>
        <div className="nav-dropdown">
         <button className="nav-dropdown-toggle" type="button" aria-haspopup="true" aria-expanded={directoryOpen} onClick={()=>setDirectoryOpen(v=>!v)}>Directory <span className="nav-chevron" aria-hidden="true"><svg viewBox="0 0 12 8"><path d="M1 1.5 6 6.5l5-5"/></svg></span></button>
