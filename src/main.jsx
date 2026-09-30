@@ -472,6 +472,24 @@ const alphaSeries=[
 const tslSeries=[
  {slug:"bsrc",name:"British Superkart Racing Club / Superkart Super Series"}
 ];
+const ikrSeed=[
+ {year:2024,rank:1,driver:"Van Langendonck, Dries",nation:"BEL",category:"OK Junior",points:6688},
+ {year:2024,rank:2,driver:"Turney, Joe",nation:"GBR",category:"OK",points:6562},
+ {year:2024,rank:3,driver:"Bertuca, Cristian",nation:"ITA",category:"KZ2",points:null},
+ {year:2023,rank:1,driver:"Wherrell, Lewis",nation:"GBR",category:"OK Junior",points:6344},
+ {year:2023,rank:2,driver:"Van Langendonck, Dries",nation:"BEL",category:"OK Junior",points:6241},
+ {year:2023,rank:3,driver:"Troger, Niels",nation:"DEU",category:"KZ2",points:6241}
+];
+function InternationalRanking(){
+ const [year,setYear]=useState("2024"),[nation,setNation]=useState("All"),[category,setCategory]=useState("All"),[q,setQ]=useState("");
+ const rows=ikrSeed.filter(r=>String(r.year)===year&&(nation==="All"||r.nation===nation)&&(category==="All"||r.category===category)&&r.driver.toLowerCase().includes(q.toLowerCase()));
+ const nations=[...new Set(ikrSeed.filter(r=>String(r.year)===year).map(r=>r.nation))].sort(),categories=[...new Set(ikrSeed.filter(r=>String(r.year)===year).map(r=>r.category))].sort();
+ return <section><PageTitle kicker="FIA International Karting Ranking" title="INTERNATIONAL KARTING RANKING" text="Browse KartGrid's indexed view of the FIA International Karting Ranking by year, nation and class." action={<a className="button" href="#/results">All results</a>}/>
+ <div className="panel"><p className="muted">FIA describes IKR as a worldwide driver ranking with sub-classifications including nationality and category. KartGrid preserves the FIA source and does not recalculate official points.</p></div>
+ <Filters><select value={year} onChange={e=>setYear(e.target.value)}><option>2024</option><option>2023</option></select><select value={nation} onChange={e=>setNation(e.target.value)}><option>All</option>{nations.map(x=><option key={x}>{x}</option>)}</select><select value={category} onChange={e=>setCategory(e.target.value)}><option>All</option>{categories.map(x=><option key={x}>{x}</option>)}</select><input placeholder="Search driver…" value={q} onChange={e=>setQ(e.target.value)}/></Filters>
+ <div className="classification-wrap"><table><thead><tr><th>Rank</th><th>Driver</th><th>Nation</th><th>Class</th><th>Total points</th></tr></thead><tbody>{rows.map(r=><tr key={r.year+"-"+r.rank+"-"+r.driver}><td>{r.rank}</td><td><b>{r.driver}</b></td><td>{r.nation}</td><td>{r.category}</td><td>{r.points??"—"}</td></tr>)}</tbody></table></div>
+ <p className="muted">Initial verified historical index. Automated FIA ingestion and additional seasons are being connected next.</p><a className="button" href="https://www.fiakarting.com/page/international-karting-ranking-classification" target="_blank" rel="noopener noreferrer">Official FIA ranking ↗</a></section>
+}
 function ResultsPage(){
  const {data,loading}=useTimingData();
  const [q,setQ]=useState("");
@@ -504,7 +522,7 @@ function ResultsPage(){
    return out;
  },[data,q]);
  const searching=q.trim().length>=2;
- return <section><PageTitle kicker="Live timing archive" title="KARTING RESULTS" text="Search drivers, classes, events and full classifications, or browse by championship."/>
+ return <section><PageTitle kicker="Live timing archive" title="KARTING RESULTS" text="Search drivers, classes, events and full classifications, or browse by championship." action={<a className="button primary" href="#/results/international-ranking">International Ranking</a>}/>
  <Filters><input placeholder="Search driver, class, event or championship…" value={q} onChange={e=>setQ(e.target.value)}/></Filters>
  {searching&&<div className="global-result-search"><div className="meta">{loading?"Loading timing archive…":matches.length+" matching result"+(matches.length===1?"":"s")}</div>{matches.length?<div className="session-list">{matches.map((m,i)=><a className="session-row search-hit" href={"#/results/alpha/"+m.slug+"/event/"+m.eventId+"/session/"+m.sessionId} key={m.slug+m.eventId+m.sessionId+i}><div className="session-no">↗</div><div><div className="meta">{m.series} · {m.event}</div><h3>{m.session}</h3>{m.row&&<p>{m.row}</p>}</div><b>Open result →</b></a>)}</div>:!loading&&<Empty text="No indexed classifications match that search yet."/>}</div>}
  {!searching&&<div className="results-series-grid">{providers.map(x=><a className="results-series-card" key={x.provider+x.slug} href={x.href}><span>{x.provider}</span><h3>{x.name}</h3><p>{x.copy}</p><b>Browse results →</b></a>)}</div>}
@@ -1029,7 +1047,7 @@ function App(){
  else if(parts[0]==="classes") page=<Classes/>;
  else if(parts[0]==="manufacturers"&&parts[1]) page=<ManufacturerDetail id={parts[1]}/>;
  else if(parts[0]==="manufacturers") page=<Manufacturers/>;
- else if(parts[0]==="results"&&parts[1]==="alpha"&&parts[2]&&parts[3]==="event"&&parts[4]&&parts[5]==="session"&&parts[6]) page=<ResultsSession slug={parts[2]} eventId={parts[4]} sessionId={parts[6]}/>;
+ else if(parts[0]==="results"&&parts[1]==="international-ranking") page=<InternationalRanking/>;\n else if(parts[0]==="results"&&parts[1]==="alpha"&&parts[2]&&parts[3]==="event"&&parts[4]&&parts[5]==="session"&&parts[6]) page=<ResultsSession slug={parts[2]} eventId={parts[4]} sessionId={parts[6]}/>;
  else if(parts[0]==="results"&&parts[1]==="alpha"&&parts[2]&&parts[3]==="event"&&parts[4]) page=<ResultsEvent slug={parts[2]} eventId={parts[4]}/>;
  else if(parts[0]==="results"&&parts[1]==="alpha"&&parts[2]) page=<ResultsSeries slug={parts[2]}/>;
  else if(parts[0]==="results"&&parts[1]==="tsl"&&parts[2]&&parts[3]==="event"&&parts[4]&&parts[5]==="session"&&parts[6]) page=<TSLResultsSession slug={parts[2]} eventId={parts[4]} sessionId={parts[6]}/>;
