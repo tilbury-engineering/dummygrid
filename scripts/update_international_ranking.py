@@ -55,7 +55,12 @@ def main():
         print("FIA ranking fetch failed; preserving last good dataset:",e)
         return
     if not rows:
+        soup=BeautifulSoup(r.text,"html.parser")
+        scripts=[x.get("src") for x in soup.find_all("script") if x.get("src")]
         print("No structured FIA ranking rows detected; preserving last good dataset.")
+        print("FIA page script assets:", json.dumps(scripts[:40]))
+        candidates=sorted(set(re.findall(r'https?://[^"\\'\\s<>]+|/(?:api|ajax|ranking|ikr)[A-Za-z0-9_?&=./%-]*',r.text,re.I)))
+        print("FIA page endpoint candidates:", json.dumps(candidates[:60]))
         return
     seen=set(); clean_rows=[]
     for row in rows:
