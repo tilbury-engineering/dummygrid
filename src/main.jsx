@@ -1047,7 +1047,8 @@ function App(){
  else if(parts[0]==="classes") page=<Classes/>;
  else if(parts[0]==="manufacturers"&&parts[1]) page=<ManufacturerDetail id={parts[1]}/>;
  else if(parts[0]==="manufacturers") page=<Manufacturers/>;
- else if(parts[0]==="results"&&parts[1]==="international-ranking") page=<InternationalRanking/>;\n else if(parts[0]==="results"&&parts[1]==="alpha"&&parts[2]&&parts[3]==="event"&&parts[4]&&parts[5]==="session"&&parts[6]) page=<ResultsSession slug={parts[2]} eventId={parts[4]} sessionId={parts[6]}/>;
+ else if(parts[0]==="results"&&parts[1]==="international-ranking") page=<InternationalRanking/>;
+ else if(parts[0]==="results"&&parts[1]==="alpha"&&parts[2]&&parts[3]==="event"&&parts[4]&&parts[5]==="session"&&parts[6]) page=<ResultsSession slug={parts[2]} eventId={parts[4]} sessionId={parts[6]}/>;
  else if(parts[0]==="results"&&parts[1]==="alpha"&&parts[2]&&parts[3]==="event"&&parts[4]) page=<ResultsEvent slug={parts[2]} eventId={parts[4]}/>;
  else if(parts[0]==="results"&&parts[1]==="alpha"&&parts[2]) page=<ResultsSeries slug={parts[2]}/>;
  else if(parts[0]==="results"&&parts[1]==="tsl"&&parts[2]&&parts[3]==="event"&&parts[4]&&parts[5]==="session"&&parts[6]) page=<TSLResultsSession slug={parts[2]} eventId={parts[4]} sessionId={parts[6]}/>;
