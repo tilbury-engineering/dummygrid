@@ -472,7 +472,9 @@ const alphaSeries=[
 const tslSeries=[
  {slug:"bsrc",name:"British Superkart Racing Club / Superkart Super Series"}
 ];
-function InternationalRanking(){\n const {data:rankingData,loading}=useRemoteJson("international-ranking.json",{updatedAt:null,records:[]});\n const ikrSeed=rankingData?.records||[];
+function InternationalRanking(){
+ const {data:rankingData,loading}=useRemoteJson("international-ranking.json",{updatedAt:null,records:[]});
+ const ikrSeed=rankingData?.records||[];
  const [year,setYear]=useState("2024"),[nation,setNation]=useState("All"),[category,setCategory]=useState("All"),[q,setQ]=useState("");
  const rows=ikrSeed.filter(r=>String(r.year)===year&&(nation==="All"||r.nation===nation)&&(category==="All"||r.category===category)&&r.driver.toLowerCase().includes(q.toLowerCase()));
  const nations=[...new Set(ikrSeed.filter(r=>String(r.year)===year).map(r=>r.nation))].sort(),categories=[...new Set(ikrSeed.filter(r=>String(r.year)===year).map(r=>r.category))].sort();
