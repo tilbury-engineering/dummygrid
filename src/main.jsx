@@ -474,15 +474,20 @@ const tslSeries=[
 ];
 function InternationalRanking(){
  const {data:rankingData,loading}=useRemoteJson("international-ranking.json",{updatedAt:null,records:[]});
- const ikrSeed=rankingData?.records||[];
- const [year,setYear]=useState("2024"),[nation,setNation]=useState("All"),[category,setCategory]=useState("All"),[q,setQ]=useState("");
- const rows=ikrSeed.filter(r=>String(r.year)===year&&(nation==="All"||r.nation===nation)&&(category==="All"||r.category===category)&&r.driver.toLowerCase().includes(q.toLowerCase()));
- const nations=[...new Set(ikrSeed.filter(r=>String(r.year)===year).map(r=>r.nation))].sort(),categories=[...new Set(ikrSeed.filter(r=>String(r.year)===year).map(r=>r.category))].sort();
+ const records=rankingData?.records||[];
+ const years=[...new Set(records.map(r=>String(r.year)))].sort((a,b)=>b.localeCompare(a));
+ const [year,setYear]=useState(""),[nation,setNation]=useState("All"),[category,setCategory]=useState("All"),[q,setQ]=useState("");
+ useEffect(()=>{if(!year&&years.length)setYear(years[0])},[year,years.join("|")]);
+ const yearRows=records.filter(r=>!year||String(r.year)===year);
+ const nations=[...new Set(yearRows.map(r=>r.nation).filter(Boolean))].sort();
+ const categories=[...new Set(yearRows.map(r=>r.category).filter(Boolean))].sort();
+ const rows=yearRows.filter(r=>(nation==="All"||r.nation===nation)&&(category==="All"||r.category===category)&&String(r.driver||"").toLowerCase().includes(q.toLowerCase()));
  return <section><PageTitle kicker="FIA International Karting Ranking" title="INTERNATIONAL KARTING RANKING" text="Browse KartGrid's indexed view of the FIA International Karting Ranking by year, nation and class." action={<a className="button" href="#/results">All results</a>}/>
- <div className="panel"><p className="muted">FIA describes IKR as a worldwide driver ranking with sub-classifications including nationality and category. KartGrid preserves the FIA source and does not recalculate official points.</p></div>
- <Filters><select value={year} onChange={e=>setYear(e.target.value)}><option>2024</option><option>2023</option></select><select value={nation} onChange={e=>setNation(e.target.value)}><option>All</option>{nations.map(x=><option key={x}>{x}</option>)}</select><select value={category} onChange={e=>setCategory(e.target.value)}><option>All</option>{categories.map(x=><option key={x}>{x}</option>)}</select><input placeholder="Search driver…" value={q} onChange={e=>setQ(e.target.value)}/></Filters>
- {loading?<Empty text="Loading international ranking…"/>:<div className="classification-wrap"><table><thead><tr><th>Rank</th><th>Driver</th><th>Nation</th><th>Class</th><th>Total points</th></tr></thead><tbody>{rows.map(r=><tr key={r.year+"-"+r.rank+"-"+r.driver}><td>{r.rank}</td><td><b>{r.driver}</b></td><td>{r.nation}</td><td>{r.category}</td><td>{r.points??"—"}</td></tr>)}</tbody></table></div>
- <p className="muted">Initial verified historical index. Automated FIA ingestion and additional seasons are being connected next.</p><a className="button" href="https://www.fiakarting.com/page/international-karting-ranking-classification" target="_blank" rel="noopener noreferrer">Official FIA ranking ↗</a></section>
+ <div className="panel"><p className="muted">KartGrid preserves the FIA source classification and does not recalculate official ranking points.</p></div>
+ <Filters><select value={year} onChange={e=>setYear(e.target.value)}>{years.map(x=><option key={x}>{x}</option>)}</select><select value={nation} onChange={e=>setNation(e.target.value)}><option>All</option>{nations.map(x=><option key={x}>{x}</option>)}</select><select value={category} onChange={e=>setCategory(e.target.value)}><option>All</option>{categories.map(x=><option key={x}>{x}</option>)}</select><input placeholder="Search driver…" value={q} onChange={e=>setQ(e.target.value)}/></Filters>
+ {loading?<Empty text="Loading international ranking…"/>:rows.length?<div className="classification-wrap"><table><thead><tr><th>Rank</th><th>Driver</th><th>Nation</th><th>Class</th><th>Total points</th></tr></thead><tbody>{rows.map(r=><tr key={r.year+"-"+r.rank+"-"+r.driver}><td>{r.rank}</td><td><b>{r.driver}</b></td><td>{r.nation}</td><td>{r.category}</td><td>{r.points??"—"}</td></tr>)}</tbody></table></div>:<Empty text="No indexed FIA ranking rows match these filters."/>}
+ <p className="muted">{rankingData?.updatedAt?"Source index updated "+new Date(rankingData.updatedAt).toLocaleDateString():"Official FIA source index"}. KartGrid does not recalculate FIA points.</p>
+ <a className="button" href="https://www.fiakarting.com/page/international-karting-ranking-classification" target="_blank" rel="noopener noreferrer">Official FIA ranking ↗</a></section>
 }
 function ResultsPage(){
  const {data,loading}=useTimingData();
