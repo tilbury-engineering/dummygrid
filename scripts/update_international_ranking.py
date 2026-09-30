@@ -59,6 +59,19 @@ def main():
         scripts=[x.get("src") for x in soup.find_all("script") if x.get("src")]
         print("No structured FIA ranking rows detected; preserving last good dataset.")
         print("FIA page script assets:", json.dumps(scripts[:40]))
+        for src in scripts:
+            if not src or "main." not in src:
+                continue
+            asset=requests.compat.urljoin(URL,src)
+            try:
+                js=requests.get(asset,headers=UA,timeout=30).text
+                low=js.lower()
+                for needle in ("ranking","classification","apex-timing"):
+                    pos=low.find(needle)
+                    if pos>=0:
+                        print("FIA main bundle hint",needle,":",js[max(0,pos-500):pos+1500])
+            except Exception as e:
+                print("FIA main bundle inspection failed:",e)
         candidates=sorted(set(re.findall(r"https?://[^\\\"'\\s<>]+|/(?:api|ajax|ranking|ikr)[A-Za-z0-9_?&=./%-]*",r.text,re.I)))
         print("FIA page endpoint candidates:", json.dumps(candidates[:60]))
         return
