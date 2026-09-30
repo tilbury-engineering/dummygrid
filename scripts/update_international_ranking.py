@@ -65,6 +65,12 @@ def main():
             if "apex" in raw.lower() or "ax." in raw.lower():
                 apex_bits.append(raw[:3000])
         print("FIA Apex embed markup:", json.dumps(apex_bits[:20]))
+        try:
+            loader=requests.get("https://www.apex-timing.com/live-timing/tools/ax.iframe.js",headers=UA,timeout=30).text
+            print("Apex iframe loader length:",len(loader))
+            print("Apex iframe loader:",loader[:12000])
+        except Exception as e:
+            print("Apex iframe loader fetch failed:",e)
         for src in scripts:
             if not src or "main." not in src:
                 continue
