@@ -472,22 +472,14 @@ const alphaSeries=[
 const tslSeries=[
  {slug:"bsrc",name:"British Superkart Racing Club / Superkart Super Series"}
 ];
-const ikrSeed=[
- {year:2024,rank:1,driver:"Van Langendonck, Dries",nation:"BEL",category:"OK Junior",points:6688},
- {year:2024,rank:2,driver:"Turney, Joe",nation:"GBR",category:"OK",points:6562},
- {year:2024,rank:3,driver:"Bertuca, Cristian",nation:"ITA",category:"KZ2",points:null},
- {year:2023,rank:1,driver:"Wherrell, Lewis",nation:"GBR",category:"OK Junior",points:6344},
- {year:2023,rank:2,driver:"Van Langendonck, Dries",nation:"BEL",category:"OK Junior",points:6241},
- {year:2023,rank:3,driver:"Troger, Niels",nation:"DEU",category:"KZ2",points:6241}
-];
-function InternationalRanking(){
+function InternationalRanking(){\n const {data:rankingData,loading}=useRemoteJson("international-ranking.json",{updatedAt:null,records:[]});\n const ikrSeed=rankingData?.records||[];
  const [year,setYear]=useState("2024"),[nation,setNation]=useState("All"),[category,setCategory]=useState("All"),[q,setQ]=useState("");
  const rows=ikrSeed.filter(r=>String(r.year)===year&&(nation==="All"||r.nation===nation)&&(category==="All"||r.category===category)&&r.driver.toLowerCase().includes(q.toLowerCase()));
  const nations=[...new Set(ikrSeed.filter(r=>String(r.year)===year).map(r=>r.nation))].sort(),categories=[...new Set(ikrSeed.filter(r=>String(r.year)===year).map(r=>r.category))].sort();
  return <section><PageTitle kicker="FIA International Karting Ranking" title="INTERNATIONAL KARTING RANKING" text="Browse KartGrid's indexed view of the FIA International Karting Ranking by year, nation and class." action={<a className="button" href="#/results">All results</a>}/>
  <div className="panel"><p className="muted">FIA describes IKR as a worldwide driver ranking with sub-classifications including nationality and category. KartGrid preserves the FIA source and does not recalculate official points.</p></div>
  <Filters><select value={year} onChange={e=>setYear(e.target.value)}><option>2024</option><option>2023</option></select><select value={nation} onChange={e=>setNation(e.target.value)}><option>All</option>{nations.map(x=><option key={x}>{x}</option>)}</select><select value={category} onChange={e=>setCategory(e.target.value)}><option>All</option>{categories.map(x=><option key={x}>{x}</option>)}</select><input placeholder="Search driver…" value={q} onChange={e=>setQ(e.target.value)}/></Filters>
- <div className="classification-wrap"><table><thead><tr><th>Rank</th><th>Driver</th><th>Nation</th><th>Class</th><th>Total points</th></tr></thead><tbody>{rows.map(r=><tr key={r.year+"-"+r.rank+"-"+r.driver}><td>{r.rank}</td><td><b>{r.driver}</b></td><td>{r.nation}</td><td>{r.category}</td><td>{r.points??"—"}</td></tr>)}</tbody></table></div>
+ {loading?<Empty text="Loading international ranking…"/>:<div className="classification-wrap"><table><thead><tr><th>Rank</th><th>Driver</th><th>Nation</th><th>Class</th><th>Total points</th></tr></thead><tbody>{rows.map(r=><tr key={r.year+"-"+r.rank+"-"+r.driver}><td>{r.rank}</td><td><b>{r.driver}</b></td><td>{r.nation}</td><td>{r.category}</td><td>{r.points??"—"}</td></tr>)}</tbody></table></div>
  <p className="muted">Initial verified historical index. Automated FIA ingestion and additional seasons are being connected next.</p><a className="button" href="https://www.fiakarting.com/page/international-karting-ranking-classification" target="_blank" rel="noopener noreferrer">Official FIA ranking ↗</a></section>
 }
 function ResultsPage(){
