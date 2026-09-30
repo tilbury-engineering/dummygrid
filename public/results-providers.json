@@ -1,0 +1,9 @@
+{
+  "updatedAt": "2026-09-30T00:00:00Z",
+  "providers": [
+    {"id":"fia-ikr","name":"FIA International Karting Ranking","kind":"ranking","scope":"global","status":"active","official":true,"url":"https://www.fiakarting.com/page/international-karting-ranking-classification"},
+    {"id":"alpha","name":"Alpha Timing","kind":"timing","scope":"multi-series","status":"active","official":false,"url":"https://www.alphatiming.co.uk/"},
+    {"id":"tsl","name":"TSL Timing","kind":"timing","scope":"multi-series","status":"active","official":false,"url":"https://www.tsl-timing.com/"},
+    {"id":"apex","name":"Apex Timing","kind":"timing-platform","scope":"global","status":"discovery","official":false,"url":"https://www.apex-timing.com/"}
+  ]
+}
