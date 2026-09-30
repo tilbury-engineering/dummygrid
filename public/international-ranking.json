@@ -1,0 +1,16 @@
+{
+  "updatedAt": "2026-09-30T00:00:00Z",
+  "source": {
+    "name": "FIA International Karting Ranking",
+    "url": "https://www.fiakarting.com/page/international-karting-ranking-classification",
+    "official": true
+  },
+  "records": [
+    {"year":2024,"rank":1,"driver":"Van Langendonck, Dries","nation":"BEL","category":"OK Junior","points":6688},
+    {"year":2024,"rank":2,"driver":"Turney, Joe","nation":"GBR","category":"OK","points":6562},
+    {"year":2024,"rank":3,"driver":"Bertuca, Cristian","nation":"ITA","category":"KZ2","points":null},
+    {"year":2023,"rank":1,"driver":"Wherrell, Lewis","nation":"GBR","category":"OK Junior","points":6344},
+    {"year":2023,"rank":2,"driver":"Van Langendonck, Dries","nation":"BEL","category":"OK Junior","points":6241},
+    {"year":2023,"rank":3,"driver":"Troger, Niels","nation":"DEU","category":"KZ2","points":6241}
+  ]
+}
