@@ -59,6 +59,12 @@ def main():
         scripts=[x.get("src") for x in soup.find_all("script") if x.get("src")]
         print("No structured FIA ranking rows detected; preserving last good dataset.")
         print("FIA page script assets:", json.dumps(scripts[:40]))
+        apex_bits=[]
+        for tag in soup.find_all(["script","iframe","div"]):
+            raw=str(tag)
+            if "apex" in raw.lower() or "ax." in raw.lower():
+                apex_bits.append(raw[:3000])
+        print("FIA Apex embed markup:", json.dumps(apex_bits[:20]))
         for src in scripts:
             if not src or "main." not in src:
                 continue
