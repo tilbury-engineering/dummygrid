@@ -83,7 +83,7 @@ def main():
             try:
                 js=requests.get(asset,headers=UA,timeout=30).text
                 low=js.lower()
-                for needle in ("ranking","classification","apex-timing","axiframe","iframe","live-timing","src=","apex","apiBaseUrl","/api/v1/standings","getCompetitionStandings","getChampionships"):
+                for needle in ("ranking","classification","apex-timing","axiframe","iframe","live-timing","src=","apex","apiBaseUrl","this.apiBaseUrl=","apiBaseUrl=","/api/v1/standings","getCompetitionStandings","getChampionships"):
                     pos=low.find(needle)
                     if pos>=0:
                         print("FIA main bundle hint",needle,":",js[max(0,pos-500):pos+1500])
