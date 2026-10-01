@@ -65,6 +65,11 @@ def main():
             if "apex" in raw.lower() or "ax." in raw.lower():
                 apex_bits.append(raw[:3000])
         print("FIA Apex embed markup:", json.dumps(apex_bits[:20]))
+        lowhtml=r.text.lower()
+        for needle in ("axiframe","apex-timing","international-karting-ranking","classification"):
+            positions=[m.start() for m in re.finditer(re.escape(needle),lowhtml)]
+            for pos in positions[:12]:
+                print("FIA HTML context",needle,":",r.text[max(0,pos-1200):pos+2400])
         try:
             loader=requests.get("https://www.apex-timing.com/live-timing/tools/ax.iframe.js",headers=UA,timeout=30).text
             print("Apex iframe loader length:",len(loader))
