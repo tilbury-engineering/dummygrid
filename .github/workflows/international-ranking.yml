@@ -1,42 +1,28 @@
-name: Refresh FIA international ranking
+name: Verify FIA international ranking importer
 
 on:
-  push:
-    branches: ["main"]
-    paths:
-      - "scripts/update_international_ranking.py"
-      - ".github/workflows/international-ranking.yml"
-  schedule:
-    - cron: "17 5 * * 1"
   workflow_dispatch:
 
 permissions:
-  contents: write
-
-concurrency:
-  group: kartgrid-international-ranking
-  cancel-in-progress: true
+  contents: read
 
 jobs:
-  refresh:
+  verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install requests beautifulsoup4
-      - name: Refresh FIA ranking
+      - run: pip install requests
+      - name: Run diagnostic without overwriting ranking data
         run: python scripts/update_international_ranking.py
-      - name: Commit refreshed ranking
+      - name: Assert published ranking remains intact
         run: |
-          git config user.name "KartGrid Ranking Bot"
-          git config user.email "actions@users.noreply.github.com"
-          git add public/international-ranking.json
-          if git diff --cached --quiet; then
-            echo "No ranking changes"
-          else
-            git commit -m "Refresh FIA international ranking"
-            git pull --rebase origin main
-            git push
-          fi
+          python - <<'PY'
+          import json
+          with open('public/international-ranking.json', encoding='utf-8') as f:
+              data = json.load(f)
+          assert isinstance(data.get('records'), list) and data['records'], 'No ranking records'
+          print(f"Preserved {len(data['records'])} existing ranking records; FIA importer remains unverified.")
+          PY
