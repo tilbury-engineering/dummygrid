@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-09T15:33:27.626956+00:00",
+  "updatedAt": "2026-10-09T21:14:09.158742+00:00",
   "records": [
     {
       "id": "skusa-2026-x30-junior",
@@ -223,7 +223,7 @@
       "sourceUrl": "https://italy.rokcup.com/classifiche_campionato_en.php?anno=2026"
     },
     {
-      "id": "bkc-2026-senior-rotax",
+      "id": "bkc-2026-micromax-uk",
       "type": "standings",
       "year": 2026,
       "region": "UK",
@@ -232,10 +232,10 @@
       "round": "Championship standings",
       "event": "2026 season",
       "date": "2026-10-09",
-      "className": "Senior Rotax",
+      "className": "MicroMax UK",
       "position": 1,
-      "driver": "Macauley BISHOP",
-      "points": 124.0,
+      "driver": "Albert PHAROAH",
+      "points": 245.0,
       "source": "Motorsport Timing UK",
       "sourceUrl": "https://www.motorsport-timing.co.uk/championship-standings/"
     },
