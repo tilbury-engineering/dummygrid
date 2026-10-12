@@ -39,7 +39,7 @@ jobs:
         run: |
           git config user.name "DummyGrid Results Bot"
           git config user.email "actions@users.noreply.github.com"
-          git add public/results.json
+          git add public/results.json public/results-normalized.json
           if git diff --cached --quiet; then
             echo "No result changes"
           else
