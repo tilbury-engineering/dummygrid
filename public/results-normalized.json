@@ -1,0 +1,866 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-12T13:19:52.313333+00:00",
+  "events": [
+    {
+      "id": "kg-596398b3d5764173",
+      "championship": "SKUSA Pro Tour",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "X30 Junior",
+      "sessionType": "standings",
+      "date": "2026-10-12",
+      "source": "Superkarts! USA",
+      "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Travis Pettit",
+          "team": null,
+          "points": 1430.0,
+          "sourceRecordId": "skusa-2026-x30-junior"
+        }
+      ]
+    },
+    {
+      "id": "kg-0dd6da77010cee02",
+      "championship": "SKUSA Pro Tour",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "Pro X30",
+      "sessionType": "standings",
+      "date": "2026-10-12",
+      "source": "Superkarts! USA",
+      "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Joe Turney",
+          "team": null,
+          "points": 1386.0,
+          "sourceRecordId": "skusa-2026-pro-x30"
+        }
+      ]
+    },
+    {
+      "id": "kg-f2f15bd11522c8f8",
+      "championship": "SKUSA Pro Tour",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "Pro Shifter",
+      "sessionType": "standings",
+      "date": "2026-10-12",
+      "source": "Superkarts! USA",
+      "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Matheus Morgatto",
+          "team": null,
+          "points": 1060.0,
+          "sourceRecordId": "skusa-2026-pro-shifter"
+        }
+      ]
+    },
+    {
+      "id": "kg-f7bbdee178f4bbd3",
+      "championship": "SKUSA Pro Tour",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "Mini Swift",
+      "sessionType": "standings",
+      "date": "2026-10-12",
+      "source": "Superkarts! USA",
+      "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Dutch Westbrook",
+          "team": null,
+          "points": 1380.0,
+          "sourceRecordId": "skusa-2026-mini-swift"
+        }
+      ]
+    },
+    {
+      "id": "kg-714d464cf433d9ab",
+      "championship": "SKUSA Pro Tour",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "Micro Swift",
+      "sessionType": "standings",
+      "date": "2026-10-12",
+      "source": "Superkarts! USA",
+      "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Beau Wyatt",
+          "team": null,
+          "points": 1380.0,
+          "sourceRecordId": "skusa-2026-micro-swift"
+        }
+      ]
+    },
+    {
+      "id": "kg-973bb09c6e4658e9",
+      "championship": "SKUSA Pro Tour",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "KA100 Senior",
+      "sessionType": "standings",
+      "date": "2026-10-12",
+      "source": "Superkarts! USA",
+      "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Pauly Massimino",
+          "team": null,
+          "points": 1430.0,
+          "sourceRecordId": "skusa-2026-ka100-senior"
+        }
+      ]
+    },
+    {
+      "id": "kg-5a19cc409284174c",
+      "championship": "SKUSA Pro Tour",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "KA100 Master",
+      "sessionType": "standings",
+      "date": "2026-10-12",
+      "source": "Superkarts! USA",
+      "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Mario Barrios",
+          "team": null,
+          "points": 1455.0,
+          "sourceRecordId": "skusa-2026-ka100-master"
+        }
+      ]
+    },
+    {
+      "id": "kg-5ffa34b4c09756e2",
+      "championship": "SKUSA Pro Tour",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "KA100 Junior",
+      "sessionType": "standings",
+      "date": "2026-10-12",
+      "source": "Superkarts! USA",
+      "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Colton Schniegenberg",
+          "team": null,
+          "points": 1229.0,
+          "sourceRecordId": "skusa-2026-ka100-junior"
+        }
+      ]
+    },
+    {
+      "id": "kg-7e6455ab112a92f1",
+      "championship": "ROK Cup Italia",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "Shifter ROK",
+      "sessionType": "standings",
+      "date": "2026-10-12",
+      "source": "ROK Cup Italia",
+      "sourceUrl": "https://italy.rokcup.com/classifiche_campionato_en.php?anno=2026",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Chiarello Marco",
+          "team": null,
+          "points": 456,
+          "sourceRecordId": "rok-italia-2026-shifter-rok"
+        }
+      ]
+    },
+    {
+      "id": "kg-fecef8d61d4c673b",
+      "championship": "ROK Cup Italia",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "Senior ROK",
+      "sessionType": "standings",
+      "date": "2026-10-12",
+      "source": "ROK Cup Italia",
+      "sourceUrl": "https://italy.rokcup.com/classifiche_campionato_en.php?anno=2026",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Salemi Riccardo",
+          "team": null,
+          "points": 485,
+          "sourceRecordId": "rok-italia-2026-senior-rok"
+        }
+      ]
+    },
+    {
+      "id": "kg-597c610de2c55563",
+      "championship": "ROK Cup Italia",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "Mini ROK U10",
+      "sessionType": "standings",
+      "date": "2026-10-12",
+      "source": "ROK Cup Italia",
+      "sourceUrl": "https://italy.rokcup.com/classifiche_campionato_en.php?anno=2026",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "De Ruit Milan",
+          "team": null,
+          "points": 409,
+          "sourceRecordId": "rok-italia-2026-mini-rok-u10"
+        }
+      ]
+    },
+    {
+      "id": "kg-b86570d5a800e355",
+      "championship": "ROK Cup Italia",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "Mini ROK",
+      "sessionType": "standings",
+      "date": "2026-10-12",
+      "source": "ROK Cup Italia",
+      "sourceUrl": "https://italy.rokcup.com/classifiche_campionato_en.php?anno=2026",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Almekdad Ghazi",
+          "team": null,
+          "points": 415,
+          "sourceRecordId": "rok-italia-2026-mini-rok"
+        }
+      ]
+    },
+    {
+      "id": "kg-8d5c418b259352bf",
+      "championship": "ROK Cup Italia",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "Junior ROK",
+      "sessionType": "standings",
+      "date": "2026-10-12",
+      "source": "ROK Cup Italia",
+      "sourceUrl": "https://italy.rokcup.com/classifiche_campionato_en.php?anno=2026",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Kostrzewa Blazej",
+          "team": null,
+          "points": 426,
+          "sourceRecordId": "rok-italia-2026-junior-rok"
+        }
+      ]
+    },
+    {
+      "id": "kg-ef03c08ebf6ba0ef",
+      "championship": "British Kart Championships",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "MicroMax UK",
+      "sessionType": "standings",
+      "date": "2026-10-10",
+      "source": "Motorsport Timing UK",
+      "sourceUrl": "https://www.motorsport-timing.co.uk/championship-standings/",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Albert PHAROAH",
+          "team": null,
+          "points": 245.0,
+          "sourceRecordId": "bkc-2026-micromax-uk"
+        }
+      ]
+    },
+    {
+      "id": "kg-86c21bb2ecdf167e",
+      "championship": "FIA Karting Team Championship",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "Junior",
+      "sessionType": "standings",
+      "date": "2026-09-24",
+      "source": "FIA Karting",
+      "sourceUrl": "https://www.fiakarting.com/championshipstandings/2026-fia-karting-team-championship-standings-junior",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "KR Motorsport",
+          "team": null,
+          "points": 572,
+          "sourceRecordId": "fia-2026-team-junior"
+        }
+      ]
+    },
+    {
+      "id": "kg-0f4d04deeb30f6f1",
+      "championship": "RMC Euro Trophy",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "Senior MAX",
+      "sessionType": "standings",
+      "date": "2026-09-14",
+      "source": "RMC Euro Trophy",
+      "sourceUrl": "https://www.rotaxmaxchallenge-eurotrophy.com/news/champions-crowned-as-rmc-euro-trophy-season-concludes-at-trinec",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Jeremy Reuvers",
+          "team": null,
+          "points": null,
+          "sourceRecordId": "rmcet-2026-senior-max"
+        }
+      ]
+    },
+    {
+      "id": "kg-65416a2c03b97f7f",
+      "championship": "RMC Euro Trophy",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "Junior MAX",
+      "sessionType": "standings",
+      "date": "2026-09-14",
+      "source": "RMC Euro Trophy",
+      "sourceUrl": "https://www.rotaxmaxchallenge-eurotrophy.com/news/champions-crowned-as-rmc-euro-trophy-season-concludes-at-trinec",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Zdenek Babicek",
+          "team": null,
+          "points": null,
+          "sourceRecordId": "rmcet-2026-junior-max"
+        }
+      ]
+    },
+    {
+      "id": "kg-d7f1f93b4538d9ed",
+      "championship": "RMC Euro Trophy",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "DD2 Masters",
+      "sessionType": "standings",
+      "date": "2026-09-14",
+      "source": "RMC Euro Trophy",
+      "sourceUrl": "https://www.rotaxmaxchallenge-eurotrophy.com/news/champions-crowned-as-rmc-euro-trophy-season-concludes-at-trinec",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Nicolas Picot",
+          "team": null,
+          "points": null,
+          "sourceRecordId": "rmcet-2026-dd2-masters"
+        }
+      ]
+    },
+    {
+      "id": "kg-aaea41cb732d879b",
+      "championship": "RMC Euro Trophy",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "DD2",
+      "sessionType": "standings",
+      "date": "2026-09-14",
+      "source": "RMC Euro Trophy",
+      "sourceUrl": "https://www.rotaxmaxchallenge-eurotrophy.com/news/champions-crowned-as-rmc-euro-trophy-season-concludes-at-trinec",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Jakub Bezel",
+          "team": null,
+          "points": null,
+          "sourceRecordId": "rmcet-2026-dd2"
+        }
+      ]
+    },
+    {
+      "id": "kg-bb67e5f0d9375648",
+      "championship": "Champions of the Future Euro Series",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "OK Junior",
+      "sessionType": "standings",
+      "date": "2026-09-12",
+      "source": "RFEDA / Champions of the Future",
+      "sourceUrl": "https://www.rfeda.es/noticias/c/0/i/98008483/daniel-miron-campeon-de-la-champions-future-euro-series",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Daniel Miron",
+          "team": null,
+          "points": null,
+          "sourceRecordId": "cotf-2026-ok-junior"
+        }
+      ]
+    },
+    {
+      "id": "kg-92b2d5c20a5d2382",
+      "championship": "Australian Kart Championship",
+      "season": 2026,
+      "event": "Seymour, VIC",
+      "className": "X30",
+      "sessionType": "event",
+      "date": "2026-09-06",
+      "source": "Karting Australia",
+      "sourceUrl": "https://www.karting.net.au/karting-australia/champions/australian-kart-championship-stars-of-karting-cik-championship-round-winners/",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Braxton Regan",
+          "team": "",
+          "points": null,
+          "sourceRecordId": "akc-2026-r4-x30"
+        }
+      ]
+    },
+    {
+      "id": "kg-44243cab755072e8",
+      "championship": "Australian Kart Championship",
+      "season": 2026,
+      "event": "Seymour, VIC",
+      "className": "TaG 125",
+      "sessionType": "event",
+      "date": "2026-09-06",
+      "source": "Karting Australia",
+      "sourceUrl": "https://www.karting.net.au/karting-australia/champions/australian-kart-championship-stars-of-karting-cik-championship-round-winners/",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Kiahn Burt",
+          "team": "",
+          "points": null,
+          "sourceRecordId": "akc-2026-r4-tag125"
+        }
+      ]
+    },
+    {
+      "id": "kg-1a461d1ff6e8b167",
+      "championship": "Australian Kart Championship",
+      "season": 2026,
+      "event": "Seymour, VIC",
+      "className": "KZ2",
+      "sessionType": "event",
+      "date": "2026-09-06",
+      "source": "Karting Australia",
+      "sourceUrl": "https://www.karting.net.au/karting-australia/champions/australian-kart-championship-stars-of-karting-cik-championship-round-winners/",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Toby Dvorak",
+          "team": "",
+          "points": null,
+          "sourceRecordId": "akc-2026-r4-kz2"
+        }
+      ]
+    },
+    {
+      "id": "kg-1d74613a2e4e7cfc",
+      "championship": "Australian Kart Championship",
+      "season": 2026,
+      "event": "Seymour, VIC",
+      "className": "KA3 Senior",
+      "sessionType": "event",
+      "date": "2026-09-06",
+      "source": "Karting Australia",
+      "sourceUrl": "https://www.karting.net.au/karting-australia/champions/australian-kart-championship-stars-of-karting-cik-championship-round-winners/",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Zac Heard",
+          "team": "",
+          "points": null,
+          "sourceRecordId": "akc-2026-r4-ka3s"
+        }
+      ]
+    },
+    {
+      "id": "kg-45205380d21539ad",
+      "championship": "Australian Kart Championship",
+      "season": 2026,
+      "event": "Seymour, VIC",
+      "className": "KA3 Junior",
+      "sessionType": "event",
+      "date": "2026-09-06",
+      "source": "Karting Australia",
+      "sourceUrl": "https://www.karting.net.au/karting-australia/champions/australian-kart-championship-stars-of-karting-cik-championship-round-winners/",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Archie Bristow",
+          "team": "",
+          "points": null,
+          "sourceRecordId": "akc-2026-r4-ka3j"
+        }
+      ]
+    },
+    {
+      "id": "kg-185cef4f7e5da6b8",
+      "championship": "Australian Kart Championship",
+      "season": 2026,
+      "event": "Seymour, VIC",
+      "className": "KA2",
+      "sessionType": "event",
+      "date": "2026-09-06",
+      "source": "Karting Australia",
+      "sourceUrl": "https://www.karting.net.au/karting-australia/champions/australian-kart-championship-stars-of-karting-cik-championship-round-winners/",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Jack Larsen",
+          "team": "",
+          "points": null,
+          "sourceRecordId": "akc-2026-r4-ka2"
+        }
+      ]
+    },
+    {
+      "id": "kg-c704762188dfa115",
+      "championship": "Australian Kart Championship",
+      "season": 2026,
+      "event": "Seymour, VIC",
+      "className": "Cadet 9",
+      "sessionType": "event",
+      "date": "2026-09-06",
+      "source": "Karting Australia",
+      "sourceUrl": "https://www.karting.net.au/karting-australia/champions/australian-kart-championship-stars-of-karting-cik-championship-round-winners/",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Max Gosling",
+          "team": "",
+          "points": null,
+          "sourceRecordId": "akc-2026-r4-c9"
+        }
+      ]
+    },
+    {
+      "id": "kg-805ba238a9c95337",
+      "championship": "Australian Kart Championship",
+      "season": 2026,
+      "event": "Seymour, VIC",
+      "className": "Cadet 12",
+      "sessionType": "event",
+      "date": "2026-09-06",
+      "source": "Karting Australia",
+      "sourceUrl": "https://www.karting.net.au/karting-australia/champions/australian-kart-championship-stars-of-karting-cik-championship-round-winners/",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Alana Gurney",
+          "team": "",
+          "points": null,
+          "sourceRecordId": "akc-2026-r4-c12"
+        }
+      ]
+    },
+    {
+      "id": "kg-06fb8e861293e7e9",
+      "championship": "IAME Euro Series",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "X30 Mini",
+      "sessionType": "standings",
+      "date": "2026-08-29",
+      "source": "KartXpress / IAME Euro Series report",
+      "sourceUrl": "https://www.kartxpress.com/ReadMore/an-unforgettable-genk-finale-brings-the-2026-iame-euro-series-to-a-spectacular-close",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Ilyas Sami",
+          "team": null,
+          "points": null,
+          "sourceRecordId": "iame-euro-2026-x30-mini"
+        }
+      ]
+    },
+    {
+      "id": "kg-6dfadf4aaf5dfa0d",
+      "championship": "WSK Euro Series",
+      "season": 2026,
+      "event": "Cremona Circuit",
+      "className": "OK-N Junior",
+      "sessionType": "event",
+      "date": "2026-07-11",
+      "source": "WSK Promotion",
+      "sourceUrl": "https://www.wskarting.it/NEWS/1821",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Hedfors",
+          "team": null,
+          "points": null,
+          "sourceRecordId": "wsk-2026-euro-ok-n-junior"
+        }
+      ]
+    },
+    {
+      "id": "kg-d49638a58aa4cfce",
+      "championship": "WSK Euro Series",
+      "season": 2026,
+      "event": "Cremona Circuit",
+      "className": "OK-N",
+      "sessionType": "event",
+      "date": "2026-07-11",
+      "source": "WSK Promotion",
+      "sourceUrl": "https://www.wskarting.it/NEWS/1821",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Giudice",
+          "team": null,
+          "points": null,
+          "sourceRecordId": "wsk-2026-euro-ok-n"
+        }
+      ]
+    },
+    {
+      "id": "kg-ac88e6e32b3bc14a",
+      "championship": "WSK Euro Series",
+      "season": 2026,
+      "event": "Cremona Circuit",
+      "className": "OK Junior",
+      "sessionType": "event",
+      "date": "2026-07-11",
+      "source": "WSK Promotion",
+      "sourceUrl": "https://www.wskarting.it/NEWS/1821",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Matvei Dergunov",
+          "team": null,
+          "points": null,
+          "sourceRecordId": "wsk-2026-euro-ok-junior"
+        }
+      ]
+    },
+    {
+      "id": "kg-11f091fd258ea744",
+      "championship": "WSK Euro Series",
+      "season": 2026,
+      "event": "Cremona Circuit",
+      "className": "OK",
+      "sessionType": "event",
+      "date": "2026-07-11",
+      "source": "WSK Promotion",
+      "sourceUrl": "https://www.wskarting.it/NEWS/1821",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Qarrar Firhand",
+          "team": null,
+          "points": null,
+          "sourceRecordId": "wsk-2026-euro-ok"
+        }
+      ]
+    },
+    {
+      "id": "kg-07bc44fa58a1ad8d",
+      "championship": "WSK Euro Series",
+      "season": 2026,
+      "event": "Cremona Circuit",
+      "className": "MINI U10",
+      "sessionType": "event",
+      "date": "2026-07-11",
+      "source": "WSK Promotion",
+      "sourceUrl": "https://www.wskarting.it/NEWS/1821",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Sasha Miras Y Munoz",
+          "team": null,
+          "points": null,
+          "sourceRecordId": "wsk-2026-euro-mini-u10"
+        }
+      ]
+    },
+    {
+      "id": "kg-dd1776c14112ed6c",
+      "championship": "WSK Euro Series",
+      "season": 2026,
+      "event": "Cremona Circuit",
+      "className": "MINI Gr.3",
+      "sessionType": "event",
+      "date": "2026-07-11",
+      "source": "WSK Promotion",
+      "sourceUrl": "https://www.wskarting.it/NEWS/1821",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Mair",
+          "team": null,
+          "points": null,
+          "sourceRecordId": "wsk-2026-euro-mini-gr-3"
+        }
+      ]
+    },
+    {
+      "id": "kg-0f4ee0483970b4fa",
+      "championship": "WSK Euro Series",
+      "season": 2026,
+      "event": "Cremona Circuit",
+      "className": "KZ2",
+      "sessionType": "event",
+      "date": "2026-07-11",
+      "source": "WSK Promotion",
+      "sourceUrl": "https://www.wskarting.it/NEWS/1821",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Max Orlov",
+          "team": null,
+          "points": null,
+          "sourceRecordId": "wsk-2026-euro-kz2"
+        }
+      ]
+    },
+    {
+      "id": "kg-a3a1e11b59142aab",
+      "championship": "RMC International Trophy Asia",
+      "season": 2026,
+      "event": "Coloane Kart Circuit",
+      "className": "Senior MAX Masters",
+      "sessionType": "event",
+      "date": "2026-01-25",
+      "source": "Rotax Racing",
+      "sourceUrl": "https://www.rotax-racing.com/news/rmc-international-trophy-asia-review",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Murai Kensuke",
+          "team": null,
+          "points": null,
+          "sourceRecordId": "rotax-asia-2026-senior-max-masters"
+        }
+      ]
+    },
+    {
+      "id": "kg-935a92dd40695445",
+      "championship": "RMC International Trophy Asia",
+      "season": 2026,
+      "event": "Coloane Kart Circuit",
+      "className": "Senior MAX",
+      "sessionType": "event",
+      "date": "2026-01-25",
+      "source": "Rotax Racing",
+      "sourceUrl": "https://www.rotax-racing.com/news/rmc-international-trophy-asia-review",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "You De Lu",
+          "team": null,
+          "points": null,
+          "sourceRecordId": "rotax-asia-2026-senior-max"
+        }
+      ]
+    },
+    {
+      "id": "kg-dc889a2664e8c704",
+      "championship": "RMC International Trophy Asia",
+      "season": 2026,
+      "event": "Coloane Kart Circuit",
+      "className": "Mini MAX",
+      "sessionType": "event",
+      "date": "2026-01-25",
+      "source": "Rotax Racing",
+      "sourceUrl": "https://www.rotax-racing.com/news/rmc-international-trophy-asia-review",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Alfie Mair",
+          "team": null,
+          "points": null,
+          "sourceRecordId": "rotax-asia-2026-mini-max"
+        }
+      ]
+    },
+    {
+      "id": "kg-245ea212c1be5b78",
+      "championship": "RMC International Trophy Asia",
+      "season": 2026,
+      "event": "Coloane Kart Circuit",
+      "className": "Micro MAX",
+      "sessionType": "event",
+      "date": "2026-01-25",
+      "source": "Rotax Racing",
+      "sourceUrl": "https://www.rotax-racing.com/news/rmc-international-trophy-asia-review",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Daniel Yoon",
+          "team": null,
+          "points": null,
+          "sourceRecordId": "rotax-asia-2026-micro-max"
+        }
+      ]
+    },
+    {
+      "id": "kg-c9e13f6f750f7609",
+      "championship": "RMC International Trophy Asia",
+      "season": 2026,
+      "event": "Coloane Kart Circuit",
+      "className": "Junior MAX",
+      "sessionType": "event",
+      "date": "2026-01-25",
+      "source": "Rotax Racing",
+      "sourceUrl": "https://www.rotax-racing.com/news/rmc-international-trophy-asia-review",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Peerapongpan Sutumno",
+          "team": null,
+          "points": null,
+          "sourceRecordId": "rotax-asia-2026-junior-max"
+        }
+      ]
+    },
+    {
+      "id": "kg-2a5e0ecaef565153",
+      "championship": "RMC International Trophy Asia",
+      "season": 2026,
+      "event": "Coloane Kart Circuit",
+      "className": "DD2 Masters",
+      "sessionType": "event",
+      "date": "2026-01-25",
+      "source": "Rotax Racing",
+      "sourceUrl": "https://www.rotax-racing.com/news/rmc-international-trophy-asia-review",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Jan Vonzanok",
+          "team": null,
+          "points": null,
+          "sourceRecordId": "rotax-asia-2026-dd2-masters"
+        }
+      ]
+    },
+    {
+      "id": "kg-cac971d28d547c2e",
+      "championship": "RMC International Trophy Asia",
+      "season": 2026,
+      "event": "Coloane Kart Circuit",
+      "className": "DD2",
+      "sessionType": "event",
+      "date": "2026-01-25",
+      "source": "Rotax Racing",
+      "sourceUrl": "https://www.rotax-racing.com/news/rmc-international-trophy-asia-review",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Ragnar Veerus",
+          "team": null,
+          "points": null,
+          "sourceRecordId": "rotax-asia-2026-dd2"
+        }
+      ]
+    }
+  ]
+}\n
