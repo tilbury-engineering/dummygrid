@@ -43,7 +43,25 @@ jobs:
           if git diff --cached --quiet; then
             echo "No result changes"
           else
-            git commit -m "Refresh global karting results"
-            git pull --rebase origin main
-            git push
+            # Another scheduled bot may have advanced main during this run.
+            # Retry against fresh main and regenerate, rather than rebasing
+            # generated JSON onto an incompatible historical snapshot.
+            for attempt in 1 2 3; do
+              git fetch origin main
+              git reset --hard origin/main
+              python scripts/update_results.py
+              git add public/results.json public/results-normalized.json
+              if git diff --cached --quiet; then
+                echo "Results already up to date"
+                exit 0
+              fi
+              git commit -m "Refresh global karting results"
+              if git push origin HEAD:main; then
+                exit 0
+              fi
+              echo "Concurrent update detected; retry $attempt"
+              sleep 2
+            done
+            echo "Failed to publish results after three retries"
+            exit 1
           fi
