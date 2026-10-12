@@ -304,6 +304,39 @@ def main():
         key=r.get("id") or (r.get("championship"),r.get("round"),r.get("className"),r.get("driver"))
         if str(key) in seen:continue
         seen.add(str(key));out.append(r)
+    # Provider-independent index for championship > season > event > class > session.
+    # Keep the legacy records payload unchanged for existing UI consumers.
+    from collections import defaultdict
+    groups = {}
+    for row in out:
+        championship = clean(row.get("championship"))
+        year = row.get("year")
+        event = clean(row.get("event"))
+        category = clean(row.get("className"))
+        if not championship or not year or not event or not category:
+            continue
+        key = (championship, str(year), event, category, row.get("type", "event"))
+        if key not in groups:
+            groups[key] = {
+                "id": "kg-" + __import__("hashlib").sha256(
+                    json.dumps(key, ensure_ascii=False).encode("utf-8")
+                ).hexdigest()[:16],
+                "championship": championship, "season": year, "event": event,
+                "className": category, "sessionType": row.get("type", "event"),
+                "date": row.get("date"), "source": row.get("source"),
+                "sourceUrl": row.get("sourceUrl"), "classifications": []
+            }
+        groups[key]["classifications"].append({
+            "position": row.get("position"), "driver": row.get("driver"),
+            "team": row.get("team"), "points": row.get("points"),
+            "sourceRecordId": row.get("id")
+        })
+    normalized = sorted(groups.values(), key=lambda x: str(x.get("date") or ""), reverse=True)
+    with open("public/results-normalized.json", "w", encoding="utf-8") as f:
+        json.dump({"schemaVersion": 1, "updatedAt": datetime.now(timezone.utc).isoformat(),
+                   "events": normalized}, f, ensure_ascii=False, indent=2)
+        f.write("\\n")
+    print("wrote", len(normalized), "normalized event/class/session groups")
     with open(OUT,"w",encoding="utf-8") as f:
         json.dump({"updatedAt":datetime.now(timezone.utc).isoformat(),"records":out},f,ensure_ascii=False,indent=2)
         f.write("\n")
