@@ -489,6 +489,27 @@ function InternationalRanking(){
  <p className="muted">{rankingData?.updatedAt?"Source index updated "+new Date(rankingData.updatedAt).toLocaleDateString():"Official FIA source index"}. KartGrid does not recalculate FIA points.</p>
  <a className="button" href="https://www.fiakarting.com/page/international-karting-ranking-classification" target="_blank" rel="noopener noreferrer">Official FIA ranking ↗</a></section>
 }
+function useNormalizedResults(){
+ return useRemoteJson("results-normalized.json",{events:[],updatedAt:null});
+}
+function GlobalResultsArchive(){
+ const {data,loading}=useNormalizedResults();
+ const [query,setQuery]=useState("");
+ const [selected,setSelected]=useState(null);
+ const [champ,setChamp]=useState("All");
+ const events=data?.events||[];
+ const championships=[...new Set(events.map(e=>e.championship))].sort();
+ const filtered=events.filter(e=>(champ==="All"||e.championship===champ)&&
+  [e.championship,e.event,e.className,e.season,e.source,...(e.classifications||[]).map(r=>r.driver)].join(" ").toLowerCase().includes(query.toLowerCase()));
+ const active=events.find(e=>e.id===selected);
+ return <section className="global-results-archive">
+ <h2>Global championship archive</h2>
+ <p>Browse indexed championship standings and event results. Coverage depends on published provider data; a winner-only record is not a full race classification.</p>
+ <Filters><input aria-label="Search global results" placeholder="Search championship, event, class or driver…" value={query} onChange={e=>setQuery(e.target.value)}/><select aria-label="Championship" value={champ} onChange={e=>setChamp(e.target.value)}><option>All</option>{championships.map(c=><option key={c}>{c}</option>)}</select></Filters>
+ {loading?<Empty text="Loading global results…"/>:filtered.length?<div className="session-list">{filtered.slice(0,150).map(e=><button type="button" className="session-row" key={e.id} onClick={()=>setSelected(e.id===selected?null:e.id)} aria-expanded={selected===e.id} style={{width:"100%",textAlign:"left",cursor:"pointer"}}><div className="session-no">{e.season}</div><div><div className="meta">{e.championship} · {e.sessionType==="standings"?"Standings":"Event result"} · {e.className}</div><h3>{e.event}</h3><p>{e.date||""} · {e.classifications?.length||0} published position(s)</p></div><b>{selected===e.id?"Close ↑":"Classification ↓"}</b></button>)}</div>:<Empty text="No published results match the filters."/>}
+ {active&&<div className="classification-wrap"><h3>{active.championship} — {active.event} — {active.className}</h3><table><thead><tr><th>Position</th><th>Driver / entrant</th><th>Team</th><th>Points</th></tr></thead><tbody>{(active.classifications||[]).map((r,i)=><tr key={i}><td>{r.position??"—"}</td><td>{r.driver||"—"}</td><td>{r.team||"—"}</td><td>{r.points??"—"}</td></tr>)}</tbody></table>{active.sourceUrl&&<a href={active.sourceUrl} target="_blank" rel="noopener noreferrer">Original source: {active.source||"Results provider"} ↗</a>}</div>}
+ </section>
+}
 function ResultsPage(){
  const {data,loading}=useTimingData();
  const [q,setQ]=useState("");
@@ -525,6 +546,7 @@ function ResultsPage(){
  <Filters><input placeholder="Search driver, class, event or championship…" value={q} onChange={e=>setQ(e.target.value)}/></Filters>
  {searching&&<div className="global-result-search"><div className="meta">{loading?"Loading timing archive…":matches.length+" matching result"+(matches.length===1?"":"s")}</div>{matches.length?<div className="session-list">{matches.map((m,i)=><a className="session-row search-hit" href={"#/results/alpha/"+m.slug+"/event/"+m.eventId+"/session/"+m.sessionId} key={m.slug+m.eventId+m.sessionId+i}><div className="session-no">↗</div><div><div className="meta">{m.series} · {m.event}</div><h3>{m.session}</h3>{m.row&&<p>{m.row}</p>}</div><b>Open result →</b></a>)}</div>:!loading&&<Empty text="No indexed classifications match that search yet."/>}</div>}
  {!searching&&<div className="results-series-grid">{providers.map(x=><a className="results-series-card" key={x.provider+x.slug} href={x.href}><span>{x.provider}</span><h3>{x.name}</h3><p>{x.copy}</p><b>Browse results →</b></a>)}</div>}
+ {!searching&&<GlobalResultsArchive/>}
  </section>
 }
 function useTimingData(){
