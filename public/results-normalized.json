@@ -1,7 +1,167 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-23T13:47:51.861244+00:00",
+  "updatedAt": "2026-10-23T20:05:06.489823+00:00",
   "events": [
+    {
+      "id": "kg-596398b3d5764173",
+      "championship": "SKUSA Pro Tour",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "X30 Junior",
+      "sessionType": "standings",
+      "date": "2026-10-23",
+      "source": "Superkarts! USA",
+      "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Travis Pettit",
+          "team": null,
+          "points": 1430.0,
+          "sourceRecordId": "skusa-2026-x30-junior"
+        }
+      ]
+    },
+    {
+      "id": "kg-0dd6da77010cee02",
+      "championship": "SKUSA Pro Tour",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "Pro X30",
+      "sessionType": "standings",
+      "date": "2026-10-23",
+      "source": "Superkarts! USA",
+      "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Joe Turney",
+          "team": null,
+          "points": 1386.0,
+          "sourceRecordId": "skusa-2026-pro-x30"
+        }
+      ]
+    },
+    {
+      "id": "kg-f2f15bd11522c8f8",
+      "championship": "SKUSA Pro Tour",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "Pro Shifter",
+      "sessionType": "standings",
+      "date": "2026-10-23",
+      "source": "Superkarts! USA",
+      "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Matheus Morgatto",
+          "team": null,
+          "points": 1060.0,
+          "sourceRecordId": "skusa-2026-pro-shifter"
+        }
+      ]
+    },
+    {
+      "id": "kg-f7bbdee178f4bbd3",
+      "championship": "SKUSA Pro Tour",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "Mini Swift",
+      "sessionType": "standings",
+      "date": "2026-10-23",
+      "source": "Superkarts! USA",
+      "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Dutch Westbrook",
+          "team": null,
+          "points": 1380.0,
+          "sourceRecordId": "skusa-2026-mini-swift"
+        }
+      ]
+    },
+    {
+      "id": "kg-714d464cf433d9ab",
+      "championship": "SKUSA Pro Tour",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "Micro Swift",
+      "sessionType": "standings",
+      "date": "2026-10-23",
+      "source": "Superkarts! USA",
+      "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Beau Wyatt",
+          "team": null,
+          "points": 1380.0,
+          "sourceRecordId": "skusa-2026-micro-swift"
+        }
+      ]
+    },
+    {
+      "id": "kg-973bb09c6e4658e9",
+      "championship": "SKUSA Pro Tour",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "KA100 Senior",
+      "sessionType": "standings",
+      "date": "2026-10-23",
+      "source": "Superkarts! USA",
+      "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Pauly Massimino",
+          "team": null,
+          "points": 1430.0,
+          "sourceRecordId": "skusa-2026-ka100-senior"
+        }
+      ]
+    },
+    {
+      "id": "kg-5a19cc409284174c",
+      "championship": "SKUSA Pro Tour",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "KA100 Master",
+      "sessionType": "standings",
+      "date": "2026-10-23",
+      "source": "Superkarts! USA",
+      "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Mario Barrios",
+          "team": null,
+          "points": 1455.0,
+          "sourceRecordId": "skusa-2026-ka100-master"
+        }
+      ]
+    },
+    {
+      "id": "kg-5ffa34b4c09756e2",
+      "championship": "SKUSA Pro Tour",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "KA100 Junior",
+      "sessionType": "standings",
+      "date": "2026-10-23",
+      "source": "Superkarts! USA",
+      "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Colton Schniegenberg",
+          "team": null,
+          "points": 1229.0,
+          "sourceRecordId": "skusa-2026-ka100-junior"
+        }
+      ]
+    },
     {
       "id": "kg-7e6455ab112a92f1",
       "championship": "ROK Cup Italia",
@@ -99,166 +259,6 @@
           "team": null,
           "points": 426,
           "sourceRecordId": "rok-italia-2026-junior-rok"
-        }
-      ]
-    },
-    {
-      "id": "kg-596398b3d5764173",
-      "championship": "SKUSA Pro Tour",
-      "season": 2026,
-      "event": "2026 season",
-      "className": "X30 Junior",
-      "sessionType": "standings",
-      "date": "2026-10-21",
-      "source": "Superkarts! USA",
-      "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
-      "classifications": [
-        {
-          "position": 1,
-          "driver": "Travis Pettit",
-          "team": null,
-          "points": 1430.0,
-          "sourceRecordId": "skusa-2026-x30-junior"
-        }
-      ]
-    },
-    {
-      "id": "kg-0dd6da77010cee02",
-      "championship": "SKUSA Pro Tour",
-      "season": 2026,
-      "event": "2026 season",
-      "className": "Pro X30",
-      "sessionType": "standings",
-      "date": "2026-10-21",
-      "source": "Superkarts! USA",
-      "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
-      "classifications": [
-        {
-          "position": 1,
-          "driver": "Joe Turney",
-          "team": null,
-          "points": 1386.0,
-          "sourceRecordId": "skusa-2026-pro-x30"
-        }
-      ]
-    },
-    {
-      "id": "kg-f2f15bd11522c8f8",
-      "championship": "SKUSA Pro Tour",
-      "season": 2026,
-      "event": "2026 season",
-      "className": "Pro Shifter",
-      "sessionType": "standings",
-      "date": "2026-10-21",
-      "source": "Superkarts! USA",
-      "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
-      "classifications": [
-        {
-          "position": 1,
-          "driver": "Matheus Morgatto",
-          "team": null,
-          "points": 1060.0,
-          "sourceRecordId": "skusa-2026-pro-shifter"
-        }
-      ]
-    },
-    {
-      "id": "kg-f7bbdee178f4bbd3",
-      "championship": "SKUSA Pro Tour",
-      "season": 2026,
-      "event": "2026 season",
-      "className": "Mini Swift",
-      "sessionType": "standings",
-      "date": "2026-10-21",
-      "source": "Superkarts! USA",
-      "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
-      "classifications": [
-        {
-          "position": 1,
-          "driver": "Dutch Westbrook",
-          "team": null,
-          "points": 1380.0,
-          "sourceRecordId": "skusa-2026-mini-swift"
-        }
-      ]
-    },
-    {
-      "id": "kg-714d464cf433d9ab",
-      "championship": "SKUSA Pro Tour",
-      "season": 2026,
-      "event": "2026 season",
-      "className": "Micro Swift",
-      "sessionType": "standings",
-      "date": "2026-10-21",
-      "source": "Superkarts! USA",
-      "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
-      "classifications": [
-        {
-          "position": 1,
-          "driver": "Beau Wyatt",
-          "team": null,
-          "points": 1380.0,
-          "sourceRecordId": "skusa-2026-micro-swift"
-        }
-      ]
-    },
-    {
-      "id": "kg-973bb09c6e4658e9",
-      "championship": "SKUSA Pro Tour",
-      "season": 2026,
-      "event": "2026 season",
-      "className": "KA100 Senior",
-      "sessionType": "standings",
-      "date": "2026-10-21",
-      "source": "Superkarts! USA",
-      "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
-      "classifications": [
-        {
-          "position": 1,
-          "driver": "Pauly Massimino",
-          "team": null,
-          "points": 1430.0,
-          "sourceRecordId": "skusa-2026-ka100-senior"
-        }
-      ]
-    },
-    {
-      "id": "kg-5a19cc409284174c",
-      "championship": "SKUSA Pro Tour",
-      "season": 2026,
-      "event": "2026 season",
-      "className": "KA100 Master",
-      "sessionType": "standings",
-      "date": "2026-10-21",
-      "source": "Superkarts! USA",
-      "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
-      "classifications": [
-        {
-          "position": 1,
-          "driver": "Mario Barrios",
-          "team": null,
-          "points": 1455.0,
-          "sourceRecordId": "skusa-2026-ka100-master"
-        }
-      ]
-    },
-    {
-      "id": "kg-5ffa34b4c09756e2",
-      "championship": "SKUSA Pro Tour",
-      "season": 2026,
-      "event": "2026 season",
-      "className": "KA100 Junior",
-      "sessionType": "standings",
-      "date": "2026-10-21",
-      "source": "Superkarts! USA",
-      "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
-      "classifications": [
-        {
-          "position": 1,
-          "driver": "Colton Schniegenberg",
-          "team": null,
-          "points": 1229.0,
-          "sourceRecordId": "skusa-2026-ka100-junior"
         }
       ]
     },
