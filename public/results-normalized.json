@@ -1,7 +1,107 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-21T14:06:31.313936+00:00",
+  "updatedAt": "2026-10-23T13:47:51.861244+00:00",
   "events": [
+    {
+      "id": "kg-7e6455ab112a92f1",
+      "championship": "ROK Cup Italia",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "Shifter ROK",
+      "sessionType": "standings",
+      "date": "2026-10-23",
+      "source": "ROK Cup Italia",
+      "sourceUrl": "https://italy.rokcup.com/classifiche_campionato_en.php?anno=2026",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Chiarello Marco",
+          "team": null,
+          "points": 456,
+          "sourceRecordId": "rok-italia-2026-shifter-rok"
+        }
+      ]
+    },
+    {
+      "id": "kg-fecef8d61d4c673b",
+      "championship": "ROK Cup Italia",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "Senior ROK",
+      "sessionType": "standings",
+      "date": "2026-10-23",
+      "source": "ROK Cup Italia",
+      "sourceUrl": "https://italy.rokcup.com/classifiche_campionato_en.php?anno=2026",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Salemi Riccardo",
+          "team": null,
+          "points": 485,
+          "sourceRecordId": "rok-italia-2026-senior-rok"
+        }
+      ]
+    },
+    {
+      "id": "kg-597c610de2c55563",
+      "championship": "ROK Cup Italia",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "Mini ROK U10",
+      "sessionType": "standings",
+      "date": "2026-10-23",
+      "source": "ROK Cup Italia",
+      "sourceUrl": "https://italy.rokcup.com/classifiche_campionato_en.php?anno=2026",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "De Ruit Milan",
+          "team": null,
+          "points": 409,
+          "sourceRecordId": "rok-italia-2026-mini-rok-u10"
+        }
+      ]
+    },
+    {
+      "id": "kg-b86570d5a800e355",
+      "championship": "ROK Cup Italia",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "Mini ROK",
+      "sessionType": "standings",
+      "date": "2026-10-23",
+      "source": "ROK Cup Italia",
+      "sourceUrl": "https://italy.rokcup.com/classifiche_campionato_en.php?anno=2026",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Almekdad Ghazi",
+          "team": null,
+          "points": 415,
+          "sourceRecordId": "rok-italia-2026-mini-rok"
+        }
+      ]
+    },
+    {
+      "id": "kg-8d5c418b259352bf",
+      "championship": "ROK Cup Italia",
+      "season": 2026,
+      "event": "2026 season",
+      "className": "Junior ROK",
+      "sessionType": "standings",
+      "date": "2026-10-23",
+      "source": "ROK Cup Italia",
+      "sourceUrl": "https://italy.rokcup.com/classifiche_campionato_en.php?anno=2026",
+      "classifications": [
+        {
+          "position": 1,
+          "driver": "Kostrzewa Blazej",
+          "team": null,
+          "points": 426,
+          "sourceRecordId": "rok-italia-2026-junior-rok"
+        }
+      ]
+    },
     {
       "id": "kg-596398b3d5764173",
       "championship": "SKUSA Pro Tour",
@@ -159,106 +259,6 @@
           "team": null,
           "points": 1229.0,
           "sourceRecordId": "skusa-2026-ka100-junior"
-        }
-      ]
-    },
-    {
-      "id": "kg-7e6455ab112a92f1",
-      "championship": "ROK Cup Italia",
-      "season": 2026,
-      "event": "2026 season",
-      "className": "Shifter ROK",
-      "sessionType": "standings",
-      "date": "2026-10-21",
-      "source": "ROK Cup Italia",
-      "sourceUrl": "https://italy.rokcup.com/classifiche_campionato_en.php?anno=2026",
-      "classifications": [
-        {
-          "position": 1,
-          "driver": "Chiarello Marco",
-          "team": null,
-          "points": 456,
-          "sourceRecordId": "rok-italia-2026-shifter-rok"
-        }
-      ]
-    },
-    {
-      "id": "kg-fecef8d61d4c673b",
-      "championship": "ROK Cup Italia",
-      "season": 2026,
-      "event": "2026 season",
-      "className": "Senior ROK",
-      "sessionType": "standings",
-      "date": "2026-10-21",
-      "source": "ROK Cup Italia",
-      "sourceUrl": "https://italy.rokcup.com/classifiche_campionato_en.php?anno=2026",
-      "classifications": [
-        {
-          "position": 1,
-          "driver": "Salemi Riccardo",
-          "team": null,
-          "points": 485,
-          "sourceRecordId": "rok-italia-2026-senior-rok"
-        }
-      ]
-    },
-    {
-      "id": "kg-597c610de2c55563",
-      "championship": "ROK Cup Italia",
-      "season": 2026,
-      "event": "2026 season",
-      "className": "Mini ROK U10",
-      "sessionType": "standings",
-      "date": "2026-10-21",
-      "source": "ROK Cup Italia",
-      "sourceUrl": "https://italy.rokcup.com/classifiche_campionato_en.php?anno=2026",
-      "classifications": [
-        {
-          "position": 1,
-          "driver": "De Ruit Milan",
-          "team": null,
-          "points": 409,
-          "sourceRecordId": "rok-italia-2026-mini-rok-u10"
-        }
-      ]
-    },
-    {
-      "id": "kg-b86570d5a800e355",
-      "championship": "ROK Cup Italia",
-      "season": 2026,
-      "event": "2026 season",
-      "className": "Mini ROK",
-      "sessionType": "standings",
-      "date": "2026-10-21",
-      "source": "ROK Cup Italia",
-      "sourceUrl": "https://italy.rokcup.com/classifiche_campionato_en.php?anno=2026",
-      "classifications": [
-        {
-          "position": 1,
-          "driver": "Almekdad Ghazi",
-          "team": null,
-          "points": 415,
-          "sourceRecordId": "rok-italia-2026-mini-rok"
-        }
-      ]
-    },
-    {
-      "id": "kg-8d5c418b259352bf",
-      "championship": "ROK Cup Italia",
-      "season": 2026,
-      "event": "2026 season",
-      "className": "Junior ROK",
-      "sessionType": "standings",
-      "date": "2026-10-21",
-      "source": "ROK Cup Italia",
-      "sourceUrl": "https://italy.rokcup.com/classifiche_campionato_en.php?anno=2026",
-      "classifications": [
-        {
-          "position": 1,
-          "driver": "Kostrzewa Blazej",
-          "team": null,
-          "points": 426,
-          "sourceRecordId": "rok-italia-2026-junior-rok"
         }
       ]
     },
