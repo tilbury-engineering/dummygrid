@@ -335,7 +335,7 @@ def main():
     with open("public/results-normalized.json", "w", encoding="utf-8") as f:
         json.dump({"schemaVersion": 1, "updatedAt": datetime.now(timezone.utc).isoformat(),
                    "events": normalized}, f, ensure_ascii=False, indent=2)
-        f.write("\\n")
+        f.write("\n")
     print("wrote", len(normalized), "normalized event/class/session groups")
     with open(OUT,"w",encoding="utf-8") as f:
         json.dump({"updatedAt":datetime.now(timezone.utc).isoformat(),"records":out},f,ensure_ascii=False,indent=2)
