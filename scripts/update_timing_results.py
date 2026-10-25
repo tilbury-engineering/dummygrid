@@ -92,14 +92,20 @@ def parse_event(slug,eid,event_url=None):
    if ("Finished" in txt or "Live" in txt or "Scheduled" in txt) and len(txt)<800:break
   txt=clean(parent.get_text(" ",strip=True))
   label=clean(a.get_text(" ",strip=True)) or txt
-  race=re.search(r"Race\s*(\d+)\s*:\s*(.+?)(?:\s+Finished|\s+Live|\s+Scheduled|$)",txt,re.I)
-  winner=re.search(r"(?:Practice|Qualifying|Heat|PreFinal|Final) Winner:\s*(.+?)(?:\s{2,}|$)",txt,re.I)
+  # Prefer the linked session label: parent containers can contain dozens of races.
+  raw_name=label if len(label)<180 else ""
+  if not raw_name:
+   segment=txt.split("Race ",1)[-1][:180] if "Race " in txt else txt[:120]
+   raw_name=segment.split(" Finished",1)[0].split(" Live",1)[0].split(" Scheduled",1)[0]
+  raw_name=clean(raw_name)[:140]
+  race=re.search(r"Race\\s*(\\d+)\\s*:\\s*(.+?)(?:\\s+Finished|\\s+Live|\\s+Scheduled|$)",raw_name,re.I)
+  winner=re.search(r"(?:Practice|Qualifying|Heat|PreFinal|Final) Winner:\\s*([^:]{2,75}?)(?=\\s+Race\\s+\\d+\\s*:|$)",txt[:250],re.I)
   sessions.append({
    "id":sid,"eventId":str(eid),"internalEventId":internal_eid,
    "raceNumber":int(race.group(1)) if race else None,
-   "name":clean(race.group(2)) if race else label,
-   "type":classify_type(txt),"winner":clean(winner.group(1)) if winner else None,
-   "text":txt,"url":urljoin(BASE,href.rstrip("/")+"/result")
+   "name":clean(race.group(2))[:120] if race else raw_name,
+   "type":classify_type(raw_name),"winner":clean(winner.group(1)) if winner else None,
+   "text":raw_name,"url":urljoin(BASE,href.rstrip("/")+"/result")
   })
   seen.add(sid)
  return {"id":str(eid),"title":title or clean(body[:100]) or f"Event {eid}","dateStart":dm.group(1) if dm else None,"dateEnd":dm.group(2) if dm else None,"url":url,"sessions":sessions}
