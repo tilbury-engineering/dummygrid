@@ -486,3 +486,18 @@ footer{
 .setup-meta{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:12px;margin:18px 0;padding-bottom:18px;border-bottom:1px solid #e1e1e1}.setup-meta label{display:flex;flex-direction:column;gap:6px;font-size:11px;font-weight:800;text-transform:uppercase}.setup-meta input,.setup-library-head input{padding:10px;border:1px solid #ccc;background:#fff}.setup-library{margin-top:18px}.setup-library-head{display:flex;justify-content:space-between;align-items:end;gap:18px}.setup-library-head input{min-width:280px}.setup-history{margin-top:16px;border-top:1px solid #ddd}.setup-history article{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:14px 0;border-bottom:1px solid #e5e5e5}.setup-history article>div{display:flex;flex-direction:column;gap:3px}.setup-history span,.setup-history small{color:#666}@media(max-width:800px){.setup-meta{grid-template-columns:1fr 1fr}.setup-library-head{align-items:stretch;flex-direction:column}.setup-library-head input{min-width:0;width:100%}}@media(max-width:520px){.setup-meta{grid-template-columns:1fr}.setup-history article{align-items:flex-start;flex-direction:column}}
 
 .teamhub-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}.team-inline{display:flex;gap:8px;margin:14px 0}.team-inline input{flex:1;min-width:0;padding:11px;border:1px solid #ccc}.team-row{width:100%;display:flex;justify-content:space-between;align-items:center;padding:12px;border:0;border-top:1px solid #e4e4e4;background:transparent;text-align:left;cursor:pointer}.team-row.active{background:#f1f1f1}.team-row span{text-transform:uppercase;font-size:10px;font-weight:800}.team-invite{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:15px 0;border-top:1px solid #e3e3e3}.team-invite>div:first-child{display:flex;flex-direction:column;gap:4px}.team-invite>div:last-child{display:flex;gap:8px}.team-permissions{padding:16px 0;border-top:1px solid #ddd}.team-permissions h4{margin:0 0 12px}.team-permissions>div{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.team-permissions label{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px;border:1px solid #ddd;font-weight:700;font-size:12px}@media(max-width:760px){.teamhub-grid{grid-template-columns:1fr}.team-permissions>div{grid-template-columns:1fr 1fr}.team-invite{align-items:flex-start;flex-direction:column}}@media(max-width:480px){.team-inline{flex-direction:column}.team-permissions>div{grid-template-columns:1fr}}
+
+
+/* Results: compact, readable cards on phones and long provider titles. */
+.session-row{min-width:0;text-decoration:none}
+.session-row>div:nth-child(2){min-width:0;overflow:hidden}
+.session-row h3{overflow-wrap:anywhere;word-break:normal;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.session-row .meta{overflow-wrap:anywhere}
+@media(max-width:640px){
+ .session-list{gap:9px}
+ .session-row{grid-template-columns:44px minmax(0,1fr);gap:10px;padding:12px;border-radius:12px;align-items:start}
+ .session-row>b{grid-column:2;justify-self:start;font-size:12px;margin-top:0}
+ .session-row h3{font-size:15px;line-height:1.35;margin:4px 0}
+ .session-no{width:40px;height:40px;font-size:13px}
+ .session-row .meta{font-size:11px}
+}
