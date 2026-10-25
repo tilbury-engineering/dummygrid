@@ -563,6 +563,13 @@ function ResultsSeries({slug}){
  {loading?<Empty text="Loading events…"/>:events.length?<div className="timing-event-list">{events.map(e=><a className="timing-event" href={"#/results/alpha/"+slug+"/event/"+e.id} key={e.id}><div><span>Alpha Timing</span><h3>{e.title}</h3><p>{[e.dateStart,e.dateEnd].filter(Boolean).join(" – ")} · {(e.sessions||[]).length} sessions</p></div><b>View sessions →</b></a>)}</div>:<Empty text="No event data has been indexed yet. The timing database is refreshing."/>}
  </section>
 }
+function compactRaceTitle(value){
+ const text=String(value||"").replace(/\\s+/g," ").trim();
+ // Legacy provider payloads occasionally contain an entire meeting's session list.
+ const race=text.match(/Race\\s*\\d+\\s*:\\s*([^]*?)(?=\\s+Finished\\b|\\s+Live\\b|\\s+Scheduled\\b|\\s+Race\\s*\\d+\\s*:|$)/i);
+ if(race)return race[1].trim().slice(0,95);
+ return text.split(/\\s+Race\\s*\\d+\\s*:/i)[0].split(/\\s+Finished\\s+\\d{1,2}:\\d{2}/i)[0].slice(0,95);
+}
 function ResultsEvent({slug,eventId}){
  const {data,loading}=useTimingData();
  const [type,setType]=useState("All"); const [q,setQ]=useState("");
@@ -570,7 +577,7 @@ function ResultsEvent({slug,eventId}){
  const sessions=(ev?.sessions||[]).filter(x=>(type==="All"||x.type===type)&&((x.name+" "+x.text+" "+(x.winner||"")).toLowerCase().includes(q.toLowerCase())));
  return <section><PageTitle kicker="Event results" title={(ev?.title||"Loading event").toUpperCase()} text={ev?.dateStart?(ev.dateStart+" – "+(ev.dateEnd||ev.dateStart)):"Practice, qualifying, heats and finals"} action={<a className="button" href={"#/results/alpha/"+slug}>Back to events</a>}/>
  <Filters><input placeholder="Search driver, class or session…" value={q} onChange={e=>setQ(e.target.value)}/><select value={type} onChange={e=>setType(e.target.value)}><option>All</option><option>Practice</option><option>Qualifying</option><option>Heat</option><option>PreFinal</option><option>Final</option><option>Session</option></select></Filters>
- {loading?<Empty text="Loading sessions…"/>:sessions.length?<div className="session-list">{sessions.map(x=><a className="session-row" href={"#/results/alpha/"+slug+"/event/"+eventId+"/session/"+x.id} key={x.id}><div className="session-no">{x.raceNumber?"R"+x.raceNumber:x.type.slice(0,1)}</div><div><div className="meta">{x.type}{x.winner?" · Winner: "+x.winner:""}</div><h3>{String(x.name||"Session result").split(/\\s+Race\\s+\\d+\\s*:/i)[0].slice(0,110)}</h3></div><b>View classification →</b></a>)}</div>:<Empty text="No sessions have been indexed for this event yet."/>}
+ {loading?<Empty text="Loading sessions…"/>:sessions.length?<div className="session-list">{sessions.map(x=><a className="session-row" href={"#/results/alpha/"+slug+"/event/"+eventId+"/session/"+x.id} key={x.id}><div className="session-no">{x.raceNumber?"R"+x.raceNumber:x.type.slice(0,1)}</div><div><div className="meta">{x.type}{x.winner?" · Winner: "+x.winner:""}</div><h3>{compactRaceTitle(x.name)}</h3></div><b>View classification →</b></a>)}</div>:<Empty text="No sessions have been indexed for this event yet."/>}
  </section>
 }
 function ResultsSession({slug,eventId,sessionId}){
