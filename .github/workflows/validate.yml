@@ -17,9 +17,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
       - name: Install frontend
-        run: npm install
+        run: npm ci
+      - name: Validate published JSON and public routes
+        run: node scripts/validate_public_release.mjs
       - name: Build frontend
         run: npm run build -- --base=/dummygrid/
       - name: Install API

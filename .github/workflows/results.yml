@@ -35,6 +35,9 @@ jobs:
       - name: Refresh official karting results
         run: python scripts/update_results.py
 
+      - name: Reject invalid generated JSON before publication
+        run: node scripts/validate_public_release.mjs
+
       - name: Commit refreshed results
         run: |
           git config user.name "DummyGrid Results Bot"
@@ -50,6 +53,7 @@ jobs:
               git fetch origin main
               git reset --hard origin/main
               python scripts/update_results.py
+              node scripts/validate_public_release.mjs
               git add public/results.json public/results-normalized.json
               if git diff --cached --quiet; then
                 echo "Results already up to date"
