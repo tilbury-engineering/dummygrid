@@ -537,11 +537,10 @@ function ResultsSeries({slug}){
  </section>
 }
 function compactRaceTitle(value){
- const text=String(value||"").replace(/\\s+/g," ").trim();
- // Legacy provider payloads occasionally contain an entire meeting's session list.
- const race=text.match(/Race\\s*\\d+\\s*:\\s*([^]*?)(?=\\s+Finished\\b|\\s+Live\\b|\\s+Scheduled\\b|\\s+Race\\s*\\d+\\s*:|$)/i);
- if(race)return race[1].trim().slice(0,95);
- return text.split(/\\s+Race\\s*\\d+\\s*:/i)[0].split(/\\s+Finished\\s+\\d{1,2}:\\d{2}/i)[0].slice(0,95);
+ const text=String(value||"").replace(/\s+/g," ").trim();
+ const first=text.match(/(?:^|\s)Race\s*\d+\s*:\s*(.*?)(?=\s+Finished\b|\s+Live\b|\s+Scheduled\b|\s+Race\s*\d+\s*:|$)/i);
+ if(first)return first[1].trim().slice(0,95);
+ return text.split(/\s+Race\s*\d+\s*:/i)[0].split(/\s+Finished\s+\d{1,2}:\d{2}/i)[0].slice(0,95);
 }
 function ResultsEvent({slug,eventId}){
  const {data,loading}=useTimingData();
