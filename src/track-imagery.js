@@ -1,32 +1,26 @@
-// Request a view centred on the recorded venue, in Web Mercator metres.
-// The ground footprint stays consistent at different latitudes.
+import audit from './data/track-imagery-audit.json' with {type: 'json'};
+
+// Only use locations included in the source-and-image audit. A new or renamed
+// venue must be checked before it inherits an aerial image from an older entry.
 export function trackAerialImage(track) {
-  // The imported Buckmore pin points at the neighbouring scout campsite.
-  // Circuit centre: https://www.openstreetmap.org/way/207056667
-  if (track.id === 'buckmore-park') track = {...track, lat:51.3438, long:0.5017};
-  if (track.lat == null || track.long == null || track.lat === '' || track.long === '') return null;
-  const lat = Number(track.lat), lon = Number(track.long);
-  if (!Number.isFinite(lat) || !Number.isFinite(lon) || Math.abs(lat) > 85 || Math.abs(lon) > 180) return null;
-  const radians = lat * Math.PI / 180;
-  const x = 6378137 * lon * Math.PI / 180;
-  const y = 6378137 * Math.log(Math.tan(Math.PI / 4 + radians / 2));
-  const length = Number(track.trackLengthM) || 0;
-  const width = (track.venueType === 'Indoor' ? 500 : Math.max(900, Math.min(1800, length))) / Math.cos(radians);
-  const height = width * 9 / 16;
-  const bbox = [x - width / 2, y - height / 2, x + width / 2, y + height / 2].map(n => n.toFixed(2)).join(',');
-  const params = new URLSearchParams({bbox, bboxSR:'3857', imageSR:'3857', size:'640,360', format:'jpg', f:'image'});
+  const entry = audit.entries[track.id];
+  if (!entry) return null;
+  if ((track.osmSource || null) !== entry.originalSource) return null;
+  if (track.name !== entry.name && !entry.originalSource) return null;
+  const params = new URLSearchParams({bbox:entry.bbox.join(','), bboxSR:'3857', imageSR:'3857', size:'640,360', format:'jpg', f:'image'});
   return {
     url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?' + params,
-    alt: 'Aerial view of the recorded location of ' + track.name,
+    alt: 'Aerial view of ' + track.name + ' venue',
     credit: 'Esri, Vantor, Earthstar Geographics, GIS User Community',
+    source: entry.source,
     aerial: true
   };
 }
 
 export function trackImageCandidates(track) {
-  const photos = (Array.isArray(track.images) ? track.images : []).map(image =>
-    typeof image === 'string' ? {url:image} : image
-  ).filter(image => image && typeof image.url === 'string' && /^https:\/\//i.test(image.url));
+  const photos = (Array.isArray(track.images) ? track.images : []).filter(image =>
+    image && image.verified === true && typeof image.url === 'string' && /^https:\/\//i.test(image.url)
+  );
   const aerial = trackAerialImage(track);
   return [...photos, ...(aerial ? [aerial] : [])];
 }
