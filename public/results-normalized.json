@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-28T21:19:04.586416+00:00",
+  "updatedAt": "2026-10-29T06:25:24.019404+00:00",
   "events": [
     {
       "id": "kg-596398b3d5764173",
@@ -9,7 +9,7 @@
       "event": "2026 season",
       "className": "X30 Junior",
       "sessionType": "standings",
-      "date": "2026-10-28",
+      "date": "2026-10-29",
       "source": "Superkarts! USA",
       "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
       "classifications": [
@@ -29,7 +29,7 @@
       "event": "2026 season",
       "className": "Pro X30",
       "sessionType": "standings",
-      "date": "2026-10-28",
+      "date": "2026-10-29",
       "source": "Superkarts! USA",
       "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
       "classifications": [
@@ -49,7 +49,7 @@
       "event": "2026 season",
       "className": "Pro Shifter",
       "sessionType": "standings",
-      "date": "2026-10-28",
+      "date": "2026-10-29",
       "source": "Superkarts! USA",
       "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
       "classifications": [
@@ -69,7 +69,7 @@
       "event": "2026 season",
       "className": "Mini Swift",
       "sessionType": "standings",
-      "date": "2026-10-28",
+      "date": "2026-10-29",
       "source": "Superkarts! USA",
       "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
       "classifications": [
@@ -89,7 +89,7 @@
       "event": "2026 season",
       "className": "Micro Swift",
       "sessionType": "standings",
-      "date": "2026-10-28",
+      "date": "2026-10-29",
       "source": "Superkarts! USA",
       "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
       "classifications": [
@@ -109,7 +109,7 @@
       "event": "2026 season",
       "className": "KA100 Senior",
       "sessionType": "standings",
-      "date": "2026-10-28",
+      "date": "2026-10-29",
       "source": "Superkarts! USA",
       "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
       "classifications": [
@@ -129,7 +129,7 @@
       "event": "2026 season",
       "className": "KA100 Master",
       "sessionType": "standings",
-      "date": "2026-10-28",
+      "date": "2026-10-29",
       "source": "Superkarts! USA",
       "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
       "classifications": [
@@ -149,7 +149,7 @@
       "event": "2026 season",
       "className": "KA100 Junior",
       "sessionType": "standings",
-      "date": "2026-10-28",
+      "date": "2026-10-29",
       "source": "Superkarts! USA",
       "sourceUrl": "https://superkartsusa.com/national/skusa-pro-tour/series-points.html",
       "classifications": [
@@ -169,7 +169,7 @@
       "event": "2026 season",
       "className": "Shifter ROK",
       "sessionType": "standings",
-      "date": "2026-10-28",
+      "date": "2026-10-29",
       "source": "ROK Cup Italia",
       "sourceUrl": "https://italy.rokcup.com/classifiche_campionato_en.php?anno=2026",
       "classifications": [
@@ -189,7 +189,7 @@
       "event": "2026 season",
       "className": "Senior ROK",
       "sessionType": "standings",
-      "date": "2026-10-28",
+      "date": "2026-10-29",
       "source": "ROK Cup Italia",
       "sourceUrl": "https://italy.rokcup.com/classifiche_campionato_en.php?anno=2026",
       "classifications": [
@@ -209,7 +209,7 @@
       "event": "2026 season",
       "className": "Mini ROK U10",
       "sessionType": "standings",
-      "date": "2026-10-28",
+      "date": "2026-10-29",
       "source": "ROK Cup Italia",
       "sourceUrl": "https://italy.rokcup.com/classifiche_campionato_en.php?anno=2026",
       "classifications": [
@@ -229,7 +229,7 @@
       "event": "2026 season",
       "className": "Mini ROK",
       "sessionType": "standings",
-      "date": "2026-10-28",
+      "date": "2026-10-29",
       "source": "ROK Cup Italia",
       "sourceUrl": "https://italy.rokcup.com/classifiche_campionato_en.php?anno=2026",
       "classifications": [
@@ -249,7 +249,7 @@
       "event": "2026 season",
       "className": "Junior ROK",
       "sessionType": "standings",
-      "date": "2026-10-28",
+      "date": "2026-10-29",
       "source": "ROK Cup Italia",
       "sourceUrl": "https://italy.rokcup.com/classifiche_campionato_en.php?anno=2026",
       "classifications": [
