@@ -1,286 +1,32 @@
 {
-  "updatedAt": "2026-11-15T17:12:27.825112+00:00",
-  "count": 143,
+  "updatedAt": "2026-11-15T17:47:42.283266+00:00",
+  "count": 120,
   "items": [
     {
-      "title": "Helmet Painters – CKN | CanadianKartingNews.com | Because Karting is a way of Life!",
-      "summary": "Canadian Karting News",
-      "body": "",
-      "url": "https://www.canadiankartingnews.com/category/features/helmet-painters/",
-      "source": "Canadian Karting News - Press Releases",
-      "published": "2026-11-15T17:12:27.825001+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "https://www.canadiankartingnews.com/wp-content/uploads/2013/10/13-10-29-jcd-lyons.jpg",
-      "sources": [],
-      "id": "pr-aa3323b0420457",
-      "tag": "PRESS RELEASE"
-    },
-    {
-      "title": "Driver Blogs – CKN | CanadianKartingNews.com | Because Karting is a way of Life!",
-      "summary": "Canadian Karting News",
-      "body": "",
-      "url": "https://www.canadiankartingnews.com/category/news/driver-blogs/",
-      "source": "Canadian Karting News - Press Releases",
-      "published": "2026-11-15T17:12:27.499038+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "https://www.canadiankartingnews.com/wp-content/uploads/2022/06/290915199_762031708314711_5933669393859594642_n-1-1000x600.jpg",
-      "sources": [],
-      "id": "pr-6e6041223b6cc3",
-      "tag": "PRESS RELEASE"
-    },
-    {
-      "title": "CKN Chatter – CKN | CanadianKartingNews.com | Because Karting is a way of Life!",
-      "summary": "Canadian Karting News",
-      "body": "",
-      "url": "https://www.canadiankartingnews.com/category/features/ckn-chatter/",
-      "source": "Canadian Karting News - Press Releases",
-      "published": "2026-11-15T17:12:27.189038+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "https://www.canadiankartingnews.com/wp-content/uploads/2024/05/CKN_04054-1000x600.jpg",
-      "sources": [],
-      "id": "pr-7219ef715615db",
-      "tag": "PRESS RELEASE"
-    },
-    {
-      "title": "CKN Karting Directory: Tracks – CKN | CanadianKartingNews.com | Because Karting is a way of Life!",
-      "summary": "Canadian Karting News",
-      "body": "",
-      "url": "https://www.canadiankartingnews.com/ckn-track-directory/",
-      "source": "Canadian Karting News - Press Releases",
-      "published": "2026-11-15T17:12:27.014060+00:00",
+      "title": "ROTAX Junior - Kart Mag",
+      "summary": "ROTAX",
+      "url": "https://redaction.kartmag.fr/wp-content/uploads/2026/06/rotaxjunior_participants_2.pdf",
+      "source": "Kart Mag",
+      "published": "2026-11-15T16:00:23+00:00",
       "country": "Global",
       "continent": "Global",
       "image": "",
       "sources": [],
-      "id": "pr-a8a446df06e74e",
-      "tag": "PRESS RELEASE"
+      "id": "e6ae4c6bb8659b",
+      "tag": "LIVE"
     },
     {
-      "title": "CKN Karting Directory: Dealers – CKN | CanadianKartingNews.com | Because Karting is a way of Life!",
-      "summary": "Canadian Karting News",
-      "body": "",
-      "url": "https://www.canadiankartingnews.com/ckn-dealer-directory/",
-      "source": "Canadian Karting News - Press Releases",
-      "published": "2026-11-15T17:12:26.706337+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "",
+      "title": "Llanilar driver Xander Hughes secures karting championship podium finish at Silverstone - Cambrian News",
+      "summary": "Llanilar",
+      "url": "https://www.cambrian-news.co.uk/sport/motor-sport/llanilar-driver-xander-hughes-secures-karting-championship-podium-finish-at-silverstone-972629",
+      "source": "Cambrian News",
+      "published": "2026-11-15T12:30:24+00:00",
+      "country": "United Kingdom",
+      "continent": "Europe",
+      "image": "https://www.cambrian-news.co.uk/tindle-static/image/2026/11/15/11/58/151126-Xander-Hughes-2.jpeg?trim=260,5,6,0&width=1200&crop=16:9,smart&quality=75",
       "sources": [],
-      "id": "pr-95cc03cc5bc9a0",
-      "tag": "PRESS RELEASE"
-    },
-    {
-      "title": "CKN Karting Directory: Kart Clubs – CKN | CanadianKartingNews.com | Because Karting is a way of Life!",
-      "summary": "Canadian Karting News",
-      "body": "",
-      "url": "https://www.canadiankartingnews.com/ckn-club-directory/",
-      "source": "Canadian Karting News - Press Releases",
-      "published": "2026-11-15T17:12:26.501150+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "",
-      "sources": [],
-      "id": "pr-d54e92ecf7a4a4",
-      "tag": "PRESS RELEASE"
-    },
-    {
-      "title": "CKN Karting Directory: Dealers – CKN | CanadianKartingNews.com | Because Karting is a way of Life!",
-      "summary": "Canadian Karting News",
-      "body": "",
-      "url": "https://www.canadiankartingnews.com/ckn-dealer-directory/",
-      "source": "Canadian Karting News - Press Releases",
-      "published": "2026-11-15T17:12:26.290232+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "",
-      "sources": [],
-      "id": "pr-95cc03cc5bc9a0",
-      "tag": "PRESS RELEASE"
-    },
-    {
-      "title": "Features – CKN | CanadianKartingNews.com | Because Karting is a way of Life!",
-      "summary": "Canadian Karting News",
-      "body": "",
-      "url": "https://www.canadiankartingnews.com/category/features/",
-      "source": "Canadian Karting News - Press Releases",
-      "published": "2026-11-15T17:12:25.768160+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "https://www.canadiankartingnews.com/wp-content/uploads/2026/05/KSP_538_4891-1000x600.jpg",
-      "sources": [],
-      "id": "pr-0d71d62a74bdbb",
-      "tag": "PRESS RELEASE"
-    },
-    {
-      "title": "Eastern Canada – CKN | CanadianKartingNews.com | Because Karting is a way of Life!",
-      "summary": "Canadian Karting News",
-      "body": "",
-      "url": "https://www.canadiankartingnews.com/category/region/eastern-canada/",
-      "source": "Canadian Karting News - Press Releases",
-      "published": "2026-11-15T17:12:25.357587+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "https://www.canadiankartingnews.com/wp-content/uploads/2025/02/2025-JDA-Logo-1000x600.jpg",
-      "sources": [],
-      "id": "pr-b8d9ebb01d7459",
-      "tag": "PRESS RELEASE"
-    },
-    {
-      "title": "Western Canada – CKN | CanadianKartingNews.com | Because Karting is a way of Life!",
-      "summary": "Canadian Karting News",
-      "body": "",
-      "url": "https://www.canadiankartingnews.com/category/region/western-canada/",
-      "source": "Canadian Karting News - Press Releases",
-      "published": "2026-11-15T17:12:25.084280+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "https://www.canadiankartingnews.com/wp-content/uploads/2026/08/26-08-11-dowler-1000x600.jpg",
-      "sources": [],
-      "id": "pr-b7d61106cb361f",
-      "tag": "PRESS RELEASE"
-    },
-    {
-      "title": "Quebec – CKN | CanadianKartingNews.com | Because Karting is a way of Life!",
-      "summary": "Canadian Karting News",
-      "body": "",
-      "url": "https://www.canadiankartingnews.com/category/region/quebec/",
-      "source": "Canadian Karting News - Press Releases",
-      "published": "2026-11-15T17:12:24.659463+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "https://www.canadiankartingnews.com/wp-content/uploads/2026/11/26-COUPE3-CKN-13875-1000x600.jpg",
-      "sources": [],
-      "id": "pr-674307fdc788d4",
-      "tag": "PRESS RELEASE"
-    },
-    {
-      "title": "Ontario – CKN | CanadianKartingNews.com | Because Karting is a way of Life!",
-      "summary": "Canadian Karting News",
-      "body": "",
-      "url": "https://www.canadiankartingnews.com/category/region/ontario/",
-      "source": "Canadian Karting News - Press Releases",
-      "published": "2026-11-15T17:12:24.349215+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "https://www.canadiankartingnews.com/wp-content/uploads/2023/06/Cup-Karts-Canada-blacktires-1000x600.jpg",
-      "sources": [],
-      "id": "pr-c7f7b598ff9f99",
-      "tag": "PRESS RELEASE"
-    },
-    {
-      "title": "Region – CKN | CanadianKartingNews.com | Because Karting is a way of Life!",
-      "summary": "Canadian Karting News",
-      "body": "",
-      "url": "https://www.canadiankartingnews.com/category/region/",
-      "source": "Canadian Karting News - Press Releases",
-      "published": "2026-11-15T17:12:23.912061+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "https://www.canadiankartingnews.com/wp-content/uploads/2026/11/26-COUPE3-CKN-13875-1000x600.jpg",
-      "sources": [],
-      "id": "pr-dedc6122f6a558",
-      "tag": "PRESS RELEASE"
-    },
-    {
-      "title": "International News – CKN | CanadianKartingNews.com | Because Karting is a way of Life!",
-      "summary": "Canadian Karting News",
-      "body": "",
-      "url": "https://www.canadiankartingnews.com/category/news/international/",
-      "source": "Canadian Karting News - Press Releases",
-      "published": "2026-11-15T17:12:23.499838+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "https://www.canadiankartingnews.com/wp-content/uploads/2026/11/26-RMCGF-CKN-8320-1000x600.jpg",
-      "sources": [],
-      "id": "pr-58b6400e22e06d",
-      "tag": "PRESS RELEASE"
-    },
-    {
-      "title": "Press Releases – CKN | CanadianKartingNews.com | Because Karting is a way of Life!",
-      "summary": "Canadian Karting News",
-      "body": "",
-      "url": "https://www.canadiankartingnews.com/category/news/releases/",
-      "source": "Canadian Karting News - Press Releases",
-      "published": "2026-11-15T17:12:23.093450+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "https://www.canadiankartingnews.com/wp-content/uploads/2025/01/PFAFF-KARTSPORT-1000x600.jpg",
-      "sources": [],
-      "id": "pr-7bd09c86e8f6d3",
-      "tag": "PRESS RELEASE"
-    },
-    {
-      "title": "Club News – CKN | CanadianKartingNews.com | Because Karting is a way of Life!",
-      "summary": "Canadian Karting News",
-      "body": "",
-      "url": "https://www.canadiankartingnews.com/category/news/club-news/",
-      "source": "Canadian Karting News - Press Releases",
-      "published": "2026-11-15T17:12:22.788035+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "https://www.canadiankartingnews.com/wp-content/uploads/2026/10/8AA89FA5-A85D-466C-B25C-4D4022A63FA7-1000x600.png",
-      "sources": [],
-      "id": "pr-216e4c7f3fb3b0",
-      "tag": "PRESS RELEASE"
-    },
-    {
-      "title": "Latest News – CKN | CanadianKartingNews.com | Because Karting is a way of Life!",
-      "summary": "Canadian Karting News",
-      "body": "",
-      "url": "https://www.canadiankartingnews.com/category/news/latest-news/",
-      "source": "Canadian Karting News - Press Releases",
-      "published": "2026-11-15T17:12:22.366734+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "https://www.canadiankartingnews.com/wp-content/uploads/2026/11/26-RMCGF-CKN-8320-1000x600.jpg",
-      "sources": [],
-      "id": "pr-bdbface67175df",
-      "tag": "PRESS RELEASE"
-    },
-    {
-      "title": "News – CKN | CanadianKartingNews.com | Because Karting is a way of Life!",
-      "summary": "Canadian Karting News",
-      "body": "",
-      "url": "https://www.canadiankartingnews.com/category/news/",
-      "source": "Canadian Karting News - Press Releases",
-      "published": "2026-11-15T17:12:21.948488+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "https://www.canadiankartingnews.com/wp-content/uploads/2026/11/26-RMCGF-CKN-8320-1000x600.jpg",
-      "sources": [],
-      "id": "pr-1e5f7a72218e3d",
-      "tag": "PRESS RELEASE"
-    },
-    {
-      "title": "Store – CKN | CanadianKartingNews.com | Because Karting is a way of Life!",
-      "summary": "Canadian Karting News",
-      "body": "",
-      "url": "https://www.canadiankartingnews.com/store/",
-      "source": "Canadian Karting News - Press Releases",
-      "published": "2026-11-15T17:12:21.530174+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "",
-      "sources": [],
-      "id": "pr-a73c9d4b850f7d",
-      "tag": "PRESS RELEASE"
-    },
-    {
-      "title": "CKN | CanadianKartingNews.com | Because Karting is a way of Life! - Canadian Karting News",
-      "summary": "Canadian Karting News",
-      "body": "",
-      "url": "https://www.canadiankartingnews.com/",
-      "source": "Canadian Karting News - Press Releases",
-      "published": "2026-11-15T17:12:21.264017+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "",
-      "sources": [],
-      "id": "pr-055d15a8e69729",
-      "tag": "PRESS RELEASE"
+      "id": "ae0459128b4792",
+      "tag": "LIVE"
     },
     {
       "title": "Drivers rearing to go in Need for Speed Karting C/Ship Round 2 - Guyana Chronicle",
@@ -293,6 +39,19 @@
       "image": "",
       "sources": [],
       "id": "aaf9c67de2e6f0",
+      "tag": "LIVE"
+    },
+    {
+      "title": "Asia's First Class 1A Professional Karting Track Opens at Wenyu River Park - International Web Portal of Beijing",
+      "summary": "Asia's",
+      "url": "https://english.beijing.gov.cn/latest/news/202611/t20261115_4946428.html",
+      "source": "International Web Portal of Beijing",
+      "published": "2026-11-15T03:23:10+00:00",
+      "country": "United Kingdom",
+      "continent": "Europe",
+      "image": "",
+      "sources": [],
+      "id": "8456d5155bbcde",
       "tag": "LIVE"
     },
     {
@@ -322,19 +81,6 @@
       "tag": "LIVE"
     },
     {
-      "title": "Kimi Antonelli Ups the Ante by Inviting Jannik Sinner for a GT3 Day Out Instead of Go-Kart - Yahoo Sports",
-      "summary": "Kimi",
-      "url": "https://f1chronicle.com/kimi-antonelli-invites-jannik-sinner-gt3-outing/",
-      "source": "Yahoo Sports",
-      "published": "2026-11-14T17:30:00+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "https://s.yimg.com/lo/mysterio/api/9009ed81bb5daae05ad6018fcc318a867fbbf341f87acf2e7fe6547ae5608746/lightyear_networkapi/resizefill_w1200_h675%3Bquality_80%3Bformat_webp/https%3A%2F%2Fmedia.zenfs.com%2Fen%2Ff1_chronicle_874%2Fd3bd20750d384d9e6c8e42bb1d38c60c.jpg",
-      "sources": [],
-      "id": "791256d37394cf",
-      "tag": "LIVE"
-    },
-    {
       "title": "Ferrari wonderkid disqualified by FIA after physical violence at World Karting Championship - GPFans",
       "summary": "Ferrari",
       "url": "https://www.gpfans.com/en/f1-news/1092916/ferrari-junior-disqualified-fia-world-karting-championship/",
@@ -342,7 +88,7 @@
       "published": "2026-11-14T17:00:07+00:00",
       "country": "Global",
       "continent": "Global",
-      "image": "",
+      "image": "https://sportsbase.io/images/gpfans/copy_1200x800/574e524f03dbb7688c94d2cc6dcdde30fc99ec5a.jpg",
       "sources": [],
       "id": "e2dc1552a4e425",
       "tag": "LIVE"
@@ -413,6 +159,19 @@
       "tag": "LIVE"
     },
     {
+      "title": "Document 1 List of Participants (93 Drivers) - Kart Mag",
+      "summary": "Document 1 List of Participants (93 Drivers)",
+      "url": "https://redaction.kartmag.fr/wp-content/uploads/2021/02/okj_participants_31.pdf",
+      "source": "Kart Mag",
+      "published": "2026-11-14T12:27:00+00:00",
+      "country": "Global",
+      "continent": "Global",
+      "image": "",
+      "sources": [],
+      "id": "36353f5faeb073",
+      "tag": "LIVE"
+    },
+    {
       "title": "ROK SVR - Kart Mag",
       "summary": "ROK",
       "url": "https://redaction.kartmag.fr/wp-content/uploads/2024/10/Rok-SVR-Engages.pdf",
@@ -426,19 +185,6 @@
       "tag": "LIVE"
     },
     {
-      "title": "X30 Junior - Kart Mag",
-      "summary": "X30",
-      "url": "https://redaction.kartmag.fr/wp-content/uploads/2023/04/x30junior_122.pdf",
-      "source": "Kart Mag",
-      "published": "2026-11-14T12:12:49+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "",
-      "sources": [],
-      "id": "5a3d474884ca98",
-      "tag": "LIVE"
-    },
-    {
       "title": "Document 1 VERIFIED LIST (57 Drivers) - Kart Mag",
       "summary": "Document 1 VERIFIED LIST (57 Drivers)",
       "url": "https://redaction.kartmag.fr/wp-content/uploads/2026/03/kz2_participants_5.pdf",
@@ -449,19 +195,6 @@
       "image": "",
       "sources": [],
       "id": "94326893254de3",
-      "tag": "LIVE"
-    },
-    {
-      "title": "THOMASEN Nico (Australia): karting driver, results - Kartcom",
-      "summary": "THOMASEN Nico (Australia): karting driver,",
-      "url": "https://www.kartcom.com/en/pilot/thomasen-nico/",
-      "source": "Kartcom",
-      "published": "2026-11-14T11:39:50+00:00",
-      "country": "Australia",
-      "continent": "Oceania",
-      "image": "",
-      "sources": [],
-      "id": "dc90a43f350546",
       "tag": "LIVE"
     },
     {
@@ -613,6 +346,19 @@
       "tag": "LIVE"
     },
     {
+      "title": "F1 driver George Russell opens youth karting academy - BBC",
+      "summary": "F1",
+      "url": "https://www.bbc.com/news/articles/c6742j2z3plko",
+      "source": "BBC",
+      "published": "2026-11-13T06:27:50+00:00",
+      "country": "Global",
+      "continent": "Global",
+      "image": "https://ichef.bbci.co.uk/news/1024/branded_news/81e7/live/2fc44860-de87-11f1-b88b-3f1671ea859d.jpg",
+      "sources": [],
+      "id": "5760acaeb49536",
+      "tag": "LIVE"
+    },
+    {
       "title": "LIVE: Iconic Karting Events - KartSportNews",
       "summary": "LIVE:",
       "url": "https://www.kartsportnews.com/2026/11/13/live-iconic-karting-events/",
@@ -649,19 +395,6 @@
       "image": "https://www.sportscapemagazine.com/_next/image?url=https%3A%2F%2Fcpbmehsalmelyeloaejn.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fpost-media%2Fisha%2F1794487188656-9ilpw2.jpg&w=1200&q=75",
       "sources": [],
       "id": "c015b1e8b49c8e",
-      "tag": "LIVE"
-    },
-    {
-      "title": "Kids in go-kart suspected of shooting Draper girl in eye on Halloween - FOX 13 News Utah",
-      "summary": "Kids",
-      "url": "https://www.fox13now.com/news/local-news/salt-lake-county/kids-in-go-kart-suspected-of-shooting-draper-girl-in-eye-on-halloween",
-      "source": "FOX 13 News Utah",
-      "published": "2026-11-12T19:54:08+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "https://ewscripps.brightspotcdn.com/dims4/default/3a5684d/2147483647/strip/true/crop/1280x672+0+24/resize/1200x630!/quality/90/?url=http%3A%2F%2Fewscripps-brightspot.s3.amazonaws.com%2F28%2Fdd%2Feda8b8324b3fa1c6358bf1067ebc%2Fgo-kart.png",
-      "sources": [],
-      "id": "4d96ad239f8e9a",
       "tag": "LIVE"
     },
     {
@@ -737,7 +470,7 @@
       "published": "2026-11-12T14:20:53+00:00",
       "country": "United Kingdom",
       "continent": "Europe",
-      "image": "https://grandprix-photo-library.nyc3.cdn.digitaloceanspaces.com/photos/library/2026/11/e799e88f-f5e5-4186-9551-f7ce33e26cfb-gr63-academy-silverstone-karting-action-2026.avif",
+      "image": "",
       "sources": [],
       "id": "2130fa513dc24c",
       "tag": "LIVE"
@@ -766,6 +499,19 @@
       "image": "https://www.warringtonguardian.co.uk/resources/images/21709118.jpg?type=og-image&xType=0&yType=116",
       "sources": [],
       "id": "f04c7c2622457e",
+      "tag": "LIVE"
+    },
+    {
+      "title": "Russell partners with BRDC to launch karting academy - Autosport",
+      "summary": "Russell",
+      "url": "https://www.motorsport.com/f1/news/george-russell-launches-karting-academy/10874105/",
+      "source": "Autosport",
+      "published": "2026-11-12T12:27:55+00:00",
+      "country": "Global",
+      "continent": "Global",
+      "image": "https://cdn-2.motorsport.com/images/amp/YvKB3V16/s6/gr63-academy-unveil-2.jpg",
+      "sources": [],
+      "id": "3e81ebe2ab499f",
       "tag": "LIVE"
     },
     {
@@ -971,7 +717,7 @@
       "published": "2026-11-09T18:31:47+00:00",
       "country": "Global",
       "continent": "Global",
-      "image": "https://cdn-3.motorsport.com/images/amp/YN7vzGV6/s6/motorsport-com-graphics-81.jpg",
+      "image": "https://cdn-7.motorsport.com/images/amp/YN7vzGV6/s6/motorsport-com-graphics-81.jpg",
       "sources": [],
       "id": "a02c5b2423ab68",
       "tag": "LIVE"
@@ -1005,19 +751,6 @@
         }
       ],
       "id": "e946bfb52d96e3",
-      "tag": "LIVE"
-    },
-    {
-      "title": "Indian Prodigy Atiqa Mir Shines With Remarkable Comeback At FIA Karting World Championship - Rediff",
-      "summary": "Indian",
-      "url": "https://www.rediff.com/sports/report/atiqa-mirs-overtaking-masterclass-at-fia-world-championship/20261109.htm",
-      "source": "Rediff",
-      "published": "2026-11-09T11:25:35+00:00",
-      "country": "India",
-      "continent": "Asia",
-      "image": "https://im.rediff.com/1200-630/sports/2026/apr/20atiqa-mir.jpg",
-      "sources": [],
-      "id": "a17618812957de",
       "tag": "LIVE"
     },
     {
@@ -1112,20 +845,6 @@
       "tag": "LIVE"
     },
     {
-      "title": "Liam Nachawati Takes First at IAME EuroCup in Le Mans",
-      "summary": "/PRNewswire/ -- Liam Nachawati is finishing his first season in OKJ and X30 Junior karting with a surge of momentum, taking first place Sunday at the IAME...",
-      "body": "",
-      "url": "https://www.prnewswire.com/news-releases/liam-nachawati-takes-first-at-iame-eurocup-in-le-mans-302908790.html",
-      "source": "PR Newswire",
-      "published": "2026-10-14T16:51:00+01:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "",
-      "sources": [],
-      "id": "pr-50d593aa040edc",
-      "tag": "PRESS RELEASE"
-    },
-    {
       "title": "Motorsports: Atiqa Mir signs with Dino Chiesa's Kart Republic - Indian Sports Home",
       "summary": "Motorsports:",
       "url": "https://thebridge.in/motorsport/atiqa-mir-signs-kart-republic-57999",
@@ -1136,19 +855,6 @@
       "image": "",
       "sources": [],
       "id": "c271381aed5fe6",
-      "tag": "LIVE"
-    },
-    {
-      "title": "Atiqa Mir joins Kart Republic, team behind F1 stars - Greater Kashmir",
-      "summary": "Atiqa Mir joins Kart Republic,",
-      "url": "https://www.greaterkashmir.com/sports/atiqa-mir-joins-kart-republic-team-behind-f1-stars-12670410",
-      "source": "Greater Kashmir",
-      "published": "2026-10-12T07:00:00+00:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "https://img-cdn.publive.online/fit-in/1200x675/greater-kashmir/media/media_files/2026/10/13/atiqa-mir-2026-10-13-07-16-08.jpeg",
-      "sources": [],
-      "id": "ae8765e442f8c0",
       "tag": "LIVE"
     },
     {
@@ -1204,19 +910,6 @@
       "tag": "LIVE"
     },
     {
-      "title": "EKN Trackside: 2026 United States Pro Kart Series Lake Erie Grand Prix – Saturday Report - United States Pro Kart Series",
-      "summary": "EKN Trackside: 2026 United States Pro Kart Series Lake Erie Grand Prix –",
-      "url": "https://www.uspks.com/news/coverage/2026-lake-erie-gp-saturday/",
-      "source": "United States Pro Kart Series",
-      "published": "2026-09-19T07:00:00+00:00",
-      "country": "United States",
-      "continent": "North America",
-      "image": "https://www.uspks.com/assets/news/uspks-2026-lok-sat-jake-drew.jpg",
-      "sources": [],
-      "id": "5a2125e92b8f82",
-      "tag": "LIVE"
-    },
-    {
       "title": "SKUSA and Karting Solutions Group Coordinate to Deliver More Than $340,000 in 2027 Winter Series and Winter Trophy Prizes - eKartingNews",
       "summary": "SKUSA and Karting Solutions Group Coordinate to Deliver More Than $340,000",
       "url": "https://www.ekartingnews.com/2026/09/18/skusa-and-karting-solutions-group-coordinate-to-deliver-more-than-340000-in-2027-winter-series-and-winter-trophy-prizes/",
@@ -1230,20 +923,6 @@
       "tag": "LIVE"
     },
     {
-      "title": "Max Verstappen dépasse les 100 karts en 14 tours dans la vidéo « Max vs 100 » de Red Bull",
-      "summary": "/PRNewswire/ -- L",
-      "body": "",
-      "url": "https://www.prnewswire.com/news-releases/max-verstappen-depasse-les-100-karts-en-14-tours-dans-la-video--max-vs-100--de-red-bull-302882693.html",
-      "source": "PR Newswire",
-      "published": "2026-09-17T23:33:00+01:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "https://mmx.prnewswire.com/media/MS1990846/Red-Bull-Max-Verstappen.jpg?id=OA2955953&p=facebook",
-      "sources": [],
-      "id": "pr-0ba15f3e2d5e31",
-      "tag": "PRESS RELEASE"
-    },
-    {
       "title": "Max Verstappen passes 100 karts in just 35 minutes in Max vs 100 - Red Bull",
       "summary": "Max",
       "url": "https://www.redbull.com/int-en/max-vs-100-race-report",
@@ -1251,22 +930,22 @@
       "published": "2026-09-16T07:00:00+00:00",
       "country": "United States",
       "continent": "North America",
-      "image": "",
+      "image": "https://img.redbull.com/images/c_crop,w_3840,h_1920,x_0,y_340/c_auto,w_1200,h_630/f_auto,q_auto/redbullcom/2026/9/17/hko0qk8h2medywztw5ys/max-verstappen-oracle-red-bull-racing-max-vs-100-silverstone-2026",
       "sources": [],
       "id": "e973762588e14c",
       "tag": "LIVE"
     },
     {
-      "title": "Max Verstappen overtakes 100 amateurs in exhibition go-kart race at Silverstone - The Irish News",
+      "title": "Max Verstappen overtakes 100 amateurs in exhibition go-kart race at Silverstone - Hackney Gazette",
       "summary": "Max",
-      "url": "https://www.irishnews.com/sport/motorsport/max-verstappen-overtakes-100-amateurs-in-exhibition-go-kart-race-at-silverstone-JJWRWZY3OBISRK3VEE4WPQC5ZU/",
-      "source": "The Irish News",
+      "url": "https://www.hackneygazette.co.uk/sport/national/26557119.max-verstappen-overtakes-100-amateurs-exhibition-go-kart-race-silverstone/",
+      "source": "Hackney Gazette",
       "published": "2026-09-16T07:00:00+00:00",
       "country": "United Kingdom",
       "continent": "Europe",
-      "image": "https://www.irishnews.com/resizer/v2/JPQPCG4ND5KARCZ3JQV45EB3RY.jpg?smart=true&auth=b29d6fbdd917cd8e6b59966e8dd55a02360d625ebb06ae688f4e5413c01553dc&width=1200&height=630",
+      "image": "https://www.hackneygazette.co.uk/resources/images/21465470.jpg?type=og-image",
       "sources": [],
-      "id": "6b705fd6b5fae8",
+      "id": "a708f760a0c306",
       "tag": "LIVE"
     },
     {
@@ -1285,14 +964,14 @@
     {
       "title": "24 Kids Go-Karts BLAST OFF at New Castle Motorsports Park 🏁 - YouTube",
       "summary": "24 Kids Go-Karts BLAST OFF at New Castle Motorsports Park 🏁",
-      "url": "https://www.google.com/sorry/index?continue=https://www.youtube.com/watch%3Fsi%3D1Xm6c7uAlGpDLajz%26v%3Dad-ECulZIQs%26feature%3Dyoutu.be&q=EgQDKp1fGLmh5tcGIjBZVQqjMv8TwFsaQgwVw0U1yFFIQMSsYKQn5Vbv3oZELChsFRRMWiJFamyeW_i-CRQyAnJSWgFDYNGv_8ScpK3HKw",
+      "url": "undefined",
       "source": "YouTube",
       "published": "2026-09-14T07:00:00+00:00",
       "country": "United States",
       "continent": "North America",
       "image": "",
       "sources": [],
-      "id": "939ccab7b26492",
+      "id": "911cff4b415b2d",
       "tag": "LIVE"
     },
     {
@@ -1374,20 +1053,6 @@
       "tag": "LIVE"
     },
     {
-      "title": "K1 Speed Opens Cleveland Indoor Go-Karting Facility",
-      "summary": "/PRNewswire/ -- K1 Speed, the world",
-      "body": "",
-      "url": "https://www.prnewswire.com/news-releases/k1-speed-opens-cleveland-indoor-go-karting-facility-302865526.html",
-      "source": "PR Newswire",
-      "published": "2026-09-01T14:00:00+01:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "https://mmx.prnewswire.com/media/MS1979057/ClevelandAvonGoKarting.jpg?id=OA2921994&p=facebook",
-      "sources": [],
-      "id": "pr-b9bf51174298d3",
-      "tag": "PRESS RELEASE"
-    },
-    {
       "title": "George Russell treats Mercedes team members to special Silverstone karting event - Motorsport.com",
       "summary": "George",
       "url": "https://www.motorsport.com/f1/news/george-russell-treats-mercedes-team-members-to-special-silverstone-karting-event/10850266/",
@@ -1466,6 +1131,19 @@
       "tag": "LIVE"
     },
     {
+      "title": "Max Verstappen returned to his karting roots for Max vs 100 - Red Bull",
+      "summary": "Max",
+      "url": "https://www.redbull.com/int-en/max-verstappen-vs-100-drivers",
+      "source": "Red Bull",
+      "published": "2026-08-25T07:00:00+00:00",
+      "country": "United States",
+      "continent": "North America",
+      "image": "",
+      "sources": [],
+      "id": "32a0a002ff6fe6",
+      "tag": "LIVE"
+    },
+    {
       "title": "MAX VERSTAPPEN TAKES ON 100 DRIVERS IN WORLD’S BIGGEST GO-KART RACE AT SILVERSTONE! - Verge Magazine",
       "summary": "MAX VERSTAPPEN TAKES ON 100 DRIVERS IN WORLD’S BIGGEST GO-KART RACE AT SILVERSTONE!",
       "url": "https://vergemagazine.co.uk/max-verstappen-takes-on-100-drivers-in-worlds-biggest-go-kart-race-at-silverstone/",
@@ -1502,19 +1180,6 @@
       "image": "https://motorsportuk.s3.eu-west-2.amazonaws.com/wp-content/uploads/2021/01/24140302/Danny-Keirle_5143-1024x837.jpg",
       "sources": [],
       "id": "09762ab91ee10a",
-      "tag": "LIVE"
-    },
-    {
-      "title": "Military drivers take on British 24-Hour Karting Championship in gruelling Teesside test - Forces News",
-      "summary": "Military",
-      "url": "https://www.forcesnews.com/sport/motorsport/military-drivers-take-british-24-hour-karting-championship-gruelling-teesside-test",
-      "source": "Forces News",
-      "published": "2026-08-11T07:00:00+00:00",
-      "country": "United Kingdom",
-      "continent": "Europe",
-      "image": "https://www.forcesnews.com/sites/default/files/styles/cover_image/public/08081016%20Army%20kart%20at%20the%20British%2024-hours%20Teeside%20endurance%20race%20CREDIT%20Gunner%20Owen%20Main.jpg?itok=qPc5wASH",
-      "sources": [],
-      "id": "e0ab06ae8edd23",
       "tag": "LIVE"
     },
     {
@@ -1580,6 +1245,19 @@
       "image": "",
       "sources": [],
       "id": "5008f7eb305569",
+      "tag": "LIVE"
+    },
+    {
+      "title": "TOWNSVILLE SHINES AS CHAMPIONSHIP CHASE HEATS UP - Karting Australia",
+      "summary": "TOWNSVILLE",
+      "url": "https://www.karting.net.au/townsville-shines-as-championship-chase-heats-up/",
+      "source": "Karting Australia",
+      "published": "2026-07-06T07:00:00+00:00",
+      "country": "Australia",
+      "continent": "Oceania",
+      "image": "https://kartingaustralia.mymedia.delivery/1024x683/p/o/wp-content/uploads/2026/07/2026_AKC_Rd3_PaceImages_53228-Web.jpg",
+      "sources": [],
+      "id": "e0fe7b5a79bf9e",
       "tag": "LIVE"
     },
     {
@@ -1685,20 +1363,6 @@
       "sources": [],
       "id": "eeb93ad982961f",
       "tag": "LIVE"
-    },
-    {
-      "title": "K1 Speed Opens Thornton Indoor Amusement Center, Featuring a Multi-Level Go-Kart Track",
-      "summary": "/PRNewswire/ -- K1 Speed, the world",
-      "body": "",
-      "url": "https://www.prnewswire.com/news-releases/k1-speed-opens-thornton-indoor-amusement-center-featuring-a-multi-level-go-kart-track-302782101.html",
-      "source": "PR Newswire",
-      "published": "2026-05-26T17:40:00+01:00",
-      "country": "Global",
-      "continent": "Global",
-      "image": "https://mma.prnewswire.com/media/2988016/Thornton_GoKart_Track.jpg?p=facebook",
-      "sources": [],
-      "id": "pr-6c5a8ad8e7ec97",
-      "tag": "PRESS RELEASE"
     },
     {
       "title": "European Championship in Genk: The Vortex Era in KZ Gives Way to TM Within the Official Tony Kart Team - Kartcom",
@@ -1870,19 +1534,6 @@
       "tag": "LIVE"
     },
     {
-      "title": "Kart Republic takes both victories and both titles in Kristianstad - Kartcom",
-      "summary": "Kart",
-      "url": "https://www.kartcom.com/en/pressrel/kart-republic-takes-both-victories-and-both-titles-in-kristianstad/",
-      "source": "Kartcom",
-      "published": "2025-09-08T07:00:00+00:00",
-      "country": "Sweden",
-      "continent": "Europe",
-      "image": "",
-      "sources": [],
-      "id": "80d3b7fef9cbf4",
-      "tag": "LIVE"
-    },
-    {
       "title": "Invader FIA Karting ‘25 Approval: All the Key Updates and Specs for Parolin’s New Shifter Chassis - TKART",
       "summary": "Invader FIA Karting ‘25 Approval:",
       "url": "https://tkart.it/en/magazine/under-review/parolin-invader-kz-kz2-model-year-2025",
@@ -1893,6 +1544,32 @@
       "image": "https://tkart.it/uploads/2025/06/invader25-facebook.webp",
       "sources": [],
       "id": "ac854495da504e",
+      "tag": "LIVE"
+    },
+    {
+      "title": "Update: DPE & Kart Republic - KartSportNews",
+      "summary": "Update:",
+      "url": "https://www.kartsportnews.com/2025/04/07/update-dpe-kart-republic/",
+      "source": "KartSportNews",
+      "published": "2025-04-07T07:00:00+00:00",
+      "country": "Global",
+      "continent": "Global",
+      "image": "",
+      "sources": [],
+      "id": "8669fd1dfc6df3",
+      "tag": "LIVE"
+    },
+    {
+      "title": "Birel ART: A karting legend - Kartcom",
+      "summary": "Birel ART:",
+      "url": "https://www.kartcom.com/en/news/2025/02/03/birel-art-a-karting-legend/",
+      "source": "Kartcom",
+      "published": "2025-02-03T08:00:00+00:00",
+      "country": "Global",
+      "continent": "Global",
+      "image": "",
+      "sources": [],
+      "id": "5e600a830aae60",
       "tag": "LIVE"
     }
   ]
